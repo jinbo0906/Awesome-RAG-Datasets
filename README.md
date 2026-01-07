@@ -8,10 +8,10 @@ A curated list of benchmark datasets for Retrieval-Augmented Generation (RAG) re
 
 - [Introduction](#introduction)
 - [Dataset Classification](#dataset-classification)
-    - [1. TextRAG](#textrag)
-    - [2. GraphRAG](#graphrag)
-    - [3. MultimodalRAG](#multimodalrag)
-    - [4. TableRAG](#tablerag)
+    - [1. TextRAG](#1-textrag)
+    - [2. GraphRAG](#2-graphrag)
+    - [3. MultimodalRAG](#3-multimodalrag)
+    - [4. TableRAG](#4-tablerag)
 - [Evaluation Metrics](#evaluation-metrics)
 
 ## Introduction
