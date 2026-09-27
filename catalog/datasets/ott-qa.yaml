@@ -1,0 +1,14 @@
+id: ott-qa
+name: OTT-QA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Open-domain table-and-text QA requiring retrieval from large table and passage pools.
+classification: {rag_role: rag_native, primary_category: table_rag, tasks: [table_qa, text_table_reasoning, evidence_retrieval], modalities: [text, table], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Decontextualized questions are paired with candidate pools exceeding 400K tables and 5M passages; the gold table and passage are hidden from the model in the open setting.'}
+ground_truth: {levels: [table, paragraph, answer], provenance: mixed, description: 'Question records and linked source data support table and passage retrieval evaluation; no universal table-cell citation gold is asserted.', alternatives: not_documented}
+evaluation: {official_metrics: [table_hits_at_k, answer_em, answer_f1], protocol: 'Use the open retrieval setting, not HybridQA with a supplied table; test scoring uses the official challenge.'}
+access: {official: 'https://github.com/wenhuchen/OTT-QA', license: MIT}
+use: {best_for: [Joint table and text retrieval, Open-domain evidence assembly], caveats: [The original linked passages and table snapshots must be versioned, Gold table or passage is coarser than a minimal cell-span chain]}
+sources:
+  - {url: 'https://github.com/wenhuchen/OTT-QA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, access.license], checked_on: '2026-09-28'}

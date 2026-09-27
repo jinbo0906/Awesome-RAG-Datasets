@@ -1,0 +1,14 @@
+id: ragbench
+name: RAGBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: RAG evaluation collection with responses and fine-grained support labels over retrieved context.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [attribution, fact_verification], modalities: [text], domains: [multi-domain], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The hosted release has 12 subsets with questions, retrieved documents, generated responses and sentence-level support annotations.'}
+ground_truth: {levels: [sentence, fact_citation, answer], provenance: mixed, description: Response sentences and document sentences are linked by support keys; this evaluates response adherence and context utilization., alternatives: not_documented}
+evaluation: {official_metrics: [adherence, relevance, utilization, completeness], protocol: Treat released retrieved documents as a fixed context pool unless an external corpus is separately reconstructed.}
+access: {official: 'https://huggingface.co/datasets/galileo-ai/ragbench', paper: 'https://arxiv.org/abs/2407.11005', license: CC BY 4.0}
+use: {best_for: [Answer groundedness diagnostics, Sentence-level support attribution], caveats: [Mixed-source and model-assisted annotations should not be called a fully human gold standard]}
+sources:
+  - {url: 'https://huggingface.co/datasets/galileo-ai/ragbench', type: dataset_card, fields: [summary, data.description, ground_truth.description, access.license], checked_on: '2026-09-28'}

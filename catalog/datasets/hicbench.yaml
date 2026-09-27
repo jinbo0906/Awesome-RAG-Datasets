@@ -1,0 +1,15 @@
+id: hicbench
+name: HiCBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: A chunking-focused benchmark with hierarchical boundary annotations and evidence-dense QA.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [evidence_retrieval, long_context_qa], modalities: [text, layout], domains: [documents], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Curated documents from OHRBench are paired with hierarchy annotations and synthesized evidence-intensive questions.}
+ground_truth: {levels: [section, paragraph, sentence, answer], provenance: mixed, description: Human-labeled multilevel chunking points coexist with synthesized QA and associated evidence sources., alternatives: not_documented}
+evaluation: {official_metrics: [chunking_quality, evidence_coverage, answer_quality], protocol: Keep source hierarchy labels separate from QA evidence and test across context budgets., evaluator: 'https://github.com/TencentCloudADP/hichunk'}
+access: {official: 'https://github.com/TencentCloudADP/hichunk', paper: 'https://aclanthology.org/2026.acl-long.1372/', license: unknown}
+use: {best_for: [Hierarchical chunking, Evidence completeness across chunk sizes], caveats: [Synthesized questions need an independent human-audited holdout for claims of generalization]}
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1372/', type: paper, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/TencentCloudADP/hichunk', type: repository, fields: [evaluation.protocol, access.official], checked_on: '2026-09-28'}

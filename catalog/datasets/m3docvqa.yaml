@@ -1,0 +1,14 @@
+id: m3docvqa
+name: M3DocVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Open-domain visual document QA over a multi-page multi-document PDF collection.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [page_retrieval, visual_qa], modalities: [text, image, table, chart], domains: [documents], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The M3DocRAG project releases an open-domain collection exceeding 3,000 PDFs and 40,000 pages.'}
+ground_truth: {levels: [page, answer], provenance: mixed, description: Relevance is evaluated at document or page level before visual answer generation., alternatives: not_documented}
+evaluation: {official_metrics: [retrieval_recall, answer_accuracy], protocol: Preserve PDF identity and page numbers; do not conflate closed-domain MP-DocVQA with open-domain M3DocVQA.}
+access: {official: 'https://github.com/bloomberg/m3docrag', paper: 'https://arxiv.org/abs/2411.04952', license: unknown}
+use: {best_for: [Open-domain multi-page retrieval, Visual evidence missed by OCR], caveats: [The source repository was archived in July 2026; record the exact snapshot used]}
+sources:
+  - {url: 'https://github.com/bloomberg/m3docrag', type: repository, fields: [summary, data.description, ground_truth.description, use.caveats], checked_on: '2026-09-28'}

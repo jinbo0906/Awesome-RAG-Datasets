@@ -1,0 +1,14 @@
+id: multihop-rag
+name: MultiHop-RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Open multi-document RAG QA with query types and supporting evidence labels.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [multi_hop_qa, evidence_retrieval], modalities: [text], domains: [news], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The released knowledge base and question set include inference, comparison, temporal and null-answer cases.'}
+ground_truth: {levels: [document, answer], provenance: mixed, description: Questions are associated with supporting evidence from multiple source documents., alternatives: not_documented}
+evaluation: {official_metrics: [retrieval_recall, answer_accuracy], protocol: Report null-answer cases separately from multi-hop answerable cases.}
+access: {official: 'https://github.com/yixuantt/MultiHop-RAG', paper: 'https://arxiv.org/abs/2401.15391', license: unknown}
+use: {best_for: [Multi-document retrieval, Temporal or comparative reasoning], caveats: [Supporting documents are not automatically minimal sufficient spans]}
+sources:
+  - {url: 'https://github.com/yixuantt/MultiHop-RAG', type: repository, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}

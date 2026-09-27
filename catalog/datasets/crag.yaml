@@ -1,0 +1,14 @@
+id: crag
+name: CRAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Time-aware factual QA benchmark with web results and mock knowledge APIs for RAG.
+classification: {rag_role: rag_native, primary_category: text_rag, secondary_categories: [graph_rag], tasks: [single_hop_qa, multi_hop_qa], modalities: [text, graph], domains: [finance, sports, entertainment, general], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Questions span five domains and eight categories; released retrieval content includes web search results and mock APIs.}
+ground_truth: {levels: [answer], provenance: human, description: Gold and alternative answers are provided; retrieved pages are candidate context rather than gold supporting spans., alternatives: explicit}
+evaluation: {official_metrics: [correctness_with_abstention], protocol: 'Official scoring distinguishes correct answers, missing answers and incorrect answers.', evaluator: 'https://github.com/facebookresearch/CRAG/blob/main/local_evaluation.py'}
+access: {official: 'https://github.com/facebookresearch/CRAG', paper: 'https://arxiv.org/abs/2406.04744', license: CC BY-NC 4.0}
+use: {best_for: [Temporal factual retrieval, Abstention and error-cost analysis], caveats: [Search results are not relevance judgments; do not treat every returned page as supporting evidence]}
+sources:
+  - {url: 'https://github.com/facebookresearch/CRAG', type: repository, fields: [summary, data.description, evaluation.protocol, access.license], checked_on: '2026-09-28'}

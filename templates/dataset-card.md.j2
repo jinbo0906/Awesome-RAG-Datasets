@@ -1,0 +1,66 @@
+<!-- Generated from catalog/datasets/{{ d.id }}.yaml. Edit the YAML source. -->
+# {{ d.name }}
+
+{{ d.summary }}
+
+| Field | Value |
+|---|---|
+| Catalog status | `{{ d.status }}` |
+{% if d.last_checked is defined %}| Source checked on | {{ d.last_checked }} |
+{% endif %}
+| RAG role | `{{ d.classification.rag_role }}` |
+| Primary category | `{{ d.classification.primary_category }}` |
+| Tasks | {{ d.classification.tasks | join(', ') }} |
+| Modalities | {{ d.classification.modalities | join(', ') }} |
+| Evidence levels | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} |
+| Evidence provenance | {{ d.ground_truth.provenance }} |
+| Corpus / queries / answers | {{ d.data.corpus }} / {{ d.data.queries }} / {{ d.data.answers }} |
+| Original data license | {{ d.access.license }} |
+
+{% if d.status in ['source_checked', 'reproduced', 'verified'] %}`source_checked` means the cited fields were reviewed against upstream sources; it does not imply that the dataset was downloaded or its evaluator reproduced.
+{% else %}This entry is still being screened. Treat its unsourced or unknown details as unconfirmed.
+{% endif %}
+
+## Data and construction
+
+{{ d.data.description | default('Construction and split details need further source review.') }}
+
+{% if d.data.size is defined %}Published scale: {{ d.data.size }}
+{% endif %}
+{% if d.data.splits is defined %}Splits: {{ d.data.splits }}
+{% endif %}
+{% if d.data.format is defined %}Format: {{ d.data.format }}.
+{% endif %}
+
+## Ground truth and evaluation
+
+{% if d.ground_truth.description is defined %}{{ d.ground_truth.description }}
+{% else %}No finer evidence description has been verified yet.
+{% endif %}
+
+Official metrics: {{ d.evaluation.official_metrics | join(', ') if d.evaluation.official_metrics else 'not confirmed' }}.
+
+{% if d.evaluation.protocol is defined %}Protocol: {{ d.evaluation.protocol }}
+{% endif %}
+
+## When to use it
+
+{% for item in d.use.best_for %}- {{ item }}
+{% endfor %}
+
+## Limitations and cautions
+
+{% for item in d.use.caveats %}- {{ item }}
+{% endfor %}
+
+## Access and sources
+
+- [Official resource]({{ d.access.official }})
+{% if d.access.paper is defined %}- [Paper]({{ d.access.paper }})
+{% endif %}
+{% if d.access.data is defined %}- [Data]({{ d.access.data }})
+{% endif %}
+{% for source in d.sources %}- {{ source.type }}: [source]({{ source.url }}) — supports `{{ source.fields | join('`, `') }}`
+{% endfor %}
+
+Original dataset licenses and access terms are set by their owners. A catalog entry does not grant redistribution rights.

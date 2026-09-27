@@ -1,0 +1,14 @@
+id: chartqa
+name: ChartQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Chart-image question answering with human and generated questions plus optional chart-element boxes.
+classification: {rag_role: rag_convertible, primary_category: multimodal_rag, tasks: [visual_qa, table_qa], modalities: [image, chart, table], domains: [charts], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The official full release includes chart images, QA, underlying tables and element annotations; train_human and train_augmented have different origins.'}
+ground_truth: {levels: [bbox, answer], provenance: mixed, description: 'Element boxes are available in the full version, but are not necessarily per-question minimal evidence boxes.', alternatives: not_documented}
+evaluation: {official_metrics: [relaxed_accuracy], protocol: 'For retrieval experiments construct a chart corpus and state whether underlying tables or element boxes are exposed.'}
+access: {official: 'https://github.com/vis-nlp/ChartQA', paper: 'https://aclanthology.org/2022.findings-acl.177/', license: unknown}
+use: {best_for: [Chart perception and numerical reasoning, Visual-versus-table ablations], caveats: [Native task supplies a chart; it is not open-corpus RAG, SVG-derived boxes can be noisy or missing]}
+sources:
+  - {url: 'https://github.com/vis-nlp/ChartQA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, use.caveats], checked_on: '2026-09-28'}

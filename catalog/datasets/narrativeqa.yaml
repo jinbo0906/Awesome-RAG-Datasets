@@ -1,0 +1,14 @@
+id: narrativeqa
+name: NarrativeQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Questions over books and screenplays with human answers and document-level links.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [long_context_qa, summarization], modalities: [text], domains: [fiction], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'The release includes question-answer pairs, document metadata, Wikipedia summaries and links or download scripts for full stories.'}
+ground_truth: {levels: [document, answer], provenance: human, description: 'Questions have reference answers but no native sentence-level supporting-fact map.', alternatives: explicit}
+evaluation: {official_metrics: [rouge_l, bleu, meteor], protocol: 'Disclose summary-versus-full-story setting and the exact story snapshot used.'}
+access: {official: 'https://github.com/google-deepmind/narrativeqa', paper: 'https://arxiv.org/abs/1712.07040', license: 'Apache-2.0 repository; source stories have separate terms'}
+use: {best_for: [Long-document retrieval stress tests, Story-level answer generation], caveats: [Not a native chunk-boundary gold standard, Full story availability depends on source URLs and rights]}
+sources:
+  - {url: 'https://github.com/google-deepmind/narrativeqa', type: repository, fields: [summary, data.description, ground_truth.description, access.license], checked_on: '2026-09-28'}

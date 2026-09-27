@@ -1,0 +1,14 @@
+id: fever
+name: FEVER
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Wikipedia-based claim verification with labeled supporting sentence sets.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [fact_verification, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Claims are labeled Supports, Refutes or Not Enough Info against a fixed Wikipedia snapshot.'}
+ground_truth: {levels: [sentence, answer], provenance: human, description: Evidence sets of Wikipedia sentences support or refute verifiable claims., alternatives: explicit}
+evaluation: {official_metrics: [label_accuracy, fever_score], protocol: FEVER score requires both a correct label and complete evidence for supported or refuted claims.}
+access: {official: 'https://fever.ai/dataset/fever.html', paper: 'https://aclanthology.org/N18-1074/', license: unknown}
+use: {best_for: [Sentence-level evidence retrieval, Testing complete evidence-set coverage], caveats: [NEI cases do not have a positive gold evidence set]}
+sources:
+  - {url: 'https://aclanthology.org/N18-1074/', type: paper, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

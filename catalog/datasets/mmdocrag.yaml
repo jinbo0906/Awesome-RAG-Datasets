@@ -1,0 +1,20 @@
+id: mmdocrag
+name: MMDocRAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-page multimodal document QA with cross-modal evidence chains and quote selection.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [page_retrieval, layout_retrieval, visual_qa, attribution], modalities: [text, image, table, chart, layout], domains: [documents], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Questions are grounded in long documents with text and image quotes plus deliberately difficult negative quotes.
+  size: '4,055 QA pairs from 222 long documents in the project release.'
+ground_truth: {levels: [page, quote, answer], provenance: mixed, description: Cross-page and cross-modal evidence chains support quote-selection and cited-answer evaluation., alternatives: not_documented}
+evaluation: {official_metrics: [quote_selection_f1, answer_quality], protocol: Report retrieval and quote selection separately from multimodal answer quality.}
+access: {official: 'https://mmdocrag.github.io/MMDocRAG/', paper: 'https://arxiv.org/abs/2505.16470', data: 'https://github.com/MMDocRAG/MMDocRAG', license: unknown}
+use: {best_for: [Cross-page evidence selection, Text-image quote integration, Hard-negative robustness], caveats: [Part of the construction uses generated questions and parser-derived quotes; report human-verified subset separately]}
+sources:
+  - {url: 'https://mmdocrag.github.io/MMDocRAG/', type: official, fields: [summary, data.size, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/file/1a93178950e92fd2e7b7448f7d68fd7d-Paper-Datasets_and_Benchmarks_Track.pdf', type: paper, fields: [data.description, classification.modalities], checked_on: '2026-09-28'}

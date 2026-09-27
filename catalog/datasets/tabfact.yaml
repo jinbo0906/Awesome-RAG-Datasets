@@ -1,0 +1,14 @@
+id: tabfact
+name: TabFact
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Entailment or refutation of natural-language claims against Wikipedia tables.
+classification: {rag_role: rag_convertible, primary_category: table_rag, tasks: [fact_verification, table_qa], modalities: [text, table], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Claims are paired with individual tables and binary labels; the official page reports both 117,854 manually annotated statements and a 118,275 row-count total under different tabulations.'}
+ground_truth: {levels: [table, answer], provenance: human, description: 'Entailed or refuted labels are gold; a supporting cell set is not natively guaranteed for every claim.', alternatives: not_documented}
+evaluation: {official_metrics: [accuracy], protocol: 'A table retriever and table-level qrels must be specified to evaluate a RAG pipeline.'}
+access: {official: 'https://github.com/wenhuchen/Table-Fact-Checking', license: unknown}
+use: {best_for: [Table-aware claim verification, Semantic and symbolic inference], caveats: [The official README contains differing count presentations, Native task supplies its table and is not open retrieval]}
+sources:
+  - {url: 'https://github.com/wenhuchen/Table-Fact-Checking', type: repository, fields: [summary, data.description, ground_truth.description, use.caveats], checked_on: '2026-09-28'}

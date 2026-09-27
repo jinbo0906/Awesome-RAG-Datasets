@@ -1,0 +1,20 @@
+id: xl-docbench
+name: XL-DocBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Expert-verified QA over extra-long documents with evidence pages and snippets.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [long_context_qa, page_retrieval, evidence_retrieval], modalities: [text, image, table, layout], domains: [professional_documents], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The release references public source document URLs rather than bundling every PDF; it includes single- and cross-document QA.
+  size: '1,519 questions: 1,354 single-document and 165 cross-document; 331 document records.'
+ground_truth: {levels: [page, quote, answer], provenance: human, description: Answerable cases include human evidence pages and evidence snippets with source locators., alternatives: not_documented}
+evaluation: {official_metrics: [answer_accuracy, evidence_retrieval], protocol: Materialize versioned source PDFs before comparing parsers or chunkers.}
+access: {official: 'https://officeintelligence.github.io/xl-docbench/', data: 'https://huggingface.co/datasets/anonymous12123/XL-DocBench', license: unknown}
+use: {best_for: [Very long document retrieval, Cross-document evidence localization], caveats: [External document URLs can drift; a reproducible snapshot and hashes are necessary]}
+sources:
+  - {url: 'https://huggingface.co/datasets/anonymous12123/XL-DocBench', type: dataset_card, fields: [data.description, data.size, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://officeintelligence.github.io/xl-docbench/', type: official, fields: [summary, use.best_for], checked_on: '2026-09-28'}

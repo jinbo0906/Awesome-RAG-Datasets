@@ -1,0 +1,14 @@
+id: musique
+name: MuSiQue
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-hop questions composed from single-hop sources to require connected reasoning.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [multi_hop_qa, evidence_retrieval], modalities: [text], domains: [general], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'MuSiQue-Ans and MuSiQue-Full differ in answerability; train, dev and test are distributed in official format.'}
+ground_truth: {levels: [paragraph, answer], provenance: mixed, description: Question decomposition and paragraph support can be used to test full-chain retrieval., alternatives: not_documented}
+evaluation: {official_metrics: [answer_em, answer_f1, support_f1], protocol: Compare Ans and Full separately., evaluator: 'https://github.com/StonyBrookNLP/musique/blob/main/evaluate_v1.0.py'}
+access: {official: 'https://github.com/StonyBrookNLP/musique', paper: 'https://aclanthology.org/2022.tacl-1.31/', license: CC BY 4.0}
+use: {best_for: [Connected multi-hop reasoning, Evidence completeness under a fixed context budget], caveats: [Seed single-hop questions can overlap other training data; consult released leakage IDs]}
+sources:
+  - {url: 'https://github.com/StonyBrookNLP/musique', type: repository, fields: [summary, data.description, access.license, use.caveats, evaluation.evaluator], checked_on: '2026-09-28'}

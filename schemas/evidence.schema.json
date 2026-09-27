@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source-anchored RAG evidence example",
+  "type": "object",
+  "required": ["query_id", "source_version", "answer", "facts", "nodes", "edges", "acceptable_sets"],
+  "additionalProperties": false,
+  "properties": {
+    "query_id": {"type": "string", "minLength": 1},
+    "source_version": {"type": "string", "minLength": 1, "description": "Immutable upstream version or content hash, not a chunker version."},
+    "answer": {"type": "array", "items": {"type": "string"}},
+    "facts": {
+      "type": "array", "items": {
+        "type": "object", "required": ["id", "text"], "additionalProperties": false,
+        "properties": {"id": {"type": "string"}, "text": {"type": "string"}}
+      }
+    },
+    "nodes": {
+      "type": "array", "items": {
+        "type": "object", "required": ["id", "document_id", "modality"], "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"}, "document_id": {"type": "string"},
+          "source_element_id": {"type": "string"}, "page": {"type": "integer", "minimum": 0},
+          "modality": {"enum": ["text", "image", "table", "chart", "equation", "layout", "graph", "audio", "video"]},
+          "char_start": {"type": "integer", "minimum": 0}, "char_end": {"type": "integer", "minimum": 0},
+          "bbox": {"type": "array", "prefixItems": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "number", "minimum": 0, "maximum": 1}, {"type": "number", "minimum": 0, "maximum": 1}, {"type": "number", "minimum": 0, "maximum": 1}], "minItems": 4, "maxItems": 4},
+          "cell": {"type": "object", "required": ["row", "column"], "additionalProperties": false, "properties": {"row": {"type": "integer", "minimum": 0}, "column": {"type": "integer", "minimum": 0}}},
+          "time_start_ms": {"type": "integer", "minimum": 0}, "time_end_ms": {"type": "integer", "minimum": 0},
+          "text": {"type": "string"}
+        },
+        "anyOf": [
+          {"required": ["source_element_id"]}, {"required": ["page", "bbox"]},
+          {"required": ["char_start", "char_end"]}, {"required": ["page", "cell"]},
+          {"required": ["time_start_ms", "time_end_ms"]}
+        ]
+      }
+    },
+    "edges": {
+      "type": "array", "items": {
+        "type": "object", "required": ["id", "from", "to", "type"], "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"}, "from": {"type": "string"}, "to": {"type": "string"},
+          "type": {"enum": ["supports", "required_with", "caption_of", "row_header_of", "column_header_of", "continued_on", "refers_to", "corefers_with", "temporal_before"]}
+        }
+      }
+    },
+    "acceptable_sets": {
+      "type": "array", "items": {
+        "type": "object", "required": ["node_ids", "fact_ids"], "additionalProperties": false,
+        "properties": {
+          "node_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+          "edge_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "fact_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+        }
+      }
+    }
+  }
+}

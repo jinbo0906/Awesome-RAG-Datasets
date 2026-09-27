@@ -1,0 +1,20 @@
+id: t2-ragbench
+name: T²-RAGBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Financial-document RAG benchmark combining prose, tables and numerical reasoning.
+classification: {rag_role: rag_native, primary_category: table_rag, secondary_categories: [multimodal_rag], tasks: [text_table_reasoning, table_qa], modalities: [text, table], domains: [finance], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Built from FinQA, ConvFinQA and TAT-DQA style financial document QA; PDF and structured contexts require explicit version selection.
+  size: 'Project site reports 23,088 triples; the original paper abstract reports 32,908. Treat these as different release or counting scopes until reconciled.'
+ground_truth: {levels: [answer], provenance: mixed, description: Question-context-answer triples are released; exact table-cell evidence coverage needs release-specific inspection., alternatives: not_documented}
+evaluation: {official_metrics: [answer_accuracy], protocol: State the downloaded release and source-document conversion when comparing systems.}
+access: {official: 'https://t2ragbench.demo.hcds.uni-hamburg.de/', paper: 'https://arxiv.org/abs/2506.12071', data: 'https://huggingface.co/datasets/G4KMU/t2-ragbench', license: unknown}
+use: {best_for: [Numerical reasoning across prose and tables, Testing financial-document retrieval], caveats: [Paper and live project page disagree on total triples; do not combine results across unverified versions]}
+sources:
+  - {url: 'https://t2ragbench.demo.hcds.uni-hamburg.de/', type: official, fields: [summary, data.description, data.size], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/abs/2506.12071', type: paper, fields: [data.size, classification.tasks], checked_on: '2026-09-28'}

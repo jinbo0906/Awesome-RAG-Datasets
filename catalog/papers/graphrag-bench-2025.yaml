@@ -1,0 +1,8 @@
+id: graphrag-bench-2025
+name: GraphRAG-Bench
+entity_type: paper
+url: 'https://arxiv.org/abs/2506.05690'
+relation: introduces
+targets: [graphrag-bench]
+sources:
+  - {url: 'https://arxiv.org/abs/2506.05690', type: paper, fields: [name, targets], checked_on: '2026-09-28'}

@@ -1,0 +1,14 @@
+id: hybridqa
+name: HybridQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-hop QA combining Wikipedia table rows with linked passage evidence.
+classification: {rag_role: rag_native, primary_category: table_rag, tasks: [table_qa, text_table_reasoning], modalities: [table, text], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Questions require table lookup and linked textual passage reasoning in a fixed released collection.}
+ground_truth: {levels: [table, paragraph, answer], provenance: human, description: Table and linked passage associations support a cross-structure reasoning protocol., alternatives: not_documented}
+evaluation: {official_metrics: [answer_em, answer_f1], protocol: Compare retrieval and answer stages separately; preserve table-to-passage links.}
+access: {official: 'https://github.com/wenhuchen/HybridQA', paper: 'https://aclanthology.org/2020.findings-emnlp.91/', license: unknown}
+use: {best_for: [Table-text evidence linking, Cross-structure multi-hop reasoning], caveats: [A table flattened to plain text can lose row and header associations]}
+sources:
+  - {url: 'https://github.com/wenhuchen/HybridQA', type: repository, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}

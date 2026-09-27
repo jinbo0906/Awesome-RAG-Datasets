@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RAG dataset catalog record",
+  "type": "object",
+  "required": ["id", "name", "entity_type", "status", "summary", "classification", "data", "ground_truth", "evaluation", "access", "use", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "name": {"type": "string", "minLength": 2},
+    "entity_type": {"const": "dataset"},
+    "status": {"enum": ["discovered", "screened", "source_checked", "reproduced", "verified", "deprecated"]},
+    "last_checked": {"type": "string", "format": "date"},
+    "summary": {"type": "string", "minLength": 15},
+    "classification": {
+      "type": "object", "required": ["rag_role", "primary_category", "tasks", "modalities"],
+      "additionalProperties": false,
+      "properties": {
+        "rag_role": {"enum": ["rag_native", "rag_convertible", "auxiliary", "out_of_scope"]},
+        "primary_category": {"enum": ["text_rag", "multimodal_rag", "graph_rag", "table_rag", "cross_cutting"]},
+        "secondary_categories": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "tasks": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+        "modalities": {"type": "array", "items": {"enum": ["text", "image", "table", "chart", "equation", "layout", "graph", "audio", "video"]}, "minItems": 1, "uniqueItems": true},
+        "domains": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "languages": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "data": {
+      "type": "object", "required": ["corpus", "queries", "answers"], "additionalProperties": false,
+      "properties": {
+        "corpus": {"enum": ["provided", "external", "not_provided", "unknown"]},
+        "queries": {"enum": ["provided", "external", "not_provided", "unknown"]},
+        "answers": {"enum": ["provided", "external", "not_provided", "unknown"]},
+        "description": {"type": "string"},
+        "size": {"type": "string"},
+        "splits": {"type": "string"},
+        "corpus_id": {"type": "string"},
+        "format": {"type": "string"}
+      }
+    },
+    "ground_truth": {
+      "type": "object", "required": ["levels", "provenance"], "additionalProperties": false,
+      "properties": {
+        "levels": {"type": "array", "items": {"enum": ["document", "page", "section", "paragraph", "sentence", "span", "layout", "bbox", "table", "table_cell", "figure", "quote", "graph_path", "fact_citation", "answer"]}, "uniqueItems": true},
+        "provenance": {"enum": ["human", "synthetic", "distant", "mixed", "unknown"]},
+        "description": {"type": "string"},
+        "alternatives": {"enum": ["explicit", "implicit", "not_documented"]}
+      }
+    },
+    "evaluation": {
+      "type": "object", "required": ["official_metrics"], "additionalProperties": false,
+      "properties": {
+        "official_metrics": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "protocol": {"type": "string"},
+        "evaluator": {"type": "string", "format": "uri"}
+      }
+    },
+    "access": {
+      "type": "object", "required": ["official", "license"], "additionalProperties": false,
+      "properties": {
+        "official": {"type": "string", "format": "uri"},
+        "paper": {"type": "string", "format": "uri"},
+        "data": {"type": "string", "format": "uri"},
+        "license": {"type": "string"},
+        "gated": {"type": "boolean"}
+      }
+    },
+    "use": {
+      "type": "object", "required": ["best_for", "caveats"], "additionalProperties": false,
+      "properties": {
+        "best_for": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "caveats": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "related_suites": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "sources": {
+      "type": "array", "items": {
+        "type": "object", "required": ["url", "type", "fields"], "additionalProperties": false,
+        "properties": {
+          "url": {"type": "string", "format": "uri"},
+          "type": {"enum": ["official", "paper", "repository", "dataset_card"]},
+          "fields": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "checked_on": {"type": "string", "format": "date"}
+        }
+      }
+    }
+  }
+}

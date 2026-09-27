@@ -1,0 +1,14 @@
+id: tat-qa
+name: TAT-QA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Financial QA over a provided hybrid context of report tables and surrounding text.
+classification: {rag_role: rag_convertible, primary_category: table_rag, tasks: [table_qa, text_table_reasoning], modalities: [text, table], domains: [finance], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The official release contains 16,552 questions across 2,757 table-and-text contexts from financial reports.'}
+ground_truth: {levels: [table_cell, span, answer], provenance: human, description: 'Questions include derivation and answer-from metadata; model-specific heuristic facts and mappings are a separate derived representation.', alternatives: not_documented}
+evaluation: {official_metrics: [em, f1], protocol: 'Do not treat supplied context as an open retrieval test without constructing a separate source-document corpus and split.'}
+access: {official: 'https://github.com/NExTplusplus/TAT-QA', paper: 'https://aclanthology.org/2021.acl-long.254/', license: CC BY 4.0}
+use: {best_for: [Text-cell evidence fusion, Numerical reasoning after retrieval], caveats: [Native context is supplied, Heuristic TagOp mappings are not original human evidence labels]}
+sources:
+  - {url: 'https://github.com/NExTplusplus/TAT-QA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, access.license], checked_on: '2026-09-28'}

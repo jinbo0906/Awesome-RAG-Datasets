@@ -1,0 +1,15 @@
+id: beir-scifact
+name: SciFact (BEIR variant)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Scientific claim-to-abstract retrieval as packaged for the BEIR zero-shot IR suite.
+classification: {rag_role: auxiliary, primary_category: text_rag, tasks: [fact_verification, evidence_retrieval], modalities: [text], domains: [scientific], languages: [en]}
+data: {corpus: provided, queries: provided, answers: not_provided, description: 'The BEIR package supplies corpus, queries and document-level relevance judgments for scientific claims; this record is the BEIR variant, not the original SciFact claim-verification package.'}
+ground_truth: {levels: [document], provenance: mixed, description: 'BEIR qrels identify relevant abstracts, not an answer-generation gold standard.', alternatives: explicit}
+evaluation: {official_metrics: [ndcg_at_10, map_at_k, recall_at_k], protocol: 'Use BEIR test qrels and fixed corpus; add a separate answer task before claiming end-to-end RAG.'}
+access: {official: 'https://github.com/beir-cellar/beir', license: unknown}
+use: {best_for: [Scientific retriever comparisons, Corpus-query-qrels schema demonstration], caveats: [Retrieval-only auxiliary; no native generated-answer evaluation]}
+related_suites: [beir]
+sources:
+  - {url: 'https://github.com/beir-cellar/beir', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics], checked_on: '2026-09-28'}

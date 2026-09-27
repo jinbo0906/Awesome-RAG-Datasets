@@ -1,0 +1,16 @@
+id: qampari
+name: QAMPARI
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Open-domain QA where each question has many answers supported by multiple paragraphs.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [multi_hop_qa, long_form_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'Questions are built using Wikipedia knowledge-graph and table relations, then linked to supporting paragraphs; ALCE packages retrieval outputs for citation experiments.'}
+ground_truth: {levels: [paragraph, answer], provenance: mixed, description: 'Answer entities and supporting paragraphs are released; paragraph alignment uses automatic construction and question-answer validation.', alternatives: explicit}
+evaluation: {official_metrics: [answer_f1, citation_quality], protocol: 'Distinguish the original answer-set task from ALCE citation-conditioned evaluation.'}
+access: {official: 'https://arxiv.org/abs/2205.12665', license: unknown}
+use: {best_for: [Multi-answer evidence coverage, Citation completeness under distributed evidence], caveats: [No single paragraph necessarily covers every correct answer, The original corpus snapshot must be specified]}
+related_suites: [alce]
+sources:
+  - {url: 'https://arxiv.org/abs/2205.12665', type: paper, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/princeton-nlp/ALCE', type: repository, fields: [evaluation.protocol], checked_on: '2026-09-28'}

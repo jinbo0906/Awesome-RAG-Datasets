@@ -1,0 +1,16 @@
+id: asqa
+name: ASQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Ambiguous factoid questions with long answers and disambiguating short-answer pairs.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [long_form_qa, attribution], modalities: [text], domains: [wikipedia], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'Questions and long-form answers are accompanied by extractive QA pairs; ALCE distributes a retrieval-results adaptation.'}
+ground_truth: {levels: [answer], provenance: human, description: 'Reference answers cover multiple interpretations; native citation links to source passages are not equivalent to the ALCE adaptation.', alternatives: explicit}
+evaluation: {official_metrics: [rouge, qa_accuracy], protocol: 'If using ALCE retrieved passages, report its retrieval snapshot and citation scoring separately.'}
+access: {official: 'https://github.com/google-research/language/tree/master/language/asqa', license: unknown}
+use: {best_for: [Ambiguity-aware long-form answer coverage, Citation evaluation through ALCE], caveats: [Original ASQA and ALCE-ASQA are distinct evaluation settings]}
+related_suites: [alce]
+sources:
+  - {url: 'https://github.com/tensorflow/datasets/blob/master/docs/catalog/asqa.md', type: dataset_card, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/princeton-nlp/ALCE', type: repository, fields: [data.description, evaluation.protocol], checked_on: '2026-09-28'}

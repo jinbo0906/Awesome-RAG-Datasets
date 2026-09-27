@@ -1,0 +1,14 @@
+id: clapnq
+name: CLAP NQ
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Long-form RAG answers grounded in non-contiguous sentences of Natural Questions passages.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [long_form_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The official release includes annotated QA, original Wikipedia documents and retrieval-formatted data; answerable and unanswerable examples are represented.'}
+ground_truth: {levels: [sentence, answer], provenance: human, description: 'Selected passage sentences ground a concise cohesive answer; many answers require non-adjacent sentences.', alternatives: not_documented}
+evaluation: {official_metrics: [retrieval_recall, answer_quality], protocol: 'Keep the source sentence identifiers through passage reconstruction; the official test answers are withheld.'}
+access: {official: 'https://github.com/primeqa/clapnq', paper: 'https://arxiv.org/abs/2404.02103', license: Apache-2.0}
+use: {best_for: [Chunking across non-contiguous evidence, Long-form grounded answers], caveats: [Official test labels require the upstream evaluation process]}
+sources:
+  - {url: 'https://github.com/primeqa/clapnq', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, access.license], checked_on: '2026-09-28'}

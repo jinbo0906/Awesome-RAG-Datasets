@@ -1,0 +1,11 @@
+id: beir
+name: BEIR
+entity_type: suite
+status: source_checked
+summary: Heterogeneous zero-shot text retrieval suite with per-dataset corpus, queries and relevance judgments.
+components: [beir-scifact]
+protocol: 'This catalog currently indexes one representative component, not the full suite. Use the upstream per-dataset corpus/query/qrels and report NDCG@10 plus additional metrics as needed; BEIR alone does not score answer generation.'
+access: {official: 'https://github.com/beir-cellar/beir'}
+sources:
+  - {url: 'https://github.com/beir-cellar/beir', type: repository, fields: [summary, protocol], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/beir-cellar/beir/wiki/Datasets-available', type: official, fields: [components], checked_on: '2026-09-28'}

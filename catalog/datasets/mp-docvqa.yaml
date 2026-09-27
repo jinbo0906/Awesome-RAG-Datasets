@@ -1,0 +1,15 @@
+id: mp-docvqa
+name: MP-DocVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-page document visual question answering with answer-page supervision.
+classification: {rag_role: rag_convertible, primary_category: multimodal_rag, tasks: [page_retrieval, visual_qa], modalities: [text, image, layout], domains: [documents], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The challenge expands document-image QA to multi-page documents; official data and evaluation are hosted through the DocVQA/RRC challenge.'}
+ground_truth: {levels: [page, answer], provenance: human, description: 'An answer page can score page selection, but does not establish a minimal region or cross-page evidence chain.', alternatives: not_documented}
+evaluation: {official_metrics: [anls, page_accuracy], protocol: 'Distinguish closed-document page selection from open-corpus document retrieval and use the official challenge split.'}
+access: {official: 'https://rrc.cvc.uab.es/?ch=17&com=tasks', paper: 'https://arxiv.org/abs/2212.05935', license: unknown}
+use: {best_for: [Page selection within one document, OCR-versus-visual QA], caveats: [Not open multi-document retrieval by default, Answer-page truth is not a question-specific bbox]}
+sources:
+  - {url: 'https://rrc.cvc.uab.es/?ch=17&com=tasks', type: official, fields: [summary, data.description], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/abs/2212.05935', type: paper, fields: [ground_truth.description, evaluation.official_metrics], checked_on: '2026-09-28'}

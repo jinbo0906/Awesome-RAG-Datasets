@@ -1,0 +1,10 @@
+id: kilt
+name: KILT
+entity_type: suite
+status: source_checked
+summary: Knowledge-intensive language task suite unified on a fixed Wikipedia snapshot with provenance annotations.
+components: []
+protocol: 'KILT remaps original tasks to a 2019-08-01 Wikipedia snapshot and scores task output with provenance. Do not identify an original dataset with its KILT variant; constituent variant cards are not yet indexed.'
+access: {official: 'https://github.com/facebookresearch/KILT', paper: 'https://arxiv.org/abs/2009.02252'}
+sources:
+  - {url: 'https://github.com/facebookresearch/KILT', type: repository, fields: [summary, protocol], checked_on: '2026-09-28'}

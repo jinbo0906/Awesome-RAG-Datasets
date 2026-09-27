@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["id", "name", "entity_type", "url", "relation", "targets", "sources"], "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"}, "name": {"type": "string"}, "entity_type": {"const": "paper"},
+    "url": {"type": "string", "format": "uri"}, "relation": {"enum": ["introduces", "extends", "evaluates", "reprocesses"]},
+    "targets": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["url", "type", "fields"], "properties": {"url": {"type": "string", "format": "uri"}, "type": {"type": "string"}, "fields": {"type": "array", "items": {"type": "string"}}}}}
+  }
+}

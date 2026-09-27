@@ -1,0 +1,23 @@
+<!-- Generated from catalog/suites/{{ s.id }}.yaml. Edit the YAML source. -->
+# {{ s.name }}
+
+{{ s.summary }}
+
+Review status: `{{ s.status }}`. This is a benchmark suite or protocol, not one standalone dataset.
+
+## Indexed components
+
+{% if s.components %}{% for component in s.components %}- {% if component in component_links %}[{{ component }}]({{ component_links[component] }}){% else %}{{ component }}{% endif %}
+{% endfor %}{% else %}Component-level dataset cards have not yet been indexed. Use the official resource for the full list; this empty list does not mean the suite has no components.
+{% endif %}
+
+## Protocol and interpretation
+
+{{ s.protocol | default('Check the upstream protocol and variant before comparing scores.') }}
+
+## Official sources
+
+- [Official resource]({{ s.access.official }})
+{% if s.access.paper is defined %}- [Paper]({{ s.access.paper }})
+{% endif %}{% for source in s.sources %}- {{ source.type }}: [source]({{ source.url }}) — supports `{{ source.fields | join('`, `') }}`
+{% endfor %}

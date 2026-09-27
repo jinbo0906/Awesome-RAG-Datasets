@@ -1,0 +1,14 @@
+id: mmlongbench-doc
+name: MMLongBench-Doc
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Long PDF document QA with evidence-page and modality-source annotations.
+classification: {rag_role: rag_convertible, primary_category: multimodal_rag, tasks: [long_context_qa, page_retrieval, visual_qa], modalities: [text, image, table, chart, layout], domains: [documents], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The repository releases PDF documents and QA records containing doc_id, question, answer, evidence_pages and evidence_sources; the 2025 release revised some QAs.'}
+ground_truth: {levels: [page, answer], provenance: human, description: 'Evidence pages and modality-source labels locate support, but no universal question-specific region/cell coordinates are supplied.', alternatives: not_documented}
+evaluation: {official_metrics: [answer_f1], protocol: 'State dataset revision and whether document pages are retrieved or all supplied to the model.'}
+access: {official: 'https://github.com/mayubo2333/MMLongBench-Doc', license: unknown}
+use: {best_for: [Long visual document context, Cross-page evidence collection], caveats: [Original evaluation is long-context VQA; a page-retrieval protocol is an adaptation, QA revisions require version pinning]}
+sources:
+  - {url: 'https://github.com/mayubo2333/MMLongBench-Doc', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

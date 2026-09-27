@@ -1,0 +1,15 @@
+id: feverous
+name: FEVEROUS
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Open-domain fact verification over Wikipedia sentences and table cells.
+classification: {rag_role: rag_native, primary_category: table_rag, secondary_categories: [text_rag], tasks: [fact_verification, evidence_retrieval, text_table_reasoning], modalities: [text, table], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Released claims are labeled Supports, Refutes or Not Enough Info against Wikipedia pages containing prose and tables.', size: '87,026 verified claims in the full dataset; smaller study subsets must be identified separately.'}
+ground_truth: {levels: [sentence, table_cell, answer], provenance: human, description: 'Up to three evidence sets may contain sentence, cell, header, caption or list-item IDs with structural context.', alternatives: explicit}
+evaluation: {official_metrics: [label_accuracy, feverous_score], protocol: Evaluate complete evidence set and verdict jointly., evaluator: 'https://github.com/Raldir/FEVEROUS'}
+access: {official: 'https://fever.ai/dataset/feverous.html', paper: 'https://arxiv.org/abs/2106.05707', data: 'https://huggingface.co/datasets/fever/feverous', license: unknown}
+use: {best_for: [Text-table evidence fusion, Cell and header preservation, Alternative evidence-set scoring], caveats: [A verdict-only score hides failed cell retrieval; retain structural context for cell IDs]}
+sources:
+  - {url: 'https://github.com/Raldir/FEVEROUS', type: repository, fields: [summary, data.size, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}
+  - {url: 'https://huggingface.co/datasets/fever/feverous', type: dataset_card, fields: [ground_truth.alternatives, classification.modalities], checked_on: '2026-09-28'}

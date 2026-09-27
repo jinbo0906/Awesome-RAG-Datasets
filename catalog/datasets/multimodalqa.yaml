@@ -1,0 +1,14 @@
+id: multimodalqa
+name: MultiModalQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Questions requiring joint reasoning over text, tables and images with supporting-context IDs.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [multi_hop_qa, text_table_reasoning, visual_qa], modalities: [text, table, image], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The release contains 29,918 examples plus separate text, table and image context files; test answers and supporting contexts are withheld.'}
+ground_truth: {levels: [document, table, answer], provenance: human, description: 'Supporting-context entries identify source document IDs and modality parts, including intermediate-answer contexts; no uniform bbox or cell gold is asserted.', alternatives: not_documented}
+evaluation: {official_metrics: [answer_em, answer_f1], protocol: 'Measure context retrieval and final answer separately; preserve supporting-context IDs and withheld-test protocol.'}
+access: {official: 'https://github.com/allenai/multimodalqa', paper: 'https://arxiv.org/abs/2104.06039', license: unknown}
+use: {best_for: [Cross-modal multi-hop reasoning, Text-table-image evidence collection], caveats: [Source-level labels do not identify every relevant table cell or image region]}
+sources:
+  - {url: 'https://github.com/allenai/multimodalqa', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

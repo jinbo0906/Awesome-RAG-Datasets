@@ -1,0 +1,10 @@
+id: vidore
+name: ViDoRe
+entity_type: suite
+status: source_checked
+summary: Vision-document retrieval benchmark family for text-query to document-image retrieval.
+components: []
+protocol: 'The catalog records ViDoRe as a retrieval suite, not a QA dataset. Keep v1, v2 and v3 collections, their corpora, languages and metrics separate; constituent dataset cards are not yet indexed here.'
+access: {official: 'https://github.com/illuin-tech/vidore-benchmark'}
+sources:
+  - {url: 'https://github.com/illuin-tech/vidore-benchmark', type: repository, fields: [summary, protocol], checked_on: '2026-09-28'}

@@ -1,0 +1,15 @@
+id: qasper
+name: QASPER
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Information-seeking questions grounded in full NLP research papers with evidence annotations.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [long_context_qa, evidence_retrieval], modalities: [text], domains: [scientific], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Questions target full-text research papers; answers include extractive, abstractive, yes/no and unanswerable cases.'}
+ground_truth: {levels: [paragraph, answer], provenance: human, description: Answer annotations identify supporting evidence spans or paragraphs in the paper., alternatives: implicit}
+evaluation: {official_metrics: [answer_f1, evidence_f1], evaluator: 'https://github.com/allenai/qasper-led-baseline'}
+access: {official: 'https://allenai.org/data/qasper', paper: 'https://arxiv.org/abs/2105.03011', data: 'https://huggingface.co/datasets/allenai/qasper', license: unknown}
+use: {best_for: [Long-document evidence localization, Section-aware chunking], caveats: [Evidence annotations are tied to the dataset text extraction and may not map directly to PDF coordinates]}
+sources:
+  - {url: 'https://github.com/allenai/qasper-led-baseline', type: repository, fields: [summary, evaluation.official_metrics, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/abs/2105.03011', type: paper, fields: [data.description], checked_on: '2026-09-28'}

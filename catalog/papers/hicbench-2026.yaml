@@ -1,0 +1,8 @@
+id: hicbench-2026
+name: HiChunk and HiCBench
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.1372/'
+relation: introduces
+targets: [hicbench]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1372/', type: paper, fields: [name, targets], checked_on: '2026-09-28'}

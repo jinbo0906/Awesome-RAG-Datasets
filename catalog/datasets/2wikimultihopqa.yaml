@@ -1,0 +1,15 @@
+id: 2wikimultihopqa
+name: 2WikiMultiHopQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-hop Wikipedia QA with supporting facts and structured reasoning evidence.
+classification: {rag_role: rag_native, primary_category: text_rag, secondary_categories: [graph_rag], tasks: [multi_hop_qa, evidence_retrieval], modalities: [text, graph], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Questions are built from Wikipedia text and Wikidata relations; use the official split and evidence format.}
+ground_truth: {levels: [sentence, graph_path, answer], provenance: mixed, description: Released annotations include supporting sentences and evidence paths; the exact graph use depends on the evaluation configuration., alternatives: not_documented}
+evaluation: {official_metrics: [answer_em, answer_f1, supporting_fact_em, supporting_fact_f1], evaluator: 'https://github.com/Alab-NII/2wikimultihop'}
+access: {official: 'https://github.com/Alab-NII/2wikimultihop', paper: 'https://aclanthology.org/2020.coling-main.580/', license: unknown}
+use: {best_for: [Multi-hop evidence chain retrieval, Comparing text and graph-derived evidence], caveats: [Do not equate a generated reasoning path with a human-verified unique minimal evidence set]}
+sources:
+  - {url: 'https://github.com/Alab-NII/2wikimultihop', type: repository, fields: [summary, data.description, ground_truth.levels, evaluation.official_metrics], checked_on: '2026-09-28'}
+  - {url: 'https://aclanthology.org/2020.coling-main.580/', type: paper, fields: [summary, classification.tasks], checked_on: '2026-09-28'}

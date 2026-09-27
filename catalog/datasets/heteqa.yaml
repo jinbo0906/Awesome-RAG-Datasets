@@ -1,0 +1,15 @@
+id: heteqa
+name: HeteQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Heterogeneous text and table QA introduced alongside the TableRAG method.
+classification: {rag_role: rag_native, primary_category: table_rag, tasks: [text_table_reasoning, table_qa], modalities: [text, table], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: The release pairs questions with mixed tabular and prose evidence for heterogeneous document reasoning.}
+ground_truth: {levels: [table, paragraph, answer], provenance: mixed, description: Validate evidence IDs in the released files before treating row or cell coordinates as gold., alternatives: not_documented}
+evaluation: {official_metrics: [answer_accuracy], protocol: Compare against both table-aware and prose-only retrieval baselines.}
+access: {official: 'https://github.com/yxh-y/TableRAG', paper: 'https://aclanthology.org/2025.emnlp-main.710/', license: unknown}
+use: {best_for: [Mixed table and text retrieval, Testing tabular operations with linked prose], caveats: [The small benchmark requires confidence intervals and external holdout validation]}
+sources:
+  - {url: 'https://github.com/yxh-y/TableRAG', type: repository, fields: [summary, data.description, evaluation.protocol], checked_on: '2026-09-28'}
+  - {url: 'https://aclanthology.org/2025.emnlp-main.710/', type: paper, fields: [classification.tasks, use.best_for], checked_on: '2026-09-28'}

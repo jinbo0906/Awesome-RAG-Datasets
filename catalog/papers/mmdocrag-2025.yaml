@@ -1,0 +1,8 @@
+id: mmdocrag-2025
+name: MMDocRAG
+entity_type: paper
+url: 'https://arxiv.org/abs/2505.16470'
+relation: introduces
+targets: [mmdocrag]
+sources:
+  - {url: 'https://arxiv.org/abs/2505.16470', type: paper, fields: [name, targets], checked_on: '2026-09-28'}

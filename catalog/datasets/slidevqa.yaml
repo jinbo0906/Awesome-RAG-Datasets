@@ -1,0 +1,14 @@
+id: slidevqa
+name: SlideVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multi-image slide-deck QA with evidence-page selection and document layout boxes.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [page_retrieval, visual_qa], modalities: [text, image, layout, chart], domains: [slides], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The source reports 14,484 QA pairs across slide decks and 890,945 layout bounding boxes; the Hugging Face package excludes OCR and bbox data.'}
+ground_truth: {levels: [page, bbox, answer], provenance: human, description: 'QA records identify evidence_pages and answers; bbox files label slide layout objects, but those boxes are not automatically question-specific evidence.', alternatives: not_documented}
+evaluation: {official_metrics: [evidence_selection, answer_accuracy], protocol: 'Evaluate evidence-page selection separately from answer generation and disclose whether OCR and bbox files are used.'}
+access: {official: 'https://github.com/nttmdlab-nlp/SlideVQA', license: unknown}
+use: {best_for: [Cross-slide evidence retrieval, Layout-aware visual QA], caveats: [Layout boxes must not be mistaken for per-question gold regions, Some upstream slide URLs are unavailable]}
+sources:
+  - {url: 'https://github.com/nttmdlab-nlp/SlideVQA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, use.caveats], checked_on: '2026-09-28'}

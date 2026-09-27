@@ -1,0 +1,16 @@
+id: eli5
+name: ELI5
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Explanatory long-form QA drawn from Reddit questions and answers with web support documents.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [long_form_qa, attribution], modalities: [text], domains: [web], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'Official scripts reconstruct Reddit QA and CommonCrawl support documents; processed data are not hosted by the authors.'}
+ground_truth: {levels: [answer], provenance: mixed, description: 'Web support documents are selected heuristically, not a human-annotated minimal citation set.', alternatives: not_documented}
+evaluation: {official_metrics: [rouge_l], protocol: 'Record the Reddit and CommonCrawl snapshot; ALCE-ELI5 uses a separate BM25 retrieval bundle and citation evaluator.'}
+access: {official: 'https://github.com/facebookresearch/ELI5', paper: 'https://arxiv.org/abs/1907.09190', license: 'source content rights vary'}
+use: {best_for: [Long-form explanation generation, Citation evaluation through ALCE], caveats: [Reconstruction requires substantial compute and upstream content access, Support passages are heuristic rather than human gold]}
+related_suites: [alce]
+sources:
+  - {url: 'https://github.com/facebookresearch/ELI5', type: repository, fields: [summary, data.description, ground_truth.description, use.caveats], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/princeton-nlp/ALCE', type: repository, fields: [evaluation.protocol], checked_on: '2026-09-28'}

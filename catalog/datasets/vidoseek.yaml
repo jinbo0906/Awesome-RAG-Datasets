@@ -1,0 +1,14 @@
+id: vidoseek
+name: ViDoSeek
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Visual document retrieval and answer benchmark over a large PDF collection.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [page_retrieval, visual_qa], modalities: [text, image, table, layout], domains: [documents], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Query records provide a reference answer and metadata including original file and reference page numbers.}
+ground_truth: {levels: [page, answer], provenance: mixed, description: 'Query metadata identifies reference pages, suitable for page-level retrieval scoring.', alternatives: not_documented}
+evaluation: {official_metrics: [page_recall, answer_accuracy], protocol: Distinguish retrieved-page accuracy from final answer quality.}
+access: {official: 'https://github.com/Alibaba-NLP/ViDoRAG', paper: 'https://arxiv.org/abs/2502.18017', license: unknown}
+use: {best_for: [Visual document RAG over many pages, Iterative evidence retrieval], caveats: [Page labels do not by themselves specify exact figure or cell boundaries]}
+sources:
+  - {url: 'https://github.com/Alibaba-NLP/ViDoRAG', type: repository, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}

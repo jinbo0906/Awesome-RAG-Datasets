@@ -1,0 +1,14 @@
+id: graphrag-bench
+name: GraphRAG-Bench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Domain benchmark comparing graph-based RAG across factual and contextual generation tasks.
+classification: {rag_role: rag_native, primary_category: graph_rag, tasks: [graph_reasoning, single_hop_qa, summarization], modalities: [text, graph], domains: [literature, medicine], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Released novel and medical tracks evaluate fact retrieval, complex reasoning, contextual summarization and creative generation.'}
+ground_truth: {levels: [answer], provenance: mixed, description: Reference answers and task-level evaluation are published; a universal gold graph path is not claimed here., alternatives: not_documented}
+evaluation: {official_metrics: [accuracy, rouge_l, coverage, factual_score], protocol: Separate graph construction cost and retrieval effects from generation quality.}
+access: {official: 'https://github.com/GraphRAG-Bench/GraphRAG-Benchmark', paper: 'https://arxiv.org/abs/2506.05690', license: unknown}
+use: {best_for: [Comparing GraphRAG with text RAG, Studying which task types benefit from graph structure], caveats: [The graph may be constructed by the evaluated method; generated graph edges are not gold evidence paths]}
+sources:
+  - {url: 'https://github.com/GraphRAG-Bench/GraphRAG-Benchmark', type: repository, fields: [summary, data.description, evaluation.official_metrics], checked_on: '2026-09-28'}

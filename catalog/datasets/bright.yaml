@@ -1,0 +1,14 @@
+id: bright
+name: BRIGHT
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: A text retrieval benchmark where relevance depends on substantial reasoning.
+classification: {rag_role: auxiliary, primary_category: text_rag, tasks: [reasoning_retrieval, evidence_retrieval], modalities: [text], domains: [multi-domain], languages: [en]}
+data: {corpus: provided, queries: provided, answers: not_provided, description: Queries and candidate documents support reasoning-intensive retrieval evaluation.}
+ground_truth: {levels: [document], provenance: human, description: Document-level relevance labels evaluate retrieval rather than answer generation., alternatives: not_documented}
+evaluation: {official_metrics: [ndcg_at_10], protocol: Use as a retrieval component test; add an answer protocol before calling it an end-to-end RAG benchmark.}
+access: {official: 'https://brightbenchmark.github.io/', paper: 'https://arxiv.org/abs/2407.12883', license: unknown}
+use: {best_for: [Reasoning-intensive retriever selection, Out-of-domain retrieval stress tests], caveats: [No native answer-generation gold is specified in this catalog record]}
+sources:
+  - {url: 'https://brightbenchmark.github.io/', type: official, fields: [summary, classification.tasks, data.description, ground_truth.levels], checked_on: '2026-09-28'}

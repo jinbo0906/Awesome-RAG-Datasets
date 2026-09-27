@@ -1,0 +1,19 @@
+id: mmdocir
+name: MMDocIR
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Long-document multimodal retrieval benchmark with human page and layout evidence labels.
+classification: {rag_role: auxiliary, primary_category: multimodal_rag, tasks: [page_retrieval, layout_retrieval], modalities: [text, image, table, equation, layout], domains: [documents], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Evaluation data covers 313 long documents; expert questions have page and layout evidence, while a larger bootstrapped collection supports training.
+  size: 'Evaluation: 1,658 expert questions; 2,107 page labels; 2,638 layout labels.'
+ground_truth: {levels: [page, layout, bbox], provenance: human, description: Annotators select evidence pages and MinerU-derived layout elements; manually add missed regions., alternatives: not_documented}
+evaluation: {official_metrics: [recall_at_k], protocol: Page retrieval and layout retrieval are separate tasks.}
+access: {official: 'https://mmdocrag.github.io/MMDocIR/', paper: 'https://arxiv.org/abs/2501.08828', data: 'https://huggingface.co/MMDocIR', license: unknown}
+use: {best_for: [Measuring evidence fragmentation across pages and regions, Visual versus OCR retrieval], caveats: [The layout labels depend partly on a parser; keep original page coordinates and parser version, Project page and paper differ on question count; pin the release used]}
+sources:
+  - {url: 'https://mmdocrag.github.io/MMDocIR/', type: official, fields: [summary, data.description, data.size, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

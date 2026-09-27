@@ -1,0 +1,15 @@
+id: mavis
+name: MAVIS
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Visual-question benchmark for long answers with fact-level citations to multimodal documents.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [visual_qa, attribution, long_form_qa], modalities: [text, image], domains: [open_domain], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: Input image and question are paired with multimodal retrieval corpus and cited long-form answers., size: '157K visual QA instances reported by the authors.'}
+ground_truth: {levels: [document, fact_citation, answer], provenance: mixed, description: Fact-level answer citations reference supporting multimodal documents., alternatives: not_documented}
+evaluation: {official_metrics: [groundedness, completeness, relevance, fluency], protocol: Separate image-document groundedness from text-document groundedness.}
+access: {official: 'https://github.com/seokwon99/MAVIS', paper: 'https://ojs.aaai.org/index.php/AAAI/article/view/40585', data: 'https://huggingface.co/datasets/seokwon99/MAVIS', license: unknown}
+use: {best_for: [Fact-level multimodal citation, Long-form grounded answer generation], caveats: [Document-level citations are not necessarily bbox-level evidence annotations]}
+sources:
+  - {url: 'https://github.com/seokwon99/MAVIS', type: repository, fields: [summary, data.description, evaluation.official_metrics], checked_on: '2026-09-28'}
+  - {url: 'https://ojs.aaai.org/index.php/AAAI/article/view/40585', type: paper, fields: [data.size, ground_truth.description], checked_on: '2026-09-28'}

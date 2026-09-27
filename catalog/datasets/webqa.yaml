@@ -1,0 +1,15 @@
+id: webqa
+name: WebQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Multimodal web QA requiring retrieval of relevant snippets and images before answer generation.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [multimodal_retrieval, multi_hop_qa, visual_qa], modalities: [text, image], domains: [web], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'The benchmark offers restricted and full retrieval settings over web snippets and images; question categories distinguish text- and image-based evidence.'}
+ground_truth: {levels: [document, answer], provenance: human, description: 'Relevant source snippets/images support source-retrieval scoring and natural-language answer assessment; no universal within-image bbox gold is claimed.', alternatives: not_documented}
+evaluation: {official_metrics: [source_retrieval_f1, answer_quality], protocol: 'Do not mix restricted and full retrieval scores; disclose availability of large pre-extracted image features.'}
+access: {official: 'https://webqna.github.io/', paper: 'https://arxiv.org/abs/2109.00590', data: 'https://github.com/WebQnA/WebQA_Baseline', license: unknown}
+use: {best_for: [Joint web image-text retrieval, Multimodal multi-hop answers], caveats: [Some hosted feature files require a request or may be unavailable, Source IDs are coarser than image-region evidence]}
+sources:
+  - {url: 'https://webqna.github.io/', type: official, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/WebQnA/WebQA_Baseline', type: repository, fields: [use.caveats], checked_on: '2026-09-28'}

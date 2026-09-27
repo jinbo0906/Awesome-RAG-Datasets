@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["id", "name", "entity_type", "status", "summary", "components", "access", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "name": {"type": "string"}, "entity_type": {"const": "suite"},
+    "status": {"enum": ["discovered", "screened", "source_checked", "reproduced", "verified", "deprecated"]},
+    "summary": {"type": "string", "minLength": 15},
+    "components": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "protocol": {"type": "string"},
+    "access": {"type": "object", "required": ["official"], "properties": {"official": {"type": "string", "format": "uri"}, "paper": {"type": "string", "format": "uri"}}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["url", "type", "fields"], "properties": {"url": {"type": "string", "format": "uri"}, "type": {"type": "string"}, "fields": {"type": "array", "items": {"type": "string"}}}}}
+  }
+}

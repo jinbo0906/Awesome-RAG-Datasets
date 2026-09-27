@@ -1,0 +1,25 @@
+id: hotpotqa
+name: HotpotQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Wikipedia multi-hop QA with sentence-level supporting facts and answer labels.
+classification: {rag_role: rag_native, primary_category: text_rag, secondary_categories: [graph_rag], tasks: [multi_hop_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Distractor and full-wiki settings have different retrieval pools; preserve the selected setting when comparing results.
+  format: JSON
+ground_truth:
+  levels: [sentence, answer]
+  provenance: human
+  description: Supporting facts identify a Wikipedia title and zero-based sentence index; answers are evaluated separately.
+  alternatives: not_documented
+evaluation: {official_metrics: [answer_em, answer_f1, supporting_fact_em, supporting_fact_f1, joint_em, joint_f1], protocol: Report distractor and full-wiki results separately., evaluator: 'https://github.com/hotpotqa/hotpot'}
+access: {official: 'https://hotpotqa.github.io/', paper: 'https://arxiv.org/abs/1809.09600', data: 'https://hotpotqa.github.io/', license: CC BY-SA 4.0}
+use:
+  best_for: [Multi-document evidence assembly, Query-independent chunking evaluated against sentence coordinates]
+  caveats: [A supporting sentence is not a unique optimal chunk boundary, Distractor context is not equivalent to open-corpus retrieval]
+sources:
+  - {url: 'https://github.com/hotpotqa/hotpot', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics, access.license], checked_on: '2026-09-28'}

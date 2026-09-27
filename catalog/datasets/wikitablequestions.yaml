@@ -1,0 +1,14 @@
+id: wikitablequestions
+name: WikiTableQuestions
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Complex questions on supplied semi-structured Wikipedia HTML tables.
+classification: {rag_role: rag_convertible, primary_category: table_rag, tasks: [table_qa], modalities: [text, table], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Each question is paired with a Wikipedia table and answer; the official evaluator checks answer denotations.'}
+ground_truth: {levels: [table, answer], provenance: human, description: 'The table and answer are given, but a minimal supporting cell set or open-table qrel is not guaranteed.', alternatives: not_documented}
+evaluation: {official_metrics: [denotation_accuracy], protocol: 'For table retrieval, construct a fixed table corpus and qrels without leaking the paired table into input.'}
+access: {official: 'https://github.com/ppasupat/WikiTableQuestions', license: unknown}
+use: {best_for: [Table reasoning after retrieval, Denotation evaluation], caveats: [Native task supplies the table; it is not an open-table retrieval benchmark]}
+sources:
+  - {url: 'https://github.com/ppasupat/WikiTableQuestions', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

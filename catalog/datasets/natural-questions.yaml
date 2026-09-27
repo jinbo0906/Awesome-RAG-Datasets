@@ -1,0 +1,14 @@
+id: natural-questions
+name: Natural Questions
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Search-query questions paired with Wikipedia pages and long or short answer annotations.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [single_hop_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data: {corpus: provided, queries: provided, answers: provided, description: 'Each example includes a question and a candidate Wikipedia page; an open-corpus index must be defined separately for retrieval experiments.'}
+ground_truth: {levels: [span, answer], provenance: human, description: 'Long answers identify an HTML region and short answers identify one or more text spans; some examples have no answer.', alternatives: explicit}
+evaluation: {official_metrics: [long_answer_f1, short_answer_f1], protocol: 'Preserve byte and HTML coordinates when converting to clean text or chunks.'}
+access: {official: 'https://github.com/google-research-datasets/natural-questions', license: unknown}
+use: {best_for: [Source-coordinate evidence coverage, Answerable and unanswerable QA], caveats: [The native task supplies a candidate page rather than an open-corpus retrieval protocol]}
+sources:
+  - {url: 'https://github.com/google-research-datasets/natural-questions', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics], checked_on: '2026-09-28'}

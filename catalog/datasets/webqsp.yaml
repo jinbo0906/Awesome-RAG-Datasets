@@ -1,0 +1,14 @@
+id: webqsp
+name: WebQuestionsSP
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Natural-language questions over Freebase with answers and SPARQL semantic parses.
+classification: {rag_role: rag_convertible, primary_category: graph_rag, tasks: [graph_qa, graph_reasoning], modalities: [text, graph], domains: [knowledge-base], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'Microsoft distributes questions, semantic parses and an evaluator; 4,737 questions have full SPARQL parses and 1,073 have partial annotations.'}
+ground_truth: {levels: [graph_path, answer], provenance: human, description: 'Executable SPARQL parses identify graph operations, but are not necessarily unique retrieved subgraphs or citation paths.', alternatives: implicit}
+evaluation: {official_metrics: [answer_f1], protocol: 'Specify Freebase snapshot and distinguish full-parse from partial-annotation examples.'}
+access: {official: 'https://www.microsoft.com/en-us/download/details.aspx?id=52763', license: unknown}
+use: {best_for: [Knowledge-graph question answering, Semantic-parse-guided retrieval], caveats: [Reproducing results depends on a compatible Freebase snapshot, GraphRAG citation evidence requires additional annotation]}
+sources:
+  - {url: 'https://www.microsoft.com/en-us/download/details.aspx?id=52763', type: official, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}

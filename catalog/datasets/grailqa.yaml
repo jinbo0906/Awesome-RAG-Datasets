@@ -1,0 +1,14 @@
+id: grailqa
+name: GrailQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Knowledge-base QA with executable logical forms and generalization splits.
+classification: {rag_role: rag_convertible, primary_category: graph_rag, tasks: [graph_qa, graph_reasoning], modalities: [graph, text], domains: [knowledge-base], languages: [en]}
+data: {corpus: external, queries: provided, answers: provided, description: 'Questions map to Freebase answers and logical forms including SPARQL and S-expressions; reproducing retrieval requires a compatible Freebase snapshot.'}
+ground_truth: {levels: [graph_path, answer], provenance: human, description: 'Logical forms specify executable graph reasoning structure but are not necessarily a unique retrieved subgraph.', alternatives: implicit}
+evaluation: {official_metrics: [exact_match, answer_f1], protocol: 'Retain the original i.i.d., compositional and zero-shot splits and state the KB version.'}
+access: {official: 'https://github.com/dki-lab/GrailQA', license: unknown}
+use: {best_for: [Graph reasoning generalization, Logical-form-aware retrieval], caveats: [A KBQA logical form is not automatically a natural-language GraphRAG citation path]}
+sources:
+  - {url: 'https://github.com/dki-lab/GrailQA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

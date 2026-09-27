@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["id", "name", "entity_type", "summary", "access", "sources"], "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"}, "name": {"type": "string"}, "entity_type": {"const": "corpus"},
+    "summary": {"type": "string"}, "snapshot": {"type": "string"}, "modalities": {"type": "array", "items": {"type": "string"}},
+    "access": {"type": "object", "required": ["official", "license"], "properties": {"official": {"type": "string", "format": "uri"}, "license": {"type": "string"}}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["url", "type", "fields"], "properties": {"url": {"type": "string", "format": "uri"}, "type": {"type": "string"}, "fields": {"type": "array", "items": {"type": "string"}}}}}
+  }
+}
