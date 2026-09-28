@@ -3,6 +3,7 @@ name: M-BEIR
 entity_type: suite
 status: source_checked
 summary: Instructed multimodal retrieval benchmark covering text and image input-output combinations.
+summary_zh: 覆盖文本与图像输入输出组合的指令式多模态检索评测套件。
 components: []
 protocol: 'Use the official UniIR retrieval protocol; do not treat M-BEIR as an audio benchmark or an end-to-end answer-generation benchmark. Constituent dataset cards are not yet indexed.'
 access: {official: 'https://github.com/TIGER-AI-Lab/UniIR'}

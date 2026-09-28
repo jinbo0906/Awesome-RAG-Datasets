@@ -7,6 +7,7 @@
     "name": {"type": "string"}, "entity_type": {"const": "suite"},
     "status": {"enum": ["discovered", "screened", "source_checked", "reproduced", "verified", "deprecated"]},
     "summary": {"type": "string", "minLength": 15},
+    "summary_zh": {"type": "string", "minLength": 10},
     "components": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
     "protocol": {"type": "string"},
     "access": {"type": "object", "required": ["official"], "properties": {"official": {"type": "string", "format": "uri"}, "paper": {"type": "string", "format": "uri"}}},

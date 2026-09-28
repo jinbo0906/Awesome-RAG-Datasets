@@ -3,6 +3,7 @@ name: ALCE
 entity_type: suite
 status: source_checked
 summary: Attribution evaluation for long-form answers with citations across ASQA, QAMPARI and ELI5.
+summary_zh: 在 ASQA、QAMPARI 和 ELI5 上评测长篇回答的引用与归因质量。
 components: [asqa, qampari, eli5]
 protocol: 'Use the suite-provided retrieved passages and evaluate answer correctness, fluency and citation quality. The component datasets remain distinct from their ALCE adaptations.'
 access: {official: 'https://github.com/princeton-nlp/ALCE', paper: 'https://arxiv.org/abs/2305.14627'}

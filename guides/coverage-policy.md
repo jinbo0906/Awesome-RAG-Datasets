@@ -1,5 +1,7 @@
 # Coverage choices and candidate queue
 
+[简体中文](coverage-policy.zh-CN.md)
+
 The catalog aims for useful, auditable coverage rather than a maximum row count. A name mentioned in a RAG paper can denote a primary dataset, a reprocessed variant, a suite, a corpus, an evaluation framework or only the paper's experiment. We add a record only when its entity, native task, access and source of key claims can be described without pretending it has annotations it does not release.
 
 ## Included now, with boundaries

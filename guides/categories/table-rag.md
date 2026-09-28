@@ -1,5 +1,7 @@
 # Table RAG: locate a table, then the right cells and context
 
+[简体中文](table-rag.zh-CN.md)
+
 Table QA can present the relevant table in the input or require retrieval from an open pool. These are materially different tests. Read [the table catalog section](../../README.md#table-rag) with the native retrieval scope in mind.
 
 | Setting | Inspect | What to keep separate |

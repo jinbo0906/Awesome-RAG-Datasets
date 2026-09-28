@@ -1,5 +1,7 @@
 # Multimodal RAG: retrieval before visual reasoning
 
+[简体中文](multimodal-rag.zh-CN.md)
+
 This category covers source collections whose evidence crosses text, image, document layout, table, chart, audio or video. The decisive question is not whether an example contains an image; it is whether the released protocol lets a system **find** the necessary source evidence before answering. Begin with [the catalog section](../../README.md#multimodal-rag).
 
 | Evidence setting | Inspect | Native label boundary |

@@ -8,7 +8,10 @@ from .render import card_path, render_card, render_readme, render_suite_card, su
 
 
 def build_outputs(catalog: dict[str, list[dict]]) -> dict[Path, str]:
-    outputs = {Path("README.md"): render_readme(catalog)}
+    outputs = {
+        Path("README.md"): render_readme(catalog),
+        Path("README.zh-CN.md"): render_readme(catalog, locale="zh-CN"),
+    }
     for record in catalog["datasets"]:
         outputs[card_path(record)] = render_card(record)
     for record in catalog["suites"]:

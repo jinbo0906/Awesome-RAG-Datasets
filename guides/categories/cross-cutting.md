@@ -1,5 +1,7 @@
 # Cross-cutting RAG: protocols that span source representations
 
+[简体中文](cross-cutting.zh-CN.md)
+
 Use `cross_cutting` only when a dataset's **native** evaluation cannot be assigned a useful primary source representation. A benchmark suite that aggregates text, image and table tasks belongs in `catalog/suites/`, not automatically in this dataset category. A paper that reports several datasets is not itself a new dataset.
 
 Before adding a record, identify the released question set, source assets, retrieval boundary, answer and evidence labels, evaluator and version. Then ask whether the same examples actually require multiple representations, or whether the release is a bundle of separable text/table/image subsets. Keep separable subsets linked as variants and preserve their own protocols.

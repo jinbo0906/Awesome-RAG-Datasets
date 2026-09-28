@@ -1,5 +1,7 @@
 # Constructing a new RAG benchmark
 
+[简体中文](benchmark-construction.zh-CN.md)
+
 The catalog is a discovery and design aid, not a claim that existing labels can be freely recombined. Before building a benchmark, write a task contract: input, source pool, allowed retrieval actions, answer format, gold evidence granularity, metrics, split unit and access conditions. Publish a small example satisfying that contract before large-scale annotation.
 
 ## 1. Select the gap and source assets

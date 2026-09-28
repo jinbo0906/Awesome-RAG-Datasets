@@ -7,14 +7,14 @@ This catalog currently contains **54 datasets** and **6 suites**. Each entry rec
 
 ## Find a benchmark
 
-- [Selection guide](guides/selecting-a-benchmark.md)
-- [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md)
-- [Taxonomy and review levels](guides/taxonomy.md)
-- [Coverage decisions and candidate queue](guides/coverage-policy.md)
-- [Evidence ground truth and new benchmark design](guides/evidence-ground-truth.md)
-- [How to construct a new benchmark](guides/benchmark-construction.md)
-- [Maintenance and correction policy](guides/maintenance-policy.md)
-- [Contributing](CONTRIBUTING.md)
+- [Selection guide](guides/selecting-a-benchmark.md) · [中文](guides/selecting-a-benchmark.zh-CN.md)
+- [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md) · [中文](guides/benchmark-vs-dataset.zh-CN.md)
+- [Taxonomy and review levels](guides/taxonomy.md) · [中文](guides/taxonomy.zh-CN.md)
+- [Coverage decisions and candidate queue](guides/coverage-policy.md) · [中文](guides/coverage-policy.zh-CN.md)
+- [Evidence ground truth and new benchmark design](guides/evidence-ground-truth.md) · [中文](guides/evidence-ground-truth.zh-CN.md)
+- [How to construct a new benchmark](guides/benchmark-construction.md) · [中文](guides/benchmark-construction.zh-CN.md)
+- [Maintenance and correction policy](guides/maintenance-policy.md) · [中文](guides/maintenance-policy.zh-CN.md)
+- [Contributing](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh-CN.md)
 
 `rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. `screened` records have been identified from an upstream source; `source_checked` records have key fields checked against primary sources. No entry is labeled `verified` without an independent second review.
 
@@ -22,9 +22,13 @@ This catalog currently contains **54 datasets** and **6 suites**. Each entry rec
 
 The sections below follow source representation; task and domain are independent facets. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
 
+Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [Cross-cutting guide](guides/categories/cross-cutting.md) ([中文](guides/categories/cross-cutting.zh-CN.md)).
+
+<a name="text-rag"></a>
+
 ### Text RAG (27)
 
-Text sources, evidence retrieval, reasoning and grounded answers. [Category guide](guides/categories/text-rag.md).
+Text sources, evidence retrieval, reasoning and grounded answers. [Category guide](guides/categories/text-rag.md) · [中文指南](guides/categories/text-rag.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels | Review |
 |---|---|---|---|
@@ -56,9 +60,11 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 | [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.md) | `auxiliary` | document | source_checked |
 | [StrategyQA](dataset-cards/text-rag/strategyqa.md) | `rag_native` | paragraph, answer | source_checked |
 
+<a name="multimodal-rag"></a>
+
 ### Multimodal RAG (13)
 
-Visual and document evidence across source modalities; video candidates remain under review. [Category guide](guides/categories/multimodal-rag.md).
+Visual and document evidence across source modalities; video candidates remain under review. [Category guide](guides/categories/multimodal-rag.md) · [中文指南](guides/categories/multimodal-rag.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels | Review |
 |---|---|---|---|
@@ -76,9 +82,11 @@ Visual and document evidence across source modalities; video candidates remain u
 | [WebQA](dataset-cards/multimodal-rag/webqa.md) | `rag_native` | document, answer | source_checked |
 | [XL-DocBench](dataset-cards/multimodal-rag/xl-docbench.md) | `rag_native` | page, quote, answer | source_checked |
 
+<a name="graph-rag"></a>
+
 ### Graph RAG (4)
 
-Graph-based retrieval and knowledge-base reasoning; graph use alone does not establish path gold. [Category guide](guides/categories/graph-rag.md).
+Graph-based retrieval and knowledge-base reasoning; graph use alone does not establish path gold. [Category guide](guides/categories/graph-rag.md) · [中文指南](guides/categories/graph-rag.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels | Review |
 |---|---|---|---|
@@ -87,9 +95,11 @@ Graph-based retrieval and knowledge-base reasoning; graph use alone does not est
 | [MetaQA](dataset-cards/graph-rag/metaqa.md) | `rag_convertible` | answer | source_checked |
 | [WebQuestionsSP](dataset-cards/graph-rag/webqsp.md) | `rag_convertible` | graph_path, answer | source_checked |
 
+<a name="table-rag"></a>
+
 ### Table RAG (10)
 
-Structured tables and their links to prose, pages and answer derivations. [Category guide](guides/categories/table-rag.md).
+Structured tables and their links to prose, pages and answer derivations. [Category guide](guides/categories/table-rag.md) · [中文指南](guides/categories/table-rag.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels | Review |
 |---|---|---|---|

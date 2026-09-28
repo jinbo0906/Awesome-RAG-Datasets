@@ -3,6 +3,7 @@ name: M2KR
 entity_type: suite
 status: source_checked
 summary: Multitask multimodal knowledge-retrieval suite assembled from converted source datasets.
+summary_zh: 由原始数据集转换而成的多任务多模态知识检索评测套件。
 components: []
 protocol: >-
   The indexed subset cards are not yet modeled as separate M2KR variants. Use the authors'

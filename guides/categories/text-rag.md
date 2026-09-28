@@ -1,5 +1,7 @@
 # Text RAG: from source retrieval to grounded answers
 
+[简体中文](text-rag.zh-CN.md)
+
 Text RAG includes document, paragraph and sentence retrieval; answer generation; multi-hop evidence; citation; robustness; and temporal or conversational variants. These are different protocols, not interchangeable scores. Start with [the dataset table](../../README.md#text-rag) and read each card's native retrieval scope before building an index.
 
 | Subtrack | Good starting points | What is actually labeled |

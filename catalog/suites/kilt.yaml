@@ -3,6 +3,7 @@ name: KILT
 entity_type: suite
 status: source_checked
 summary: Knowledge-intensive language task suite unified on a fixed Wikipedia snapshot with provenance annotations.
+summary_zh: 将知识密集型语言任务统一到固定维基百科快照，并提供来源标注的评测套件。
 components: []
 protocol: 'KILT remaps original tasks to a 2019-08-01 Wikipedia snapshot and scores task output with provenance. Do not identify an original dataset with its KILT variant; constituent variant cards are not yet indexed.'
 access: {official: 'https://github.com/facebookresearch/KILT', paper: 'https://arxiv.org/abs/2009.02252'}

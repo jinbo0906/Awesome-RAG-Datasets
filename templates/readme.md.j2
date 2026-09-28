@@ -7,14 +7,14 @@ This catalog currently contains **{{ datasets | length }} datasets** and **{{ su
 
 ## Find a benchmark
 
-- [Selection guide](guides/selecting-a-benchmark.md)
-- [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md)
-- [Taxonomy and review levels](guides/taxonomy.md)
-- [Coverage decisions and candidate queue](guides/coverage-policy.md)
-- [Evidence ground truth and new benchmark design](guides/evidence-ground-truth.md)
-- [How to construct a new benchmark](guides/benchmark-construction.md)
-- [Maintenance and correction policy](guides/maintenance-policy.md)
-- [Contributing](CONTRIBUTING.md)
+- [Selection guide](guides/selecting-a-benchmark.md) · [中文](guides/selecting-a-benchmark.zh-CN.md)
+- [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md) · [中文](guides/benchmark-vs-dataset.zh-CN.md)
+- [Taxonomy and review levels](guides/taxonomy.md) · [中文](guides/taxonomy.zh-CN.md)
+- [Coverage decisions and candidate queue](guides/coverage-policy.md) · [中文](guides/coverage-policy.zh-CN.md)
+- [Evidence ground truth and new benchmark design](guides/evidence-ground-truth.md) · [中文](guides/evidence-ground-truth.zh-CN.md)
+- [How to construct a new benchmark](guides/benchmark-construction.md) · [中文](guides/benchmark-construction.zh-CN.md)
+- [Maintenance and correction policy](guides/maintenance-policy.md) · [中文](guides/maintenance-policy.zh-CN.md)
+- [Contributing](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh-CN.md)
 
 `rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. `screened` records have been identified from an upstream source; `source_checked` records have key fields checked against primary sources. No entry is labeled `verified` without an independent second review.
 
@@ -22,9 +22,13 @@ This catalog currently contains **{{ datasets | length }} datasets** and **{{ su
 
 The sections below follow source representation; task and domain are independent facets. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
 
-{% for group in groups %}### {{ group.title }} ({{ group.datasets | length }})
+Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [Cross-cutting guide](guides/categories/cross-cutting.md) ([中文](guides/categories/cross-cutting.zh-CN.md)).
 
-{{ group.summary }} [Category guide](guides/categories/{{ group.slug }}.md).
+{% for group in groups %}<a name="{{ group.slug }}"></a>
+
+### {{ group.title }} ({{ group.datasets | length }})
+
+{{ group.summary }} [Category guide](guides/categories/{{ group.slug }}.md) · [中文指南](guides/categories/{{ group.slug }}.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels | Review |
 |---|---|---|---|

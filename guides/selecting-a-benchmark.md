@@ -1,5 +1,7 @@
 # Selecting a benchmark
 
+[简体中文](selecting-a-benchmark.zh-CN.md)
+
 Start with the failure mode, then ask which upstream labels can actually score it. The cards linked from the [catalog](../README.md#datasets) document access, labels, protocol and limitations. The entries below are **shortlists**, not a leaderboard or an assertion that all datasets have equivalent licenses, splits or annotations.
 
 | Research question | First inspect | What to score | Main limitation |

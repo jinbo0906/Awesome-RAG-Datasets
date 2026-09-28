@@ -1,5 +1,7 @@
 # Dataset, benchmark, suite, corpus and evaluator
 
+[简体中文](benchmark-vs-dataset.zh-CN.md)
+
 These words overlap in paper titles, but they answer different questions. A **dataset** is a released collection of examples, labels or source assets. A **benchmark** is an evaluation contract: the task, allowed input and source pool, split, gold labels, metric, evaluator and comparison rules. A dataset becomes usable *as a benchmark* only when those decisions are specified. A paper may call both the data and the protocol by one name; this catalog records the data once and describes its native protocol in the same card. It does not create an extra object merely to repeat the name.
 
 | Object | What must be specified | Example | Catalog location |

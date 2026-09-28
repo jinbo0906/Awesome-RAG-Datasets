@@ -1,5 +1,7 @@
 # Taxonomy, entities and review status
 
+[简体中文](taxonomy.zh-CN.md)
+
 This catalog separates a **dataset** (records/examples), a **suite** (a selection plus evaluation protocol), a **corpus** (a versioned source collection), a **task** (a capability), and a **paper** (a publication). A benchmark is the data plus an evaluation contract, not necessarily another data object; see [dataset versus benchmark](benchmark-vs-dataset.md). A paper using a dataset does not create a new dataset. A suite variant may alter corpus, qrels or scoring and must not silently replace the original.
 
 ## RAG role

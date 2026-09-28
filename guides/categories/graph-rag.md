@@ -1,5 +1,7 @@
 # Graph RAG: graph structure is not graph truth
 
+[简体中文](graph-rag.zh-CN.md)
+
 The [Graph RAG catalog section](../../README.md#graph-rag) deliberately keeps two settings apart. GraphRAG systems may *construct* a graph from prose and retrieve graph-linked context. Knowledge-base QA systems query an existing structured graph. Both are useful, but their gold annotations and failure modes differ.
 
 | Setting | Inspect | Main caution |

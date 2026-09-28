@@ -1,6 +1,8 @@
 # Catalog maintenance policy
 
-The machine-readable files under `catalog/` are the source of truth. `README.md`, `dataset-cards/` and `suite-cards/` are generated views. Make a factual correction in YAML with a field-level primary source, then run the generator. The public repo stores descriptions and links, not upstream datasets or credentials.
+[简体中文](maintenance-policy.zh-CN.md)
+
+The machine-readable files under `catalog/` are the source of truth. `README.md`, `README.zh-CN.md`, `dataset-cards/` and `suite-cards/` are generated views. Make a factual correction in YAML with a field-level primary source, then run the generator. The public repo stores descriptions and links, not upstream datasets or credentials.
 
 ## Review cycle
 

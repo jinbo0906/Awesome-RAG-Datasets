@@ -3,6 +3,7 @@ name: ViDoRe
 entity_type: suite
 status: source_checked
 summary: Vision-document retrieval benchmark family for text-query to document-image retrieval.
+summary_zh: 面向文本查询到文档图像检索的视觉文档检索评测套件系列。
 components: []
 protocol: 'The catalog records ViDoRe as a retrieval suite, not a QA dataset. Keep v1, v2 and v3 collections, their corpora, languages and metrics separate; constituent dataset cards are not yet indexed here.'
 access: {official: 'https://github.com/illuin-tech/vidore-benchmark'}

@@ -1,5 +1,7 @@
 # Evidence ground truth without privileged chunks
 
+[简体中文](evidence-ground-truth.zh-CN.md)
+
 There is usually no context-free “correct chunk boundary.” A boundary depends on the question, source structure, retriever and token budget. Scoring a candidate chunker against chunk IDs produced by another chunker makes the benchmark circular. Anchor gold evidence to immutable upstream source coordinates and treat chunk outputs as **predictions** that cover—or fail to cover—those coordinates.
 
 ## Source-anchored evidence record
