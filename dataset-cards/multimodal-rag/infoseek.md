@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/infoseek.yaml. Edit the YAML source. -->
 # InfoSeek
 
+[简体中文](infoseek.zh-CN.md)
+
 Knowledge-intensive visual QA over OVEN images and Wikipedia-derived information.
 
 | Field | Value |

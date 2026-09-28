@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/wikitablequestions.yaml. Edit the YAML source. -->
 # WikiTableQuestions
 
+[简体中文](wikitablequestions.zh-CN.md)
+
 Complex questions on supplied semi-structured Wikipedia HTML tables.
 
 | Field | Value |

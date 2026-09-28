@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/totto.yaml. Edit the YAML source. -->
 # ToTTo
 
+[简体中文](totto.zh-CN.md)
+
 Controlled table-to-text generation from a given Wikipedia table and highlighted cells.
 
 | Field | Value |

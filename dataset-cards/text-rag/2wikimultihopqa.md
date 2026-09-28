@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/2wikimultihopqa.yaml. Edit the YAML source. -->
 # 2WikiMultiHopQA
 
+[简体中文](2wikimultihopqa.zh-CN.md)
+
 Multi-hop Wikipedia QA with supporting facts and structured reasoning evidence.
 
 | Field | Value |

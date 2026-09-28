@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/webqa.yaml. Edit the YAML source. -->
 # WebQA
 
+[简体中文](webqa.zh-CN.md)
+
 Multimodal web QA requiring retrieval of relevant snippets and images before answer generation.
 
 | Field | Value |

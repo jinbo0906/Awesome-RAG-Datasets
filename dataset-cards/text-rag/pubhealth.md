@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/pubhealth.yaml. Edit the YAML source. -->
 # PUBHEALTH
 
+[简体中文](pubhealth.zh-CN.md)
+
 Public-health claim verification with journalist explanations and source metadata.
 
 | Field | Value |

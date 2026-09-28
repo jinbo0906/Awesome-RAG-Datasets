@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mavis.yaml. Edit the YAML source. -->
 # MAVIS
 
+[简体中文](mavis.zh-CN.md)
+
 Visual-question benchmark for long answers with fact-level citations to multimodal documents.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/quality.yaml. Edit the YAML source. -->
 # QuALITY
 
+[简体中文](quality.zh-CN.md)
+
 Multiple-choice long-document comprehension over articles and stories.
 
 | Field | Value |

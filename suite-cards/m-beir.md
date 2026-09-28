@@ -1,6 +1,8 @@
 <!-- Generated from catalog/suites/m-beir.yaml. Edit the YAML source. -->
 # M-BEIR
 
+[简体中文](m-beir.zh-CN.md)
+
 Instructed multimodal retrieval benchmark covering text and image input-output combinations.
 
 Review status: `source_checked`. This is a benchmark suite or protocol, not one standalone dataset.

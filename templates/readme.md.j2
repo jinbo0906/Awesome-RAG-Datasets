@@ -3,7 +3,7 @@
 
 A source-audited catalog of retrieval-augmented generation datasets and benchmark suites. [中文说明](README.zh-CN.md)
 
-This catalog currently contains **{{ datasets | length }} datasets** and **{{ suites | length }} suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; review depth varies and each card displays its status.
+This catalog currently contains **{{ datasets | length }} datasets** and **{{ suites | length }} suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
 
 ## Find a benchmark
 
@@ -16,11 +16,11 @@ This catalog currently contains **{{ datasets | length }} datasets** and **{{ su
 - [Maintenance and correction policy](guides/maintenance-policy.md) · [中文](guides/maintenance-policy.zh-CN.md)
 - [Contributing](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh-CN.md)
 
-`rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. `screened` records have been identified from an upstream source; `source_checked` records have key fields checked against primary sources. No entry is labeled `verified` without an independent second review.
+`rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. Review status is explained on each card and in the [taxonomy](guides/taxonomy.md); the directory table focuses on role and released annotation levels.
 
 ## Datasets
 
-The sections below follow source representation; task and domain are independent facets. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
+The sections below follow source representation; task and domain are independent facets. English cards link to their Chinese counterparts. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
 
 Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [Cross-cutting guide](guides/categories/cross-cutting.md) ([中文](guides/categories/cross-cutting.zh-CN.md)).
 
@@ -30,9 +30,9 @@ Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG
 
 {{ group.summary }} [Category guide](guides/categories/{{ group.slug }}.md) · [中文指南](guides/categories/{{ group.slug }}.zh-CN.md).
 
-| Dataset | Role | Gold annotation levels | Review |
-|---|---|---|---|
-{% for d in group.datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} | {{ d.status }} |
+| Dataset | Role | Gold annotation levels |
+|---|---|---|
+{% for d in group.datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} |
 {% endfor %}
 
 {% endfor %}

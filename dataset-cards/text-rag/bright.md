@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/bright.yaml. Edit the YAML source. -->
 # BRIGHT
 
+[简体中文](bright.zh-CN.md)
+
 A text retrieval benchmark where relevance depends on substantial reasoning.
 
 | Field | Value |

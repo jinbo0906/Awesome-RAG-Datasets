@@ -1,0 +1,68 @@
+<!-- Generated from catalog/datasets/{{ d.id }}.yaml and catalog/i18n/zh-CN.yaml. Edit the sources, not this file. -->
+# {{ d.name }}
+
+[English]({{ d.id }}.md)
+
+{{ t.summary }}
+
+| 字段 | 内容 |
+|---|---|
+| 目录审查状态 | `{{ d.status }}` |
+{% if d.last_checked is defined %}| 来源核对日期 | {{ d.last_checked }} |
+{% endif %}
+| RAG 角色 | `{{ d.classification.rag_role }}` |
+| 主分类 | `{{ d.classification.primary_category }}` |
+| 任务 | {{ d.classification.tasks | join(', ') }} |
+| 模态 | {{ d.classification.modalities | join(', ') }} |
+| 已发布真值标注层级 | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else '未说明' }} |
+| 证据标注来源 | {{ d.ground_truth.provenance }} |
+| 语料 / 查询 / 答案 | {{ d.data.corpus }} / {{ d.data.queries }} / {{ d.data.answers }} |
+| 原始数据许可 | {{ d.access.license }} |
+
+{% if d.status in ['source_checked', 'reproduced', 'verified'] %}`source_checked` 表示所引用字段已与上游来源核对，不代表数据已下载或评测器已复现。
+{% else %}本条目仍在初步审查中；无来源支持或未知的细节不能视为已确认。
+{% endif %}
+
+## 数据与构建方式
+
+{{ t.data_description if d.data.description is defined else '构建方式和划分细节仍需来源核查。' }}
+
+{% if d.data.size is defined %}发布规模：{{ t.size }}
+{% endif %}
+{% if d.data.splits is defined %}数据划分：{{ t.splits }}
+{% endif %}
+{% if d.data.format is defined %}格式：{{ d.data.format }}。
+{% endif %}
+
+## 真值与评测
+
+{% if d.ground_truth.description is defined %}{{ t.ground_truth_description }}
+{% else %}尚未核实更细的证据描述。
+{% endif %}
+
+官方指标：{{ d.evaluation.official_metrics | join(', ') if d.evaluation.official_metrics else '尚未确认' }}。
+
+{% if d.evaluation.protocol is defined %}评测协议：{{ t.evaluation_protocol }}
+{% endif %}
+
+## 适用场景
+
+{% for item in t.best_for %}- {{ item }}
+{% endfor %}
+
+## 限制与注意事项
+
+{% for item in t.caveats %}- {{ item }}
+{% endfor %}
+
+## 获取方式与来源
+
+- [官方资源]({{ d.access.official }})
+{% if d.access.paper is defined %}- [论文]({{ d.access.paper }})
+{% endif %}
+{% if d.access.data is defined %}- [数据]({{ d.access.data }})
+{% endif %}
+{% for source in d.sources %}- {{ source.type }}：[来源]({{ source.url }}) — 支持字段 `{{ source.fields | join('`、`') }}`
+{% endfor %}
+
+原始数据集的许可与访问条款由发布者确定；本目录条目不授予再分发权利。

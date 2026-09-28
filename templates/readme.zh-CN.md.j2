@@ -3,7 +3,7 @@
 
 这是一个经过来源核对的检索增强生成（RAG）数据集与评测套件目录。[English](README.md)
 
-目录目前收录 **{{ datasets | length }} 个数据集**和 **{{ suites | length }} 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查深度因条目而异，以卡片上的状态为准。
+目录目前收录 **{{ datasets | length }} 个数据集**和 **{{ suites | length }} 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
 
 ## 寻找合适的 benchmark
 
@@ -16,11 +16,11 @@
 - [目录维护与纠错规则](guides/maintenance-policy.zh-CN.md) · [English](guides/maintenance-policy.md)
 - [参与贡献](CONTRIBUTING.zh-CN.md) · [English](CONTRIBUTING.md)
 
-`rag_native` 表示发布数据支持检索与回答的评测协议；`rag_convertible` 表示还需构建语料、相关性标注或证据映射；`auxiliary` 可评测某个组件，但不是完整 RAG benchmark。`screened` 表示已从上游来源确认基本身份；`source_checked` 表示关键字段已与一手来源核对。未经独立二次审查的条目不会标为 `verified`。
+`rag_native` 表示发布数据支持检索与回答的评测协议；`rag_convertible` 表示还需构建语料、相关性标注或证据映射；`auxiliary` 可评测某个组件，但不是完整 RAG benchmark。审查等级详见各卡片及[分类指南](guides/taxonomy.zh-CN.md)；目录表格集中呈现角色与已发布的标注层级。
 
 ## 数据集
 
-以下分节按来源表示形式组织；任务类型与应用领域是独立标签。参见 [dataset 与 benchmark 的区别](guides/benchmark-vs-dataset.zh-CN.md)。数据集名称和标注字段保留上游或目录中的技术标识，具体适用边界请打开卡片与分类指南。
+以下分节按来源表示形式组织；任务类型与应用领域是独立标签。中文卡片可直接切换到英文版。参见 [dataset 与 benchmark 的区别](guides/benchmark-vs-dataset.zh-CN.md)。数据集名称和标注字段保留上游或目录中的技术标识，具体适用边界请打开卡片与分类指南。
 
 分类导航：[Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [跨类别指南](guides/categories/cross-cutting.zh-CN.md)（[English](guides/categories/cross-cutting.md)）。
 
@@ -30,9 +30,9 @@
 
 {{ group.summary_zh }} [分类指南](guides/categories/{{ group.slug }}.zh-CN.md) · [English](guides/categories/{{ group.slug }}.md)。
 
-| 数据集 | RAG 角色 | 已发布的真值标注层级 | 审查状态 |
-|---|---|---|---|
-{% for d in group.datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else '未说明' }} | {{ d.status }} |
+| 数据集 | RAG 角色 | 已发布的真值标注层级 |
+|---|---|---|
+{% for d in group.datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else '未说明' }} |
 {% endfor %}
 
 {% endfor %}

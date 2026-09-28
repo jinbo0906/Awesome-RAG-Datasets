@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mmlongbench-doc.yaml. Edit the YAML source. -->
 # MMLongBench-Doc
 
+[简体中文](mmlongbench-doc.zh-CN.md)
+
 Long PDF document QA with evidence-page and modality-source annotations.
 
 | Field | Value |

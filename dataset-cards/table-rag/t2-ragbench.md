@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/t2-ragbench.yaml. Edit the YAML source. -->
 # T²-RAGBench
 
+[简体中文](t2-ragbench.zh-CN.md)
+
 Financial-document RAG benchmark combining prose, tables and numerical reasoning.
 
 | Field | Value |

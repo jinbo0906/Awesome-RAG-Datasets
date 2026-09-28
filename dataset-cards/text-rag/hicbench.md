@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/hicbench.yaml. Edit the YAML source. -->
 # HiCBench
 
+[简体中文](hicbench.zh-CN.md)
+
 A chunking-focused benchmark with hierarchical boundary annotations and evidence-dense QA.
 
 | Field | Value |

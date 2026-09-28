@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/fever.yaml. Edit the YAML source. -->
 # FEVER
 
+[简体中文](fever.zh-CN.md)
+
 Wikipedia-based claim verification with labeled supporting sentence sets.
 
 | Field | Value |

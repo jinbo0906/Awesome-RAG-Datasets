@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mtrag.yaml. Edit the YAML source. -->
 # MTRAG (human)
 
+[简体中文](mtrag.zh-CN.md)
+
 Human-authored multi-turn RAG conversations with retrieval and generation tasks over four corpora.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/crag.yaml. Edit the YAML source. -->
 # CRAG
 
+[简体中文](crag.zh-CN.md)
+
 Time-aware factual QA benchmark with web results and mock knowledge APIs for RAG.
 
 | Field | Value |

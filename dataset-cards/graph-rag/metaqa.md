@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/metaqa.yaml. Edit the YAML source. -->
 # MetaQA
 
+[简体中文](metaqa.zh-CN.md)
+
 Movie-domain knowledge-base QA with one-, two- and three-hop question variants.
 
 | Field | Value |

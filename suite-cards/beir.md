@@ -1,6 +1,8 @@
 <!-- Generated from catalog/suites/beir.yaml. Edit the YAML source. -->
 # BEIR
 
+[简体中文](beir.zh-CN.md)
+
 Heterogeneous zero-shot text retrieval suite with per-dataset corpus, queries and relevance judgments.
 
 Review status: `source_checked`. This is a benchmark suite or protocol, not one standalone dataset.
@@ -8,6 +10,7 @@ Review status: `source_checked`. This is a benchmark suite or protocol, not one 
 ## Indexed components
 
 - [beir-scifact](../dataset-cards/text-rag/beir-scifact.md)
+
 ## Protocol and interpretation
 
 This catalog currently indexes one representative component, not the full suite. Use the upstream per-dataset corpus/query/qrels and report NDCG@10 plus additional metrics as needed; BEIR alone does not score answer generation.

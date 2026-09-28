@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/heteqa.yaml. Edit the YAML source. -->
 # HeteQA
 
+[简体中文](heteqa.zh-CN.md)
+
 Heterogeneous text and table QA introduced alongside the TableRAG method.
 
 | Field | Value |

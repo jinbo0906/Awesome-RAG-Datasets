@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/tat-qa.yaml. Edit the YAML source. -->
 # TAT-QA
 
+[简体中文](tat-qa.zh-CN.md)
+
 Financial QA over a provided hybrid context of report tables and surrounding text.
 
 | Field | Value |

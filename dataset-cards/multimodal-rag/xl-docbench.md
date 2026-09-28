@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/xl-docbench.yaml. Edit the YAML source. -->
 # XL-DocBench
 
+[简体中文](xl-docbench.zh-CN.md)
+
 Expert-verified QA over extra-long documents with evidence pages and snippets.
 
 | Field | Value |

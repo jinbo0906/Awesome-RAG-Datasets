@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/bioasq-14b.yaml. Edit the YAML source. -->
 # BioASQ Task 14b (2026)
 
+[简体中文](bioasq-14b.zh-CN.md)
+
 Biomedical question answering challenge with article, snippet and answer supervision.
 
 | Field | Value |

@@ -1,13 +1,15 @@
 <!-- Generated from catalog/suites/{{ s.id }}.yaml. Edit the YAML source. -->
 # {{ s.name }}
 
+[简体中文]({{ s.id }}.zh-CN.md)
+
 {{ s.summary }}
 
 Review status: `{{ s.status }}`. This is a benchmark suite or protocol, not one standalone dataset.
 
 ## Indexed components
 
-{% if s.components %}{% for component in s.components %}- {% if component in component_links %}[{{ component }}]({{ component_links[component] }}){% else %}{{ component }}{% endif %}
+{% if s.components %}{% for component in s.components %}- {{ ('[' ~ component ~ '](' ~ component_links[component] ~ ')') if component in component_links else component }}
 {% endfor %}{% else %}Component-level dataset cards have not yet been indexed. Use the official resource for the full list; this empty list does not mean the suite has no components.
 {% endif %}
 

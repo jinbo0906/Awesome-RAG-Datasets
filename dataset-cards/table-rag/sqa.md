@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/sqa.yaml. Edit the YAML source. -->
 # Sequential Question Answering (SQA)
 
+[简体中文](sqa.zh-CN.md)
+
 Conversational sequences of questions answered over supplied Wikipedia HTML tables.
 
 | Field | Value |

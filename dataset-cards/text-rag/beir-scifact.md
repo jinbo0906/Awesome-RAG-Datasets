@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/beir-scifact.yaml. Edit the YAML source. -->
 # SciFact (BEIR variant)
 
+[简体中文](beir-scifact.zh-CN.md)
+
 Scientific claim-to-abstract retrieval as packaged for the BEIR zero-shot IR suite.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/eli5.yaml. Edit the YAML source. -->
 # ELI5
 
+[简体中文](eli5.zh-CN.md)
+
 Explanatory long-form QA drawn from Reddit questions and answers with web support documents.
 
 | Field | Value |

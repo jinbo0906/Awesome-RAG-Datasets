@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/msmarco-passage.yaml. Edit the YAML source. -->
 # MS MARCO Passage Ranking (v1)
 
+[简体中文](msmarco-passage.zh-CN.md)
+
 Large-scale web passage retrieval with query-passage relevance judgments.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/rgb.yaml. Edit the YAML source. -->
 # RGB
 
+[简体中文](rgb.zh-CN.md)
+
 Bilingual fixed-context RAG stress test for noise, abstention, integration and counterfactual documents.
 
 | Field | Value |

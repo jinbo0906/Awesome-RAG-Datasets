@@ -3,7 +3,7 @@
 
 A source-audited catalog of retrieval-augmented generation datasets and benchmark suites. [中文说明](README.zh-CN.md)
 
-This catalog currently contains **54 datasets** and **6 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; review depth varies and each card displays its status.
+This catalog currently contains **54 datasets** and **6 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
 
 ## Find a benchmark
 
@@ -16,11 +16,11 @@ This catalog currently contains **54 datasets** and **6 suites**. Each entry rec
 - [Maintenance and correction policy](guides/maintenance-policy.md) · [中文](guides/maintenance-policy.zh-CN.md)
 - [Contributing](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh-CN.md)
 
-`rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. `screened` records have been identified from an upstream source; `source_checked` records have key fields checked against primary sources. No entry is labeled `verified` without an independent second review.
+`rag_native` means a retrieval and answer protocol can be evaluated using released data. `rag_convertible` means additional corpus, relevance, or evidence mapping is required. `auxiliary` is useful for a component but is not a full RAG benchmark. Review status is explained on each card and in the [taxonomy](guides/taxonomy.md); the directory table focuses on role and released annotation levels.
 
 ## Datasets
 
-The sections below follow source representation; task and domain are independent facets. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
+The sections below follow source representation; task and domain are independent facets. English cards link to their Chinese counterparts. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
 
 Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [Cross-cutting guide](guides/categories/cross-cutting.md) ([中文](guides/categories/cross-cutting.zh-CN.md)).
 
@@ -30,35 +30,35 @@ Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG
 
 Text sources, evidence retrieval, reasoning and grounded answers. [Category guide](guides/categories/text-rag.md) · [中文指南](guides/categories/text-rag.zh-CN.md).
 
-| Dataset | Role | Gold annotation levels | Review |
-|---|---|---|---|
-| [2WikiMultiHopQA](dataset-cards/text-rag/2wikimultihopqa.md) | `rag_native` | sentence, graph_path, answer | source_checked |
-| [ASQA](dataset-cards/text-rag/asqa.md) | `rag_convertible` | answer | source_checked |
-| [BioASQ Task 14b (2026)](dataset-cards/text-rag/bioasq-14b.md) | `rag_native` | document, span, answer | source_checked |
-| [BRIGHT](dataset-cards/text-rag/bright.md) | `auxiliary` | document | source_checked |
-| [CLAP NQ](dataset-cards/text-rag/clapnq.md) | `rag_native` | sentence, answer | source_checked |
-| [CRAG](dataset-cards/text-rag/crag.md) | `rag_native` | answer | source_checked |
-| [ELI5](dataset-cards/text-rag/eli5.md) | `rag_convertible` | answer | source_checked |
-| [FEVER](dataset-cards/text-rag/fever.md) | `rag_native` | sentence, answer | source_checked |
-| [FreshQA](dataset-cards/text-rag/freshqa.md) | `rag_convertible` | answer | source_checked |
-| [HiCBench](dataset-cards/text-rag/hicbench.md) | `rag_native` | section, paragraph, sentence, answer | source_checked |
-| [HotpotQA](dataset-cards/text-rag/hotpotqa.md) | `rag_native` | sentence, answer | source_checked |
-| [MS MARCO Passage Ranking (v1)](dataset-cards/text-rag/msmarco-passage.md) | `auxiliary` | document | source_checked |
-| [MTRAG (human)](dataset-cards/text-rag/mtrag.md) | `rag_native` | paragraph, answer | source_checked |
-| [MultiHop-RAG](dataset-cards/text-rag/multihop-rag.md) | `rag_native` | document, answer | source_checked |
-| [MuSiQue](dataset-cards/text-rag/musique.md) | `rag_native` | paragraph, answer | source_checked |
-| [NarrativeQA](dataset-cards/text-rag/narrativeqa.md) | `rag_convertible` | document, answer | source_checked |
-| [Natural Questions](dataset-cards/text-rag/natural-questions.md) | `rag_convertible` | span, answer | source_checked |
-| [PUBHEALTH](dataset-cards/text-rag/pubhealth.md) | `rag_convertible` | answer | source_checked |
-| [QAMPARI](dataset-cards/text-rag/qampari.md) | `rag_convertible` | paragraph, answer | source_checked |
-| [QASPER](dataset-cards/text-rag/qasper.md) | `rag_native` | paragraph, answer | source_checked |
-| [QuALITY](dataset-cards/text-rag/quality.md) | `rag_convertible` | document, answer | source_checked |
-| [RAGBench](dataset-cards/text-rag/ragbench.md) | `rag_native` | sentence, fact_citation, answer | source_checked |
-| [RAGTruth](dataset-cards/text-rag/ragtruth.md) | `auxiliary` | response_span | source_checked |
-| [RealTime QA](dataset-cards/text-rag/realtimeqa.md) | `rag_convertible` | answer | source_checked |
-| [RGB](dataset-cards/text-rag/rgb.md) | `auxiliary` | answer | source_checked |
-| [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.md) | `auxiliary` | document | source_checked |
-| [StrategyQA](dataset-cards/text-rag/strategyqa.md) | `rag_native` | paragraph, answer | source_checked |
+| Dataset | Role | Gold annotation levels |
+|---|---|---|
+| [2WikiMultiHopQA](dataset-cards/text-rag/2wikimultihopqa.md) | `rag_native` | sentence, graph_path, answer |
+| [ASQA](dataset-cards/text-rag/asqa.md) | `rag_convertible` | answer |
+| [BioASQ Task 14b (2026)](dataset-cards/text-rag/bioasq-14b.md) | `rag_native` | document, span, answer |
+| [BRIGHT](dataset-cards/text-rag/bright.md) | `auxiliary` | document |
+| [CLAP NQ](dataset-cards/text-rag/clapnq.md) | `rag_native` | sentence, answer |
+| [CRAG](dataset-cards/text-rag/crag.md) | `rag_native` | answer |
+| [ELI5](dataset-cards/text-rag/eli5.md) | `rag_convertible` | answer |
+| [FEVER](dataset-cards/text-rag/fever.md) | `rag_native` | sentence, answer |
+| [FreshQA](dataset-cards/text-rag/freshqa.md) | `rag_convertible` | answer |
+| [HiCBench](dataset-cards/text-rag/hicbench.md) | `rag_native` | section, paragraph, sentence, answer |
+| [HotpotQA](dataset-cards/text-rag/hotpotqa.md) | `rag_native` | sentence, answer |
+| [MS MARCO Passage Ranking (v1)](dataset-cards/text-rag/msmarco-passage.md) | `auxiliary` | document |
+| [MTRAG (human)](dataset-cards/text-rag/mtrag.md) | `rag_native` | paragraph, answer |
+| [MultiHop-RAG](dataset-cards/text-rag/multihop-rag.md) | `rag_native` | document, answer |
+| [MuSiQue](dataset-cards/text-rag/musique.md) | `rag_native` | paragraph, answer |
+| [NarrativeQA](dataset-cards/text-rag/narrativeqa.md) | `rag_convertible` | document, answer |
+| [Natural Questions](dataset-cards/text-rag/natural-questions.md) | `rag_convertible` | span, answer |
+| [PUBHEALTH](dataset-cards/text-rag/pubhealth.md) | `rag_convertible` | answer |
+| [QAMPARI](dataset-cards/text-rag/qampari.md) | `rag_convertible` | paragraph, answer |
+| [QASPER](dataset-cards/text-rag/qasper.md) | `rag_native` | paragraph, answer |
+| [QuALITY](dataset-cards/text-rag/quality.md) | `rag_convertible` | document, answer |
+| [RAGBench](dataset-cards/text-rag/ragbench.md) | `rag_native` | sentence, fact_citation, answer |
+| [RAGTruth](dataset-cards/text-rag/ragtruth.md) | `auxiliary` | response_span |
+| [RealTime QA](dataset-cards/text-rag/realtimeqa.md) | `rag_convertible` | answer |
+| [RGB](dataset-cards/text-rag/rgb.md) | `auxiliary` | answer |
+| [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.md) | `auxiliary` | document |
+| [StrategyQA](dataset-cards/text-rag/strategyqa.md) | `rag_native` | paragraph, answer |
 
 <a name="multimodal-rag"></a>
 
@@ -66,21 +66,21 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 
 Visual and document evidence across source modalities; video candidates remain under review. [Category guide](guides/categories/multimodal-rag.md) · [中文指南](guides/categories/multimodal-rag.zh-CN.md).
 
-| Dataset | Role | Gold annotation levels | Review |
-|---|---|---|---|
-| [ChartQA](dataset-cards/multimodal-rag/chartqa.md) | `rag_convertible` | bbox, answer | source_checked |
-| [InfoSeek](dataset-cards/multimodal-rag/infoseek.md) | `rag_convertible` | answer | source_checked |
-| [M3DocVQA](dataset-cards/multimodal-rag/m3docvqa.md) | `rag_native` | page, answer | source_checked |
-| [MAVIS](dataset-cards/multimodal-rag/mavis.md) | `rag_native` | document, fact_citation, answer | source_checked |
-| [MMDocIR](dataset-cards/multimodal-rag/mmdocir.md) | `auxiliary` | page, layout, bbox | source_checked |
-| [MMDocRAG](dataset-cards/multimodal-rag/mmdocrag.md) | `rag_native` | page, quote, answer | source_checked |
-| [MMLongBench-Doc](dataset-cards/multimodal-rag/mmlongbench-doc.md) | `rag_convertible` | page, answer | source_checked |
-| [MP-DocVQA](dataset-cards/multimodal-rag/mp-docvqa.md) | `rag_convertible` | page, answer | source_checked |
-| [MultiModalQA](dataset-cards/multimodal-rag/multimodalqa.md) | `rag_native` | document, table, answer | source_checked |
-| [SlideVQA](dataset-cards/multimodal-rag/slidevqa.md) | `rag_native` | page, bbox, answer | source_checked |
-| [ViDoSeek](dataset-cards/multimodal-rag/vidoseek.md) | `rag_native` | page, answer | source_checked |
-| [WebQA](dataset-cards/multimodal-rag/webqa.md) | `rag_native` | document, answer | source_checked |
-| [XL-DocBench](dataset-cards/multimodal-rag/xl-docbench.md) | `rag_native` | page, quote, answer | source_checked |
+| Dataset | Role | Gold annotation levels |
+|---|---|---|
+| [ChartQA](dataset-cards/multimodal-rag/chartqa.md) | `rag_convertible` | bbox, answer |
+| [InfoSeek](dataset-cards/multimodal-rag/infoseek.md) | `rag_convertible` | answer |
+| [M3DocVQA](dataset-cards/multimodal-rag/m3docvqa.md) | `rag_native` | page, answer |
+| [MAVIS](dataset-cards/multimodal-rag/mavis.md) | `rag_native` | document, fact_citation, answer |
+| [MMDocIR](dataset-cards/multimodal-rag/mmdocir.md) | `auxiliary` | page, layout, bbox |
+| [MMDocRAG](dataset-cards/multimodal-rag/mmdocrag.md) | `rag_native` | page, quote, answer |
+| [MMLongBench-Doc](dataset-cards/multimodal-rag/mmlongbench-doc.md) | `rag_convertible` | page, answer |
+| [MP-DocVQA](dataset-cards/multimodal-rag/mp-docvqa.md) | `rag_convertible` | page, answer |
+| [MultiModalQA](dataset-cards/multimodal-rag/multimodalqa.md) | `rag_native` | document, table, answer |
+| [SlideVQA](dataset-cards/multimodal-rag/slidevqa.md) | `rag_native` | page, bbox, answer |
+| [ViDoSeek](dataset-cards/multimodal-rag/vidoseek.md) | `rag_native` | page, answer |
+| [WebQA](dataset-cards/multimodal-rag/webqa.md) | `rag_native` | document, answer |
+| [XL-DocBench](dataset-cards/multimodal-rag/xl-docbench.md) | `rag_native` | page, quote, answer |
 
 <a name="graph-rag"></a>
 
@@ -88,12 +88,12 @@ Visual and document evidence across source modalities; video candidates remain u
 
 Graph-based retrieval and knowledge-base reasoning; graph use alone does not establish path gold. [Category guide](guides/categories/graph-rag.md) · [中文指南](guides/categories/graph-rag.zh-CN.md).
 
-| Dataset | Role | Gold annotation levels | Review |
-|---|---|---|---|
-| [GrailQA](dataset-cards/graph-rag/grailqa.md) | `rag_convertible` | graph_path, answer | source_checked |
-| [GraphRAG-Bench](dataset-cards/graph-rag/graphrag-bench.md) | `rag_native` | answer | source_checked |
-| [MetaQA](dataset-cards/graph-rag/metaqa.md) | `rag_convertible` | answer | source_checked |
-| [WebQuestionsSP](dataset-cards/graph-rag/webqsp.md) | `rag_convertible` | graph_path, answer | source_checked |
+| Dataset | Role | Gold annotation levels |
+|---|---|---|
+| [GrailQA](dataset-cards/graph-rag/grailqa.md) | `rag_convertible` | graph_path, answer |
+| [GraphRAG-Bench](dataset-cards/graph-rag/graphrag-bench.md) | `rag_native` | answer |
+| [MetaQA](dataset-cards/graph-rag/metaqa.md) | `rag_convertible` | answer |
+| [WebQuestionsSP](dataset-cards/graph-rag/webqsp.md) | `rag_convertible` | graph_path, answer |
 
 <a name="table-rag"></a>
 
@@ -101,18 +101,18 @@ Graph-based retrieval and knowledge-base reasoning; graph use alone does not est
 
 Structured tables and their links to prose, pages and answer derivations. [Category guide](guides/categories/table-rag.md) · [中文指南](guides/categories/table-rag.zh-CN.md).
 
-| Dataset | Role | Gold annotation levels | Review |
-|---|---|---|---|
-| [FEVEROUS](dataset-cards/table-rag/feverous.md) | `rag_native` | sentence, table_cell, answer | source_checked |
-| [HeteQA](dataset-cards/table-rag/heteqa.md) | `rag_native` | table, paragraph, answer | source_checked |
-| [HybridQA](dataset-cards/table-rag/hybridqa.md) | `rag_native` | table, paragraph, answer | source_checked |
-| [OTT-QA](dataset-cards/table-rag/ott-qa.md) | `rag_native` | table, paragraph, answer | source_checked |
-| [Sequential Question Answering (SQA)](dataset-cards/table-rag/sqa.md) | `rag_convertible` | table_cell, answer | source_checked |
-| [TabFact](dataset-cards/table-rag/tabfact.md) | `rag_convertible` | table, answer | source_checked |
-| [TAT-QA](dataset-cards/table-rag/tat-qa.md) | `rag_convertible` | table_cell, span, answer | source_checked |
-| [ToTTo](dataset-cards/table-rag/totto.md) | `auxiliary` | table_cell, answer | source_checked |
-| [T²-RAGBench](dataset-cards/table-rag/t2-ragbench.md) | `rag_native` | answer | source_checked |
-| [WikiTableQuestions](dataset-cards/table-rag/wikitablequestions.md) | `rag_convertible` | table, answer | source_checked |
+| Dataset | Role | Gold annotation levels |
+|---|---|---|
+| [FEVEROUS](dataset-cards/table-rag/feverous.md) | `rag_native` | sentence, table_cell, answer |
+| [HeteQA](dataset-cards/table-rag/heteqa.md) | `rag_native` | table, paragraph, answer |
+| [HybridQA](dataset-cards/table-rag/hybridqa.md) | `rag_native` | table, paragraph, answer |
+| [OTT-QA](dataset-cards/table-rag/ott-qa.md) | `rag_native` | table, paragraph, answer |
+| [Sequential Question Answering (SQA)](dataset-cards/table-rag/sqa.md) | `rag_convertible` | table_cell, answer |
+| [TabFact](dataset-cards/table-rag/tabfact.md) | `rag_convertible` | table, answer |
+| [TAT-QA](dataset-cards/table-rag/tat-qa.md) | `rag_convertible` | table_cell, span, answer |
+| [ToTTo](dataset-cards/table-rag/totto.md) | `auxiliary` | table_cell, answer |
+| [T²-RAGBench](dataset-cards/table-rag/t2-ragbench.md) | `rag_native` | answer |
+| [WikiTableQuestions](dataset-cards/table-rag/wikitablequestions.md) | `rag_convertible` | table, answer |
 
 
 ## Benchmark suites

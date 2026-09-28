@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/tabfact.yaml. Edit the YAML source. -->
 # TabFact
 
+[简体中文](tabfact.zh-CN.md)
+
 Entailment or refutation of natural-language claims against Wikipedia tables.
 
 | Field | Value |

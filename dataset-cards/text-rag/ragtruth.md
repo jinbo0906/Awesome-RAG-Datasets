@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/ragtruth.yaml. Edit the YAML source. -->
 # RAGTruth
 
+[简体中文](ragtruth.zh-CN.md)
+
 Human-annotated response-side hallucination spans over several RAG-style generation tasks.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/suites/m2kr.yaml. Edit the YAML source. -->
 # M2KR
 
+[简体中文](m2kr.zh-CN.md)
+
 Multitask multimodal knowledge-retrieval suite assembled from converted source datasets.
 
 Review status: `source_checked`. This is a benchmark suite or protocol, not one standalone dataset.

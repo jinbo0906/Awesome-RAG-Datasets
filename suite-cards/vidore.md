@@ -1,6 +1,8 @@
 <!-- Generated from catalog/suites/vidore.yaml. Edit the YAML source. -->
 # ViDoRe
 
+[简体中文](vidore.zh-CN.md)
+
 Vision-document retrieval benchmark family for text-query to document-image retrieval.
 
 Review status: `source_checked`. This is a benchmark suite or protocol, not one standalone dataset.

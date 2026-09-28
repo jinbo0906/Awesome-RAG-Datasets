@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/ragbench.yaml. Edit the YAML source. -->
 # RAGBench
 
+[简体中文](ragbench.zh-CN.md)
+
 RAG evaluation collection with responses and fine-grained support labels over retrieved context.
 
 | Field | Value |

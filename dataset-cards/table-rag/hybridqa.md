@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/hybridqa.yaml. Edit the YAML source. -->
 # HybridQA
 
+[简体中文](hybridqa.zh-CN.md)
+
 Multi-hop QA combining Wikipedia table rows with linked passage evidence.
 
 | Field | Value |

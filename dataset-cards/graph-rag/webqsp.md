@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/webqsp.yaml. Edit the YAML source. -->
 # WebQuestionsSP
 
+[简体中文](webqsp.zh-CN.md)
+
 Natural-language questions over Freebase with answers and SPARQL semantic parses.
 
 | Field | Value |

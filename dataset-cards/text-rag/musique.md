@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/musique.yaml. Edit the YAML source. -->
 # MuSiQue
 
+[简体中文](musique.zh-CN.md)
+
 Multi-hop questions composed from single-hop sources to require connected reasoning.
 
 | Field | Value |

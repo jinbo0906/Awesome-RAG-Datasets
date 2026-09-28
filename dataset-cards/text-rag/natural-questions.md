@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/natural-questions.yaml. Edit the YAML source. -->
 # Natural Questions
 
+[简体中文](natural-questions.zh-CN.md)
+
 Search-query questions paired with Wikipedia pages and long or short answer annotations.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/multimodalqa.yaml. Edit the YAML source. -->
 # MultiModalQA
 
+[简体中文](multimodalqa.zh-CN.md)
+
 Questions requiring joint reasoning over text, tables and images with supporting-context IDs.
 
 | Field | Value |

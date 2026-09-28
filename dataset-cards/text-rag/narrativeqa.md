@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/narrativeqa.yaml. Edit the YAML source. -->
 # NarrativeQA
 
+[简体中文](narrativeqa.zh-CN.md)
+
 Questions over books and screenplays with human answers and document-level links.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/chartqa.yaml. Edit the YAML source. -->
 # ChartQA
 
+[简体中文](chartqa.zh-CN.md)
+
 Chart-image question answering with human and generated questions plus optional chart-element boxes.
 
 | Field | Value |

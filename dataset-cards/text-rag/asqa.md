@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/asqa.yaml. Edit the YAML source. -->
 # ASQA
 
+[简体中文](asqa.zh-CN.md)
+
 Ambiguous factoid questions with long answers and disambiguating short-answer pairs.
 
 | Field | Value |

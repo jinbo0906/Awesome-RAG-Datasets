@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/slidevqa.yaml. Edit the YAML source. -->
 # SlideVQA
 
+[简体中文](slidevqa.zh-CN.md)
+
 Multi-image slide-deck QA with evidence-page selection and document layout boxes.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/hotpotqa.yaml. Edit the YAML source. -->
 # HotpotQA
 
+[简体中文](hotpotqa.zh-CN.md)
+
 Wikipedia multi-hop QA with sentence-level supporting facts and answer labels.
 
 | Field | Value |

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/grailqa.yaml. Edit the YAML source. -->
 # GrailQA
 
+[简体中文](grailqa.zh-CN.md)
+
 Knowledge-base QA with executable logical forms and generalization splits.
 
 | Field | Value |

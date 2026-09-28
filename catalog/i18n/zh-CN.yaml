@@ -1,0 +1,435 @@
+datasets:
+  2wikimultihopqa:
+    summary: 基于维基百科的多跳问答，提供支持事实与结构化推理证据。
+    data_description: 问题由维基百科文本和 Wikidata 关系构建；使用时应遵循官方数据划分与证据格式。
+    ground_truth_description: 发布的标注包含支持句和证据路径；具体如何使用图证据取决于所选评测设置。
+    best_for: [多跳证据链检索, 比较文本证据与图衍生证据]
+    caveats: [不能把生成的推理路径等同于人工核验且唯一的最小证据集合]
+  asqa:
+    summary: 针对有歧义的事实性问题，提供长篇回答及用于消歧的短问答对。
+    data_description: 问题和长篇回答附有抽取式问答对；ALCE 另行发布使用检索结果的改造版本。
+    ground_truth_description: 参考答案覆盖同一问题的多种解释；原生来源引用与 ALCE 改造版中的引用并不等价。
+    evaluation_protocol: 使用 ALCE 提供的检索段落时，应单独报告其检索快照与引用评分设置。
+    best_for: [评测长篇回答对歧义解释的覆盖, 通过 ALCE 评测引用]
+    caveats: [原始 ASQA 与 ALCE-ASQA 是不同评测设置]
+  beir-scifact:
+    summary: BEIR 零样本信息检索套件中的科学主张到论文摘要检索变体。
+    data_description: BEIR 版本提供语料、查询和文档级相关性标注；本条目不是原始 SciFact 主张核查数据包。
+    ground_truth_description: BEIR 的 qrels 标识相关论文摘要，而不是生成回答的金标准。
+    evaluation_protocol: 使用 BEIR 测试集相关性标注和固定语料；若声称评测端到端 RAG，必须另外定义回答任务。
+    best_for: [比较科学领域检索器, 展示语料—查询—相关性标注的数据结构]
+    caveats: [仅用于检索的辅助数据；没有原生的生成回答评测]
+  bioasq-14b:
+    summary: 具有论文、片段和答案监督信号的生物医学问答挑战赛。
+    data_description: >-
+      BioASQ 是按届举办的挑战赛，并非一份永不变化的文件。官方参与者页面列出 2026 年 Task 14b
+      的 5,729 个训练问题，以及金标准概念、论文、片段、精确答案和理想答案。来源论文位于外部，
+      官方下载需要注册。
+    size: BioASQ14 Task b 有 5,729 个训练问题；测试集按阶段另行发布。
+    ground_truth_description: >-
+      金标准论文和片段可用于检索监督；精确答案和理想答案分别支持简短与段落式生成。
+      实际构建语料时必须保留证据标识及来源版本。
+    evaluation_protocol: 指明挑战年份与阶段。A 阶段评测检索，B 阶段评测答案；不能把 2026 年训练集规模与其他届测试集或指标混用。
+    best_for: [生物医学检索与回答联合评测, 来源片段证据及精确答案与理想答案的比较]
+    caveats: [下载官方数据需要注册, 必须固定外部论文语料及每届挑战规则]
+  bright:
+    summary: 文本相关性判断需要较强推理能力的检索 benchmark。
+    data_description: 查询和候选文档支持推理密集型的检索评测。
+    ground_truth_description: 文档级相关性标注评测的是检索，而不是回答生成。
+    evaluation_protocol: 将其用作检索组件测试；如需称为端到端 RAG benchmark，还必须补充回答协议。
+    best_for: [选择擅长推理的检索器, 跨领域检索压力测试]
+    caveats: [本目录条目未确认原生的回答生成金标准]
+  clapnq:
+    summary: 基于 Natural Questions 段落中非连续句子、生成有来源依据的长篇回答。
+    data_description: 官方版本包括已标注问答、原始维基百科文档和检索格式数据，覆盖可回答与不可回答样本。
+    ground_truth_description: 从段落中选出的句子为简洁连贯的答案提供依据；许多回答需要组合不相邻的句子。
+    evaluation_protocol: 重建段落时保留原始句子标识；官方测试集答案未公开。
+    best_for: [跨非连续证据的分块研究, 有依据的长篇回答]
+    caveats: [官方测试标签需要通过上游评测流程获取]
+  crag:
+    summary: 面向 RAG 的时效性事实问答，附网页结果和模拟知识接口。
+    data_description: 问题跨五个领域和八种类别；发布的检索内容包括网页搜索结果和模拟 API。
+    ground_truth_description: 提供金标准答案和可接受的替代答案；检索到的网页是候选上下文，并非金标准支持片段。
+    evaluation_protocol: 官方评分区分正确答案、未回答和错误答案。
+    best_for: [有时间变化的事实检索, 弃答策略与错误成本分析]
+    caveats: [搜索结果不是相关性真值；不能把每个返回网页都当成支持证据]
+  eli5:
+    summary: 来自 Reddit 问答、配有网页支持文档的解释性长篇问答数据。
+    data_description: 官方脚本重建 Reddit 问答和 CommonCrawl 支持文档；作者没有托管处理后的数据。
+    ground_truth_description: 网页支持文档通过启发式方法选择，不是人工标注的最小引用集合。
+    evaluation_protocol: 记录 Reddit 和 CommonCrawl 快照；ALCE-ELI5 使用独立的 BM25 检索包和引用评测器。
+    best_for: [长篇解释生成, 通过 ALCE 评测引用]
+    caveats: [重建需要大量计算及上游内容访问, 支持段落来自启发式选择而非人工真值]
+  fever:
+    summary: 基于维基百科的主张核查数据，附支持句集合标注。
+    data_description: 对照固定的维基百科快照，将主张标为支持、反驳或信息不足。
+    ground_truth_description: 维基百科句子组成的证据集合用于支持或反驳可核查主张。
+    evaluation_protocol: FEVER 分数要求标签正确，且支持或反驳类主张的完整证据也被找回。
+    best_for: [句子级证据检索, 测试完整证据集合覆盖]
+    caveats: [信息不足（NEI）样本没有正向的金标准证据集合]
+  feverous:
+    summary: 面向维基百科句子与表格单元格的开放域事实核查数据。
+    data_description: 发布的主张对照含正文和表格的维基百科页面，标为支持、反驳或信息不足。
+    size: 完整数据集有 87,026 条已核查主张；较小研究子集需另行标识。
+    ground_truth_description: 最多三组证据集合可包含句子、单元格、表头、图注或列表项 ID，并保留结构上下文。
+    evaluation_protocol: 结论标签与完整证据集合应联合评测。
+    best_for: [融合文本与表格证据, 保留单元格与表头关系, 按替代证据集合评分]
+    caveats: [只看结论会掩盖单元格检索失败；应保留单元格 ID 的结构上下文]
+  freshqa:
+    summary: 面向模型训练后才出现或随时间变化的事实、按版本维护的问答数据。
+    data_description: 作者维护带日期的电子表格快照和评测器；问题及可接受答案会随时间更新，并非固定不变的检索语料。
+    ground_truth_description: 答案判断与问题表格一起版本化，但未锚定到稳定的段落坐标；来源文档快照和时间相关性标签需在改造时另建。
+    evaluation_protocol: 比较系统前固定 FreshQA 表格版本与评测模式，并记录搜索日期、检索网页及其获取日期，避免用未来答案评价过去的系统。
+    best_for: [评测回答的新鲜度, 设计时间敏感的检索协议]
+    caveats: [答案键变化使跨日期分数不可直接比较, 原生数据没有固定来源池或证据片段坐标]
+  grailqa:
+    summary: 提供可执行逻辑形式与泛化能力划分的知识库问答数据。
+    data_description: 问题映射到 Freebase 答案及 SPARQL、S 表达式等逻辑形式；复现检索需要兼容的 Freebase 快照。
+    ground_truth_description: 逻辑形式指定可执行的图推理结构，但不一定对应唯一的已检索子图。
+    evaluation_protocol: 保留原有的独立同分布、组合泛化和零样本划分，并说明知识库版本。
+    best_for: [图推理泛化测试, 感知逻辑形式的检索]
+    caveats: [知识库问答逻辑形式不会自动成为自然语言 GraphRAG 的引用路径]
+  graphrag-bench:
+    summary: 在事实性与上下文生成任务上比较图式 RAG 的领域 benchmark。
+    data_description: 发布的小说和医疗任务覆盖事实检索、复杂推理、上下文摘要及创意生成。
+    ground_truth_description: 数据提供参考答案与任务级评测；本目录不宣称其有通用的金标准图路径。
+    evaluation_protocol: 将建图成本和检索效果与生成质量分开报告。
+    best_for: [比较 GraphRAG 与文本 RAG, 研究哪些任务类型从图结构受益]
+    caveats: [被评测方法可能自行建图；其生成的图边不是金标准证据路径]
+  heteqa:
+    summary: 与 TableRAG 方法一起提出的异构文本—表格问答数据。
+    data_description: 发布数据将问题与表格、正文混合证据配对，用于异构文档推理。
+    ground_truth_description: 在把行或单元格坐标视为真值前，应先核查发布文件中的证据 ID。
+    evaluation_protocol: 同时与表格感知检索和纯文本检索基线比较。
+    best_for: [混合表格与文本检索, 测试与正文关联的表格运算]
+    caveats: [数据规模较小时应提供置信区间和外部留出集验证]
+  hicbench:
+    summary: 面向分块研究，提供层级边界标注与证据密集型问答的 benchmark。
+    data_description: 精选的 OHRBench 文档与层级标注、合成的高证据密度问题配对。
+    ground_truth_description: 人工标注的多层级分块点与合成问答、相关证据来源同时存在，不能把两种标注混为一谈。
+    evaluation_protocol: 将来源层级标签与问答证据分开，并在不同上下文预算下测试。
+    best_for: [层级分块, 比较不同 chunk 大小时的证据完整性]
+    caveats: [若声称可泛化，合成问题还需要独立的人工审查留出集]
+  hotpotqa:
+    summary: 具有句子级支持事实和答案标签的维基百科多跳问答数据。
+    data_description: 干扰文档设置与完整维基百科设置使用不同检索池；比较结果时必须保留所选设置。
+    ground_truth_description: 支持事实由维基百科页面标题和从零开始的句子索引标识；答案另行评测。
+    evaluation_protocol: 分别报告干扰文档和完整维基百科设置的结果。
+    best_for: [跨文档证据组合, 对照句子来源坐标评测与问题无关的分块]
+    caveats: [支持句不是唯一最优分块边界, 干扰文档上下文不等同于开放语料检索]
+  hybridqa:
+    summary: 结合维基百科表格行与链接段落证据的多跳问答数据。
+    data_description: 问题要求在固定发布语料中查找表格，再结合所链接的正文段落推理。
+    ground_truth_description: 表格与链接段落之间的关联支持跨结构推理协议。
+    evaluation_protocol: 分别比较检索与回答阶段，并保留表格到段落的链接。
+    best_for: [表格—文本证据关联, 跨结构多跳推理]
+    caveats: [将表格展平为纯文本可能丢失行与表头的关联]
+  infoseek:
+    summary: 基于 OVEN 图像与维基百科衍生信息的知识密集型视觉问答数据。
+    data_description: >-
+      项目发布与图像关联的问题、可接受的答案别名、知识库映射及约六百万条维基百科文本资源。
+      图像来自 OVEN，须另行获取；原始问答与 M2KR 的检索改造属于不同协议。
+    ground_truth_description: 提供答案及等价表达。已发布映射可支持检索改造，但不能据此声称每题都有人工标注的最小证据页面或图像区域。
+    evaluation_protocol: 指明图像、维基百科和问题版本。RAG 实验需披露知识候选池和 qrels 的构建方式，不能把 M2KR 的 qrels 视为原生 InfoSeek 真值。
+    best_for: [依赖外部知识的视觉问题, 利用维基百科文本进行检索改造]
+    caveats: [获取图像还依赖单独的上游资源, 原生问答不保证有针对问题的视觉区域证据]
+  m3docvqa:
+    summary: 面向多页、多文档 PDF 集合的开放域视觉文档问答数据。
+    data_description: M3DocRAG 项目发布的开放域集合包含超过 3,000 份 PDF 和 40,000 页。
+    ground_truth_description: 先在文档或页面层级评测相关性，再进行视觉回答生成。
+    evaluation_protocol: 保留 PDF 身份与页码；不要把封闭域 MP-DocVQA 与开放域 M3DocVQA 混为一谈。
+    best_for: [开放域多页检索, 发现 OCR 遗漏的视觉证据]
+    caveats: [来源仓库于 2026 年 7 月归档；应记录所用的准确快照]
+  mavis:
+    summary: 面向长篇回答的视觉问答 benchmark，提供多模态文档的事实级引用。
+    data_description: 输入图像和问题与多模态检索语料、带引用的长篇回答配对。
+    size: 作者报告了 15.7 万个视觉问答样本。
+    ground_truth_description: 回答中的事实级引用指向提供支持的多模态文档。
+    evaluation_protocol: 分别评测图像文档与文本文档对回答的支持程度。
+    best_for: [事实级多模态引用, 生成有依据的长篇回答]
+    caveats: [文档级引用不一定提供边界框级证据标注]
+  metaqa:
+    summary: 电影领域知识库问答，包含一跳、两跳和三跳问题变体。
+    data_description: >-
+      官方版本以主语—关系—宾语三元组提供电影知识库，按跳数划分问答，还包含问题改写变体
+      与可选的音频问题。图问答任务应与音频变体分开报告。
+    ground_truth_description: 发布了答案实体；知识库与问题模板体现设计上的跳数复杂度，但不能假设每题都有唯一标注图路径或被引用的文本段落。
+    evaluation_protocol: >-
+      固定知识库版本、跳数及原始/改写/音频变体。若要测试 GraphRAG 路径，应增加独立核查的路径
+      或子图标签，而不是用被测检索器的输出反推真值。
+    best_for: [可控的图多跳推理, 知识库检索器的消融实验]
+    caveats: [模板衍生问题不同于开放式 GraphRAG 任务, 原生版本不保证有金标准引用路径]
+  mmdocir:
+    summary: 长文档多模态检索 benchmark，含人工标注的页面与版面证据。
+    data_description: 评测数据覆盖 313 份长文档；专家问题附页面和版面证据，另有较大的引导构建集合用于训练。
+    size: 评测部分有 1,658 个专家问题、2,107 个页面标签和 2,638 个版面标签。
+    ground_truth_description: 标注者选择证据页面和 MinerU 衍生的版面元素，并手工补充遗漏区域。
+    evaluation_protocol: 页面检索与版面检索是不同任务，应分别评测。
+    best_for: [测量跨页面和区域的证据碎片化, 比较视觉与 OCR 检索]
+    caveats: [版面标签部分依赖解析器；应保留原始页面坐标和解析器版本, 项目页面与论文的问题数量不同；须固定所用发布版本]
+  mmdocrag:
+    summary: 多页多模态文档问答，包含跨模态证据链和摘录选择。
+    data_description: 问题锚定于含文本和图像摘录的长文档，并配有刻意设计的困难负例摘录。
+    size: 项目发布版从 222 份长文档构建了 4,055 个问答对。
+    ground_truth_description: 跨页、跨模态证据链支持摘录选择和带引用回答的评测。
+    evaluation_protocol: 将检索与摘录选择结果同多模态回答质量分开报告。
+    best_for: [跨页证据选择, 文本与图像摘录整合, 困难负例下的鲁棒性]
+    caveats: [部分构建过程使用生成问题和解析器衍生摘录；人工核验子集应单独报告]
+  mmlongbench-doc:
+    summary: 长 PDF 文档问答，提供证据页面及证据来源模态标注。
+    data_description: 仓库发布 PDF 和包含 doc_id、问题、答案、证据页与证据来源的问答记录；2025 年版本修订了部分问答。
+    ground_truth_description: 证据页面和来源模态标签可定位支持信息，但没有普遍提供针对问题的区域或单元格坐标。
+    evaluation_protocol: 说明数据修订版本，并明确页面是由系统检索还是全部直接提供给模型。
+    best_for: [长视觉文档上下文, 跨页证据收集]
+    caveats: [原始评测是长上下文 VQA；页面检索协议属于改造, 问答修订要求固定版本]
+  mp-docvqa:
+    summary: 附答案所在页面监督信号的多页文档视觉问答数据。
+    data_description: 挑战赛将文档图像问答扩展到多页文档；官方数据和评测通过 DocVQA/RRC 挑战平台提供。
+    ground_truth_description: 答案页面可评测页面选择，但不能据此建立最小区域或跨页证据链真值。
+    evaluation_protocol: 区分单文档内的页面选择与开放语料中的文档检索，并使用官方挑战赛划分。
+    best_for: [单文档内页面选择, 比较 OCR 与视觉问答]
+    caveats: [默认并非开放式多文档检索, 答案页面真值不是针对问题的边界框]
+  msmarco-passage:
+    summary: 具有查询—段落相关性标注的大规模网页段落检索数据。
+    data_description: >-
+      本条目特指 v1 段落排序变体，而不是原始 MS MARCO 生成式问答、文档排序或 TREC Deep Learning
+      赛道。v1 集合约有 880 万个段落，另含查询和稀疏 qrels。
+    ground_truth_description: >-
+      Qrels 标识排序用的相关段落，但没有穷尽所有相关段落；这个排序变体也没有生成回答的参考答案。
+    evaluation_protocol: 指明 v1/v2、训练/开发/测试划分及全库检索或重排设置。标注稀疏时，不宜直接把未判断段落当成负例。
+    best_for: [训练检索器及排序对照, 大规模段落索引]
+    caveats: [仅检索的变体不是端到端回答 benchmark, 稀疏 qrels 可能低估相关证据]
+  mtrag:
+    summary: 人工编写的多轮 RAG 对话，覆盖四种语料的检索与生成任务。
+    data_description: >-
+      人工版本有 110 组经过审查的对话，平均每组 7.7 轮，共 842 个轮次级评测任务。
+      ClapNQ、Cloud、FiQA 和 Govt 是不同语料；合成版 MTRAG 与 MTRAG-UN 是其他发布版本，
+      不包含在本条目中。
+    ground_truth_description: >-
+      对话包含参考段落、段落相关性与回答。可回答和部分可回答轮次的检索任务以 BEIR 格式提供；
+      不可回答轮次需要单独的评测处理。
+    evaluation_protocol: 保留对话历史、领域和轮次顺序。分别比较 reference、reference+RAG 和 full-RAG 设置；只有最后一种会让检索遗漏影响生成。
+    best_for: [追问与欠明确查询, 分析跨对话轮次的检索错误, 多领域 RAG]
+    caveats: [不能把 842 个轮次级任务当作 842 组独立对话, 合成版和 UN 变体的来源及协议不同]
+  multihop-rag:
+    summary: 开放式多文档 RAG 问答，附问题类型及支持证据标签。
+    data_description: 发布的知识库和问题集包含推断、比较、时间推理以及无答案案例。
+    ground_truth_description: 每个问题与多个来源文档中的支持证据关联。
+    evaluation_protocol: 将无答案案例与可回答的多跳案例分开报告。
+    best_for: [多文档检索, 时间或比较推理]
+    caveats: [支持文档不一定对应最小充分证据片段]
+  multimodalqa:
+    summary: 需要联合推理文本、表格和图像的问题，提供支持上下文 ID。
+    data_description: 发布版包含 29,918 个样本，以及独立的文本、表格和图像上下文文件；测试集答案及支持上下文未公开。
+    ground_truth_description: 支持上下文条目标明来源文档 ID 和模态部分，包括中间答案上下文；不能据此假定有统一的边界框或单元格真值。
+    evaluation_protocol: 将上下文检索与最终回答分开测量，并保留支持上下文 ID 及隐藏测试集协议。
+    best_for: [跨模态多跳推理, 汇集文本—表格—图像证据]
+    caveats: [来源级标签不能识别每个相关单元格或图像区域]
+  musique:
+    summary: 由单跳来源组合成的问题，要求连贯的多跳推理。
+    data_description: MuSiQue-Ans 与 MuSiQue-Full 的可回答性设置不同；训练、开发和测试数据按官方格式发布。
+    ground_truth_description: 问题分解与支持段落可用于测试完整证据链检索。
+    evaluation_protocol: Ans 与 Full 应分开比较。
+    best_for: [连贯的多跳推理, 固定上下文预算下的证据完整性]
+    caveats: [作为种子的单跳问题可能与其他训练数据重叠；应查阅发布的泄漏 ID]
+  narrativeqa:
+    summary: 围绕书籍和剧本的问题，附人工答案及文档级链接。
+    data_description: 发布数据包含问答对、文档元数据、维基百科摘要，以及获取完整故事的链接或下载脚本。
+    ground_truth_description: 问题有参考答案，但原生数据没有句子级支持事实映射。
+    evaluation_protocol: 披露使用摘要还是完整故事，并说明所用故事的准确快照。
+    best_for: [长文档检索压力测试, 故事级回答生成]
+    caveats: [不是原生的分块边界真值, 完整故事能否获取取决于来源 URL 与权利]
+  natural-questions:
+    summary: 搜索式问题与维基百科页面配对，含长答案和短答案标注。
+    data_description: 每个样本包含问题及候选维基百科页面；检索实验须另行定义开放语料索引。
+    ground_truth_description: 长答案定位 HTML 区域，短答案定位一个或多个文本片段；部分样本没有答案。
+    evaluation_protocol: 转换为纯文本或 chunks 时，保留字节和 HTML 坐标。
+    best_for: [基于来源坐标的证据覆盖, 可回答与不可回答问答]
+    caveats: [原生任务直接给出候选页面，而不是开放语料检索协议]
+  ott-qa:
+    summary: 要求从大型表格与段落池检索证据的开放域表格—文本问答。
+    data_description: >-
+      去上下文化的问题对应超过 40 万张表格和 500 万个段落的候选池；在开放式设置中，
+      金标准表格和段落不会直接提供给模型。
+    ground_truth_description: 问题记录及关联来源数据支持表格和段落检索评测；本目录不宣称存在通用的单元格引用真值。
+    evaluation_protocol: 使用开放检索设置，不要换成直接提供表格的 HybridQA；测试集评分使用官方挑战赛流程。
+    best_for: [联合检索表格与文本, 开放域证据组合]
+    caveats: [原始关联段落和表格快照须版本化, 金标准表格或段落比最小单元格—片段证据链更粗]
+  pubhealth:
+    summary: 公共卫生主张核查数据，附记者撰写的解释与来源元数据。
+    data_description: >-
+      官方 v1.0 TSV 版本的训练、开发和测试集共 12,279 行；论文描述的是更早的约 1.18 万条主张版本。
+      记录含主张、日期、主要证据文本、证据来源 URL 和标签，但不提供固定的可检索来源语料。
+    size: 仓库 v1.0 发布版有 12,279 条主张；论文数量对应较早版本。
+    ground_truth_description: 提供事实核查标签和解释。来源 URL 与主要证据文本可作为依据线索，但开放检索所需的稳定文档或字符偏移并无保证。
+    evaluation_protocol: 固定 TSV 发布版及获取日期。RAG 实验应构建有许可、带日期的文档集合，并在不泄露事实核查解释的前提下定义来源匹配。
+    best_for: [特定领域的主张核查, 分析有时间属性的证据来源]
+    caveats: [发布的 TSV 不是完整的固定检索语料, 仓库与论文报告的是不同版本的计数]
+  qampari:
+    summary: 开放域多答案问答，每个问题的多个答案由不同段落支持。
+    data_description: 问题根据维基百科知识图谱和表格关系构建，再关联支持段落；ALCE 另行打包检索输出用于引用实验。
+    ground_truth_description: 发布了答案实体及支持段落；段落对齐依赖自动构建和问答验证。
+    evaluation_protocol: 将原始答案集合任务与 ALCE 在给定引用条件下的评测区分开。
+    best_for: [多答案证据覆盖, 分散证据下的引用完整性]
+    caveats: [单一段落未必覆盖全部正确答案, 必须说明原始语料快照]
+  qasper:
+    summary: 以完整 NLP 研究论文为来源、带证据标注的信息寻求型问题。
+    data_description: 问题针对研究论文全文；答案包含抽取式、生成式、是/否及不可回答案例。
+    ground_truth_description: 答案标注指出论文中的支持性证据片段或段落。
+    best_for: [长文档证据定位, 感知章节结构的分块]
+    caveats: [证据标注绑定到数据集的文本抽取结果，未必能直接映射回 PDF 坐标]
+  quality:
+    summary: 围绕文章和故事的长文档理解选择题数据。
+    data_description: 样本包含文章、四个答案选项、金标准标签和标注元数据；较难子集依据限时人工表现划定。
+    ground_truth_description: 答案标签经人工验证，但原生版本并未为每题提供最小支持片段。
+    evaluation_protocol: 完整集与困难子集应分开报告；构建可检索 chunks 属于后续改造。
+    best_for: [改造为检索任务后的长上下文推理]
+    caveats: [QuALITY 是长输入问答数据，而非产品质量数据集, 没有原生证据片段真值]
+  ragbench:
+    summary: 包含生成回答和细粒度上下文支持标签的 RAG 评测集合。
+    data_description: 托管版本含 12 个子集，提供问题、已检索文档、生成回答和句子级支持标注。
+    ground_truth_description: 通过支持关系键连接回答句子与文档句子，可评测回答对上下文的遵循与利用。
+    evaluation_protocol: 除非另行重建外部语料，否则应把发布的检索文档视为固定上下文池。
+    best_for: [回答依据诊断, 句子级支持关系归因]
+    caveats: [混合来源及模型辅助标注不能称为完全人工的金标准]
+  ragtruth:
+    summary: 在多种 RAG 式生成任务上，以人工标注生成回答中的幻觉片段。
+    data_description: >-
+      发布版将 source_info.jsonl 与 response.jsonl 配对，每个来源产生六条模型回答。
+      官方仓库报告问答、摘要和数据到文本任务中共 17,790 条生成回答。生成回答是模型输出，
+      不是金标准答案。
+    ground_truth_description: 标注者记录模型回答中无来源支持片段的起止偏移、标签类型和元数据；这些回答偏移不是来源证据坐标或检索 qrels。
+    evaluation_protocol: 按 source_id 关联回答与 source_info，保留训练/测试划分和标注版本；幻觉检测应与答案正确性或检索分开评分。
+    best_for: [词元或片段级幻觉检测, 诊断缺乏依据的主张]
+    caveats: [不是端到端检索 benchmark, 并非每条生成回答都有人工金标准答案]
+  realtimeqa:
+    summary: 定期发布的时事问答，包含带日期的问题和检索基线。
+    data_description: 官方平台每周发布约 30 个问题、历史问题文件，以及 Google Custom Search/DPR 基线检索结果；网页和新闻来源位于外部且持续变化。
+    ground_truth_description: 带日期的答案可用于时间敏感问答；发布的搜索结果是基线输出，而非每轮都有的来源坐标证据真值。
+    evaluation_protocol: 标明问题所属周和答案截止时间，并记录模型看到的是同期还是更晚的网页证据；不控制来源可用性时不要合并不同周的结果。
+    best_for: [时间敏感 RAG, 测试会变化的事实答案]
+    caveats: [不存在单一永久不变的检索语料, 搜索基线输出不是通用证据标签]
+  rgb:
+    summary: 中英双语的固定上下文 RAG 压力测试，覆盖噪声、弃答、信息整合和反事实文档。
+    data_description: >-
+      仓库提供中英文问题及固定的正负段落，另有信息整合和反事实文件。2024 年 3 月的修订版
+      更正了部分段落和答案；这些文件不定义一个开放式检索语料。
+    ground_truth_description: 参考答案与场景特定的上下文标签可用于受控鲁棒性测试，但不是不可变的来源文档片段，也不是人工核定的最优 chunks。
+    evaluation_protocol: 固定原版或修订版、语言、noise_rate 与 passage_num。负例弃答和反事实检测应分别使用上游脚本，不能把这些指标报告为检索召回。
+    best_for: [抵抗干扰段落的鲁棒性, 证据不足时的弃答, 跨文档信息整合]
+    caveats: [固定段落不能评测开放语料检索器, 修订版改变了部分段落和答案]
+  slidevqa:
+    summary: 多图像幻灯片问答，提供证据页选择和文档版面边界框。
+    data_description: 来源报告跨幻灯片的 14,484 个问答对和 890,945 个版面边界框；Hugging Face 数据包不含 OCR 与边界框数据。
+    ground_truth_description: 问答记录给出 evidence_pages 和答案；边界框文件标注幻灯片版面对象，但这些框并非自动对应每题的证据。
+    evaluation_protocol: 分别评测证据页选择与回答生成，并说明是否使用 OCR 和边界框文件。
+    best_for: [跨幻灯片证据检索, 感知版面的视觉问答]
+    caveats: [不能把版面框误当作逐题金标准区域, 部分上游幻灯片 URL 已不可用]
+  sqa:
+    summary: 在已提供的维基百科 HTML 表格上进行的连续对话式问答。
+    data_description: >-
+      微软研究院将 2,022 个 WikiTableQuestions 问题扩展为 6,066 组序列、17,553 个相互关联的问题。
+      原生任务直接提供表格；若用于 TableRAG 评测，还须定义开放式表格索引与检索负例。
+    size: 1.0 版本有 6,066 组序列和 17,553 个问题。
+    ground_truth_description: 答案关联到单元格位置，可检查表内证据，但没有提供从多表语料检索表格的 qrel。
+    evaluation_protocol: 保留问题顺序和对话上下文，并将给定表格的原生任务与自建表格检索阶段分开报告。
+    best_for: [多轮表格推理, 单元格级答案定位]
+    caveats: [原始任务直接提供表格, 在构建检索 chunks 前应按表格与问答序列划分]
+  strategyqa:
+    summary: 隐含多步推理的是/否问答，包含问题分解和每一步的段落证据。
+    data_description: 论文描述了 2,780 个问题。作者发布维基百科段落语料及单独的索引方法；代码仓库中的 90/10 训练/开发划分是官方训练数据的非官方再划分。
+    ground_truth_description: 问题包含是/否答案、分解子问题和各推理步骤的证据段落；这些段落标签并非唯一最优分块边界。
+    evaluation_protocol: 明确区分官方划分与作者代码的 90/10 划分；使用段落证据时保留问题级和步骤级检索分母。
+    best_for: [隐含多步检索, 段落证据完整性]
+    caveats: [只有答案标签无法评测检索, 重建索引和非官方划分会影响可比性]
+  t2-ragbench:
+    summary: 结合正文、表格与数值推理的金融文档 RAG benchmark。
+    data_description: 基于 FinQA、ConvFinQA 和 TAT-DQA 风格的金融文档问答构建；PDF 与结构化上下文需要明确所选版本。
+    size: 项目网站报告 23,088 个三元组，原论文摘要报告 32,908 个；核清前应视为不同发布版或计数范围。
+    ground_truth_description: 发布了问题—上下文—答案三元组；精确的表格单元格证据覆盖须按具体发布版核查。
+    evaluation_protocol: 比较系统时说明下载版本及来源文档转换方法。
+    best_for: [跨正文与表格的数值推理, 金融文档检索测试]
+    caveats: [论文与实时项目页面的三元组总数不一致；未经核查不能跨版本合并结果]
+  chartqa:
+    summary: 图表图像问答，结合人工与生成问题，并可使用图表元素边界框。
+    data_description: 官方完整版本含图表图像、问答、底层表格和元素标注；train_human 与 train_augmented 的来源不同。
+    ground_truth_description: 完整版本有元素边界框，但它们不一定是逐题的最小证据区域。
+    evaluation_protocol: 若用于检索实验，应构建图表语料，并说明底层表格或元素框是否对系统可见。
+    best_for: [图表感知与数值推理, 视觉与表格表示的消融比较]
+    caveats: [原生任务直接给出图表，并非开放语料 RAG, 从 SVG 得到的边界框可能有噪声或缺失]
+  tabfact:
+    summary: 判断自然语言主张是否得到维基百科表格蕴含或反驳的数据。
+    data_description: >-
+      主张与单张表格及二元标签配对；官方页面分别给出 117,854 条人工标注陈述和
+      118,275 行的总数，统计口径不同。
+    ground_truth_description: 蕴含或反驳标签是真值；原生数据不保证每条主张都有支持性单元格集合。
+    evaluation_protocol: 若要评测 RAG 流水线，须明确表格检索器和表格级 qrels。
+    best_for: [感知表格的主张核查, 语义与符号推理]
+    caveats: [官方 README 使用不同计数口径, 原生任务直接提供表格而非开放检索]
+  tat-qa:
+    summary: 在已提供的财报表格与周边文本混合上下文上进行的金融问答。
+    data_description: 官方版本从 2,757 个金融报告表格—文本上下文构建了 16,552 个问题。
+    ground_truth_description: 问题包含推导过程和 answer-from 元数据；模型专用的启发式事实与映射属于另行衍生的表示。
+    evaluation_protocol: 若未另行构建来源文档语料与划分，不能把给定上下文直接当作开放检索测试。
+    best_for: [融合文本与单元格证据, 检索后的数值推理]
+    caveats: [原生上下文已直接提供, 启发式 TagOp 映射不是原始人工证据标签]
+  totto:
+    summary: 根据给定的维基百科表格与高亮单元格进行受控表格到文本生成。
+    data_description: >-
+      官方训练版超过 12 万个样本。每个输入包含表格元数据、表格及高亮单元格坐标，目标是经编辑的
+      单句描述。开发集、私有测试参考答案和表头重叠子集分别采用不同协议。
+    ground_truth_description: 高亮单元格标识直接给定的条件证据，经编辑句子是参考输出；原生任务并不要求从开放表格集合检索这些单元格。
+    evaluation_protocol: 这属于给定证据的生成任务，不是检索 benchmark。若要评测 TableRAG，应在不暴露高亮单元格的前提下补充查询、表格语料、qrels 和留出集划分。
+    best_for: [依据选定单元格忠实生成, 测试证据打包时是否保留表头上下文]
+    caveats: [没有原生检索查询或候选池, 高亮单元格是输入而非系统找回的证据]
+  vidoseek:
+    summary: 在大型 PDF 集合上评测视觉文档检索与回答的数据。
+    data_description: 查询记录提供参考答案、原始文件及参考页码等元数据。
+    ground_truth_description: 查询元数据标识参考页面，可用于页面级检索评分。
+    evaluation_protocol: 将找回页面的准确性与最终回答质量区分开。
+    best_for: [跨大量页面的视觉文档 RAG, 迭代式证据检索]
+    caveats: [页面标签本身不指定精确图形或单元格边界]
+  webqa:
+    summary: 回答生成前需要检索相关网页片段与图像的多模态网页问答。
+    data_description: Benchmark 提供受限检索和完整检索两种设置，候选包括网页片段与图像；问题类别区分文本和图像证据。
+    ground_truth_description: 相关来源片段与图像支持来源检索和自然语言回答评测；本目录不宣称有通用的图像内部边界框真值。
+    evaluation_protocol: 不要混用受限和完整检索设置的分数；说明大型预提取图像特征是否可用。
+    best_for: [网页图文联合检索, 多模态多跳回答]
+    caveats: [部分托管特征文件需申请或可能不可用, 来源 ID 比图像区域证据更粗]
+  webqsp:
+    summary: 面向 Freebase 的自然语言问题，含答案与 SPARQL 语义解析。
+    data_description: 微软发布问题、语义解析和评测器；4,737 个问题有完整 SPARQL 解析，另有 1,073 个问题仅部分标注。
+    ground_truth_description: 可执行 SPARQL 解析定义图操作，但不一定是唯一的已检索子图或引用路径。
+    evaluation_protocol: 指明 Freebase 快照，并区分完整解析与部分标注样本。
+    best_for: [知识图谱问答, 语义解析引导的检索]
+    caveats: [复现结果依赖兼容的 Freebase 快照, GraphRAG 引用证据需要额外标注]
+  wikitablequestions:
+    summary: 针对已提供的半结构化维基百科 HTML 表格提出的复杂问题。
+    data_description: 每题与维基百科表格及答案配对；官方评测器检查答案指称结果。
+    ground_truth_description: 提供表格和答案，但不保证有最小支持单元格集合或开放表格检索 qrel。
+    evaluation_protocol: 做表格检索时，应构建固定表格语料及 qrels，且不能在输入中泄露配对表格。
+    best_for: [检索后的表格推理, 答案指称结果评测]
+    caveats: [原生任务直接提供表格，不是开放表格检索 benchmark]
+  xl-docbench:
+    summary: 在超长文档上进行专家核验问答，提供证据页与摘录。
+    data_description: 发布版引用公开来源文档 URL，而非打包全部 PDF；包含单文档和跨文档问答。
+    size: 共 1,519 个问题，其中 1,354 个单文档、165 个跨文档问题；对应 331 条文档记录。
+    ground_truth_description: 可回答样本包含人工标注的证据页面和带来源定位信息的证据摘录。
+    evaluation_protocol: 比较解析器或分块器前，应先获取并固定带版本的来源 PDF。
+    best_for: [超长文档检索, 跨文档证据定位]
+    caveats: [外部文档 URL 可能漂移；复现需要固定快照及哈希]
+suites:
+  alce:
+    protocol: 使用套件提供的检索段落，评测回答正确性、流畅性与引用质量。组成数据集的原始版本应与其 ALCE 改造版区分。
+  beir:
+    protocol: 本目录目前只收录一个代表性组成项，不是整个套件。应使用上游各子数据集的语料、查询和 qrels，报告 NDCG@10 及所需补充指标；BEIR 本身不评测回答生成。
+  kilt:
+    protocol: KILT 把原始任务映射到 2019-08-01 维基百科快照，并对带来源信息的任务输出评分。原始数据集不等于其 KILT 变体；本目录尚未逐一收录这些变体卡片。
+  m-beir:
+    protocol: 使用官方 UniIR 检索协议；不能把 M-BEIR 当成音频 benchmark 或端到端回答生成 benchmark。本目录尚未逐一收录其组成数据集卡片。
+  m2kr:
+    protocol: >-
+      已索引的子集卡片尚未按独立 M2KR 变体建模。使用作者发布的子集划分、图像资产、查询模态
+      和 Recall@K 设置；InfoSeek、OK-VQA、EVQA 的转换版须与各自原始问答协议区分。
+  vidore:
+    protocol: 本目录将 ViDoRe 记录为检索套件，而非问答数据集。v1、v2、v3 的集合、语料、语言和指标应分开；本目录尚未逐一收录组成数据集卡片。

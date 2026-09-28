@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/freshqa.yaml. Edit the YAML source. -->
 # FreshQA
 
+[简体中文](freshqa.zh-CN.md)
+
 Versioned question answering data for facts that change or emerged after model training.
 
 | Field | Value |

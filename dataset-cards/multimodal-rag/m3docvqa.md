@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/m3docvqa.yaml. Edit the YAML source. -->
 # M3DocVQA
 
+[简体中文](m3docvqa.zh-CN.md)
+
 Open-domain visual document QA over a multi-page multi-document PDF collection.
 
 | Field | Value |

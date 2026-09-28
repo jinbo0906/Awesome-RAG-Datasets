@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mmdocrag.yaml. Edit the YAML source. -->
 # MMDocRAG
 
+[简体中文](mmdocrag.zh-CN.md)
+
 Multi-page multimodal document QA with cross-modal evidence chains and quote selection.
 
 | Field | Value |

@@ -51,7 +51,7 @@ def test_chinese_readme_keeps_category_and_dataset_navigation():
     assert "## 数据集" in readme
     assert "### Table RAG (1)" in readme
     assert "guides/categories/table-rag.zh-CN.md" in readme
-    assert "dataset-cards/table-rag/example.md" in readme
+    assert "dataset-cards/table-rag/example.zh-CN.md" in readme
 
 
 def test_generation_includes_both_language_readmes():
@@ -93,3 +93,56 @@ def test_suite_card_explains_protocol_and_components():
     content = render_suite_card(suite)
     assert "Use fixed qrels." in content
     assert "first" in content
+
+
+def test_build_outputs_creates_chinese_cards_from_translations():
+    suite = {
+        "id": "sample", "name": "Sample Suite", "status": "source_checked",
+        "summary": "A collection of retrieval datasets.", "summary_zh": "检索评测套件。",
+        "components": ["example"], "protocol": "Use fixed qrels.",
+        "access": {"official": "https://example.org"}, "sources": [],
+    }
+    catalog = {"datasets": [RECORD], "suites": [suite], "tasks": [], "corpora": [], "papers": []}
+    translations = {
+        "datasets": {"example": {"summary": "中文样本说明", "best_for": ["表格证据"], "caveats": ["没有固定检索池"]}},
+        "suites": {"sample": {"protocol": "使用固定相关性标注。"}},
+    }
+    outputs = build_outputs(catalog, translations)
+    chinese_card = outputs[Path("dataset-cards/table-rag/example.zh-CN.md")]
+    assert "中文样本说明" in chinese_card
+    assert "没有固定检索池" in chinese_card
+    assert "https://example.org/data" in chinese_card
+    assert "[English](example.md)" in chinese_card
+    assert "[简体中文](example.zh-CN.md)" in outputs[Path("dataset-cards/table-rag/example.md")]
+    suite_card = outputs[Path("suite-cards/sample.zh-CN.md")]
+    assert "使用固定相关性标注。" in suite_card
+    assert "../dataset-cards/table-rag/example.zh-CN.md" in suite_card
+
+
+def test_readme_tables_link_to_matching_language_cards_without_review_column():
+    suite = {
+        "id": "sample", "name": "Sample Suite", "status": "source_checked",
+        "summary": "A collection of retrieval datasets.", "summary_zh": "检索评测套件。",
+        "components": [], "access": {"official": "https://example.org"}, "sources": [],
+    }
+    catalog = {"datasets": [RECORD], "suites": [suite], "tasks": [], "corpora": [], "papers": []}
+    english = render_readme(catalog)
+    chinese = render_readme(catalog, locale="zh-CN")
+    assert "| Review |" not in english
+    assert "| 审查状态 |" not in chinese
+    assert "dataset-cards/table-rag/example.md" in english
+    assert "dataset-cards/table-rag/example.zh-CN.md" in chinese
+    assert "suite-cards/sample.md" in english
+    assert "suite-cards/sample.zh-CN.md" in chinese
+
+
+def test_suite_components_render_as_separate_bullets_in_both_languages():
+    suite = {
+        "id": "sample", "name": "Sample Suite", "status": "source_checked",
+        "summary": "Two source datasets.", "summary_zh": "两个来源数据集。",
+        "components": ["first", "second"], "protocol": "Fixed qrels.",
+        "access": {"official": "https://example.org"}, "sources": [],
+    }
+    for locale, translation in (("en", None), ("zh-CN", {"protocol": "固定相关性标注。"})):
+        card = render_suite_card(suite, locale=locale, translation=translation)
+        assert "- first\n- second\n" in card

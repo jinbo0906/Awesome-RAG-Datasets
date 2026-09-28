@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/realtimeqa.yaml. Edit the YAML source. -->
 # RealTime QA
 
+[简体中文](realtimeqa.zh-CN.md)
+
 Recurring current-events QA releases with dated questions and retrieval baselines.
 
 | Field | Value |

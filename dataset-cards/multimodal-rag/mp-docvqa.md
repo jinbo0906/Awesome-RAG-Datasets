@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mp-docvqa.yaml. Edit the YAML source. -->
 # MP-DocVQA
 
+[简体中文](mp-docvqa.zh-CN.md)
+
 Multi-page document visual question answering with answer-page supervision.
 
 | Field | Value |

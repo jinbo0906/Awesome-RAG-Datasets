@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/qampari.yaml. Edit the YAML source. -->
 # QAMPARI
 
+[简体中文](qampari.zh-CN.md)
+
 Open-domain QA where each question has many answers supported by multiple paragraphs.
 
 | Field | Value |

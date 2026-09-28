@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/qasper.yaml. Edit the YAML source. -->
 # QASPER
 
+[简体中文](qasper.zh-CN.md)
+
 Information-seeking questions grounded in full NLP research papers with evidence annotations.
 
 | Field | Value |

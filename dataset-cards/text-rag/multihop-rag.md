@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/multihop-rag.yaml. Edit the YAML source. -->
 # MultiHop-RAG
 
+[简体中文](multihop-rag.zh-CN.md)
+
 Open multi-document RAG QA with query types and supporting evidence labels.
 
 | Field | Value |

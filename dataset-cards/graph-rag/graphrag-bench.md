@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/graphrag-bench.yaml. Edit the YAML source. -->
 # GraphRAG-Bench
 
+[简体中文](graphrag-bench.zh-CN.md)
+
 Domain benchmark comparing graph-based RAG across factual and contextual generation tasks.
 
 | Field | Value |

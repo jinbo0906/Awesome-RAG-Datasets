@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/mmdocir.yaml. Edit the YAML source. -->
 # MMDocIR
 
+[简体中文](mmdocir.zh-CN.md)
+
 Long-document multimodal retrieval benchmark with human page and layout evidence labels.
 
 | Field | Value |

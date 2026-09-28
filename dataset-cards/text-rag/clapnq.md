@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/clapnq.yaml. Edit the YAML source. -->
 # CLAP NQ
 
+[简体中文](clapnq.zh-CN.md)
+
 Long-form RAG answers grounded in non-contiguous sentences of Natural Questions passages.
 
 | Field | Value |

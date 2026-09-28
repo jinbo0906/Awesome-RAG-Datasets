@@ -1,6 +1,8 @@
 <!-- Generated from catalog/suites/kilt.yaml. Edit the YAML source. -->
 # KILT
 
+[简体中文](kilt.zh-CN.md)
+
 Knowledge-intensive language task suite unified on a fixed Wikipedia snapshot with provenance annotations.
 
 Review status: `source_checked`. This is a benchmark suite or protocol, not one standalone dataset.

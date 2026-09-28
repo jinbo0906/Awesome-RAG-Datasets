@@ -2,7 +2,7 @@
 
 [English](maintenance-policy.md)
 
-`catalog/` 下的机器可读文件是唯一事实源；`README.md`、`README.zh-CN.md`、`dataset-cards/` 和 `suite-cards/` 都是生成视图。修正事实时，应在 YAML 中附字段级一手来源，然后运行生成器。公开仓库保存描述与链接，不保存上游数据集或凭据。
+`catalog/` 下的机器可读文件是唯一事实源；中文叙述翻译保存在 `catalog/i18n/zh-CN.yaml`。`README.md`、`README.zh-CN.md`、`dataset-cards/` 和 `suite-cards/` 都是生成视图。修正事实时，应在 YAML 中附字段级一手来源，并同步翻译且不增加新主张，然后运行生成器。公开仓库保存描述与链接，不保存上游数据集或凭据。
 
 ## 审查周期
 

@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/vidoseek.yaml. Edit the YAML source. -->
 # ViDoSeek
 
+[简体中文](vidoseek.zh-CN.md)
+
 Visual document retrieval and answer benchmark over a large PDF collection.
 
 | Field | Value |

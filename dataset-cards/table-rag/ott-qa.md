@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/ott-qa.yaml. Edit the YAML source. -->
 # OTT-QA
 
+[简体中文](ott-qa.zh-CN.md)
+
 Open-domain table-and-text QA requiring retrieval from large table and passage pools.
 
 | Field | Value |

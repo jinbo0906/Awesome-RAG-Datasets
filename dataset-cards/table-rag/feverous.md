@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/feverous.yaml. Edit the YAML source. -->
 # FEVEROUS
 
+[简体中文](feverous.zh-CN.md)
+
 Open-domain fact verification over Wikipedia sentences and table cells.
 
 | Field | Value |

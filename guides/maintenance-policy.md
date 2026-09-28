@@ -2,7 +2,7 @@
 
 [简体中文](maintenance-policy.zh-CN.md)
 
-The machine-readable files under `catalog/` are the source of truth. `README.md`, `README.zh-CN.md`, `dataset-cards/` and `suite-cards/` are generated views. Make a factual correction in YAML with a field-level primary source, then run the generator. The public repo stores descriptions and links, not upstream datasets or credentials.
+The machine-readable files under `catalog/` are the source of truth. Chinese narrative translations live in `catalog/i18n/zh-CN.yaml`; `README.md`, `README.zh-CN.md`, `dataset-cards/` and `suite-cards/` are generated views. Make a factual correction in YAML with a field-level primary source, update its translation without adding claims, then run the generator. The public repo stores descriptions and links, not upstream datasets or credentials.
 
 ## Review cycle
 

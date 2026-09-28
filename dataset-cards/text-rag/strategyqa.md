@@ -1,6 +1,8 @@
 <!-- Generated from catalog/datasets/strategyqa.yaml. Edit the YAML source. -->
 # StrategyQA
 
+[简体中文](strategyqa.zh-CN.md)
+
 Implicit multi-step yes/no QA with decompositions and paragraph evidence for each reasoning step.
 
 | Field | Value |
