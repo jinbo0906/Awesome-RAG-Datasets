@@ -11,7 +11,7 @@ Knowledge-base QA with executable logical forms and generalization splits.
 | Primary category | `graph_rag` |
 | Tasks | graph_qa, graph_reasoning |
 | Modalities | graph, text |
-| Evidence levels | graph_path, answer |
+| Gold annotation levels | graph_path, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | unknown |

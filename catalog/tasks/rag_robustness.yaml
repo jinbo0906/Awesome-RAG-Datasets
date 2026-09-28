@@ -1,0 +1,5 @@
+id: rag_robustness
+name: RAG robustness
+entity_type: task
+summary: Test generation under distracting, insufficient, conflicting or counterfactual retrieved context.
+sources: []

@@ -1,0 +1,45 @@
+id: bioasq-14b
+name: BioASQ Task 14b (2026)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Biomedical question answering challenge with article, snippet and answer supervision.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [evidence_retrieval, single_hop_qa, long_form_qa]
+  modalities: [text]
+  domains: [biomedical]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: >-
+    BioASQ is a recurring challenge, not one timeless file. The official participant page lists
+    5,729 training questions for Task 14b (2026), with gold concepts, articles, snippets,
+    exact answers and ideal answers. Source articles are external and downloads require registration.
+  size: '5,729 training questions in BioASQ14 Task b; test releases are separate.'
+ground_truth:
+  levels: [document, span, answer]
+  provenance: human
+  description: >-
+    Gold article and snippet records provide retrieval supervision; exact and ideal answers
+    support short-form and paragraph-length generation. Evidence identifiers and source versions
+    must be preserved when materializing a corpus.
+  alternatives: explicit
+evaluation:
+  official_metrics: []
+  protocol: >-
+    State challenge year and phase. Phase A scores retrieval and Phase B scores answers;
+    do not mix the 2026 training size with another edition's test set or metrics.
+access:
+  official: 'https://participants-area.bioasq.org/datasets/'
+  license: unknown
+  gated: true
+use:
+  best_for: [Biomedical retrieval plus answering, Source-snippet evidence and exact-versus-ideal answers]
+  caveats: [Registration is required for official downloads, The external article corpus and yearly challenge rules must be pinned]
+sources:
+  - {url: 'https://participants-area.bioasq.org/datasets/', type: official, fields: [summary, data.description, data.size, ground_truth.description, access.gated], checked_on: '2026-09-28'}
+  - {url: 'https://www.bioasq.org/node/2', type: official, fields: [evaluation.protocol], checked_on: '2026-09-28'}

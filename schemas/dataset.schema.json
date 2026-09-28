@@ -40,7 +40,7 @@
     "ground_truth": {
       "type": "object", "required": ["levels", "provenance"], "additionalProperties": false,
       "properties": {
-        "levels": {"type": "array", "items": {"enum": ["document", "page", "section", "paragraph", "sentence", "span", "layout", "bbox", "table", "table_cell", "figure", "quote", "graph_path", "fact_citation", "answer"]}, "uniqueItems": true},
+        "levels": {"type": "array", "items": {"enum": ["document", "page", "section", "paragraph", "sentence", "span", "layout", "bbox", "table", "table_cell", "figure", "quote", "graph_path", "fact_citation", "response_span", "answer"]}, "uniqueItems": true},
         "provenance": {"enum": ["human", "synthetic", "distant", "mixed", "unknown"]},
         "description": {"type": "string"},
         "alternatives": {"enum": ["explicit", "implicit", "not_documented"]}

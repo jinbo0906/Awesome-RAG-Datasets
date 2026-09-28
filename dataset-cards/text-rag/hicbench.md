@@ -11,7 +11,7 @@ A chunking-focused benchmark with hierarchical boundary annotations and evidence
 | Primary category | `text_rag` |
 | Tasks | evidence_retrieval, long_context_qa |
 | Modalities | text, layout |
-| Evidence levels | section, paragraph, sentence, answer |
+| Gold annotation levels | section, paragraph, sentence, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

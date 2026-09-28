@@ -1,0 +1,5 @@
+id: time_sensitive_qa
+name: Time-sensitive QA
+entity_type: task
+summary: Answer questions whose correct answer depends on a dated source snapshot or changes over time.
+sources: []

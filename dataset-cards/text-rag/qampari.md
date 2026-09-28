@@ -11,7 +11,7 @@ Open-domain QA where each question has many answers supported by multiple paragr
 | Primary category | `text_rag` |
 | Tasks | multi_hop_qa, long_form_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | paragraph, answer |
+| Gold annotation levels | paragraph, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | unknown |

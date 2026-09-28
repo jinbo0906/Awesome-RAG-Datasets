@@ -11,7 +11,7 @@ Long-document multimodal retrieval benchmark with human page and layout evidence
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, layout_retrieval |
 | Modalities | text, image, table, equation, layout |
-| Evidence levels | page, layout, bbox |
+| Gold annotation levels | page, layout, bbox |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

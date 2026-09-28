@@ -11,7 +11,7 @@ Multi-hop questions composed from single-hop sources to require connected reason
 | Primary category | `text_rag` |
 | Tasks | multi_hop_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | paragraph, answer |
+| Gold annotation levels | paragraph, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | CC BY 4.0 |

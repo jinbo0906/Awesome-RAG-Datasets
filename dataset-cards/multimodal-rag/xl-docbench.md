@@ -11,7 +11,7 @@ Expert-verified QA over extra-long documents with evidence pages and snippets.
 | Primary category | `multimodal_rag` |
 | Tasks | long_context_qa, page_retrieval, evidence_retrieval |
 | Modalities | text, image, table, layout |
-| Evidence levels | page, quote, answer |
+| Gold annotation levels | page, quote, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | unknown |

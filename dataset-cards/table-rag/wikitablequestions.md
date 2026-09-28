@@ -11,7 +11,7 @@ Complex questions on supplied semi-structured Wikipedia HTML tables.
 | Primary category | `table_rag` |
 | Tasks | table_qa |
 | Modalities | text, table |
-| Evidence levels | table, answer |
+| Gold annotation levels | table, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

@@ -1,0 +1,44 @@
+id: pubhealth
+name: PUBHEALTH
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Public-health claim verification with journalist explanations and source metadata.
+classification:
+  rag_role: rag_convertible
+  primary_category: text_rag
+  tasks: [fact_verification, evidence_retrieval]
+  modalities: [text]
+  domains: [public-health]
+  languages: [en]
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: >-
+    The official v1.0 TSV release has 12,279 rows across train, dev and test; the paper describes
+    an earlier approximately 11.8K-claim version. Records include claim, date, main evidence text,
+    evidence-source URLs and label, but not one frozen retrievable source corpus.
+  size: '12,279 claims in the repository v1.0 release; paper counts describe an earlier version.'
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Fact-check labels and explanations are supplied. Source URLs and main evidence text are useful
+    grounding leads, but no stable document/character offsets are guaranteed for open retrieval.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [label_accuracy]
+  protocol: >-
+    Pin the TSV release and acquisition dates. A RAG experiment must build a licensed, dated
+    document collection and define source matching without leaking fact-check explanations.
+access:
+  official: 'https://github.com/neemakot/Health-Fact-Checking/tree/master/data'
+  paper: 'https://arxiv.org/abs/2010.09926'
+  license: unknown
+use:
+  best_for: [Domain-specific claim verification, Time-aware evidence-source analysis]
+  caveats: [The released TSV is not a complete frozen retrieval corpus, Repository and paper report different version counts]
+sources:
+  - {url: 'https://github.com/neemakot/Health-Fact-Checking/blob/master/data/README.md', type: repository, fields: [summary, data.description, data.size, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/abs/2010.09926', type: paper, fields: [data.description], checked_on: '2026-09-28'}

@@ -11,7 +11,7 @@ Financial-document RAG benchmark combining prose, tables and numerical reasoning
 | Primary category | `table_rag` |
 | Tasks | text_table_reasoning, table_qa |
 | Modalities | text, table |
-| Evidence levels | answer |
+| Gold annotation levels | answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

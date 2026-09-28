@@ -11,7 +11,7 @@ Information-seeking questions grounded in full NLP research papers with evidence
 | Primary category | `text_rag` |
 | Tasks | long_context_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | paragraph, answer |
+| Gold annotation levels | paragraph, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

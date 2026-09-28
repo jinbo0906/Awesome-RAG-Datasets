@@ -11,7 +11,7 @@ Multimodal web QA requiring retrieval of relevant snippets and images before ans
 | Primary category | `multimodal_rag` |
 | Tasks | multimodal_retrieval, multi_hop_qa, visual_qa |
 | Modalities | text, image |
-| Evidence levels | document, answer |
+| Gold annotation levels | document, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

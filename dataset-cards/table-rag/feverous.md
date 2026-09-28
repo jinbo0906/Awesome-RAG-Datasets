@@ -11,7 +11,7 @@ Open-domain fact verification over Wikipedia sentences and table cells.
 | Primary category | `table_rag` |
 | Tasks | fact_verification, evidence_retrieval, text_table_reasoning |
 | Modalities | text, table |
-| Evidence levels | sentence, table_cell, answer |
+| Gold annotation levels | sentence, table_cell, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

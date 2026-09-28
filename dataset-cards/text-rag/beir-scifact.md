@@ -11,7 +11,7 @@ Scientific claim-to-abstract retrieval as packaged for the BEIR zero-shot IR sui
 | Primary category | `text_rag` |
 | Tasks | fact_verification, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | document |
+| Gold annotation levels | document |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / not_provided |
 | Original data license | unknown |

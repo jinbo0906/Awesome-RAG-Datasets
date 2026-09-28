@@ -11,7 +11,7 @@ Wikipedia-based claim verification with labeled supporting sentence sets.
 | Primary category | `text_rag` |
 | Tasks | fact_verification, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | sentence, answer |
+| Gold annotation levels | sentence, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

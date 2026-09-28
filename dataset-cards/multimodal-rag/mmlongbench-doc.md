@@ -11,7 +11,7 @@ Long PDF document QA with evidence-page and modality-source annotations.
 | Primary category | `multimodal_rag` |
 | Tasks | long_context_qa, page_retrieval, visual_qa |
 | Modalities | text, image, table, chart, layout |
-| Evidence levels | page, answer |
+| Gold annotation levels | page, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

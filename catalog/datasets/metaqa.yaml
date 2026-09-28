@@ -1,0 +1,41 @@
+id: metaqa
+name: MetaQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Movie-domain knowledge-base QA with one-, two- and three-hop question variants.
+classification:
+  rag_role: rag_convertible
+  primary_category: graph_rag
+  tasks: [graph_qa, graph_reasoning]
+  modalities: [text, graph, audio]
+  domains: [movies]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The official release provides a movie knowledge base as subject-relation-object triples,
+    question-answer splits by hop count, paraphrased question variants and optional audio questions.
+    The graph QA track should be reported separately from the audio variant.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Answer entities are released; the KB and question templates expose intended hop complexity.
+    Do not assume that every item supplies a unique annotated graph path or a cited text passage.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy]
+  protocol: >-
+    Fix the KB release, hop count and vanilla/paraphrased/audio variant. For a GraphRAG path task,
+    add independently checked path or subgraph labels rather than deriving gold from a tested retriever.
+access:
+  official: 'https://github.com/yuyuz/MetaQA'
+  license: unknown
+use:
+  best_for: [Controlled graph-hop reasoning, KB-backed retriever ablations]
+  caveats: [Template-derived questions differ from open-ended GraphRAG tasks, Native release does not guarantee gold citation paths]
+sources:
+  - {url: 'https://github.com/yuyuz/MetaQA', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

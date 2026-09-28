@@ -11,7 +11,7 @@ Wikipedia multi-hop QA with sentence-level supporting facts and answer labels.
 | Primary category | `text_rag` |
 | Tasks | multi_hop_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | sentence, answer |
+| Gold annotation levels | sentence, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | CC BY-SA 4.0 |

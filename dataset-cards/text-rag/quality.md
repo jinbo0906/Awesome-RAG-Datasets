@@ -11,7 +11,7 @@ Multiple-choice long-document comprehension over articles and stories.
 | Primary category | `text_rag` |
 | Tasks | long_context_qa |
 | Modalities | text |
-| Evidence levels | document, answer |
+| Gold annotation levels | document, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | article-specific terms |

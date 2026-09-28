@@ -1,0 +1,44 @@
+id: rgb
+name: RGB
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Bilingual fixed-context RAG stress test for noise, abstention, integration and counterfactual documents.
+classification:
+  rag_role: auxiliary
+  primary_category: text_rag
+  tasks: [rag_robustness, single_hop_qa, multi_hop_qa]
+  modalities: [text]
+  domains: [general]
+  languages: [en, zh]
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: >-
+    The repository supplies English and Chinese questions with fixed positive and negative passages,
+    plus separate integration and counterfactual files. A March 2024 refined release corrected some
+    passages and answers; the files do not define one open retrieval corpus.
+  format: JSON
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Reference answers and scenario-specific context labels support controlled robustness tests.
+    They are not immutable source-document spans or human-verified optimal chunks.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy, rejection_rate, error_detection_rate, error_correction_rate]
+  protocol: >-
+    Pin original versus refined files, language, noise_rate and passage_num. Evaluate negative rejection
+    and counterfactual detection with their distinct upstream scripts; do not report these as retrieval recall.
+access:
+  official: 'https://github.com/chen700564/RGB'
+  paper: 'https://arxiv.org/abs/2309.01431'
+  license: CC BY-NC-SA 4.0
+use:
+  best_for: [Robustness to distracting passages, Abstention under insufficient context, Cross-document integration]
+  caveats: [Fixed passages do not benchmark an open-corpus retriever, The refined release changes passages and some answers]
+sources:
+  - {url: 'https://github.com/chen700564/RGB', type: repository, fields: [summary, data.description, evaluation.official_metrics, evaluation.protocol, access.license], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/abs/2309.01431', type: paper, fields: [classification.tasks], checked_on: '2026-09-28'}

@@ -11,7 +11,7 @@ Natural-language questions over Freebase with answers and SPARQL semantic parses
 | Primary category | `graph_rag` |
 | Tasks | graph_qa, graph_reasoning |
 | Modalities | text, graph |
-| Evidence levels | graph_path, answer |
+| Gold annotation levels | graph_path, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | unknown |

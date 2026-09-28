@@ -11,7 +11,7 @@ Open-domain visual document QA over a multi-page multi-document PDF collection.
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, visual_qa |
 | Modalities | text, image, table, chart |
-| Evidence levels | page, answer |
+| Gold annotation levels | page, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

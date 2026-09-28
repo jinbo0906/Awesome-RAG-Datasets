@@ -11,7 +11,7 @@ Chart-image question answering with human and generated questions plus optional 
 | Primary category | `multimodal_rag` |
 | Tasks | visual_qa, table_qa |
 | Modalities | image, chart, table |
-| Evidence levels | bbox, answer |
+| Gold annotation levels | bbox, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

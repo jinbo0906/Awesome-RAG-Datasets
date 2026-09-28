@@ -11,7 +11,7 @@ Heterogeneous text and table QA introduced alongside the TableRAG method.
 | Primary category | `table_rag` |
 | Tasks | text_table_reasoning, table_qa |
 | Modalities | text, table |
-| Evidence levels | table, paragraph, answer |
+| Gold annotation levels | table, paragraph, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

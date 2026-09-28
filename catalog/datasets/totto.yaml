@@ -1,0 +1,41 @@
+id: totto
+name: ToTTo
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Controlled table-to-text generation from a given Wikipedia table and highlighted cells.
+classification:
+  rag_role: auxiliary
+  primary_category: table_rag
+  tasks: [table_to_text]
+  modalities: [text, table]
+  domains: [wikipedia]
+  languages: [en]
+data:
+  corpus: provided
+  queries: not_provided
+  answers: provided
+  description: >-
+    The official release has over 120,000 training examples. Each input includes table metadata,
+    the table and highlighted cell coordinates; the target is an edited one-sentence description.
+    Development and private test references and header-overlap subsets have separate protocols.
+ground_truth:
+  levels: [table_cell, answer]
+  provenance: human
+  description: >-
+    Highlighted cells identify the supplied conditioning evidence, and edited sentences are
+    reference outputs. The cells are not retrieved from an open table collection in the native task.
+  alternatives: explicit
+evaluation:
+  official_metrics: []
+  protocol: >-
+    Treat this as evidence-conditioned generation, not a retrieval benchmark. To evaluate TableRAG,
+    add queries, a table corpus, qrels and a held-out split without exposing highlighted cells.
+access:
+  official: 'https://github.com/google-research-datasets/totto'
+  license: CC BY-SA 3.0
+use:
+  best_for: [Faithful generation from selected cells, Testing whether header context survives evidence packaging]
+  caveats: [No native retrieval query or candidate pool, The highlighted cells are provided inputs rather than recovered evidence]
+sources:
+  - {url: 'https://github.com/google-research-datasets/totto', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, access.license], checked_on: '2026-09-28'}

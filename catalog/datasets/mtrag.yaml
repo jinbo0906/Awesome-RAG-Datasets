@@ -1,0 +1,44 @@
+id: mtrag
+name: MTRAG (human)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Human-authored multi-turn RAG conversations with retrieval and generation tasks over four corpora.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [conversational_qa, evidence_retrieval]
+  modalities: [text]
+  domains: [wikipedia, finance, government, technical-documentation]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The human release contains 110 reviewed conversations averaging 7.7 turns and 842 turn-level
+    evaluation tasks. ClapNQ, Cloud, FiQA and Govt corpora are separate; synthetic MTRAG and
+    MTRAG-UN are different releases, not part of this record.
+ground_truth:
+  levels: [paragraph, answer]
+  provenance: human
+  description: >-
+    The conversations include reference passages, passage relevance and responses. Retrieval tasks
+    are provided in BEIR format for answerable and partial turns; unanswerable turns require a distinct
+    evaluation treatment.
+  alternatives: not_documented
+evaluation:
+  official_metrics: []
+  protocol: >-
+    Keep conversation history, domain and turn order intact. Compare reference, reference+RAG and
+    full-RAG settings separately; only the last setting lets retrieval misses affect generation.
+access:
+  official: 'https://github.com/IBM/mt-rag-benchmark'
+  paper: 'https://arxiv.org/abs/2501.03468'
+  license: unknown
+use:
+  best_for: [Follow-up and underspecified queries, Retrieval errors across dialogue turns, Multi-domain RAG]
+  caveats: [Do not count 842 turn-level tasks as 842 independent conversations, Synthetic and UN variants have distinct provenance and protocols]
+sources:
+  - {url: 'https://github.com/IBM/mt-rag-benchmark', type: repository, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/IBM/mt-rag-benchmark/blob/main/mtrag-human/README.md', type: repository, fields: [data.description, evaluation.protocol, use.caveats], checked_on: '2026-09-28'}

@@ -1,0 +1,41 @@
+id: freshqa
+name: FreshQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Versioned question answering data for facts that change or emerged after model training.
+classification:
+  rag_role: rag_convertible
+  primary_category: text_rag
+  tasks: [time_sensitive_qa, single_hop_qa]
+  modalities: [text]
+  domains: [current-events, general]
+  languages: [en]
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: >-
+    The authors maintain dated spreadsheet snapshots and an evaluator. Questions and accepted
+    answers are refreshed over time; the release is not one immutable retrieval corpus.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Answer judgments are versioned with the question sheet, not anchored to stable passage
+    coordinates. A source-document snapshot and temporal relevance labels would be an adaptation.
+  alternatives: explicit
+evaluation:
+  official_metrics: [accuracy]
+  protocol: >-
+    Freeze a dated FreshQA sheet and evaluation mode before comparing systems. Record search date,
+    retrieved pages and their capture dates so time-varying answers are not evaluated anachronistically.
+access:
+  official: 'https://github.com/freshllms/freshqa'
+  paper: 'https://arxiv.org/abs/2310.03214'
+  license: unknown
+use:
+  best_for: [Freshness-aware answer evaluation, Temporal retrieval protocol design]
+  caveats: [Changing answer keys prevent cross-date score comparison, No native frozen source pool or evidence spans]
+sources:
+  - {url: 'https://github.com/freshllms/freshqa', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

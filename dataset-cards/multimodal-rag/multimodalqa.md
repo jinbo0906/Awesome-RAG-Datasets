@@ -11,7 +11,7 @@ Questions requiring joint reasoning over text, tables and images with supporting
 | Primary category | `multimodal_rag` |
 | Tasks | multi_hop_qa, text_table_reasoning, visual_qa |
 | Modalities | text, table, image |
-| Evidence levels | document, table, answer |
+| Gold annotation levels | document, table, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

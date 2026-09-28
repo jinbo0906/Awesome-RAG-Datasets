@@ -11,7 +11,7 @@ Open multi-document RAG QA with query types and supporting evidence labels.
 | Primary category | `text_rag` |
 | Tasks | multi_hop_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | document, answer |
+| Gold annotation levels | document, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

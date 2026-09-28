@@ -110,3 +110,14 @@ def test_review_date_must_be_calendar_date(tmp_path):
         "summary": "Answer by combining multiple sources.", "sources": [],
     })
     assert any("last_checked" in problem for problem in validate_catalog(load_catalog(tmp_path)))
+
+
+def test_response_span_is_a_distinct_annotation_level(tmp_path):
+    record = dataset()
+    record["ground_truth"]["levels"] = ["response_span"]
+    write_record(tmp_path, "datasets", "demo.yaml", record)
+    write_record(tmp_path, "tasks", "multi_hop_qa.yaml", {
+        "id": "multi_hop_qa", "name": "Multi-hop QA", "entity_type": "task",
+        "summary": "Answer by combining multiple sources.", "sources": [],
+    })
+    assert validate_catalog(load_catalog(tmp_path)) == []

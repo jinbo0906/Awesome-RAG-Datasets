@@ -1,0 +1,42 @@
+id: infoseek
+name: InfoSeek
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Knowledge-intensive visual QA over OVEN images and Wikipedia-derived information.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [wikipedia]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The project releases image-linked questions, accepted answer aliases, KB mappings and a
+    roughly six-million-entry Wikipedia text resource. Images derive from OVEN and must be
+    acquired separately; the original QA and M2KR retrieval adaptation are distinct protocols.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Answers and equivalent forms are provided. Released mappings can support a retrieval
+    adaptation, but a universal human-labeled minimal evidence page or image region is not claimed.
+  alternatives: explicit
+evaluation:
+  official_metrics: [answer_accuracy]
+  protocol: >-
+    State the image, Wikipedia and question versions. For RAG experiments, disclose how the
+    knowledge candidate pool and qrels are built; do not import M2KR's qrels as native InfoSeek gold.
+access:
+  official: 'https://github.com/open-vision-language/infoseek'
+  paper: 'https://arxiv.org/abs/2302.11713'
+  license: unknown
+use:
+  best_for: [Knowledge-dependent visual questions, Retrieval adaptation with external Wikipedia text]
+  caveats: [Image acquisition has separate upstream dependencies, Native QA does not guarantee question-specific visual-region evidence]
+sources:
+  - {url: 'https://github.com/open-vision-language/infoseek', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

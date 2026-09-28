@@ -11,7 +11,7 @@ Open-domain table-and-text QA requiring retrieval from large table and passage p
 | Primary category | `table_rag` |
 | Tasks | table_qa, text_table_reasoning, evidence_retrieval |
 | Modalities | text, table |
-| Evidence levels | table, paragraph, answer |
+| Gold annotation levels | table, paragraph, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | MIT |

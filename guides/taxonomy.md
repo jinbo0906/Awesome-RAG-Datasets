@@ -1,6 +1,6 @@
 # Taxonomy, entities and review status
 
-This catalog separates a **dataset** (records/examples), a **suite** (a selection plus evaluation protocol), a **corpus** (a versioned source collection), a **task** (a capability), and a **paper** (a publication). A paper using a dataset does not create a new dataset. A suite variant may alter corpus, qrels or scoring and must not silently replace the original.
+This catalog separates a **dataset** (records/examples), a **suite** (a selection plus evaluation protocol), a **corpus** (a versioned source collection), a **task** (a capability), and a **paper** (a publication). A benchmark is the data plus an evaluation contract, not necessarily another data object; see [dataset versus benchmark](benchmark-vs-dataset.md). A paper using a dataset does not create a new dataset. A suite variant may alter corpus, qrels or scoring and must not silently replace the original.
 
 ## RAG role
 
@@ -15,7 +15,7 @@ Roles are judgments made by this catalog, not claims by dataset authors. A recor
 
 ## Evidence granularity
 
-The `ground_truth.levels` field describes **released annotations**, not what could be inferred by an LLM. `answer` is not evidence. A layout `bbox` may mark every chart element but not identify which element answers a particular question. A graph logical form may encode computation without identifying a minimal natural-language citation path. Multiple accepted evidence sets should remain alternatives rather than be flattened into one union.
+The `ground_truth.levels` field describes **released annotations**, not what could be inferred by an LLM. `answer` is not evidence. `response_span` is an error/support annotation on a generated response; `span` is a coordinate in source material. They must not be exchanged. A layout `bbox` may mark every chart element but not identify which element answers a particular question. A graph logical form may encode computation without identifying a minimal natural-language citation path. Multiple accepted evidence sets should remain alternatives rather than be flattened into one union.
 
 The primary categories—text, multimodal, graph, table and cross-cutting RAG—are navigation aids. Tasks and modalities remain independent tags. A table in a PDF may legitimately involve table, image and layout modalities while keeping one primary category. `GraphRAG` here means graph representation or graph-grounded retrieval is central; merely asking a multi-hop text question does not make the original dataset a native graph benchmark.
 

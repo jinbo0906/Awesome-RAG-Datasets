@@ -1,0 +1,42 @@
+id: sqa
+name: Sequential Question Answering (SQA)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Conversational sequences of questions answered over supplied Wikipedia HTML tables.
+classification:
+  rag_role: rag_convertible
+  primary_category: table_rag
+  tasks: [conversational_qa, table_qa]
+  modalities: [text, table]
+  domains: [wikipedia]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Microsoft Research decomposed 2,022 WikiTableQuestions into 6,066 sequences with 17,553
+    inter-related questions. The table is supplied to the native task; an open table index
+    and retrieval negatives must be defined for TableRAG evaluation.
+  size: '6,066 sequences and 17,553 questions in release 1.0.'
+ground_truth:
+  levels: [table_cell, answer]
+  provenance: human
+  description: >-
+    Answers are associated with cell locations. These support within-table evidence checks,
+    but do not provide a table-retrieval qrel from a multi-table corpus.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy]
+  protocol: >-
+    Keep question order and conversation context. Report the supplied-table task separately
+    from any constructed table retrieval stage.
+access:
+  official: 'https://www.microsoft.com/en-us/download/details.aspx?id=54253'
+  license: unknown
+use:
+  best_for: [Multi-turn table reasoning, Cell-level answer localization]
+  caveats: [The original task supplies the table, Split by table and sequence before building retrieval chunks]
+sources:
+  - {url: 'https://www.microsoft.com/en-us/download/details.aspx?id=54253', type: official, fields: [summary, data.description, data.size, ground_truth.description], checked_on: '2026-09-28'}

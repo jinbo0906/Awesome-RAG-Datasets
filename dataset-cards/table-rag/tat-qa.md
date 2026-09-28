@@ -11,7 +11,7 @@ Financial QA over a provided hybrid context of report tables and surrounding tex
 | Primary category | `table_rag` |
 | Tasks | table_qa, text_table_reasoning |
 | Modalities | text, table |
-| Evidence levels | table_cell, span, answer |
+| Gold annotation levels | table_cell, span, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | CC BY 4.0 |

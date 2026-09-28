@@ -11,7 +11,7 @@ Visual document retrieval and answer benchmark over a large PDF collection.
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, visual_qa |
 | Modalities | text, image, table, layout |
-| Evidence levels | page, answer |
+| Gold annotation levels | page, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

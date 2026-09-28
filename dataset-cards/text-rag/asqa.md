@@ -11,7 +11,7 @@ Ambiguous factoid questions with long answers and disambiguating short-answer pa
 | Primary category | `text_rag` |
 | Tasks | long_form_qa, attribution |
 | Modalities | text |
-| Evidence levels | answer |
+| Gold annotation levels | answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | unknown |

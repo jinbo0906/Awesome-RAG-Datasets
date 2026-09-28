@@ -11,7 +11,7 @@ Explanatory long-form QA drawn from Reddit questions and answers with web suppor
 | Primary category | `text_rag` |
 | Tasks | long_form_qa, attribution |
 | Modalities | text |
-| Evidence levels | answer |
+| Gold annotation levels | answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | source content rights vary |

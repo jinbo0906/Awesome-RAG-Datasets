@@ -11,7 +11,7 @@ Domain benchmark comparing graph-based RAG across factual and contextual generat
 | Primary category | `graph_rag` |
 | Tasks | graph_reasoning, single_hop_qa, summarization |
 | Modalities | text, graph |
-| Evidence levels | answer |
+| Gold annotation levels | answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

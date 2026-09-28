@@ -1,0 +1,5 @@
+id: hallucination_detection
+name: Hallucination detection
+entity_type: task
+summary: Locate unsupported or contradictory content in a generated response relative to its supplied sources.
+sources: []

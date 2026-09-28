@@ -11,7 +11,7 @@ Time-aware factual QA benchmark with web results and mock knowledge APIs for RAG
 | Primary category | `text_rag` |
 | Tasks | single_hop_qa, multi_hop_qa |
 | Modalities | text, graph |
-| Evidence levels | answer |
+| Gold annotation levels | answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | CC BY-NC 4.0 |

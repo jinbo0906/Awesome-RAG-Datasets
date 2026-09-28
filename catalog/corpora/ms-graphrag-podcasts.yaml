@@ -1,0 +1,9 @@
+id: ms-graphrag-podcasts
+name: Microsoft GraphRAG podcast benchmark corpus
+entity_type: corpus
+summary: Podcast transcript assets and open-ended queries used for GraphRAG summarization studies.
+snapshot: official repository release; pin commit before use
+modalities: [text]
+access: {official: 'https://github.com/microsoft/graphrag-benchmarking-datasets', license: unknown}
+sources:
+  - {url: 'https://github.com/microsoft/graphrag-benchmarking-datasets', type: repository, fields: [summary, snapshot], checked_on: '2026-09-28'}

@@ -11,7 +11,7 @@ Multi-page multimodal document QA with cross-modal evidence chains and quote sel
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, layout_retrieval, visual_qa, attribution |
 | Modalities | text, image, table, chart, layout |
-| Evidence levels | page, quote, answer |
+| Gold annotation levels | page, quote, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

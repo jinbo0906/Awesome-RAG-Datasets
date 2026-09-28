@@ -8,7 +8,9 @@ This catalog currently contains **{{ datasets | length }} datasets** and **{{ su
 ## Find a benchmark
 
 - [Selection guide](guides/selecting-a-benchmark.md)
+- [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md)
 - [Taxonomy and review levels](guides/taxonomy.md)
+- [Coverage decisions and candidate queue](guides/coverage-policy.md)
 - [Evidence ground truth and new benchmark design](guides/evidence-ground-truth.md)
 - [How to construct a new benchmark](guides/benchmark-construction.md)
 - [Maintenance and correction policy](guides/maintenance-policy.md)
@@ -18,9 +20,17 @@ This catalog currently contains **{{ datasets | length }} datasets** and **{{ su
 
 ## Datasets
 
-| Dataset | Category | Role | Evidence | Review |
-|---|---|---|---|---|
-{% for d in datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | {{ d.classification.primary_category }} | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} | {{ d.status }} |
+The sections below follow source representation; task and domain are independent facets. [How dataset and benchmark differ](guides/benchmark-vs-dataset.md).
+
+{% for group in groups %}### {{ group.title }} ({{ group.datasets | length }})
+
+{{ group.summary }} [Category guide](guides/categories/{{ group.slug }}.md).
+
+| Dataset | Role | Gold annotation levels | Review |
+|---|---|---|---|
+{% for d in group.datasets %}| [{{ d.name }}]({{ card_path(d).as_posix() }}) | `{{ d.classification.rag_role }}` | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} | {{ d.status }} |
+{% endfor %}
+
 {% endfor %}
 
 ## Benchmark suites

@@ -12,7 +12,7 @@
 | Primary category | `{{ d.classification.primary_category }}` |
 | Tasks | {{ d.classification.tasks | join(', ') }} |
 | Modalities | {{ d.classification.modalities | join(', ') }} |
-| Evidence levels | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} |
+| Gold annotation levels | {{ d.ground_truth.levels | join(', ') if d.ground_truth.levels else 'not documented' }} |
 | Evidence provenance | {{ d.ground_truth.provenance }} |
 | Corpus / queries / answers | {{ d.data.corpus }} / {{ d.data.queries }} / {{ d.data.answers }} |
 | Original data license | {{ d.access.license }} |

@@ -1,0 +1,41 @@
+id: realtimeqa
+name: RealTime QA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Recurring current-events QA releases with dated questions and retrieval baselines.
+classification:
+  rag_role: rag_convertible
+  primary_category: text_rag
+  tasks: [time_sensitive_qa]
+  modalities: [text]
+  domains: [current-events]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: >-
+    The official platform releases roughly 30 questions per weekly round, historical question files,
+    and Google Custom Search/DPR baseline retrieval results. Web and news source collections are
+    external and change over time.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Dated answers support temporal QA, while released search results are baseline outputs rather
+    than source-coordinate gold evidence for every round.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy]
+  protocol: >-
+    Identify the question week and answer cut-off; record whether the model saw contemporaneous
+    or later web evidence. Do not pool weeks without controlling source availability.
+access:
+  official: 'https://github.com/realtimeqa/realtimeqa_public'
+  license: unknown
+use:
+  best_for: [Time-aware RAG, Testing changing factual answers]
+  caveats: [No single permanent retrieval corpus, Search-baseline outputs are not universal evidence labels]
+sources:
+  - {url: 'https://github.com/realtimeqa/realtimeqa_public', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}

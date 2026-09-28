@@ -1,0 +1,5 @@
+id: table_to_text
+name: Table-to-text generation
+entity_type: task
+summary: Generate a faithful textual description from specified table cells and contextual headers.
+sources: []

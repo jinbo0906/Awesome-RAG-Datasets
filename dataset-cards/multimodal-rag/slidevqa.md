@@ -11,7 +11,7 @@ Multi-image slide-deck QA with evidence-page selection and document layout boxes
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, visual_qa |
 | Modalities | text, image, layout, chart |
-| Evidence levels | page, bbox, answer |
+| Gold annotation levels | page, bbox, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

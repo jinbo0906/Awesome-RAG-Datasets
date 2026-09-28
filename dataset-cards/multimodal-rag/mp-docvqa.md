@@ -11,7 +11,7 @@ Multi-page document visual question answering with answer-page supervision.
 | Primary category | `multimodal_rag` |
 | Tasks | page_retrieval, visual_qa |
 | Modalities | text, image, layout |
-| Evidence levels | page, answer |
+| Gold annotation levels | page, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

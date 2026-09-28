@@ -11,7 +11,7 @@ Visual-question benchmark for long answers with fact-level citations to multimod
 | Primary category | `multimodal_rag` |
 | Tasks | visual_qa, attribution, long_form_qa |
 | Modalities | text, image |
-| Evidence levels | document, fact_citation, answer |
+| Gold annotation levels | document, fact_citation, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

@@ -1,0 +1,14 @@
+id: m2kr
+name: M2KR
+entity_type: suite
+status: source_checked
+summary: Multitask multimodal knowledge-retrieval suite assembled from converted source datasets.
+components: []
+protocol: >-
+  The indexed subset cards are not yet modeled as separate M2KR variants. Use the authors'
+  published subset splits, image assets, query modality and Recall@K settings; distinguish
+  converted InfoSeek/OK-VQA/EVQA data from their original QA protocols.
+access:
+  official: 'https://github.com/LinWeizheDragon/FLMR'
+sources:
+  - {url: 'https://github.com/LinWeizheDragon/FLMR', type: repository, fields: [summary, protocol], checked_on: '2026-09-28'}

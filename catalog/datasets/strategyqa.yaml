@@ -1,0 +1,43 @@
+id: strategyqa
+name: StrategyQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-09-28'
+summary: Implicit multi-step yes/no QA with decompositions and paragraph evidence for each reasoning step.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [multi_hop_qa, evidence_retrieval]
+  modalities: [text]
+  domains: [wikipedia]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The paper describes 2,780 questions. The authors publish a Wikipedia paragraph corpus and
+    a separate index recipe; their code repository's 90/10 train/dev partition is an unofficial
+    split of the official training data.
+ground_truth:
+  levels: [paragraph, answer]
+  provenance: human
+  description: >-
+    Questions have yes/no answers, decomposed subquestions and evidence paragraphs for the reasoning
+    steps. These paragraph labels are not unique optimal chunk boundaries.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy, paragraph_recall_at_10]
+  protocol: >-
+    Report official split versus author-code 90/10 split explicitly, and preserve question-level
+    and step-level retrieval denominators when using paragraph evidence.
+access:
+  official: 'https://github.com/eladsegal/strategyqa'
+  paper: 'https://aclanthology.org/2021.tacl-1.21/'
+  license: unknown
+use:
+  best_for: [Implicit multi-step retrieval, Completeness of paragraph evidence]
+  caveats: [Answer labels alone cannot score retrieval, Reconstructed indexes and unofficial splits change comparability]
+sources:
+  - {url: 'https://aclanthology.org/2021.tacl-1.21/', type: paper, fields: [summary, data.description, ground_truth.description], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/eladsegal/strategyqa', type: repository, fields: [data.description, evaluation.protocol], checked_on: '2026-09-28'}

@@ -11,7 +11,7 @@ Questions over books and screenplays with human answers and document-level links
 | Primary category | `text_rag` |
 | Tasks | long_context_qa, summarization |
 | Modalities | text |
-| Evidence levels | document, answer |
+| Gold annotation levels | document, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | external / provided / provided |
 | Original data license | Apache-2.0 repository; source stories have separate terms |

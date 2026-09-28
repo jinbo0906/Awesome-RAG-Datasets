@@ -31,6 +31,18 @@ def test_readme_links_to_generated_card():
     assert "rag_convertible" in readme
 
 
+def test_readme_has_category_sections_in_navigation_order():
+    graph = {**RECORD, "id": "graph-example", "name": "Graph Example",
+             "classification": {**RECORD["classification"], "primary_category": "graph_rag"}}
+    catalog = {"datasets": [RECORD, graph], "suites": [], "tasks": [], "corpora": [], "papers": []}
+    readme = render_readme(catalog)
+    assert "### Graph RAG (1)" in readme
+    assert "### Table RAG (1)" in readme
+    assert readme.index("### Graph RAG (1)") < readme.index("### Table RAG (1)")
+    assert readme.index("### Graph RAG (1)") < readme.index("graph-rag/graph-example.md") < readme.index("### Table RAG (1)")
+    assert "|\n\n### Table RAG (1)" in readme
+
+
 def test_suite_card_explains_protocol_and_components():
     suite = {
         "id": "sample", "name": "Sample Suite", "status": "source_checked",

@@ -11,7 +11,7 @@ RAG evaluation collection with responses and fine-grained support labels over re
 | Primary category | `text_rag` |
 | Tasks | attribution, fact_verification |
 | Modalities | text |
-| Evidence levels | sentence, fact_citation, answer |
+| Gold annotation levels | sentence, fact_citation, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | CC BY 4.0 |

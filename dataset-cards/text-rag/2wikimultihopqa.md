@@ -11,7 +11,7 @@ Multi-hop Wikipedia QA with supporting facts and structured reasoning evidence.
 | Primary category | `text_rag` |
 | Tasks | multi_hop_qa, evidence_retrieval |
 | Modalities | text, graph |
-| Evidence levels | sentence, graph_path, answer |
+| Gold annotation levels | sentence, graph_path, answer |
 | Evidence provenance | mixed |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

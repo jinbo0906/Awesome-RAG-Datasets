@@ -1,0 +1,5 @@
+id: conversational_qa
+name: Conversational QA
+entity_type: task
+summary: Answer a turn using dialogue history and external evidence, including follow-ups and unanswerable turns.
+sources: []

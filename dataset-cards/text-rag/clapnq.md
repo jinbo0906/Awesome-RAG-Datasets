@@ -11,7 +11,7 @@ Long-form RAG answers grounded in non-contiguous sentences of Natural Questions 
 | Primary category | `text_rag` |
 | Tasks | long_form_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | sentence, answer |
+| Gold annotation levels | sentence, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | Apache-2.0 |

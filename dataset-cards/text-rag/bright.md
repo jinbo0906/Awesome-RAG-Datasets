@@ -11,7 +11,7 @@ A text retrieval benchmark where relevance depends on substantial reasoning.
 | Primary category | `text_rag` |
 | Tasks | reasoning_retrieval, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | document |
+| Gold annotation levels | document |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / not_provided |
 | Original data license | unknown |

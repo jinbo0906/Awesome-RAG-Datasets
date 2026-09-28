@@ -11,7 +11,7 @@ Search-query questions paired with Wikipedia pages and long or short answer anno
 | Primary category | `text_rag` |
 | Tasks | single_hop_qa, evidence_retrieval |
 | Modalities | text |
-| Evidence levels | span, answer |
+| Gold annotation levels | span, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |

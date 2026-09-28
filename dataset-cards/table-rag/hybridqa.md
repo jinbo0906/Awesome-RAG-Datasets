@@ -11,7 +11,7 @@ Multi-hop QA combining Wikipedia table rows with linked passage evidence.
 | Primary category | `table_rag` |
 | Tasks | table_qa, text_table_reasoning |
 | Modalities | table, text |
-| Evidence levels | table, paragraph, answer |
+| Gold annotation levels | table, paragraph, answer |
 | Evidence provenance | human |
 | Corpus / queries / answers | provided / provided / provided |
 | Original data license | unknown |
