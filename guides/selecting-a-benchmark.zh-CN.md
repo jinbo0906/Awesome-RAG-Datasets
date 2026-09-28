@@ -6,14 +6,14 @@
 
 | 研究问题 | 优先查看 | 需要评测什么 | 主要限制 |
 |---|---|---|---|
-| 分块边界与多跳证据完整性 | [HiCBench](../dataset-cards/text-rag/hicbench.md)、[HotpotQA](../dataset-cards/text-rag/hotpotqa.md)、[2WikiMultiHopQA](../dataset-cards/text-rag/2wikimultihopqa.md)、[MuSiQue](../dataset-cards/text-rag/musique.md) | 基于来源坐标的证据覆盖与回答质量 | 支持句不是唯一最优的分块 |
-| 长文档证据保留 | [QASPER](../dataset-cards/text-rag/qasper.md)、[CLAP NQ](../dataset-cards/text-rag/clapnq.md)、[QuALITY](../dataset-cards/text-rag/quality.md) | 固定 token 预算下的证据召回 | QuALITY 没有原生的最小证据片段标注 |
-| 有依据的回答与引用 | [ALCE](../suite-cards/alce.md)、[RAGBench](../dataset-cards/text-rag/ragbench.md)、[MAVIS](../dataset-cards/multimodal-rag/mavis.md) | 回答正确性、主张与引用的支持程度、证据覆盖 | 已检索上下文及来源语料的变体不同 |
-| 视觉页面和版面检索 | [MMDocIR](../dataset-cards/multimodal-rag/mmdocir.md)、[SlideVQA](../dataset-cards/multimodal-rag/slidevqa.md)、[ViDoRe](../suite-cards/vidore.md) | 页面 Recall@K；有标注时的区域覆盖 | 版面框不一定是针对问题的证据 |
-| 跨页、跨模态证据 | [MMDocRAG](../dataset-cards/multimodal-rag/mmdocrag.md)、[XL-DocBench](../dataset-cards/multimodal-rag/xl-docbench.md)、[MAVIS](../dataset-cards/multimodal-rag/mavis.md)、[MultiModalQA](../dataset-cards/multimodal-rag/multimodalqa.md) | 完整证据集合或证据链，以及回答和引用 | 各发布版本的标注粒度不同 |
-| 开放表格加文本 | [OTT-QA](../dataset-cards/table-rag/ott-qa.md)、[HybridQA](../dataset-cards/table-rag/hybridqa.md)、[TAT-QA](../dataset-cards/table-rag/tat-qa.md) | 表格/段落检索及后续问答 | HybridQA 和 TAT-QA 提供上下文；OTT-QA 要求开放检索 |
-| 图证据检索与推理 | [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.md)、[GrailQA](../dataset-cards/graph-rag/grailqa.md)、[WebQuestionsSP](../dataset-cards/graph-rag/webqsp.md) | 图证据、路径或逻辑形式的正确性，以及答案 | 知识库问答逻辑形式不等于 GraphRAG 引用图 |
-| 仅检索或鲁棒性对照 | [BEIR](../suite-cards/beir.md)、[BRIGHT](../dataset-cards/text-rag/bright.md)、[M-BEIR](../suite-cards/m-beir.md) | 官方相关性标注与排序指标 | 没有内置的回答生成真值 |
+| 分块边界与多跳证据完整性 | [HiCBench](../dataset-cards/text-rag/hicbench.zh-CN.md)、[HotpotQA](../dataset-cards/text-rag/hotpotqa.zh-CN.md)、[2WikiMultiHopQA](../dataset-cards/text-rag/2wikimultihopqa.zh-CN.md)、[MuSiQue](../dataset-cards/text-rag/musique.zh-CN.md) | 基于来源坐标的证据覆盖与回答质量 | 支持句不是唯一最优的分块 |
+| 长文档证据保留 | [QASPER](../dataset-cards/text-rag/qasper.zh-CN.md)、[CLAP NQ](../dataset-cards/text-rag/clapnq.zh-CN.md)、[QuALITY](../dataset-cards/text-rag/quality.zh-CN.md) | 固定 token 预算下的证据召回 | QuALITY 没有原生的最小证据片段标注 |
+| 有依据的回答与引用 | [ALCE](../suite-cards/alce.zh-CN.md)、[RAGBench](../dataset-cards/text-rag/ragbench.zh-CN.md)、[MAVIS](../dataset-cards/multimodal-rag/mavis.zh-CN.md) | 回答正确性、主张与引用的支持程度、证据覆盖 | 已检索上下文及来源语料的变体不同 |
+| 视觉页面和版面检索 | [MMDocIR](../dataset-cards/multimodal-rag/mmdocir.zh-CN.md)、[SlideVQA](../dataset-cards/multimodal-rag/slidevqa.zh-CN.md)、[ViDoRe](../suite-cards/vidore.zh-CN.md) | 页面 Recall@K；有标注时的区域覆盖 | 版面框不一定是针对问题的证据 |
+| 跨页、跨模态证据 | [MMDocRAG](../dataset-cards/multimodal-rag/mmdocrag.zh-CN.md)、[XL-DocBench](../dataset-cards/multimodal-rag/xl-docbench.zh-CN.md)、[MAVIS](../dataset-cards/multimodal-rag/mavis.zh-CN.md)、[MultiModalQA](../dataset-cards/multimodal-rag/multimodalqa.zh-CN.md) | 完整证据集合或证据链，以及回答和引用 | 各发布版本的标注粒度不同 |
+| 开放表格加文本 | [OTT-QA](../dataset-cards/table-rag/ott-qa.zh-CN.md)、[HybridQA](../dataset-cards/table-rag/hybridqa.zh-CN.md)、[TAT-QA](../dataset-cards/table-rag/tat-qa.zh-CN.md) | 表格/段落检索及后续问答 | HybridQA 和 TAT-QA 提供上下文；OTT-QA 要求开放检索 |
+| 图证据检索与推理 | [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.zh-CN.md)、[GrailQA](../dataset-cards/graph-rag/grailqa.zh-CN.md)、[WebQuestionsSP](../dataset-cards/graph-rag/webqsp.zh-CN.md) | 图证据、路径或逻辑形式的正确性，以及答案 | 知识库问答逻辑形式不等于 GraphRAG 引用图 |
+| 仅检索或鲁棒性对照 | [BEIR](../suite-cards/beir.zh-CN.md)、[BRIGHT](../dataset-cards/text-rag/bright.zh-CN.md)、[M-BEIR](../suite-cards/m-beir.zh-CN.md) | 官方相关性标注与排序指标 | 没有内置的回答生成真值 |
 
 ## 选型检查清单
 

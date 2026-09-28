@@ -6,14 +6,14 @@
 
 | 对象 | 必须说明什么 | 例子 | 目录位置 |
 |---|---|---|---|
-| Dataset | 样本、标注、来源关系、版本与访问 | [RAGTruth](../dataset-cards/text-rag/ragtruth.md) 有来源与生成回答配对，以及幻觉片段标注 | `catalog/datasets/` |
-| Benchmark 协议 | 任务、输入与允许的证据、划分、指标和评测器 | [RGB](../dataset-cards/text-rag/rgb.md) 在指定噪声率和段落数量下测试固定上下文的鲁棒性 | 数据集的 `evaluation`；共享协议写在套件的 `protocol` |
-| Suite（套件） | 共享比较协议下的多个数据集或任务变体 | [BEIR](../suite-cards/beir.md) 统一检索评测；[ALCE](../suite-cards/alce.md) 将三个长回答 QA 数据集改造为引用评测 | `catalog/suites/` |
+| Dataset | 样本、标注、来源关系、版本与访问 | [RAGTruth](../dataset-cards/text-rag/ragtruth.zh-CN.md) 有来源与生成回答配对，以及幻觉片段标注 | `catalog/datasets/` |
+| Benchmark 协议 | 任务、输入与允许的证据、划分、指标和评测器 | [RGB](../dataset-cards/text-rag/rgb.zh-CN.md) 在指定噪声率和段落数量下测试固定上下文的鲁棒性 | 数据集的 `evaluation`；共享协议写在套件的 `protocol` |
+| Suite（套件） | 共享比较协议下的多个数据集或任务变体 | [BEIR](../suite-cards/beir.zh-CN.md) 统一检索评测；[ALCE](../suite-cards/alce.zh-CN.md) 将三个长回答 QA 数据集改造为引用评测 | `catalog/suites/` |
 | Corpus（语料） | 可供多个 benchmark 使用的版本化来源集合 | [KILT Wikipedia](../catalog/corpora/kilt-wikipedia-2019.yaml) 是固定快照；播客文本是一个 [GraphRAG 语料](../catalog/corpora/ms-graphrag-podcasts.yaml) | `catalog/corpora/` |
 | Evaluator 或框架 | 计算或组织分数的软件 | [Ragas](https://docs.ragas.io/en/stable/concepts/metrics/overview/) 提供指标，本身不是固定问题语料 | 数据集目录之外 |
 | Paper（论文） | 介绍、重处理或评测某一对象的出版物 | 检索论文使用 QA 数据集，不会使其自动变成原生 RAG 数据集 | `catalog/papers/` |
 
-这一区别会直接影响实验设计。[MS MARCO Passage Ranking](../dataset-cards/text-rag/msmarco-passage.md)有语料、查询和稀疏相关性标注，可以评测检索器，但其排序变体没有生成回答真值；它属于 RAG 的 `auxiliary` 组件，不是端到端回答 benchmark。[ToTTo](../dataset-cards/table-rag/totto.md)把高亮单元格**作为输入**提供给生成器，并不测试能否找回这些单元格。[MTRAG](../dataset-cards/text-rag/mtrag.md)包含语料、检索任务、对话答案及不同的参考证据/完整 RAG 设置，因此有条件区分检索和生成失败。
+这一区别会直接影响实验设计。[MS MARCO Passage Ranking](../dataset-cards/text-rag/msmarco-passage.zh-CN.md)有语料、查询和稀疏相关性标注，可以评测检索器，但其排序变体没有生成回答真值；它属于 RAG 的 `auxiliary` 组件，不是端到端回答 benchmark。[ToTTo](../dataset-cards/table-rag/totto.zh-CN.md)把高亮单元格**作为输入**提供给生成器，并不测试能否找回这些单元格。[MTRAG](../dataset-cards/text-rag/mtrag.zh-CN.md)包含语料、检索任务、对话答案及不同的参考证据/完整 RAG 设置，因此有条件区分检索和生成失败。
 
 ## 新条目的判断规则
 

@@ -6,11 +6,11 @@
 
 ## 已收录，但需守住边界
 
-- [RGB](../dataset-cards/text-rag/rgb.md)测试固定上下文鲁棒性，不测试开放语料检索。[RAGTruth](../dataset-cards/text-rag/ragtruth.md)标注生成回答中的幻觉，而不是来源证据片段。[MTRAG](../dataset-cards/text-rag/mtrag.md)的参考证据设置与完整 RAG 设置不同。
-- [BioASQ Task 14b](../dataset-cards/text-rag/bioasq-14b.md)固定到具体挑战年份；[PUBHEALTH](../dataset-cards/text-rag/pubhealth.md)的论文与仓库统计数量不同，且若做检索需另外构建语料。
-- [MS MARCO Passage Ranking](../dataset-cards/text-rag/msmarco-passage.md)是明确的检索变体，不能作为原始生成式 MS MARCO 或 TREC-DL 的同义词。
-- [MetaQA](../dataset-cards/graph-rag/metaqa.md)提供电影知识库与按跳数划分的问答；Microsoft GraphRAG 的[播客资产](../catalog/corpora/ms-graphrag-podcasts.yaml)只按语料收录，不能宣称有金标准图路径。
-- [SQA](../dataset-cards/table-rag/sqa.md)直接提供表格；[ToTTo](../dataset-cards/table-rag/totto.md)直接提供高亮单元格。如果没有记录清楚改造步骤，它们的原生结果不能与开放表格检索结果比较。
+- [RGB](../dataset-cards/text-rag/rgb.zh-CN.md)测试固定上下文鲁棒性，不测试开放语料检索。[RAGTruth](../dataset-cards/text-rag/ragtruth.zh-CN.md)标注生成回答中的幻觉，而不是来源证据片段。[MTRAG](../dataset-cards/text-rag/mtrag.zh-CN.md)的参考证据设置与完整 RAG 设置不同。
+- [BioASQ Task 14b](../dataset-cards/text-rag/bioasq-14b.zh-CN.md)固定到具体挑战年份；[PUBHEALTH](../dataset-cards/text-rag/pubhealth.zh-CN.md)的论文与仓库统计数量不同，且若做检索需另外构建语料。
+- [MS MARCO Passage Ranking](../dataset-cards/text-rag/msmarco-passage.zh-CN.md)是明确的检索变体，不能作为原始生成式 MS MARCO 或 TREC-DL 的同义词。
+- [MetaQA](../dataset-cards/graph-rag/metaqa.zh-CN.md)提供电影知识库与按跳数划分的问答；Microsoft GraphRAG 的[播客资产](../catalog/corpora/ms-graphrag-podcasts.yaml)只按语料收录，不能宣称有金标准图路径。
+- [SQA](../dataset-cards/table-rag/sqa.zh-CN.md)直接提供表格；[ToTTo](../dataset-cards/table-rag/totto.zh-CN.md)直接提供高亮单元格。如果没有记录清楚改造步骤，它们的原生结果不能与开放表格检索结果比较。
 
 ## 不自动收录为 RAG 数据集的对象
 
@@ -19,7 +19,7 @@
 | [Ragas](https://docs.ragas.io/en/stable/concepts/metrics/overview/)、DeepEval、TruLens 等评测工具库 | 评分工具不是固定数据集。若另有具体发布的评测集，应作为独立对象记录。 |
 | MMLU、TruthfulQA、MedQA、HLE 等通识测验与考试 | 它们可测知识或推理，但没有明确来源池和证据/检索协议时，不是原生 RAG。衍生的 RAG 版本必须另取名称。 |
 | MITRE ATT&CK、医学图像档案、教材、新闻或播客转录等来源集合 | 若能确定快照和访问方式，可按语料记录；不能推断它们有金标准问答或引用标注。 |
-| [BEIR](../suite-cards/beir.md)、[ViDoRe](../suite-cards/vidore.md)、[M-BEIR](../suite-cards/m-beir.md)、[M2KR](../suite-cards/m2kr.md) 等套件的子集 | 转换后的子集可能改变语料、划分、相关性标注和指标。须核查具体版本后作为变体关联，不能悄悄复用原始数据集卡片。 |
+| [BEIR](../suite-cards/beir.zh-CN.md)、[ViDoRe](../suite-cards/vidore.zh-CN.md)、[M-BEIR](../suite-cards/m-beir.zh-CN.md)、[M2KR](../suite-cards/m2kr.zh-CN.md) 等套件的子集 | 转换后的子集可能改变语料、划分、相关性标注和指标。须核查具体版本后作为变体关联，不能悄悄复用原始数据集卡片。 |
 | 只有论文描述或发布不稳定的资产 | 在能够确认权威下载、版本与评测器前，不标记为 `source_checked`。HTTP 403、429 或超时并不能证明资源已移除。 |
 
 ## 后续优先核查

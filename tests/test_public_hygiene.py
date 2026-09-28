@@ -30,3 +30,13 @@ def test_public_markdown_relative_links_resolve():
             if relative and not (path.parent / relative).exists():
                 missing.append(f"{path.relative_to(root)} -> {target}")
     assert missing == []
+
+
+def test_chinese_guides_link_to_chinese_cards():
+    root = Path(__file__).resolve().parents[1]
+    wrong = []
+    for path in (root / "guides").rglob("*.zh-CN.md"):
+        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
+            if ("dataset-cards/" in target or "suite-cards/" in target) and not target.endswith(".zh-CN.md"):
+                wrong.append(f"{path.relative_to(root)} -> {target}")
+    assert wrong == []

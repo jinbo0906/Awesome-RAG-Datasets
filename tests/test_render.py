@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from awesome_rag_datasets.generate import build_outputs
 from awesome_rag_datasets.render import render_card, render_readme, render_suite_card
 
@@ -117,6 +119,12 @@ def test_build_outputs_creates_chinese_cards_from_translations():
     suite_card = outputs[Path("suite-cards/sample.zh-CN.md")]
     assert "使用固定相关性标注。" in suite_card
     assert "../dataset-cards/table-rag/example.zh-CN.md" in suite_card
+
+
+def test_generation_rejects_missing_translations_for_published_cards():
+    catalog = {"datasets": [RECORD], "suites": [], "tasks": [], "corpora": [], "papers": []}
+    with pytest.raises(ValueError, match="translations"):
+        build_outputs(catalog)
 
 
 def test_readme_tables_link_to_matching_language_cards_without_review_column():

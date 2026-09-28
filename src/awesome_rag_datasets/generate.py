@@ -8,6 +8,8 @@ from .render import card_path, render_card, render_readme, render_suite_card, su
 
 
 def build_outputs(catalog: dict[str, list[dict]], translations: dict | None = None) -> dict[Path, str]:
+    if translations is None and (catalog["datasets"] or catalog["suites"]):
+        raise ValueError("translations are required when generating dataset or suite cards")
     outputs = {
         Path("README.md"): render_readme(catalog),
         Path("README.zh-CN.md"): render_readme(catalog, locale="zh-CN"),
