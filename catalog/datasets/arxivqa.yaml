@@ -1,0 +1,47 @@
+id: arxivqa
+name: ArXivQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: GPT-4V-generated multiple-choice scientific-figure QA used for multimodal instruction training and retrieval adaptations.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval]
+  modalities: [text, image, chart, equation]
+  domains: [science]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The Multimodal ArXiv project releases figures with generated questions, options, labels and
+    rationales. VisRAG constructs an independently filtered retrieval evaluation from these question-figure associations.
+  size: 100,000 released QA examples.
+  splits: The original Hugging Face package has a train container; retrieval-specific evaluation splits are derivative protocols.
+  format: JSON QA and figure-image archive.
+ground_truth:
+  levels: [answer]
+  provenance: synthetic
+  description: >-
+    Generated labels and rationales supervise figure answering. Paired figures can seed retrieval
+    positives, but rationales are not human evidence boxes or native exhaustive corpus relevance judgments.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [multiple_choice_accuracy]
+  protocol: >-
+    Treat the original release primarily as training data; label any held-out construction explicitly.
+    For VisRAG, follow its converted queries, figure pool and retrieval/generation scoring instead of assuming a native RAG test set.
+access:
+  official: 'https://mm-arxiv.github.io/'
+  paper: 'https://aclanthology.org/2024.acl-long.775/'
+  data: 'https://huggingface.co/datasets/MMInstruction/ArxivQA'
+  license: unknown
+use:
+  best_for: [Scientific-figure instruction training, Explicit figure-retrieval adaptations]
+  caveats: [Synthetic labels and rationales require independent error auditing, Project page says CC-BY-NC-4.0 research-only while the current data card says CC-BY-SA-4.0]
+sources:
+  - {url: 'https://mm-arxiv.github.io/', type: official, fields: [summary, data.description, ground_truth.provenance, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/MMInstruction/ArxivQA', type: dataset_card, fields: [data.size, data.splits, data.format, ground_truth.description, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2025/file/3640a1997a4c9571cea9db2c82e1fc35-Paper-Conference.pdf', type: paper, fields: [data.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}

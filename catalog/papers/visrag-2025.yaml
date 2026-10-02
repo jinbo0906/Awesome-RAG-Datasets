@@ -1,0 +1,8 @@
+id: visrag-2025
+name: "VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents"
+entity_type: paper
+url: 'https://proceedings.iclr.cc/paper_files/paper/2025/file/3640a1997a4c9571cea9db2c82e1fc35-Paper-Conference.pdf'
+relation: reprocesses
+targets: [arxivqa, plotqa, infographicvqa, mp-docvqa, chartqa, slidevqa]
+sources:
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2025/file/3640a1997a4c9571cea9db2c82e1fc35-Paper-Conference.pdf', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

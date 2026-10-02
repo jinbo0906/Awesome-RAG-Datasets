@@ -1,0 +1,8 @@
+id: disretrieval-2026
+name: "Beyond Chunking: Discourse-Aware Hierarchical Retrieval for Long Document Question Answering"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.829/'
+relation: evaluates
+targets: [qasper, quality, narrativeqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.829/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

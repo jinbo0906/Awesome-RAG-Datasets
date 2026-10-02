@@ -1,0 +1,8 @@
+id: visual-rag-2026
+name: "Visual-RAG: Benchmarking Text-to-Image Retrieval Augmented Generation for Visual Knowledge Intensive Queries"
+entity_type: paper
+url: 'https://doi.org/10.1145/3805712.3808615'
+relation: introduces
+targets: [visual-rag]
+sources:
+  - {url: 'https://doi.org/10.1145/3805712.3808615', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

@@ -1,0 +1,22 @@
+id: raguard
+name: RAGuard
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Political fact-checking benchmark testing RAG against naturally misleading Reddit retrievals.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [fact_verification, rag_robustness], modalities: [text], domains: [politics], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Separate claims and documents CSVs contain binary verdicts, document IDs, Reddit text and supporting/misleading/unrelated labels.
+  size: 2,648 claims and 16,331 documents.
+  format: CSV
+ground_truth: {levels: [document, answer], provenance: mixed, description: 'Verdicts derive from PolitiFact; document labels describe their effect on an annotating LLM, not universally true or false passages or minimal evidence.', alternatives: not_documented}
+evaluation: {official_metrics: [accuracy], protocol: 'Compare zero-context, full-corpus RAG and oracle associated-document settings; distinguish RAG-1/RAG-5 and oracle-all/oracle-misleading. Invalid class outputs count as errors.'}
+access: {official: 'https://huggingface.co/datasets/UCSC-IRKM/RAGuard', paper: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/ed25c00ff6900989116d3ba5d607d33d-Abstract-Datasets_and_Benchmarks_Track.html', data: 'https://huggingface.co/datasets/UCSC-IRKM/RAGuard/tree/main', license: MIT}
+use: {best_for: [Robustness to misleading real-world retrievals, Retrieval versus zero-context fact-checking], caveats: [Misleadingness is relative to model behavior and the political domain, Load the two CSVs separately; the default Hugging Face viewer reports incompatible columns]}
+sources:
+  - {url: 'https://huggingface.co/datasets/UCSC-IRKM/RAGuard', type: dataset_card, fields: [data.description, data.format, access.license, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2502.16101v5', type: paper, fields: [summary, classification, data.size, ground_truth, evaluation, use.best_for], checked_on: '2026-10-02'}
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/ed25c00ff6900989116d3ba5d607d33d-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [access.paper], checked_on: '2026-10-02'}

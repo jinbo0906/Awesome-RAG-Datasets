@@ -1,0 +1,11 @@
+id: chatrag-bench
+name: ChatRAG Bench
+entity_type: suite
+status: source_checked
+summary: Conversational document QA suite derived from ten datasets, covering retrieval, tables, arithmetic and unanswerable questions.
+summary_zh: 由十个数据集改造的会话式文档问答套件，覆盖检索、表格、算术推理和不可回答问题。
+components: [doc2dial, qrecc, topiocqa, sqa, convfinqa]
+protocol: 'This catalog links five upstream source datasets, not all ten standardized evaluation configurations. The release also includes QuAC, INSCIT, CoQA, HybriDialogue and DoQA. Use the released ctxs/messages/answers and evaluation scripts; document whether context is supplied or retrieved. Report per-task scores and the average with and without HybriDialogue where training overlap applies; evaluate answerable/unanswerable detection separately. Converted splits and F1 settings are not interchangeable with upstream native evaluations. Original dataset licenses apply.'
+access: {official: 'https://huggingface.co/datasets/nvidia/ChatRAG-Bench', paper: 'https://arxiv.org/abs/2401.10225'}
+sources:
+  - {url: 'https://huggingface.co/datasets/nvidia/ChatRAG-Bench', type: dataset_card, fields: [summary, components, protocol], checked_on: '2026-10-02'}

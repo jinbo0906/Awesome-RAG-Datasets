@@ -1,0 +1,8 @@
+id: visual-evidence-selection-2026
+name: "Utility-Oriented Visual Evidence Selection for Multimodal Retrieval-Augmented Generation"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.1620/'
+relation: evaluates
+targets: [mrag-bench, visual-rag]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1620/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

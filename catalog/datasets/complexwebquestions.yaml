@@ -1,0 +1,22 @@
+id: complexwebquestions
+name: ComplexWebQuestions 1.1
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Complex compositional QA over Freebase or retrieved web snippets with decomposition supervision.
+classification: {rag_role: rag_convertible, primary_category: graph_rag, secondary_categories: [text_rag], tasks: [graph_qa, multi_hop_qa], modalities: [graph, text], domains: [knowledge-base], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: Version 1.1 publishes complex questions, SPARQL, answers and decomposed-question supervision; KB experiments use Freebase while web experiments retrieve snippets.
+  splits: Use the corrected version 1.1 partition; version 1.0 has a documented split problem.
+  format: JSON
+ground_truth: {levels: [graph_path, answer], provenance: mixed, description: 'Generated compositional queries and human-paraphrased questions supply logical-form supervision; retrieved web snippets are candidate evidence, not gold sentence-level citations.', alternatives: implicit}
+evaluation: {official_metrics: [precision_at_1], protocol: 'Use the official answer scorer and version 1.1 split. Declare whether answering uses web retrieval or the documented Freebase snapshot; later KBQA papers may report additional metrics.'}
+access: {official: 'https://www.tau-nlp.sites.tau.ac.il/compwebq', paper: 'https://aclanthology.org/N18-1059/', license: unknown}
+use: {best_for: [Question decomposition and compositional KBQA, Comparing graph and web retrieval routes], caveats: [Use Freebase snapshot freebase-rdf-2015-08-02-00-00 for original KB reconstruction, Logical forms do not establish unique minimal retrieved subgraphs]}
+sources:
+  - {url: 'https://www.tau-nlp.sites.tau.ac.il/compwebq', type: official, fields: [summary, classification, data, evaluation.protocol, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/N18-1059/', type: paper, fields: [ground_truth, evaluation.official_metrics, use.best_for], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/abs/1807.09623', type: paper, fields: [data.splits], checked_on: '2026-10-02'}

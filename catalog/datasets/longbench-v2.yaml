@@ -1,0 +1,32 @@
+id: longbench-v2
+name: LongBench v2
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human-authored multiple-choice benchmark for deep reasoning over realistic long documents, conversations, repositories and structured data.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [long_context_qa], modalities: [text], domains: [general, code], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Each record supplies a long context, four options and a correct option. The native task is long-context understanding; the released code also supports a top-N retrieved-context RAG comparison.
+  size: 503 questions across six task categories; context lengths range from 8k to 2M words.
+  splits: The Hugging Face split named train contains the evaluation release; do not treat it as a training set for leaderboard evaluation.
+  format: JSON
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: The answer key identifies A/B/C/D. The published record format does not provide query-level supporting spans, qrels or optimal segmentation boundaries.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy]
+  protocol: Separate direct, CoT, no-context and RAG settings. Report difficulty, task and length groups; specify top-N, chunking and retrieval configuration for a RAG run.
+  evaluator: https://github.com/THUDM/LongBench/blob/main/result.py
+access: {official: 'https://longbench2.github.io/', paper: 'https://aclanthology.org/2025.acl-long.183/', data: 'https://huggingface.co/datasets/zai-org/LongBench-v2', license: MIT}
+use:
+  best_for: [Long-context versus retrieval comparisons, Answer-quality stress tests beyond extractive lookup]
+  caveats: [No native supporting-span supervision for chunking, Multiple-choice accuracy can reflect reasoning or memorization rather than retrieval success]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.183/', type: paper, fields: [summary, data.size, ground_truth.provenance], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/THUDM/LongBench', type: repository, fields: [data.description, data.splits, ground_truth.description, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/zai-org/LongBench-v2', type: dataset_card, fields: [access.license], checked_on: '2026-10-02'}

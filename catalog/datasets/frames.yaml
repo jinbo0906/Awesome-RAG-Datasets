@@ -1,0 +1,22 @@
+id: frames
+name: FRAMES
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human-written multi-document questions evaluating factual answers, retrieval and reasoning together.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [multi_hop_qa, time_sensitive_qa], modalities: [text], domains: [open-domain], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The CSV supplies questions, reference answers, reasoning types and supporting Wikipedia URLs; article text must be obtained separately.
+  size: 824 evaluation questions.
+  splits: One test split; no native training split.
+  format: CSV
+ground_truth: {levels: [document, answer], provenance: human, description: 'Annotators identify supporting articles; URLs are document targets, not sentence offsets or a unique graph path.', alternatives: not_documented}
+evaluation: {official_metrics: [answer_accuracy, article_recall], protocol: 'The paper compares no retrieval, BM25 retrieval, oracle articles and iterative retrieval. Answer correctness uses an LLM autorater; fix the Wikipedia snapshot and judge prompt.'}
+access: {official: 'https://huggingface.co/datasets/google/frames-benchmark', paper: 'https://aclanthology.org/2025.naacl-long.243/', data: 'https://huggingface.co/datasets/google/frames-benchmark/tree/main', license: Apache-2.0}
+use: {best_for: [Iterative retrieval and search planning, Multi-document temporal and numerical reasoning], caveats: [Wikipedia URLs do not freeze source content; reproduce a dated corpus snapshot, NAACL 2025 publication should not be described as an ACL main-conference paper]}
+sources:
+  - {url: 'https://huggingface.co/datasets/google/frames-benchmark', type: dataset_card, fields: [data, ground_truth.levels, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2025.naacl-long.243.pdf', type: paper, fields: [summary, classification, ground_truth, evaluation, use], checked_on: '2026-10-02'}

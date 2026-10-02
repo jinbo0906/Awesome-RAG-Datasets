@@ -1,0 +1,8 @@
+id: astute-rag-2025
+name: "Astute RAG: Overcoming Imperfect Retrieval Augmentation and Knowledge Conflicts for Large Language Models"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.1476/'
+relation: evaluates
+targets: [natural-questions, triviaqa, popqa]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.1476/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

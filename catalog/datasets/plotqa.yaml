@@ -1,0 +1,48 @@
+id: plotqa
+name: PlotQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Template-generated QA over scientific plots with open-vocabulary labels and computed numerical answers.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, table_qa]
+  modalities: [text, image, chart, table]
+  domains: [charts]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Plots are rendered from real-world data, with question templates derived from crowdsourcing.
+    The release includes image annotations and two QA versions; VisRAG uses a filtered, pooled-image retrieval adaptation.
+  size: 224,377 plots; QA v1 has 8,190,674 pairs and v2 has 28,952,641 pairs.
+  splits: Original train, validation and test with separate versioned QA files.
+  format: PNG plots, plot annotations and QA JSON.
+ground_truth:
+  levels: [bbox, answer]
+  provenance: mixed
+  description: >-
+    The QA schema has image_index and an answer_bbox when the answer appears in the plot.
+    Computed answers need not have a box; plot-level object annotations are distinct from question-specific evidence and retrieval qrels.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy]
+  protocol: >-
+    Fix QA version and numerical-answer tolerance. Original QA supplies the plot; report VisRAG's
+    filtering, candidate pool and retrieval scores separately from native plot-answering accuracy.
+access:
+  official: 'https://github.com/NiteshMethani/PlotQA'
+  paper: 'https://arxiv.org/abs/1909.00997'
+  data: 'https://github.com/NiteshMethani/PlotQA/blob/master/PlotQA_Dataset.md'
+  license: CC-BY-4.0 for data; MIT for code.
+use:
+  best_for: [Numeric chart reading and open-vocabulary answers, Conditional answer-box evaluation and explicit retrieval conversion]
+  caveats: [Computed answers often do not correspond to a visible answer box, QA v1/v2 and the much smaller VisRAG adaptation are different protocols]
+sources:
+  - {url: 'https://github.com/NiteshMethani/PlotQA', type: repository, fields: [summary, data.description, data.size, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/NiteshMethani/PlotQA/blob/master/PlotQA_Dataset.md', type: repository, fields: [data.size, data.splits, data.format, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/abs/1909.00997', type: paper, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2025/file/3640a1997a4c9571cea9db2c82e1fc35-Paper-Conference.pdf', type: paper, fields: [data.description, use.caveats], checked_on: '2026-10-02'}

@@ -1,0 +1,47 @@
+id: mrag-bench
+name: MRAG-Bench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Vision-centric RAG questions with gold supporting images and multiple-choice answers across nine scenarios.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [general-knowledge, fine-grained-entities]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The author release provides an image corpus and QA. Its Hugging Face test package embeds
+    the query image, gt_images and five retrieved_images with four answer choices, enabling both oracle and retrieved-context evaluation.
+  size: 1,353 human-annotated questions and 16,130 corpus images.
+  splits: Test benchmark; no native training split.
+  format: Hugging Face Parquet with images and an author-hosted corpus archive.
+ground_truth:
+  levels: [document, answer]
+  provenance: human
+  description: >-
+    gt_images identify supporting images and answer_choice gives the correct option.
+    These are image-level supports, not object boxes or a guarantee that every useful image in an enlarged corpus is exhaustively labeled.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [multiple_choice_accuracy, Recall@5]
+  protocol: >-
+    Separate no-RAG, retrieved-RAG and gold-image-RAG settings; most native comparisons use five images.
+    A fixed candidate pool that injects gold images, as in the ACL 2026 utility-selection study, is a separate selection protocol.
+access:
+  official: 'https://mragbench.github.io/'
+  paper: 'https://proceedings.iclr.cc/paper_files/paper/2025/hash/ee46288ab2aaf5c6e53aebebe719712c-Abstract-Conference.html'
+  data: 'https://huggingface.co/datasets/uclanlp/MRAG-Bench'
+  license: CC-BY-4.0 for the Hugging Face release; upstream image-source terms may also apply.
+use:
+  best_for: [Measuring how retrieved visual knowledge changes answers, Comparing gold image use with imperfect retrieval]
+  caveats: [Published at ICLR 2025; the 2024 arXiv date is not its conference year, Oracle or gold-injected candidate pools must be distinguished from corpus retrieval]
+sources:
+  - {url: 'https://mragbench.github.io/', type: official, fields: [summary, data.size, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/uclanlp/MRAG-Bench', type: dataset_card, fields: [data.description, data.splits, data.format, ground_truth.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2026.acl-long.1620/', type: paper, fields: [evaluation.protocol, use.caveats], checked_on: '2026-10-02'}

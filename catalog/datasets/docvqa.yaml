@@ -1,0 +1,49 @@
+id: docvqa
+name: DocVQA (single-page)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human-written extractive questions over individual scanned industry-document images.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, page_retrieval]
+  modalities: [text, image, layout]
+  domains: [industry-documents]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The original task supplies one document image per question, with OCR and human answers.
+    VDocRAG reuses a filtered subset for open-domain training; its OpenDocVQA protocol is a separate adaptation.
+  size: About 50,000 questions over 12,767 document images.
+  splits: Original train, validation and held-out test; test evaluation uses the challenge platform.
+  format: Document images, question/answer JSON and OCR.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Answers are text spans in the supplied image, but answer strings are not universal gold OCR-span
+    coordinates or corpus-wide retrieval qrels. The paired image can seed an explicitly defined page-retrieval adaptation.
+  alternatives: explicit
+evaluation:
+  official_metrics: [ANLS]
+  protocol: >-
+    Preserve the original split and answer aliases. Report any pooling, query filtering and new qrels
+    separately; single-page DocVQA, MP-DocVQA and OpenDocVQA are distinct settings.
+  evaluator: 'https://rrc.cvc.uab.es/?ch=17'
+access:
+  official: 'https://site.docvqa.org/datasets/docvqa'
+  paper: 'https://openaccess.thecvf.com/content/WACV2021/papers/Mathew_DocVQA_A_Dataset_for_VQA_on_Document_Images_WACV_2021_paper.pdf'
+  data: 'https://rrc.cvc.uab.es/?ch=17&com=downloads'
+  license: unknown
+  gated: true
+use:
+  best_for: [Visual document reading baselines, Explicit page-pool retrieval adaptations]
+  caveats: [Original questions assume the relevant image is supplied, Challenge access and test-label availability differ from derivative mirrors]
+sources:
+  - {url: 'https://site.docvqa.org/datasets/docvqa', type: official, fields: [summary, data.description, data.size, access.data, access.gated], checked_on: '2026-10-02'}
+  - {url: 'https://openaccess.thecvf.com/content/WACV2021/papers/Mathew_DocVQA_A_Dataset_for_VQA_on_Document_Images_WACV_2021_paper.pdf', type: paper, fields: [ground_truth.description, evaluation.official_metrics, data.splits], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2504.09795', type: paper, fields: [data.description, evaluation.protocol, use.caveats], checked_on: '2026-10-02'}

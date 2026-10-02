@@ -1,0 +1,34 @@
+id: ohrbench
+name: OHRBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Document RAG benchmark isolating how OCR semantic and formatting errors affect evidence retrieval and answer generation.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, secondary_categories: [text_rag, table_rag], tasks: [rag_robustness, evidence_retrieval, visual_qa], modalities: [text, image, table, chart, equation, layout], domains: [finance, law, science, manuals], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Releases PDFs, human-verified structured page data, qas_v2.json, OCR outputs and semantic/formatting perturbations. The native pipeline extracts a textual knowledge base from document images, rather than requiring a vision-only generator.
+  size: 8,561 document-page images and 8,498 QA pairs across seven domains in the ICCV 2025 paper.
+  format: PDF/JSON/text
+ground_truth:
+  levels: [page, quote, answer]
+  provenance: mixed
+  description: Questions retain source-page and supporting-content mappings; human-verified page transcription provides an OCR reference. Transcription correctness and QA supporting content are different labels and are not optimal segmentation boundaries.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [ocr_edit_distance, evidence_lcs, answer_f1]
+  protocol: Report OCR edit distance, retrieval evidence inclusion via longest common subsequence (LCS), gold-context generation and full RAG separately. Pin OCR version, perturbation severity and QA release; group results by text, table, formula, chart and reading-order tasks. LCS evidence inclusion is not document Recall@K.
+  evaluator: https://github.com/opendatalab/OHR-Bench
+access: {official: 'https://github.com/opendatalab/OHR-Bench', paper: 'https://openaccess.thecvf.com/content/ICCV2025/html/Zhang_OCR_Hinders_RAG_Evaluating_the_Cascading_Impact_of_OCR_on_ICCV_2025_paper.html', data: 'https://huggingface.co/datasets/opendatalab/OHR-Bench', license: 'unknown; HF metadata says CC BY 4.0, but author copyright statement restricts research use and prohibits commercial use'}
+use:
+  best_for: [Tracing OCR errors through the RAG pipeline, Chunking evaluation under structured-document corruption]
+  caveats: [Corrupted source text requires remapping evidence to the canonical page content, Good OCR or answer F1 alone does not prove cross-modal evidence completeness, License metadata and research-only copyright statement differ; consult author terms and source-document rights]
+sources:
+  - {url: 'https://github.com/opendatalab/OHR-Bench#copyright-statement', type: repository, fields: [access.license, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/opendatalab/OHR-Bench', type: dataset_card, fields: [access.license], checked_on: '2026-10-02'}
+  - {url: 'https://openaccess.thecvf.com/content/ICCV2025/html/Zhang_OCR_Hinders_RAG_Evaluating_the_Cascading_Impact_of_OCR_on_ICCV_2025_paper.html', type: paper, fields: [summary, data.size], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/opendatalab/OHR-Bench', type: repository, fields: [data.description, ground_truth.description, evaluation.protocol, access.data], checked_on: '2026-10-02'}
+  - {url: 'https://openaccess.thecvf.com/content/ICCV2025/papers/Zhang_OCR_Hinders_RAG_Evaluating_the_Cascading_Impact_of_OCR_on_ICCV_2025_paper.pdf', type: paper, fields: [evaluation.official_metrics], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2412.02592v4', type: paper, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}

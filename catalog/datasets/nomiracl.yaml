@@ -1,0 +1,28 @@
+id: nomiracl
+name: NoMIRACL
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Multilingual RAG relevance assessment with passage sets containing either no relevant passage or at least one.
+classification: {rag_role: auxiliary, primary_category: text_rag, tasks: [evidence_retrieval, rag_robustness], modalities: [text], domains: [wikipedia], languages: [ar, bn, de, en, es, fa, fi, fr, hi, id, ja, ko, ru, sw, te, th, yo, zh]}
+data:
+  corpus: provided
+  queries: provided
+  answers: not_provided
+  description: The release supplies queries, relevance labels and up to ten annotated passages per query, with relevant and non-relevant subsets in 18 languages. It evaluates binary relevance assessment rather than answer-text correctness.
+  splits: Development and test, each separated into relevant and non-relevant subsets.
+ground_truth:
+  levels: [paragraph]
+  provenance: human
+  description: Human passage judgments determine whether any supplied context is relevant. Non-relevant sets contain only judged non-relevant passages; relevant sets contain at least one judged relevant passage. Reference answer strings are not the native labels.
+  alternatives: explicit
+evaluation:
+  official_metrics: [hallucination_rate, error_rate]
+  protocol: Report both subsets separately. Hallucination rate is FP/(FP+TN) on non-relevant sets; error rate is FN/(FN+TP) on relevant sets. These measure context relevance recognition, not factual accuracy of arbitrary generated answers.
+access: {official: 'https://github.com/project-miracl/nomiracl', paper: 'https://aclanthology.org/2024.findings-emnlp.730/', data: 'https://huggingface.co/datasets/miracl/nomiracl', license: Apache-2.0}
+use:
+  best_for: [Multilingual abstention under retrieval misses, Balancing false confidence and missed relevant evidence]
+  caveats: [Its hallucination-rate label describes a binary assessment protocol, Supplied top-k contexts do not evaluate full-corpus retrieval recall]
+sources:
+  - {url: 'https://github.com/project-miracl/nomiracl', type: repository, fields: [summary, ground_truth.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/miracl/nomiracl', type: dataset_card, fields: [data.description, data.splits, access.license], checked_on: '2026-10-02'}

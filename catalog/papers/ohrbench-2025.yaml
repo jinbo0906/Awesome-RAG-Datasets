@@ -1,0 +1,8 @@
+id: ohrbench-2025
+name: "OCR Hinders RAG: Evaluating the Cascading Impact of OCR on Retrieval-Augmented Generation"
+entity_type: paper
+url: 'https://openaccess.thecvf.com/content/ICCV2025/html/Zhang_OCR_Hinders_RAG_Evaluating_the_Cascading_Impact_of_OCR_on_ICCV_2025_paper.html'
+relation: introduces
+targets: [ohrbench]
+sources:
+  - {url: 'https://openaccess.thecvf.com/content/ICCV2025/html/Zhang_OCR_Hinders_RAG_Evaluating_the_Cascading_Impact_of_OCR_on_ICCV_2025_paper.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

@@ -1,0 +1,48 @@
+id: rag-igbench
+name: RAG-IGBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Open-domain RAG benchmark for producing interleaved text-and-image answers from retrieved social-platform content.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [long_form_qa, attribution, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [social-web]
+  languages: [zh, en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Samples contain a query, retrieved documents, image URLs, category, split and reference answer
+    with document citations and image indices. The release primarily fixes per-query retrieved context, rather than exposing full social-platform search.
+  size: The paper reports 6,057 source queries; the bilingual Hugging Face package displays about 12,100 rows.
+  splits: Read each row's split field; the Hugging Face viewer groups the bilingual package under a container named train.
+  format: Chinese JSONL and English JSON with retrieved text and external image URLs.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Model-assisted reference answers are manually checked and retain selected image indices and document
+    references. Retrieved contexts are candidate inputs, not exhaustive relevance judgments or minimal human evidence sets.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [ROUGE-1, modified_edit_distance, Kendall_score, CLIP_score, alignment_score]
+  protocol: >-
+    Keep image IDs and order, use author metric definitions, and report language and row-level split.
+    Cache permitted source images and record missing URLs; translation pairs should not be counted as independent source questions.
+  evaluator: 'https://github.com/USTC-StarTeam/RAG-IGBench/tree/main/score'
+access:
+  official: 'https://github.com/USTC-StarTeam/RAG-IGBench'
+  paper: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/b0a4b3e384b4554e65a47ad1f6b0310a-Abstract-Datasets_and_Benchmarks_Track.html'
+  data: 'https://huggingface.co/datasets/Muyi13/RAG-IGBench'
+  license: unknown
+use:
+  best_for: [Evaluating image selection and placement in generated answers, Comparing text quality with image-text consistency]
+  caveats: [Paper Appendix C says dataset CC-BY-4.0 while the current Hugging Face card says Apache-2.0, External social-platform images can disappear and retain upstream rights]
+sources:
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/file/b0a4b3e384b4554e65a47ad1f6b0310a-Paper-Datasets_and_Benchmarks_Track.pdf', type: paper, fields: [summary, data.size, ground_truth.description, evaluation.official_metrics, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/USTC-StarTeam/RAG-IGBench', type: repository, fields: [data.description, data.format, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/Muyi13/RAG-IGBench', type: dataset_card, fields: [data.description, data.size, data.splits, use.caveats], checked_on: '2026-10-02'}

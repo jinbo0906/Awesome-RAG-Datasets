@@ -1,0 +1,21 @@
+id: lfrqa
+name: LFRQA / RAG-QA Arena
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human-written long answers and document citations for cross-domain retrieval-augmented QA.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [long_form_qa, attribution], modalities: [text], domains: [cross-domain], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: LFRQA extends RobustQA with long-form answers; download the underlying raw documents and passages through RobustQA. Citation-annotated files are a separate revised release.
+  size: The EMNLP 2024 paper reports about 26K queries across seven domains; citation-release counts differ.
+  format: JSONL
+ground_truth: {levels: [document, fact_citation, answer], provenance: human, description: 'The citation release maps faithful_answer_w_citation and citation_numbers to annotated gold doc_id values; these are document references rather than character spans.', alternatives: explicit}
+evaluation: {official_metrics: [win_rate, win_plus_tie_rate, elo_rating], protocol: 'RAG-QA Arena compares generated answers against LFRQA or other systems with a fixed LLM judge. Record the annotation version, retrieved-passage count and judge model.', evaluator: 'https://github.com/awslabs/rag-qa-arena'}
+access: {official: 'https://github.com/awslabs/rag-qa-arena', paper: 'https://aclanthology.org/2024.emnlp-main.249/', data: 'https://github.com/awslabs/rag-qa-arena/tree/main/data', license: 'Apache-2.0 for the project; underlying corpus terms apply separately'}
+use: {best_for: [Long-form cross-domain answer comparison, Document citation and answer-quality evaluation], caveats: [The Arena evaluator is a protocol while LFRQA is the dataset, The official repository provides new annotations; its license does not replace upstream corpus terms]}
+sources:
+  - {url: 'https://aclanthology.org/2024.emnlp-main.249/', type: paper, fields: [summary, classification, data.size], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/awslabs/rag-qa-arena', type: repository, fields: [data.description, data.format, ground_truth, evaluation, access.license, use], checked_on: '2026-10-02'}

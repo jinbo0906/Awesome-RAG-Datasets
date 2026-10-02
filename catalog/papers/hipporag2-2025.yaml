@@ -1,0 +1,8 @@
+id: hipporag2-2025
+name: "From RAG to Memory: Non-Parametric Continual Learning for Large Language Models"
+entity_type: paper
+url: 'https://proceedings.mlr.press/v267/gutierrez25a.html'
+relation: evaluates
+targets: [natural-questions, popqa, musique, 2wikimultihopqa, hotpotqa, narrativeqa]
+sources:
+  - {url: 'https://proceedings.mlr.press/v267/gutierrez25a.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

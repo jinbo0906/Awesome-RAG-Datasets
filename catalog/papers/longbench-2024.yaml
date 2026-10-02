@@ -1,0 +1,8 @@
+id: longbench-2024
+name: "LongBench: A Bilingual, Multitask Benchmark for Long Context Understanding"
+entity_type: paper
+url: 'https://aclanthology.org/2024.acl-long.172/'
+relation: introduces
+targets: [longbench]
+sources:
+  - {url: 'https://aclanthology.org/2024.acl-long.172/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

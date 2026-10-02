@@ -3,10 +3,11 @@
 
 这是一个经过来源核对的检索增强生成（RAG）数据集与评测套件目录。[English](README.md)
 
-目录目前收录 **54 个数据集**和 **6 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
+目录目前收录 **107 个数据集**和 **9 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
 
 ## 寻找合适的 benchmark
 
+- [2025–2026 年论文采用索引与 CCF 口径](guides/recent-paper-index.zh-CN.md) · [English](guides/recent-paper-index.md)
 - [评测集选型指南](guides/selecting-a-benchmark.zh-CN.md) · [English](guides/selecting-a-benchmark.md)
 - [Dataset、benchmark 与 suite 的区别](guides/benchmark-vs-dataset.zh-CN.md) · [English](guides/benchmark-vs-dataset.md)
 - [分类与审查等级](guides/taxonomy.zh-CN.md) · [English](guides/taxonomy.md)
@@ -22,53 +23,87 @@
 
 以下分节按来源表示形式组织；任务类型与应用领域是独立标签。中文卡片可直接切换到英文版。参见 [dataset 与 benchmark 的区别](guides/benchmark-vs-dataset.zh-CN.md)。数据集名称和标注字段保留上游或目录中的技术标识，具体适用边界请打开卡片与分类指南。
 
-分类导航：[Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [跨类别指南](guides/categories/cross-cutting.zh-CN.md)（[English](guides/categories/cross-cutting.md)）。
+分类导航：[Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG](#graph-rag) · [Table RAG](#table-rag) · [跨类别条目](#cross-cutting) · [跨类别指南](guides/categories/cross-cutting.zh-CN.md)（[English](guides/categories/cross-cutting.md)）。
 
 <a name="text-rag"></a>
 
-### Text RAG (27)
+### Text RAG (55)
 
 文本来源的证据检索、推理与有依据的回答。 [分类指南](guides/categories/text-rag.zh-CN.md) · [English](guides/categories/text-rag.md)。
 
 | 数据集 | RAG 角色 | 已发布的真值标注层级 |
 |---|---|---|
 | [2WikiMultiHopQA](dataset-cards/text-rag/2wikimultihopqa.zh-CN.md) | `rag_native` | sentence, graph_path, answer |
+| [AmbigQA / AmbigNQ](dataset-cards/text-rag/ambigqa.zh-CN.md) | `rag_convertible` | answer |
 | [ASQA](dataset-cards/text-rag/asqa.zh-CN.md) | `rag_convertible` | answer |
+| [Bamboogle](dataset-cards/text-rag/bamboogle.zh-CN.md) | `rag_convertible` | answer |
 | [BioASQ Task 14b (2026)](dataset-cards/text-rag/bioasq-14b.zh-CN.md) | `rag_native` | document, span, answer |
 | [BRIGHT](dataset-cards/text-rag/bright.zh-CN.md) | `auxiliary` | document |
 | [CLAP NQ](dataset-cards/text-rag/clapnq.zh-CN.md) | `rag_native` | sentence, answer |
+| [ConfRAG](dataset-cards/text-rag/confrag.zh-CN.md) | `rag_native` | document, fact_citation, answer |
 | [CRAG](dataset-cards/text-rag/crag.zh-CN.md) | `rag_native` | answer |
+| [CRUD-RAG](dataset-cards/text-rag/crud-rag.zh-CN.md) | `rag_native` | answer |
+| [Doc2Dial](dataset-cards/text-rag/doc2dial.zh-CN.md) | `rag_convertible` | document, span, answer |
 | [ELI5](dataset-cards/text-rag/eli5.zh-CN.md) | `rag_convertible` | answer |
 | [FEVER](dataset-cards/text-rag/fever.zh-CN.md) | `rag_native` | sentence, answer |
+| [FRAMES](dataset-cards/text-rag/frames.zh-CN.md) | `rag_native` | document, answer |
 | [FreshQA](dataset-cards/text-rag/freshqa.zh-CN.md) | `rag_convertible` | answer |
+| [GutenQA](dataset-cards/text-rag/gutenqa.zh-CN.md) | `rag_native` | quote, answer |
 | [HiCBench](dataset-cards/text-rag/hicbench.zh-CN.md) | `rag_native` | section, paragraph, sentence, answer |
 | [HotpotQA](dataset-cards/text-rag/hotpotqa.zh-CN.md) | `rag_native` | sentence, answer |
+| [LaRA](dataset-cards/text-rag/lara.zh-CN.md) | `rag_native` | answer |
+| [LegalBench-RAG](dataset-cards/text-rag/legalbench-rag.zh-CN.md) | `auxiliary` | document, span |
+| [LFRQA / RAG-QA Arena](dataset-cards/text-rag/lfrqa.zh-CN.md) | `rag_native` | document, fact_citation, answer |
+| [LongBench v2](dataset-cards/text-rag/longbench-v2.zh-CN.md) | `rag_convertible` | answer |
+| [MedMCQA](dataset-cards/text-rag/medmcqa.zh-CN.md) | `rag_convertible` | answer |
+| [MedQA](dataset-cards/text-rag/medqa.zh-CN.md) | `rag_convertible` | answer |
+| [MIRACL](dataset-cards/text-rag/miracl.zh-CN.md) | `auxiliary` | paragraph |
+| [MKQA](dataset-cards/text-rag/mkqa.zh-CN.md) | `rag_convertible` | answer |
+| [mmRAG (text, tables and knowledge graphs)](dataset-cards/text-rag/mmrag.zh-CN.md) | `rag_native` | document, answer |
 | [MS MARCO Passage Ranking (v1)](dataset-cards/text-rag/msmarco-passage.zh-CN.md) | `auxiliary` | document |
 | [MTRAG (human)](dataset-cards/text-rag/mtrag.zh-CN.md) | `rag_native` | paragraph, answer |
+| [MultiDoc2Dial](dataset-cards/text-rag/multidoc2dial.zh-CN.md) | `rag_native` | document, span, answer |
 | [MultiHop-RAG](dataset-cards/text-rag/multihop-rag.zh-CN.md) | `rag_native` | document, answer |
 | [MuSiQue](dataset-cards/text-rag/musique.zh-CN.md) | `rag_native` | paragraph, answer |
 | [NarrativeQA](dataset-cards/text-rag/narrativeqa.zh-CN.md) | `rag_convertible` | document, answer |
 | [Natural Questions](dataset-cards/text-rag/natural-questions.zh-CN.md) | `rag_convertible` | span, answer |
+| [NoMIRACL](dataset-cards/text-rag/nomiracl.zh-CN.md) | `auxiliary` | paragraph |
+| [OR-QuAC](dataset-cards/text-rag/or-quac.zh-CN.md) | `rag_native` | paragraph, span, answer |
+| [PopQA](dataset-cards/text-rag/popqa.zh-CN.md) | `rag_convertible` | answer |
 | [PUBHEALTH](dataset-cards/text-rag/pubhealth.zh-CN.md) | `rag_convertible` | answer |
+| [PubMedQA](dataset-cards/text-rag/pubmedqa.zh-CN.md) | `rag_convertible` | answer |
 | [QAMPARI](dataset-cards/text-rag/qampari.zh-CN.md) | `rag_convertible` | paragraph, answer |
 | [QASPER](dataset-cards/text-rag/qasper.zh-CN.md) | `rag_native` | paragraph, answer |
+| [QReCC](dataset-cards/text-rag/qrecc.zh-CN.md) | `rag_native` | document, answer |
 | [QuALITY](dataset-cards/text-rag/quality.zh-CN.md) | `rag_convertible` | document, answer |
 | [RAGBench](dataset-cards/text-rag/ragbench.zh-CN.md) | `rag_native` | sentence, fact_citation, answer |
 | [RAGTruth](dataset-cards/text-rag/ragtruth.zh-CN.md) | `auxiliary` | response_span |
+| [RAGuard](dataset-cards/text-rag/raguard.zh-CN.md) | `rag_native` | document, answer |
 | [RealTime QA](dataset-cards/text-rag/realtimeqa.zh-CN.md) | `rag_convertible` | answer |
 | [RGB](dataset-cards/text-rag/rgb.zh-CN.md) | `auxiliary` | answer |
+| [SafeRAG](dataset-cards/text-rag/saferag.zh-CN.md) | `rag_native` | sentence, answer |
 | [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.zh-CN.md) | `auxiliary` | document |
+| [SQuAD 2.0](dataset-cards/text-rag/squad.zh-CN.md) | `rag_convertible` | span, answer |
 | [StrategyQA](dataset-cards/text-rag/strategyqa.zh-CN.md) | `rag_native` | paragraph, answer |
+| [TopiOCQA](dataset-cards/text-rag/topiocqa.zh-CN.md) | `rag_native` | paragraph, answer |
+| [TriviaQA](dataset-cards/text-rag/triviaqa.zh-CN.md) | `rag_convertible` | document, answer |
+| [Wizard of Wikipedia](dataset-cards/text-rag/wizard-of-wikipedia.zh-CN.md) | `rag_native` | sentence, answer |
 
 <a name="multimodal-rag"></a>
 
-### Multimodal RAG (13)
+### Multimodal RAG (30)
 
 跨模态的视觉与文档证据；视频候选仍在核查中。 [分类指南](guides/categories/multimodal-rag.zh-CN.md) · [English](guides/categories/multimodal-rag.md)。
 
 | 数据集 | RAG 角色 | 已发布的真值标注层级 |
 |---|---|---|
+| [A-OKVQA](dataset-cards/multimodal-rag/a-okvqa.zh-CN.md) | `rag_convertible` | answer |
+| [ArXivQA](dataset-cards/multimodal-rag/arxivqa.zh-CN.md) | `rag_convertible` | answer |
 | [ChartQA](dataset-cards/multimodal-rag/chartqa.zh-CN.md) | `rag_convertible` | bbox, answer |
+| [DocVQA (single-page)](dataset-cards/multimodal-rag/docvqa.zh-CN.md) | `rag_convertible` | answer |
+| [DUDE](dataset-cards/multimodal-rag/dude.zh-CN.md) | `rag_convertible` | page, bbox, answer |
+| [Encyclopedic-VQA (E-VQA)](dataset-cards/multimodal-rag/encyclopedic-vqa.zh-CN.md) | `rag_native` | document, section, quote, answer |
+| [InfographicVQA](dataset-cards/multimodal-rag/infographicvqa.zh-CN.md) | `rag_convertible` | answer |
 | [InfoSeek](dataset-cards/multimodal-rag/infoseek.zh-CN.md) | `rag_convertible` | answer |
 | [M3DocVQA](dataset-cards/multimodal-rag/m3docvqa.zh-CN.md) | `rag_native` | page, answer |
 | [MAVIS](dataset-cards/multimodal-rag/mavis.zh-CN.md) | `rag_native` | document, fact_citation, answer |
@@ -76,52 +111,83 @@
 | [MMDocRAG](dataset-cards/multimodal-rag/mmdocrag.zh-CN.md) | `rag_native` | page, quote, answer |
 | [MMLongBench-Doc](dataset-cards/multimodal-rag/mmlongbench-doc.zh-CN.md) | `rag_convertible` | page, answer |
 | [MP-DocVQA](dataset-cards/multimodal-rag/mp-docvqa.zh-CN.md) | `rag_convertible` | page, answer |
+| [MRAG-Bench](dataset-cards/multimodal-rag/mrag-bench.zh-CN.md) | `rag_native` | document, answer |
 | [MultiModalQA](dataset-cards/multimodal-rag/multimodalqa.zh-CN.md) | `rag_native` | document, table, answer |
+| [M²RAG](dataset-cards/multimodal-rag/m2rag.zh-CN.md) | `rag_native` | answer |
+| [OHRBench](dataset-cards/multimodal-rag/ohrbench.zh-CN.md) | `rag_native` | page, quote, answer |
+| [OK-VQA](dataset-cards/multimodal-rag/ok-vqa.zh-CN.md) | `rag_convertible` | answer |
+| [OpenDocVQA](dataset-cards/multimodal-rag/opendocvqa.zh-CN.md) | `rag_native` | page, answer |
+| [PlotQA](dataset-cards/multimodal-rag/plotqa.zh-CN.md) | `rag_convertible` | bbox, answer |
+| [RAG-IGBench](dataset-cards/multimodal-rag/rag-igbench.zh-CN.md) | `rag_native` | answer |
+| [REAL-MM-RAG](dataset-cards/multimodal-rag/real-mm-rag.zh-CN.md) | `auxiliary` | page, answer |
 | [SlideVQA](dataset-cards/multimodal-rag/slidevqa.zh-CN.md) | `rag_native` | page, bbox, answer |
+| [TAT-DQA](dataset-cards/multimodal-rag/tat-dqa.zh-CN.md) | `rag_convertible` | span, answer |
+| [TextVQA](dataset-cards/multimodal-rag/textvqa.zh-CN.md) | `rag_convertible` | answer |
 | [ViDoSeek](dataset-cards/multimodal-rag/vidoseek.zh-CN.md) | `rag_native` | page, answer |
+| [Visual-RAG](dataset-cards/multimodal-rag/visual-rag.zh-CN.md) | `rag_native` | document, answer |
 | [WebQA](dataset-cards/multimodal-rag/webqa.zh-CN.md) | `rag_native` | document, answer |
 | [XL-DocBench](dataset-cards/multimodal-rag/xl-docbench.zh-CN.md) | `rag_native` | page, quote, answer |
 
 <a name="graph-rag"></a>
 
-### Graph RAG (4)
+### Graph RAG (8)
 
 图结构检索与知识库推理；使用图并不意味着具有路径真值。 [分类指南](guides/categories/graph-rag.zh-CN.md) · [English](guides/categories/graph-rag.md)。
 
 | 数据集 | RAG 角色 | 已发布的真值标注层级 |
 |---|---|---|
+| [ComplexWebQuestions 1.1](dataset-cards/graph-rag/complexwebquestions.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [GrailQA](dataset-cards/graph-rag/grailqa.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [GraphRAG-Bench](dataset-cards/graph-rag/graphrag-bench.zh-CN.md) | `rag_native` | answer |
+| [KQA Pro](dataset-cards/graph-rag/kqa-pro.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [MetaQA](dataset-cards/graph-rag/metaqa.zh-CN.md) | `rag_convertible` | answer |
+| [MINTQA](dataset-cards/graph-rag/mintqa.zh-CN.md) | `rag_native` | graph_path, answer |
+| [OpenDialKG](dataset-cards/graph-rag/opendialkg.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [WebQuestionsSP](dataset-cards/graph-rag/webqsp.zh-CN.md) | `rag_convertible` | graph_path, answer |
 
 <a name="table-rag"></a>
 
-### Table RAG (10)
+### Table RAG (13)
 
 结构化表格及其与文本、页面和答案推导的关联。 [分类指南](guides/categories/table-rag.zh-CN.md) · [English](guides/categories/table-rag.md)。
 
 | 数据集 | RAG 角色 | 已发布的真值标注层级 |
 |---|---|---|
+| [ConvFinQA](dataset-cards/table-rag/convfinqa.zh-CN.md) | `rag_convertible` | sentence, table, answer |
 | [FEVEROUS](dataset-cards/table-rag/feverous.zh-CN.md) | `rag_native` | sentence, table_cell, answer |
+| [FinQA](dataset-cards/table-rag/finqa.zh-CN.md) | `rag_convertible` | sentence, table, answer |
 | [HeteQA](dataset-cards/table-rag/heteqa.zh-CN.md) | `rag_native` | table, paragraph, answer |
 | [HybridQA](dataset-cards/table-rag/hybridqa.zh-CN.md) | `rag_native` | table, paragraph, answer |
 | [OTT-QA](dataset-cards/table-rag/ott-qa.zh-CN.md) | `rag_native` | table, paragraph, answer |
 | [Sequential Question Answering (SQA)](dataset-cards/table-rag/sqa.zh-CN.md) | `rag_convertible` | table_cell, answer |
+| [SSRB](dataset-cards/table-rag/ssrb.zh-CN.md) | `auxiliary` | document |
 | [TabFact](dataset-cards/table-rag/tabfact.zh-CN.md) | `rag_convertible` | table, answer |
 | [TAT-QA](dataset-cards/table-rag/tat-qa.zh-CN.md) | `rag_convertible` | table_cell, span, answer |
 | [ToTTo](dataset-cards/table-rag/totto.zh-CN.md) | `auxiliary` | table_cell, answer |
 | [T²-RAGBench](dataset-cards/table-rag/t2-ragbench.zh-CN.md) | `rag_native` | answer |
 | [WikiTableQuestions](dataset-cards/table-rag/wikitablequestions.zh-CN.md) | `rag_convertible` | table, answer |
 
+<a name="cross-cutting"></a>
+
+### Cross-cutting (1)
+
+无法归入单一来源表示形式的评测数据。 [分类指南](guides/categories/cross-cutting.zh-CN.md) · [English](guides/categories/cross-cutting.md)。
+
+| 数据集 | RAG 角色 | 已发布的真值标注层级 |
+|---|---|---|
+| [FinChain](dataset-cards/cross-cutting/finchain.zh-CN.md) | `auxiliary` | answer |
+
 
 ## 评测套件
 
 - [ALCE](suite-cards/alce.zh-CN.md) — 在 ASQA、QAMPARI 和 ELI5 上评测长篇回答的引用与归因质量。
 - [BEIR](suite-cards/beir.zh-CN.md) — 异构零样本文本检索套件，各子数据集分别提供语料、查询与相关性标注。
+- [ChatRAG Bench](suite-cards/chatrag-bench.zh-CN.md) — 由十个数据集改造的会话式文档问答套件，覆盖检索、表格、算术推理和不可回答问题。
 - [KILT](suite-cards/kilt.zh-CN.md) — 将知识密集型语言任务统一到固定维基百科快照，并提供来源标注的评测套件。
+- [LongBench (v1)](suite-cards/longbench.zh-CN.md) — 包含 21 项任务的双语长上下文套件，覆盖问答、摘要、少样本学习、合成检索与代码补全。
 - [M-BEIR](suite-cards/m-beir.zh-CN.md) — 覆盖文本与图像输入输出组合的指令式多模态检索评测套件。
 - [M2KR](suite-cards/m2kr.zh-CN.md) — 由原始数据集转换而成的多任务多模态知识检索评测套件。
+- [MIRAGE (medical RAG)](suite-cards/mirage.zh-CN.md) — 汇集五个医学问答数据集的 7,663 个问题，以零样本和仅问题检索设置评测医学 RAG。
 - [ViDoRe](suite-cards/vidore.zh-CN.md) — 面向文本查询到文档图像检索的视觉文档检索评测套件系列。
 
 ## 重新生成与验证

@@ -1,0 +1,8 @@
+id: uniconv-2025
+name: "UniConv: Unifying Retrieval and Response Generation for Large Language Models in Conversations"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.344/'
+relation: evaluates
+targets: [qrecc, topiocqa, or-quac]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.344/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

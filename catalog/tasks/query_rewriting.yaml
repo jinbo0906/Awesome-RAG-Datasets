@@ -1,0 +1,6 @@
+id: query_rewriting
+name: Conversational query rewriting
+entity_type: task
+summary: Rewrite a context-dependent conversational question into a standalone retrieval query while preserving the intended meaning.
+sources:
+  - {url: 'https://github.com/apple/ml-qrecc', type: repository, fields: [summary], checked_on: '2026-10-02'}

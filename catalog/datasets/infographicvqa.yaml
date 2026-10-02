@@ -1,0 +1,49 @@
+id: infographicvqa
+name: InfographicVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Visual questions requiring joint reading of infographic text, graphics, layout and numerical information.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, page_retrieval]
+  modalities: [text, image, chart, layout]
+  domains: [infographics]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Human-authored QA pairs are linked to web-sourced infographic images and provided OCR.
+    VisRAG and VDocRAG filter questions and pool images for retrieval; those released subsets do not replace the original dataset.
+  size: 30,035 questions over 5,485 images.
+  splits: 23,946 train, 2,801 validation and 3,288 test questions.
+  format: Infographic images, OCR and QA annotations.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Reference answers and image associations are provided. OCR layout is input data,
+    not a universal human-labeled answer box or native open-domain retrieval relevance set.
+  alternatives: explicit
+evaluation:
+  official_metrics: [ANLS]
+  protocol: >-
+    Use original challenge splits for native QA. For VisRAG or OpenDocVQA, state the filtered
+    query set, candidate image pool and retrieval metric before comparing scores.
+  evaluator: 'https://rrc.cvc.uab.es/?ch=17'
+access:
+  official: 'https://site.docvqa.org/datasets/infographicvqa'
+  paper: 'https://arxiv.org/abs/2104.12756'
+  data: 'https://rrc.cvc.uab.es/?ch=17&com=downloads'
+  license: unknown
+  gated: true
+use:
+  best_for: [Reading infographics with spatial and numeric reasoning, Comparing visual retrieval with OCR-based retrieval adaptations]
+  caveats: [The original task supplies the relevant image, Original and filtered RAG splits have substantially different sizes]
+sources:
+  - {url: 'https://site.docvqa.org/datasets/infographicvqa', type: official, fields: [summary, data.description, access.data], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/abs/2104.12756', type: paper, fields: [classification.modalities, data.size, data.splits, ground_truth.description, evaluation.official_metrics], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2504.09795', type: paper, fields: [data.description, evaluation.protocol, use.caveats], checked_on: '2026-10-02'}

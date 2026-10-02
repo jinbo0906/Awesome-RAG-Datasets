@@ -1,0 +1,8 @@
+id: s2g-rag-2026
+name: "S2G-RAG: Structured Sufficiency and Gap Judging for Iterative Retrieval-Augmented QA"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.1185/'
+relation: evaluates
+targets: [triviaqa, hotpotqa, 2wikimultihopqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1185/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

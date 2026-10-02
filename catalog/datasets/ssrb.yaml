@@ -1,0 +1,22 @@
+id: ssrb
+name: SSRB
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Semi-structured retrieval benchmark combining exact field conditions with semantic requirements.
+classification: {rag_role: auxiliary, primary_category: table_rag, tasks: [evidence_retrieval, reasoning_retrieval], modalities: [text, table], domains: [academic, finance, resume, hr, llm, product], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: not_provided
+  description: The release separates structured-object corpus files, test queries and positive query-object qrels; nested or missing fields are part of the task.
+  size: About 14M objects across 99 schemas and six domains; 8,485 test queries.
+  format: JSONL
+ground_truth: {levels: [document], provenance: synthetic, description: 'LLMs generate objects and queries and judge pooled retrieval candidates; qrels identify relevant whole objects rather than cell-level evidence or generated answers.', alternatives: explicit}
+evaluation: {official_metrics: [recall_at_20, ndcg_at_10], protocol: 'Report in-schema and in-domain cross-schema retrieval separately, with macro averages across domains. Keep candidate pools and serialization fixed.', evaluator: 'https://github.com/vec-ai/struct-ir/blob/main/evaluate.py'}
+access: {official: 'https://github.com/vec-ai/struct-ir', paper: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/631bbd89466337712564872840a401be-Abstract-Datasets_and_Benchmarks_Track.html', data: 'https://huggingface.co/datasets/vec-ai/struct-ir', license: Apache-2.0}
+use: {best_for: [Retrieval over heterogeneous structured records, Joint numerical filters and semantic constraints], caveats: [Synthetic pooled qrels are not exhaustive human relevance judgments, This is retrieval evaluation; answer generation requires a separate protocol]}
+sources:
+  - {url: 'https://huggingface.co/datasets/vec-ai/struct-ir', type: dataset_card, fields: [data, ground_truth.levels, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/vec-ai/struct-ir', type: repository, fields: [summary, classification, ground_truth, evaluation.evaluator, use], checked_on: '2026-10-02'}
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/file/631bbd89466337712564872840a401be-Paper-Datasets_and_Benchmarks_Track.pdf', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, data.size], checked_on: '2026-10-02'}

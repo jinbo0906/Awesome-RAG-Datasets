@@ -1,0 +1,31 @@
+id: gutenqa
+name: GutenQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Narrative-book QA with answer-containing substrings and multiple released segmentation formats for chunking and retrieval comparison.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [long_context_qa, evidence_retrieval], modalities: [text], domains: [books], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Project Gutenberg books are released in paragraph, recursive, semantic, proposition and LumberChunker formats. Question records include book identity, answers and a Chunk Must Contain substring for matching evidence across segmentations.
+  size: 3,000 QA pairs from 100 narrative books, with 30 QA pairs per book.
+  format: Parquet
+ground_truth:
+  levels: [quote, answer]
+  provenance: synthetic
+  description: The answer-containing substring anchors evidence within a book. Released chunk IDs identify a particular segmentation, not independently annotated optimal human cut points.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [dcg_at_k, recall_at_k]
+  protocol: Use book-level retrieval pools and the released substring matching procedure; report DCG and Recall at the selected k (the paper uses 1/2/5/10/20). The paper's answer-generation experiment uses a separate four-autobiography, 280-question evaluation, not the released 100-book/3,000-question GutenQA set. A new generation protocol must be documented separately. Fix the paragraph corpus and context budget when comparing chunkers.
+  evaluator: https://github.com/joaodsmarques/LumberChunker
+access: {official: 'https://github.com/joaodsmarques/LumberChunker', paper: 'https://aclanthology.org/2024.findings-emnlp.377/', data: 'https://huggingface.co/datasets/LumberChunker/GutenQA', license: 'MIT dataset card; underlying books retain Project Gutenberg terms'}
+use:
+  best_for: [Comparing segmentation with a stable answer substring anchor, In-document narrative evidence retrieval]
+  caveats: [Construction using LumberChunker can favor its segmentation distribution, Sparse answer-containing evidence does not measure all semantic boundary quality]
+sources:
+  - {url: 'https://github.com/joaodsmarques/LumberChunker', type: repository, fields: [data.description, data.size, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2024.findings-emnlp.377.pdf', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, ground_truth.provenance], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/LumberChunker/GutenQA', type: dataset_card, fields: [access.license, access.data], checked_on: '2026-10-02'}

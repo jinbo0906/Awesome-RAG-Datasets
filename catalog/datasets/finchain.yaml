@@ -1,0 +1,21 @@
+id: finchain
+name: FinChain
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Auxiliary financial reasoning benchmark with executable symbolic templates and verifiable intermediate calculations.
+classification: {rag_role: auxiliary, primary_category: cross_cutting, tasks: [single_hop_qa], modalities: [text, equation], domains: [finance], languages: [en]}
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: Released Python templates generate financial problems, gold intermediate values and executable traces; no document retrieval corpus or relevance labels are supplied.
+  size: 58 topics across 12 domains; five templates per topic and ten seeds yield 2,900 paper evaluation cases.
+  format: Executable Python templates and generated problem/trace records
+ground_truth: {levels: [answer], provenance: synthetic, description: 'Executable symbolic templates define final values and intermediate calculations; these are reasoning targets rather than source-document citations.', alternatives: not_documented}
+evaluation: {official_metrics: [chaineval, final_answer_correctness, rouge_2, rouge_l, bertscore], protocol: 'Use fixed templates, seeds and step extraction; the paper selects DTWNormGate with final-answer correctness and numerical tolerance 0.05. This is a reasoning component test.', evaluator: 'https://github.com/mbzuai-nlp/finchain/tree/main/chaineval'}
+access: {official: 'https://github.com/mbzuai-nlp/finchain', paper: 'https://aclanthology.org/2026.acl-long.662/', data: 'https://github.com/mbzuai-nlp/finchain/tree/main/data/templates', license: 'Apache-2.0 for original code and executable templates'}
+use: {best_for: [Verifying numerical reasoning after retrieval, Separating final-answer correctness from intermediate calculation quality], caveats: [No native RAG retrieval task is released, New template seeds do not alone eliminate model exposure to problem patterns]}
+sources:
+  - {url: 'https://github.com/mbzuai-nlp/finchain', type: repository, fields: [summary, classification, data, ground_truth, access.license, evaluation.evaluator, use], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2026.acl-long.662.pdf', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, data.size], checked_on: '2026-10-02'}

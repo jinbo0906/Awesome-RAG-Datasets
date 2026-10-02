@@ -1,0 +1,28 @@
+id: mkqa
+name: MKQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Passage-independent factual QA annotations aligned across 26 languages from the same Natural Questions queries.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [single_hop_qa, rag_robustness], modalities: [text], domains: [open-domain], languages: [ar, da, de, en, es, fi, fr, he, hu, it, ja, ko, km, ms, nl, 'no', pl, pt, ru, sv, th, tr, vi, zh_cn, zh_hk, zh_tw]}
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: New passage-independent answers are collected for sampled Natural Questions queries, then questions and answers are human-translated. Text, entity, binary and unanswerable labels are supplied without a native retrieval corpus.
+  size: 10K aligned queries across 26 languages, yielding 260K language-specific QA pairs.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Typed answers include acceptable aliases and, where possible, Wikidata QIDs. These identifiers enable answer alignment but are not gold supporting documents or spans.
+  alternatives: explicit
+evaluation:
+  official_metrics: [exact_match, token_f1]
+  protocol: Use the official language-specific normalization and no-answer thresholds. The official macro-average requires all 26 languages; disclose answerability filters and any externally chosen RAG corpus.
+  evaluator: 'https://github.com/apple-aiml-research/ml-mkqa/blob/main/mkqa_eval.py'
+access: {official: 'https://github.com/apple-aiml-research/ml-mkqa', paper: 'https://aclanthology.org/2021.tacl-1.82/', license: CC-BY-SA-3.0}
+use:
+  best_for: [Aligned multilingual answer quality, Cross-language retrieval conversions]
+  caveats: [No native passage-relevance gold is supplied, Answerable-only subsets and partial-language averages change the protocol]
+sources:
+  - {url: 'https://github.com/apple-aiml-research/ml-mkqa', type: repository, fields: [summary, data.description, data.size, ground_truth.description, evaluation.official_metrics, evaluation.protocol, access.license], checked_on: '2026-10-02'}

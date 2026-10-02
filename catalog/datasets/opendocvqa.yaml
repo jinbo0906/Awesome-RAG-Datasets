@@ -1,0 +1,50 @@
+id: opendocvqa
+name: OpenDocVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: VDocRAG's released open-domain document-image QA collection with pooled pages and relevant-image identifiers.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [page_retrieval, visual_qa, multi_hop_qa]
+  modalities: [text, image, table, chart, layout]
+  domains: [documents]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Nine filtered collections combine DocVQA, InfographicVQA, VisualMRC, ChartQA, OpenWikiTable,
+    DUDE, MPMQA, SlideVQA and new MHDocVQA. Official QA and corpus repositories are released separately.
+  size: Approximately 43,000 QA pairs over 200,000 document images, including distractor pages.
+  splits: Source-specific train/development and test configurations; ChartQA and SlideVQA are zero-shot test sources.
+  format: Hugging Face QA records with query, answers and relevant_doc_ids; separate image corpus.
+ground_truth:
+  levels: [page, answer]
+  provenance: mixed
+  description: >-
+    relevant_doc_ids identify relevant document images, including multiple images for MHDocVQA.
+    Human source QA and newly constructed multi-hop questions coexist; uniform region, table-cell and minimal-span gold is not claimed.
+  alternatives: explicit
+evaluation:
+  official_metrics: [nDCG@5, ANLS, relaxed_accuracy, F1]
+  protocol: >-
+    Distinguish source-specific single-pool and unified all-pool retrieval. Use nDCG@5 for retrieval
+    and original source QA metrics; VDocRAG's reported generation uses the top three retrieved images.
+  evaluator: 'https://github.com/nttmdlab-nlp/VDocRAG/tree/main/src/vdocrag/utils'
+access:
+  official: 'https://vdocrag.github.io/'
+  paper: 'https://arxiv.org/abs/2504.09795'
+  data: 'https://huggingface.co/datasets/NTT-hil-insight/OpenDocVQA'
+  license: Per-source licenses; MHDocVQA/VisualMRC/SlideVQA QA use the NTT evaluation license.
+  gated: true
+use:
+  best_for: [Open-domain page retrieval followed by visual answering, Comparing separate source pools with a unified image corpus]
+  caveats: [The corpus requires accepting terms and sharing contact information, Filtered source QA and new MHDocVQA must retain their dataset identities]
+sources:
+  - {url: 'https://vdocrag.github.io/', type: official, fields: [summary, data.size, use.best_for], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/NTT-hil-insight/OpenDocVQA', type: dataset_card, fields: [data.description, data.splits, data.format, ground_truth.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/NTT-hil-insight/OpenDocVQA-Corpus', type: dataset_card, fields: [access.gated, access.license, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2504.09795', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, ground_truth.provenance], checked_on: '2026-10-02'}

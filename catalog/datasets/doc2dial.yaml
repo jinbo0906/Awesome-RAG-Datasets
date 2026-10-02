@@ -1,0 +1,28 @@
+id: doc2dial
+name: Doc2Dial
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Goal-oriented information-seeking dialogues with document span grounding and agent response annotations.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [conversational_qa, evidence_retrieval], modalities: [text], domains: [government, public-services], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Document files provide text, HTML, span offsets and section structure. Dialogue files link user and agent turns to a document and grounding references; later releases differ from the original paper version.
+ground_truth:
+  levels: [document, span, answer]
+  provenance: human
+  description: Human utterances reference span IDs in associated documents. Grounding spans, conditional/solution annotations and contextual titles have different roles; structural source spans are not universal optimal chunk boundaries.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [span_exact_match, span_token_f1, mapped_span_exact_match, BLEU-1, BLEU-2, BLEU-3, BLEU-4]
+  protocol: Report document retrieval, grounding prediction and response generation as separate tasks. Preserve span offsets, turn history, release version and inclusion of irrelevant turns; the original response task supplies document context.
+access: {official: 'https://doc2dial.github.io/data.html', paper: 'https://aclanthology.org/2020.emnlp-main.652/', license: unknown}
+use:
+  best_for: [Document-grounded service dialogues, Tracking span evidence through contextual follow-ups]
+  caveats: [Release versions and irrelevant-turn settings change the evaluation, A supplied-document response experiment does not measure open-corpus retrieval]
+sources:
+  - {url: 'https://doc2dial.github.io/data.html', type: official, fields: [summary, data.description, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://doc2dial.github.io/README.html', type: official, fields: [ground_truth.levels, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2020.emnlp-main.652.pdf', type: paper, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}

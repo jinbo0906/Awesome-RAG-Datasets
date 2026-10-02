@@ -1,0 +1,36 @@
+id: triviaqa
+name: TriviaQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Trivia questions with answer aliases and independently collected Wikipedia and web evidence documents.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [single_hop_qa, evidence_retrieval], modalities: [text], domains: [wikipedia, web], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The reading-comprehension release supplies question-associated evidence documents; the unfiltered
+    release retains questions whose retrieved documents may not contain an answer. A shared open-domain
+    retrieval index is a separate experimental choice.
+  size: Over 650K question-answer-evidence triples; about 95K QA pairs in the reading-comprehension release and 110K in the unfiltered release.
+ground_truth:
+  levels: [document, answer]
+  provenance: distant
+  description: >-
+    Answer aliases support answer scoring. Evidence documents are collected independently and largely
+    associated through distant supervision; their inclusion does not establish human-annotated support
+    spans or an exhaustive relevance set.
+  alternatives: explicit
+evaluation:
+  official_metrics: [exact_match, token_f1]
+  protocol: Keep Wikipedia/web, filtered/unfiltered and verified-subset settings distinct; score against the official answer aliases.
+  evaluator: 'https://github.com/mandarjoshi90/triviaqa/blob/master/evaluation/triviaqa_evaluation.py'
+access: {official: 'https://nlp.cs.washington.edu/triviaqa/', paper: 'https://aclanthology.org/P17-1147/', license: Apache-2.0}
+use:
+  best_for: [Open-domain factual QA, Comparing answer-alias scoring with retrieval coverage]
+  caveats: [Question-associated evidence is not a ready-made shared retrieval index, Distant evidence labels are not gold chunk boundaries]
+sources:
+  - {url: 'https://nlp.cs.washington.edu/triviaqa/', type: official, fields: [summary, data.description, data.size, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/mandarjoshi90/triviaqa', type: repository, fields: [access.license, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/mandarjoshi90/triviaqa/blob/master/evaluation/triviaqa_evaluation.py', type: repository, fields: [evaluation.official_metrics, ground_truth.alternatives], checked_on: '2026-10-02'}

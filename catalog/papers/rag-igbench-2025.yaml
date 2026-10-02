@@ -1,0 +1,8 @@
+id: rag-igbench-2025
+name: "RAG-IGBench: Innovative Evaluation for RAG-based Interleaved Generation in Open-domain Question Answering"
+entity_type: paper
+url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/b0a4b3e384b4554e65a47ad1f6b0310a-Abstract-Datasets_and_Benchmarks_Track.html'
+relation: introduces
+targets: [rag-igbench]
+sources:
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/b0a4b3e384b4554e65a47ad1f6b0310a-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

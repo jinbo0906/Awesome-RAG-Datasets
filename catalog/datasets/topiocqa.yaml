@@ -1,0 +1,30 @@
+id: topiocqa
+name: TopiOCQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Open-domain conversational QA with topic switching, free-form answers and gold Wikipedia passages.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [conversational_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Author resources supply conversations, gold question-passage pairs, a Wikipedia corpus and its segmented retrieval version. Answers may be abstractive and absent as literal substrings of the supporting passage.
+  size: The released retrieval setup uses approximately 25.7M Wikipedia passages.
+ground_truth:
+  levels: [paragraph, answer]
+  provenance: human
+  description: Gold passages ground answers, including additional human answers used by the reader evaluator. Passage identities support retrieval scoring without assuming that an answer-string match identifies evidence.
+  alternatives: explicit
+evaluation:
+  official_metrics: [Hits@k, exact_match, token_f1]
+  protocol: Score retrieval against the supplied gold passages and generation with the official CoQA-style multi-reference evaluator. Retain conversation history and topic switches; label any externally generated question rewrites.
+  evaluator: 'https://github.com/McGill-NLP/topiocqa'
+access: {official: 'https://mcgill-nlp.github.io/topiocqa/', paper: 'https://arxiv.org/abs/2110.00768', data: 'https://github.com/McGill-NLP/topiocqa', license: CC-BY-NC-SA-4.0}
+use:
+  best_for: [Topic switches in conversational retrieval, Abstractive answers grounded in retrieved passages]
+  caveats: [Answer-string containment is insufficient for retrieval scoring, Question rewrites in model resources should not be assumed to be original human annotations]
+sources:
+  - {url: 'https://github.com/McGill-NLP/topiocqa', type: repository, fields: [summary, data.description, data.size, ground_truth.description, evaluation.protocol, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/McGill-NLP/topiocqa/blob/main/evaluate_retriever.py', type: repository, fields: [evaluation.official_metrics], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/McGill-NLP/topiocqa/blob/main/evaluate_reader.py', type: repository, fields: [evaluation.official_metrics, ground_truth.alternatives], checked_on: '2026-10-02'}

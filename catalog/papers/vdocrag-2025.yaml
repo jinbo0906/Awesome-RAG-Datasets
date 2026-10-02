@@ -1,0 +1,8 @@
+id: vdocrag-2025
+name: "VDocRAG: Retrieval-Augmented Generation over Visually-Rich Documents"
+entity_type: paper
+url: 'https://openaccess.thecvf.com/content/CVPR2025/papers/Tanaka_VDocRAG_Retrieval-Augmented_Generation_over_Visually-Rich_Documents_CVPR_2025_paper.pdf'
+relation: introduces
+targets: [opendocvqa]
+sources:
+  - {url: 'https://openaccess.thecvf.com/content/CVPR2025/papers/Tanaka_VDocRAG_Retrieval-Augmented_Generation_over_Visually-Rich_Documents_CVPR_2025_paper.pdf', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

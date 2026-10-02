@@ -1,0 +1,8 @@
+id: lara-2025
+name: "LaRA: Benchmarking Retrieval-Augmented Generation and Long-Context LLMs – No Silver Bullet for LC or RAG Routing"
+entity_type: paper
+url: 'https://proceedings.mlr.press/v267/li25dv.html'
+relation: introduces
+targets: [lara]
+sources:
+  - {url: 'https://proceedings.mlr.press/v267/li25dv.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

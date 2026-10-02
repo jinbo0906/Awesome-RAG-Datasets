@@ -1,4 +1,446 @@
 datasets:
+  triviaqa:
+    summary: 来自趣味问答的问题，附答案别名以及独立收集的维基百科与网页证据文档。
+    data_description: 阅读理解版本提供与问题关联的证据文档；未过滤版本保留检索文档可能不含答案的问题。若进行开放域检索，还需另行定义共享索引。
+    size: 超过 65 万个问题—答案—证据三元组；阅读理解版本约有 9.5 万个问答对，未过滤版本有 11 万个。
+    ground_truth_description: 答案别名用于回答评分。证据文档独立收集，主要通过远程监督建立关联；文档被纳入并不意味着具有人工支持片段或完整相关性标注。
+    evaluation_protocol: 区分维基百科与网页、过滤与未过滤、人工核验子集等设置；使用官方答案别名评分。
+    best_for: [开放域事实问答, 对照答案别名评分与检索覆盖率]
+    caveats: [随题提供的证据文档不是现成的共享检索索引, 远程监督证据标签不是金标准分块边界]
+  popqa:
+    summary: 以实体为中心的事实问答，附答案别名、Wikidata 标识与维基百科流行度信息。
+    data_description: 问题由实体关系构造；发布数据包括别名和流行度信息，检索实验所需的段落或检索结果另行获取。
+    size: 约 1.4 万个问答对。
+    splits: 作者在 Hugging Face 上发布的是 test 划分；后续训练集或长尾子集属于单独的实验选择。
+    ground_truth_description: Wikidata 关系与客体别名定义可接受答案；实体标识和页面浏览量不提供正文支持段落标注。
+    evaluation_protocol: 原始代码在生成文本包含可接受答案别名及其支持的大小写形式时判为正确，并非严格的归一化精确匹配。报告流行度筛选规则及外部语料快照。
+    best_for: [长尾事实知识, 比较自适应检索与参数记忆回答]
+    caveats: [按流行度筛选的子集不等同于完整数据集, 本条目不宣称原生数据具有段落相关性或支持片段标注]
+  ambigqa:
+    summary: 为有歧义的 Natural Questions 问题标注多种解释、可接受答案和消歧后的问题。
+    data_description: 核心 AmbigNQ 标注提供问题及可接受的单答案或多问答输出。作者另行提供维基百科数据库和后续发布的半预言机证据文章包；使用时应明确标识。
+    splits: 训练和开发标注公开；测试评测遵循上游提交流程。
+    ground_truth_description: 多组可接受输出包含答案别名和问题改写。标注者浏览的页面标题与搜索查询是不完整的辅助信息，不是完整检索真值，也不能作为测试输入。
+    evaluation_protocol: 使用官方评测器分别衡量答案覆盖和问题消歧；标识使用半预言机证据的实验，并保留可替代的标注输出。
+    best_for: [覆盖同一问题的多种有效解释, 区分答案覆盖与消歧质量]
+    caveats: [半预言机证据会改变检索任务, 标注过程的辅助信息不能作为系统输入]
+  squad:
+    summary: 基于维基百科段落的阅读理解，结合抽取式问题和对抗构造的不可回答问题。
+    data_description: 每个样本提供阅读段落和问题；可回答问题有答案片段，不可回答问题要求弃答。本条目使用 2.0 版本，不为 1.1 版本另建条目。
+    size: 2.0 版本将约 10 万个 1.1 版本问题与超过 5 万个对抗构造的不可回答问题结合。
+    splits: 训练集和开发集公开；官方测试数据不公开。
+    ground_truth_description: 众包标注者提供答案文本及其在给定段落中的字符位置；空答案表示在该段落中不可回答，并非在所有外部文档中都不可回答。
+    evaluation_protocol: 使用 2.0 版本评测器及其无答案处理规则。改造成 RAG 时需定义检索池并保留来源偏移；随题提供的段落不等同于开放语料检索结果。
+    best_for: [从检索上下文中抽取答案, 按上下文判断是否应当弃答]
+    caveats: [原生评测直接提供段落, SQuAD 1.1 与 2.0 的可回答性设置不同]
+  bamboogle:
+    summary: 人工编写的两跳问题，要求组合维基百科中的事实，并使直接搜索摘要难以正确回答。
+    data_description: 作者发布问题和答案；维基百科与实时搜索属于外部资源。发布包没有固定检索集合或逐跳证据标注。
+    size: 125 个人工编写的两跳问题。
+    ground_truth_description: 作者提供组合式问题的最终答案。两跳事实可在维基百科找到，并不意味着已提供段落标识、支持句或参考推理轨迹。
+    evaluation_protocol: 抽取最终答案并评分，记录搜索或语料快照。原始实验使用完整的小规模 benchmark，且未在其上调优提示；后续子集应单独报告。
+    best_for: [迭代搜索与问题分解, 形式多样的两跳事实问答]
+    caveats: [样本较少限制了统计精度, 原始搜索摘要失败条件会随时间变化]
+  mkqa:
+    summary: 将同一批 Natural Questions 查询对齐到 26 种语言的事实问答，答案标注不依赖特定段落。
+    data_description: 对抽样的 Natural Questions 查询重新收集不依赖段落的答案，再由人工翻译问题与答案。提供文本、实体、二元答案及不可回答标签，没有原生检索语料。
+    size: 1 万个对齐查询覆盖 26 种语言，共形成 26 万个语言特定问答对。
+    ground_truth_description: 类型化答案包含可接受别名，部分答案附 Wikidata QID。这些标识用于跨语言答案对齐，不是金标准支持文档或片段。
+    evaluation_protocol: 使用官方的语言特定归一化与无答案阈值。官方宏平均需要全部 26 种语言；披露可回答性筛选条件和另选的 RAG 语料。
+    best_for: [比较对齐的多语言答案质量, 改造成跨语言检索任务]
+    caveats: [不提供原生段落相关性真值, 仅保留可回答问题或只对部分语言求平均会改变协议]
+  miracl:
+    summary: 覆盖 18 种语言的同语言维基百科检索，由母语标注者提供段落相关性判断。
+    data_description: 作者资源提供各语言的维基百科段落语料、查询和正负相关性标注。原生查询与语料使用同一种语言，不自动构成跨语言检索或生成回答评测。
+    size: 论文报告了约 7.8 万个查询和超过 72.6 万条相关性判断，覆盖 18 种语言。
+    splits: 各语言划分不同；作为额外评测语言加入的德语与约鲁巴语没有训练数据。
+    ground_truth_description: 母语标注者判断检索段落的相关性。段落保留文章标题及文章、段落标识；qrels 不提供参考答案，也不标注重新分块后的最佳边界。
+    evaluation_protocol: 保留各语言的语料版本、划分和段落标识，按官方 qrels 评分。在称为端到端 RAG 实验之前，另行定义回答评测协议。
+    best_for:
+    - 多语言检索组件评测
+    - 比较高资源与低资源语言的检索
+    caveats:
+    - 原生任务没有生成回答参考答案
+    - 查询与 qrels 的许可不替代维基百科语料的上游条款
+  nomiracl:
+    summary: 多语言 RAG 相关性判断数据，分别提供无相关段落和至少有一个相关段落的上下文集合。
+    data_description: 发布查询、相关性标签和每题最多十个已标注段落，涵盖 18 种语言的相关与非相关子集。评测的是二元相关性判断，而非答案文本正确性。
+    splits: 开发集与测试集分别包含相关和非相关子集。
+    ground_truth_description: 人工段落标注决定给定上下文中是否存在相关内容。非相关集合全部由已判为不相关的段落组成；相关集合至少有一个已判为相关的段落。原生标签不是参考答案字符串。
+    evaluation_protocol: 分别报告两个子集。非相关集合的 hallucination rate 为 FP/(FP+TN)，相关集合的 error rate 为 FN/(FN+TP)。两者衡量上下文相关性识别，不是任意生成答案的事实准确率。
+    best_for: [检索失败时的多语言弃答, 平衡错误自信与漏识别相关证据]
+    caveats: [这里的幻觉率名称对应二元判断协议, 随题提供的 top-k 上下文不能评测全语料检索召回率]
+  qrecc:
+    summary: 开放域多轮问答，提供人工问题改写、答案与来源 URL，并发布网页检索集合。
+    data_description: 对话扩展自 QuAC、TREC CAsT 和 Natural Questions。每轮包含上下文、独立问题改写、答案及来源 URL；语料约有 1,000 万个网页，分成 5,400 万个段落。
+    size: 约 1.4 万段对话与 8.1 万个问答对。
+    ground_truth_description: 人工改写和答案链接到来源网页。原始检索评测器可通过答案重合度阈值判断段落相关性，不应将其描述为完整的人工段落相关性标注。
+    evaluation_protocol: 保留对话顺序，区分金标准改写与模型改写。报告原始检索的答案重合度阈值，或替换 qrels 的来源，并单独评测回答质量。
+    best_for: [依赖上下文的问题改写, 分析多轮对话中的检索与回答错误]
+    caveats: [来源 URL 不构成完整的段落级相关性真值, 使用金标准改写的检索与端到端多轮问答属于不同设置]
+  topiocqa:
+    summary: 包含话题切换的开放域多轮问答，提供自由形式答案与金标准维基百科段落。
+    data_description: 作者资源提供对话、金标准问题—段落对、维基百科语料及其分段检索版本。答案可以是生成式表达，不一定作为原样子串出现在支持段落中。
+    size: 发布的检索设置使用约 2,570 万个维基百科段落。
+    ground_truth_description: 金标准段落为答案提供依据；阅读器评测还使用额外的人工答案。段落标识支持检索评分，无需假定答案字符串匹配就能识别证据。
+    evaluation_protocol: 按提供的金标准段落评测检索，使用官方 CoQA 风格的多参考答案评测器评测生成。保留对话历史和话题切换；明确标识外部生成的问题改写。
+    best_for: [多轮检索中的话题切换, 基于检索段落生成非抽取式答案]
+    caveats: [答案字符串包含关系不足以用于检索评分, 模型资源中的问题改写不能直接视为原始人工标注]
+  doc2dial:
+    summary: 以目标为导向的信息寻求对话，提供文档片段依据与助手回复标注。
+    data_description: 文档文件提供正文、HTML、片段偏移与章节结构。对话文件将用户和助手轮次链接到文档及证据引用；后续版本与原论文版本不同。
+    ground_truth_description: 人工写出的对话通过片段标识关联到文档。依据片段、条件或解决方案标注以及上下文标题的作用不同；来源结构片段不是通用的最佳分块边界。
+    evaluation_protocol: 分别报告文档检索、依据预测和回复生成。保留片段偏移、对话历史、数据版本和是否包含无关轮次等设置；原始回复任务直接提供文档上下文。
+    best_for: [有文档依据的服务对话, 跟踪上下文追问中的片段证据]
+    caveats: [版本和无关轮次设置会改变评测, 在给定文档上生成回复不能衡量开放语料检索]
+  multidoc2dial:
+    summary: 随对话推进而切换依据文档的目标导向对话，包含检索与助手回复生成任务。
+    data_description: 发布四个领域的文档和对话。每轮引用包含文档和片段标识，允许相关文档随对话的子目标变化。
+    splits: v1.0 数据说明列出训练、验证文件和占位测试文件；共享任务版本需要另行标识。
+    ground_truth_description: 人工助手回复关联到包含 doc_id 和 id_sp 的证据引用。特定的不可回答或无关轮次具有空引用；precondition/solution 被说明为模糊标注。
+    evaluation_protocol: 分别评测文档级与段落级检索，以及回复生成；改变分段方式时保留对话历史和文档、片段映射。
+    best_for: [相关文档变化的多轮检索, 比较文档与段落证据覆盖率]
+    caveats: [占位测试文件不是有标签的评测集, 发布者数据卡的许可元数据与许可正文不一致；使用前需确认适用许可]
+  or-quac:
+    summary: 将 QuAC 对话改造成开放检索任务，结合 CANARD 问题改写与维基百科段落集合。
+    data_description: 作者提供段落集合、衍生 qrels、训练与开发及测试样本，以及 QuAC 格式的开发和测试参考答案。数据整合 QuAC 对话、CANARD 独立问题改写和维基百科段落。
+    ground_truth_description: 答案片段来自人工 QuAC 标注；段落 qrels 由这些金标准上下文衍生，作者明确说明它们是不完整的，因为其他段落也可能回答同一问题。
+    evaluation_protocol: 保留原始对话历史和 QuAC 参考答案，将检索与阅读器质量分开评测。不能假定预处理的开发和测试 evidence 字段始终包含金标准段落。
+    best_for: [多轮检索与阅读器流水线, 比较独立问题改写与感知历史的检索]
+    caveats: [衍生段落相关性判断不完整, 使用金标准上下文的问答不能衡量端到端表现]
+  wizard-of-wikipedia:
+    summary: 人工写出的知识对话，附检索得到的维基百科候选内容与选定支持句。
+    data_description: 原始对话提供话题、用户和向导发言、检索段落及已选知识。随题提供的候选内容支持原生任务；替换为完整维基百科索引时需另行明确设置。
+    splits: 训练、验证和测试资源区分已见话题与未见话题评测。
+    ground_truth_description: 向导轮次通过 checked_sentence 和 checked_passage 标识标注者选定的知识，并提供实际回复。选中的知识不一定枚举所有能支持可接受回复的句子。
+    evaluation_protocol: 分别报告已见与未见话题，区分知识选择与回复生成；复现原生知识选择设置时保留其候选池。
+    best_for: [有知识依据的对话回复, 向未见对话话题泛化]
+    caveats: [选定句子不是完整的可替代证据集合, 原生检索候选内容与不受限的维基百科检索不同]
+  docvqa:
+    summary: 基于单页工业文档扫描图像的人工抽取式问答。
+    data_description: 原始任务为每个问题提供一张文档图像、OCR 和人工答案。VDocRAG 将过滤后的子集用于开放域训练；其 OpenDocVQA 协议是另行构建的改造版本。
+    size: 约 50,000 个问题，对应 12,767 张文档图像。
+    splits: 原始训练集、验证集和留出测试集；测试集通过官方挑战平台评测。
+    ground_truth_description: 答案是所给图像中的文本跨度，但答案字符串不代表通用的 OCR 跨度坐标或全语料检索相关性标注。图像配对关系可用于明确定义的页面检索改造。
+    evaluation_protocol: 保留原始划分与答案别名，单独报告图像池、问题过滤和新增相关性标注。单页 DocVQA、MP-DocVQA 与 OpenDocVQA 属于不同设置。
+    best_for: [视觉文档阅读基线, 明确定义页面候选池的检索改造]
+    caveats: [原始问题假定相关图像已经给出, 挑战平台访问和测试标签公开程度与衍生镜像可能不同]
+  infographicvqa:
+    summary: 需要联合理解信息图文字、图形、布局和数值信息的视觉问答。
+    data_description: 人工编写的问答关联网络信息图图像，并提供 OCR。VisRAG 与 VDocRAG 通过过滤问题、汇集图像构造检索设置；这些子集不能替代原始数据集。
+    size: 30,035 个问题，对应 5,485 张图像。
+    splits: 训练集 23,946 题，验证集 2,801 题，测试集 3,288 题。
+    ground_truth_description: 发布参考答案与图像关联。OCR 布局属于输入数据，不是通用的人工答案框或原生开放域检索相关性真值。
+    evaluation_protocol: 原生问答使用原始挑战划分。使用 VisRAG 或 OpenDocVQA 时，须先说明过滤后的查询、图像候选池和检索指标，再比较结果。
+    best_for: [包含空间与数值推理的信息图阅读, 比较视觉检索与基于 OCR 的检索改造]
+    caveats: [原始任务已经给出相关图像, 原始划分与过滤后的 RAG 划分规模明显不同]
+  dude:
+    summary: 覆盖多种答案形式、领域和可选答案区域标注的多页文档问答。
+    data_description: 官方版本包含 PDF、问答标注和多种 OCR 结果。作者链接的数据加载器支持公开真值；OpenDocVQA 另行过滤并构建开放域版本。
+    splits: 训练集、验证集和测试集；应使用明确命名的公开真值版本，不要假定所有竞赛数据包都公开标签。
+    ground_truth_description: 加载器提供答案、可接受变体以及带页坐标的 answers_page_bounding_boxes。部分样本没有框；抽象答案和不可回答问题也不一定有可定位的支持区域。
+    evaluation_protocol: 保留答案类型、空答案、页码和 OCR 配置，使用官方阈值计算 ANLS。开放域检索改造需披露候选池和过滤后的查询。
+    best_for: [页面选择与长文档回答, 测试多样答案形式及已有答案区域]
+    caveats: [并非每个问题都有答案框, 不同 OCR 结果及过滤后的 OpenDocVQA 协议属于独立版本]
+  tat-dqa:
+    summary: 结合表格与正文证据、要求离散数值推理的金融文档图像问答。
+    data_description: TAT-QA 的文档图像扩展版本，提供 PDF、转换后的文字块和框、问答、答案尺度与计算式。作者仓库说明测试集真值于 2024 年 1 月公开。
+    size: 16,558 个问题，对应 2,758 份文档、3,067 页；每份已提供文档最多三页。
+    splits: 训练集、开发集和测试集。
+    ground_truth_description: 问答标注含答案形式、尺度、计算式和 OCR 文本块到跨度的映射。可选支持事实由启发式方法生成，文本块框来自 PDF 提取或 OCR；它们都不是通用的人工表格单元格或检索真值。
+    evaluation_protocol: 使用官方包含数值及尺度处理的评分。检索改造应保留文档块与操作数映射；原始短文档问答不能直接视为全语料金融 RAG。
+    best_for: [文档图像中的数值推理, 保留表格—文本操作数和来源块映射]
+    caveats: [TAT-QA 与 TAT-DQA 是不同版本, 启发式事实与 OCR 框须和人工问答分别标明来源]
+  textvqa:
+    summary: 需要识别并推理自然场景图像中文字的视觉问答。
+    data_description: 问题及十份参考答案关联 OpenImages 照片。v0.5.1 更新 Rosetta OCR 文本，但没有更改 v0.5 的问题或图像。
+    size: 共 45,336 个问题，训练集 34,602 题、验证集 5,000 题、测试集 5,734 题。
+    splits: 官方 v0.5.1 训练集、验证集和 test-std 测试集。
+    ground_truth_description: 人工答案变体用于 VQA 评分。Rosetta 文字框属于机器生成的 OCR 输入，不是针对问题的证据区域真值或原生检索相关性标签。
+    evaluation_protocol: 固定 OCR 版本，并处理 OpenImages 的旋转元数据。原生评测已提供查询图像；检索实验须另行定义语料、相关性标签和回答协议。
+    best_for: [场景文字阅读与 OCR 鲁棒性, 视觉回答生成组件评测]
+    caveats: [原生任务没有外部知识检索池或相关性标注, OCR 框不能证明哪一区域支持答案]
+  ok-vqa:
+    summary: 图像本身信息不足、需要外部知识的视觉问答。
+    data_description: 发布内容提供问题、答案标注和 COCO 输入图像链接，没有固定外部知识语料。CVPR 2025 的 NoteMR 配合段落检索使用它；M2KR 则定义另一种改造。
+    size: 14,055 个问题，每题五份人工参考答案。
+    splits: 官方训练集和测试集；v1.1 更新答案词干处理，不改问题或图像。
+    ground_truth_description: 提供可接受答案字符串，原始版本没有指定金标准维基百科段落或支持图像区域。后续检索监督需明确归属于其构建方法。
+    evaluation_protocol: 使用官方答案归一化并固定 v1.1 标签。记录外部语料及检索监督；不同知识池或 M2KR 转换版本的分数不能直接互换。
+    best_for: [以图像和问题共同驱动知识检索, 比较外部知识与模型直接回答]
+    caveats: [原生标注提供答案而非段落检索真值, COCO 图像条款与问答标注分开适用]
+  a-okvqa:
+    summary: 包含直接答案、选择题标签和人工解释的知识密集型视觉问答。
+    data_description: 基于 COCO 2017 图像众包的问题需要世界知识与场景推理。官方 v1.0 数据包含答案选项、直接答案和解释，没有固定外部知识池。
+    size: 约 25,000 个问题。
+    splits: 训练集、验证集和测试集；留出测试集预测提交到官方排行榜。
+    ground_truth_description: 正确选项、直接答案变体和自由文本解释用于回答与解释监督。解释不代表检索段落标识，也不是经人工核验的外部引用。
+    evaluation_protocol: 分别报告选择题和直接回答分数，应用官方直接回答样本资格过滤及匹配规则，并披露知识检索、语料版本和利用解释构建的监督信号。
+    best_for:
+    - 融合知识检索与场景推理
+    - 比较直接回答和选择题推理
+    caveats:
+    - 人工解释不是检索相关性真值
+    - 该独立后继数据集与 OK-VQA 没有共享的问题—图像对
+  encyclopedic-vqa:
+    summary: 提供受控维基百科知识库和证据章节标识的细粒度视觉知识问答。
+    data_description: CSV 问答记录将 iNaturalist 和 Google Landmarks 图像关联到公开的 WikiWeb2M 衍生知识库 JSON。图像像素须另行获取；作者也发布了 Google Lens 测试检索结果。
+    size: 约 221,000 组独立问答、一百万个图像—问题—答案样本。
+    splits: 训练集、验证集和测试集，提供问题类型和维基百科实体是否在训练中出现的标识。
+    ground_truth_description: 维基百科 URL 与 evidence_section_id 定位支持信息；两跳问题含两个连续来源。只有模板问题提供证据字符串，不能声称每题都有原文引用或视觉区域标注。
+    evaluation_protocol: 使用公开 BEM 评测器及问题类型处理，包含多答案情形。保留维基百科 URL 键和知识库章节，后续 M2KR 检索转换不能视为原始协议。
+    best_for: [由图像驱动的百科证据检索, 评测章节依据与多跳视觉知识]
+    caveats: [知识库图像和查询图像像素需要分别从上游下载, 原文引用支持仅覆盖模板问题]
+  mrag-bench:
+    summary: 覆盖九种场景、提供金标准支持图像和选择题答案的视觉中心 RAG 数据。
+    data_description: 作者发布图像语料与问答。Hugging Face 测试包嵌入查询图像、gt_images、五张 retrieved_images 和四个答案选项，支持金标准上下文与检索上下文评测。
+    size: 1,353 个人工标注问题，语料含 16,130 张图像。
+    splits: 测试 benchmark，没有原生训练集。
+    ground_truth_description: gt_images 指定支持图像，answer_choice 给出正确选项。这些属于图像级支持，不是对象框，也不能保证扩展语料中所有有用图像都已有完整标注。
+    evaluation_protocol: 分开报告无 RAG、检索 RAG 和金标准图像 RAG；多数原生比较使用五张图像。ACL 2026 效用选择研究注入金标准图像的固定候选池属于另一种选择协议。
+    best_for: [衡量检索视觉知识如何影响回答, 比较使用金标准图像与不完美检索]
+    caveats: [正式发表于 ICLR 2025，2024 年 arXiv 日期不是会议年份, 金标准上下文或注入金标准的候选池须与全语料检索区别报告]
+  rag-igbench:
+    summary: 根据检索到的社交平台内容，生成文字与图像交错回答的开放域 RAG benchmark。
+    data_description: 样本包含查询、已检索文档、图像 URL、类别、划分，以及带文档引用和图像索引的参考答案。发布版本主要固定每题检索上下文，没有开放完整的社交平台搜索语料。
+    size: 论文报告 6,057 个来源查询；双语 Hugging Face 数据包显示约 12,100 行。
+    splits: 按每行 split 字段读取划分；Hugging Face 查看器将双语数据包放在名为 train 的容器中。
+    ground_truth_description: 模型辅助构建的参考答案经人工检查，保留选用的图像索引与文档引用。检索上下文属于候选输入，不是完整相关性真值或最小人工证据集合。
+    evaluation_protocol: 保留图像 ID 与顺序，使用作者的指标定义，并报告语言及行级划分。缓存获准使用的来源图像并记录失效 URL；翻译对不能算作独立来源问题。
+    best_for: [评测生成回答中的图像选择与位置, 比较文本质量和图文一致性]
+    caveats: [论文附录 C 写明数据为 CC-BY-4.0，但当前 Hugging Face 卡标为 Apache-2.0, 外部社交平台图像可能失效，且保留上游权利条款]
+  m2rag:
+    summary: 基于 WebQA 和 Factify 改造并公开的多任务开放域多模态 RAG 数据。
+    data_description: 四项任务包括图像描述、多模态问答、多模态事实核查与图像重排。作者仓库链接任务文件和分卷图像压缩包；问答与描述使用 WebQA，核查使用 Factify。
+    size: 每项任务有 3,000 个测试查询，前三项另有各 3,000 个训练查询，并使用任务各自的语料。
+    splits: 作者定义的训练集和测试集；Factify 评测从其验证集抽样。
+    ground_truth_description: 任务目标分别为描述、问答答案、三分类核查标签和参考图像。标注与检索相关性随任务变化，本条目不宣称有通用段落或图像区域证据。
+    evaluation_protocol: 按任务使用语料和指标：描述及问答用文本生成指标，核查用 accuracy/F1，图像重排用 FID。报告 top-k 上下文，不说明聚合方式就不能合并不同任务分数。
+    best_for: [跨任务测试多模态检索上下文的利用, 比较检索增强指令微调和普通 RAG]
+    caveats: [M²RAG 与 M2KR、生成交错回答的 M2RAG 系统不同, 重排所用 FID 不是标准的查询级相关性指标]
+  opendocvqa:
+    summary: VDocRAG 公开的开放域文档图像问答集合，提供汇集页面和相关图像标识。
+    data_description: 九个经过过滤的集合融合 DocVQA、InfographicVQA、VisualMRC、ChartQA、OpenWikiTable、DUDE、MPMQA、SlideVQA 和新建 MHDocVQA。官方问答与图像语料分别发布。
+    size: 约 43,000 组问答、200,000 张文档图像，包含干扰页面。
+    splits: 按来源划分训练／开发和测试配置；ChartQA 与 SlideVQA 是零样本测试来源。
+    ground_truth_description: relevant_doc_ids 标识相关文档图像，MHDocVQA 可对应多张图像。人工来源问答与新建多跳问题共存；不宣称有统一的区域、表格单元格或最小跨度真值。
+    evaluation_protocol: 区分按来源的 single-pool 和统一的 all-pool 检索。检索使用 nDCG@5，问答使用原始来源指标；VDocRAG 报告的生成结果使用前三张检索图像。
+    best_for:
+    - 开放域页面检索后进行视觉回答
+    - 比较独立来源池和统一图像语料
+    caveats:
+    - 获取语料需要接受条款并共享联系信息
+    - 过滤后的来源问答与新建 MHDocVQA 应保留各自的数据集身份
+  arxivqa:
+    summary: 由 GPT-4V 生成、用于多模态指令训练与检索改造的科学图表选择题问答。
+    data_description: Multimodal ArXiv 项目发布图像及生成的问题、选项、标签和解释。VisRAG 根据问题—图像关联另行过滤并构建检索评测。
+    size: 已发布 100,000 个问答样本。
+    splits: 原始 Hugging Face 包只有 train 容器；面向检索的评测划分属于衍生协议。
+    ground_truth_description: 生成标签和解释用于图像回答监督。配对图像可构建检索正例，但解释不是人工证据框，也不是原生完整语料相关性真值。
+    evaluation_protocol: 原始版本主要用于训练，另行构建留出集时须明确标识。使用 VisRAG 时遵循其转换查询、图像池与检索／生成评分，不能假定原始版本含 RAG 测试集。
+    best_for: [科学图像的指令训练, 明确定义的图像检索改造]
+    caveats: [合成标签与解释需要独立错误审查, 项目页面写明 CC-BY-NC-4.0 及研究用途限制，当前数据卡却标 CC-BY-SA-4.0]
+  plotqa:
+    summary: 基于科学绘图模板生成的问题，覆盖开放词汇标签与计算得到的数值答案。
+    data_description: 图像根据现实数据绘制，问题模板来自众包。发布版本含图像标注和两个问答版本；VisRAG 使用过滤后汇集图像的检索改造。
+    size: 224,377 张绘图；问答 v1 有 8,190,674 对，v2 有 28,952,641 对。
+    splits: 原始训练集、验证集和测试集，各自提供独立版本的问答文件。
+    ground_truth_description: 问答结构包含 image_index；当答案直接出现在图中时提供 answer_bbox。计算答案可能没有框；绘图对象标注与针对问题的证据及检索相关性真值不同。
+    evaluation_protocol: 固定问答版本与数值答案容差。原始问答已提供绘图，应将 VisRAG 的过滤、候选池和检索分数与原生绘图回答准确率分别报告。
+    best_for: [数值图表阅读与开放词汇回答, 有条件答案框评测和明确的检索转换]
+    caveats: [计算答案通常没有对应的可见答案框, 问答 v1、v2 与规模小得多的 VisRAG 改造属于不同协议]
+  visual-rag:
+    summary: 提供人工核验线索图像相关性、面向文本到图像 RAG 的细粒度自然物种问答。
+    data_description: 官方 v2 JSONL 提供文本问题、答案变体、科学名称和逐图像二值线索标签。图像来自 iNaturalist 2021，原生评测检索同一物种的子集。
+    size: 修订后的 v2 标注有 374 个问题；每题原生候选池约含 200–300 张同物种图像。
+    splits: 用于评测的标注，没有原生训练集。
+    ground_truth_description: 模型提出的问题与图像标签经人工核验。公开二值标签指定线索图像和可接受答案，没有统一的图像内部证据框。
+    evaluation_protocol: 使用修订后的 v2 标签及规定的同物种语料。区分无图像、金标准线索、非线索、top-k RAG 与 one-in-k 设置；固定裁判模型，并区别报告 ACL 2026 注入金标准的选择候选池。
+    best_for: [检索细粒度视觉线索的文本到图像任务, 区分线索利用失败和检索失败]
+    caveats: [v1 存在无效问题和图像标签错误，已在 v2 修订, 作者不重新分发图像，原生候选池小于整个 iNaturalist 语料]
+  frames:
+    summary: 人工编写的多文档问题，同时评测事实回答、检索与推理。
+    data_description: CSV 提供问题、参考答案、推理类型和支持的维基百科 URL；文章正文需要另外获取。
+    size: 824 个评测问题。
+    splits: 只有一个测试划分，没有原生训练集。
+    ground_truth_description: 标注者提供支持文章；URL 是文档级目标，不是句子偏移量，也不是唯一图路径。
+    evaluation_protocol: 论文比较无检索、BM25 检索、金标准文章及迭代检索。回答正确性由 LLM 评判；应固定维基百科快照与评判提示词。
+    best_for: [迭代检索与搜索规划, 多文档时间与数值推理]
+    caveats: [维基百科 URL 不会冻结正文，应使用注明日期的语料快照, 论文发表于 NAACL 2025，不能写成 ACL 主会论文]
+  lfrqa:
+    summary: 人工编写的长篇答案及文档引用，用于跨领域检索增强问答。
+    data_description: LFRQA 在 RobustQA 基础上增加长篇答案；底层原始文档与段落需要按 RobustQA 流程下载。包含引用标注的文件是独立修订版本。
+    size: EMNLP 2024 论文报告七个领域约 2.6 万个查询；后续引用版本的数量有所不同。
+    ground_truth_description: 引用版本通过 faithful_answer_w_citation 和 citation_numbers 映射到金标准 doc_id；它们是文档引用，不是字符片段。
+    evaluation_protocol: RAG-QA Arena 用固定 LLM 评判器比较模型答案与 LFRQA 或其他系统答案。记录标注版本、检索段落数与评判模型。
+    best_for: [跨领域长篇答案比较, 文档引用与回答质量评测]
+    caveats: [Arena 是评测协议，LFRQA 是数据集, 官方仓库提供新标注，其许可证不替代底层语料条款]
+  crud-rag:
+    summary: 中文 RAG 基准，覆盖续写、问答、摘要与文本纠错。
+    data_description: 发布包包含完整任务数据、论文选用的实验子集，以及用于构建检索库的八万余篇新闻文档。
+    ground_truth_description: 任务参考文本用于生成与纠错评分；本条目不声称所有样本都提供统一的句子级支持证据集合。
+    evaluation_protocol: 选择已发布的实验子集，报告任务、分块方式、top-k 与模型提示词。RAGQuestEval 需要问题生成与回答模型。
+    best_for: [中文新闻中超出短问答的 RAG 任务, 在同一检索语料上比较多种生成任务]
+    caveats: [参考文本风格及提示词会影响词面匹配指标, 仓库引用注明 ACM TOIS，不能把 arXiv 版本改写成会议论文]
+  legalbench-rag:
+    summary: 法律检索基准，按字符范围标注评测精确文本片段。
+    data_description: 可下载的文本语料和查询以 ContractNLI、CUAD、MAUD 与 PrivacyQA 为来源；片段检索目标不是自由生成答案的参考文本。
+    size: 论文报告 6,858 个查询与片段样本，语料超过 7,900 万字符。
+    ground_truth_description: 每个目标指定语料文件及字符范围；上游专家标注经过 LLM 辅助处理，转换为检索样本。
+    evaluation_protocol: 分块时保留文件路径与原始字符偏移。报告 k 值及完整或 mini 版本；官方基准评测检索。
+    best_for: [法律文本分块与精确证据检索, 字符级检索覆盖]
+    caveats: [该检索发布包没有建立原生答案生成评分协议, 重新生成数据前需要检查四个上游法律数据集的使用条款]
+  ssrb:
+    summary: 半结构化检索基准，将精确字段条件与语义要求结合起来。
+    data_description: 发布包区分结构化对象语料、测试查询和正向查询对象相关性标注；嵌套字段及缺失字段也是任务的一部分。
+    size: 六个领域、99 种 schema 中约 1,400 万个对象，另有 8,485 个测试查询。
+    ground_truth_description: LLM 生成对象和查询，并判断候选检索结果；qrels 标记完整对象的相关性，不是单元格证据或生成答案。
+    evaluation_protocol: 分别报告同 schema 与同领域跨 schema 检索，并对领域作宏平均。固定候选池与序列化方式。
+    best_for: [异构结构化记录检索, 数值筛选与语义约束的联合处理]
+    caveats: [合成候选池上的 qrels 不是穷尽的人工相关性判断, 本基准评测检索，答案生成需要独立协议]
+  raguard:
+    summary: 政治主张核查基准，测试 RAG 面对 Reddit 真实误导检索内容的表现。
+    data_description: 主张与文档存于两个 CSV，包含二元结论、文档 ID、Reddit 正文及支持、误导或无关标签。
+    size: 2,648 条主张和 16,331 篇文档。
+    ground_truth_description: 结论来自 PolitiFact；文档标签描述其对标注 LLM 的影响，并不代表普遍适用的真假片段判断或最小证据。
+    evaluation_protocol: 比较无上下文、完整语料检索及直接提供关联文档的设置；区分 RAG-1、RAG-5、oracle-all 与 oracle-misleading。无效类别输出按错误计。
+    best_for: [真实误导检索内容下的鲁棒性, 检索与无上下文主张核查的比较]
+    caveats: [误导性相对于模型行为定义，且任务集中在政治领域, 两个 CSV 应分别读取，Hugging Face 默认查看器会报告字段不兼容]
+  confrag:
+    summary: 面向矛盾信息的问答基准，要求覆盖所提供网页参考中的不同观点。
+    data_description: 样本包含网页正文与 URL、矛盾标记、答案观点簇，以及附网页索引的支持理由；推荐版本改进了标注。
+    size: 1,814 个问题；论文报告其中 57.2% 存在矛盾。
+    ground_truth_description: LLM 抽取及人工复核生成观点簇、理由与网页索引。这些引用不是精确句子偏移，也不保证观点客观真实。
+    evaluation_protocol: 固定已发布网页上下文与标注版本。结构化输出按聚类及基于关键词的答案与理由匹配评分；单独报告格式有效率。
+    best_for: [互相矛盾的多来源答案整合, 观点与理由覆盖]
+    caveats: [给定网页参考主要测试检索后的推理，开放语料检索需要另行定义协议, 数据卡与仓库的许可证表述不同，使用前应核实适用条款]
+  mintqa:
+    summary: 基于 Wikidata 的多跳 RAG 问答，区分新旧知识及热门长尾知识。
+    data_description: POP 与 TI 发布包包含主问题及子问题、答案、逐跳知识标签、事实链和事实；作者链接的 MintQA-KG 提供检索知识库。
+    size: MINTQA-POP 有 17,887 个问题，MINTQA-TI 有 10,479 个问题。
+    splits: 两个测试子集，应按知识类型和跳数报告结果。
+    ground_truth_description: 显式发布用于生成问题的事实链与子答案；这些链基于 Wikidata 构造，并不证明它们在完整知识库中唯一。
+    evaluation_protocol: 论文检查转为小写的模型输出是否包含金标准答案。区分参数知识、直接检索和分解后检索设置，并固定知识库版本与线性化方式。
+    best_for: [按知识熟悉程度研究问题分解与检索决策, 多跳事实链检索]
+    caveats: [新旧知识由指定 Wikidata 快照定义，不代表今天的实时新鲜度, 数据文件已发布，但仓库说明完整项目代码仍在整理中]
+  finqa:
+    summary: 财务数值问答，提供文本与表格支持事实及可执行推理程序。
+    data_description: JSON 样本包含表格前后的文本、财报表格、问题、支持事实索引、推理程序及执行答案。
+    splits: 训练、开发及公开测试集提供参考标注；私有测试集问题没有金标准参考。
+    ground_truth_description: gold_inds 选择支持文本句子及序列化表格行；程序监督数值运算。这些行目标不是原始 PDF 单元格坐标。
+    evaluation_protocol: 挑战赛提交应运行检索与程序生成全流程。金标准检索输入仅用于诊断；区分公开与私有测试集，并使用修正后的表格行序列化方式。
+    best_for: [财务计算前的证据检索, 可执行答案与程序监督]
+    caveats: [原生候选上下文已给定，完整财报检索属于额外改造, 仓库记录了过去会泄露检索标签的序列化缺陷]
+  convfinqa:
+    summary: 对话式财务问答，逐轮提供相互关联的数值程序和答案。
+    data_description: 发布包有对话级和轮次级格式，包含表格、周边文本、dialogue_break、turn_program 与 exe_ans_list。
+    size: 3,892 段对话，包含 14,115 个问题。
+    splits: 对话级训练、开发与测试集分别有 3,037、421、434 个样本；已发布测试集提供财报和对话，评分参考标注未公开。
+    ground_truth_description: 逐轮程序与执行答案指定数值依赖；有标注的划分通过 gold_ind 指定支持事实。这些标注不是来源 PDF 的单元格坐标。
+    evaluation_protocol: 保留轮次顺序与对话边界。用官方执行与程序评测器评分，并说明前轮程序或答案采用金标准还是模型预测。
+    best_for: [检索后的对话式数值推理, 前轮计算结果依赖]
+    caveats: [对话合成及标注基于 FinQA，自定义划分时应避免原始财报泄漏, 已发布表格与文本上下文不能证明开放语料检索性能]
+  kqa-pro:
+    summary: 复杂知识库问答，在给定 Wikidata 子集上提供显式 KoPL 程序及 SPARQL 查询。
+    data_description: 官方下载包含 kb.json 与训练、验证、测试文件；问题附有可执行 KoPL 与 SPARQL 监督。
+    size: 117,970 个问题。
+    ground_truth_description: 组合程序与 SPARQL 定义知识库运算，问题由众包改写。程序可能包含比较或集合运算，不能一律表示成线性金标准路径。
+    evaluation_protocol: 在已发布知识库与官方划分上执行或比较答案；报告推理技能类别，并注明是否提供金标准程序或主题实体。
+    best_for: [组合图推理与程序执行, 按推理技能作诊断]
+    caveats: [KoPL 或 SPARQL 监督不自动成为自然语言 GraphRAG 引用路径, 保留已发布的 Wikidata 子集，不应静默替换成实时图谱]
+  complexwebquestions:
+    summary: 基于 Freebase 或检索网页片段的复杂组合问答，附问题分解监督。
+    data_description: 1.1 版本发布复杂问题、SPARQL、答案及分解问题监督；知识库实验使用 Freebase，网页实验检索片段。
+    splits: 使用修正后的 1.1 版本划分；1.0 版本存在已公布的数据划分问题。
+    ground_truth_description: 自动构造的组合查询与人工改写的问题提供逻辑形式监督；检索网页片段是候选证据，不是金标准句子引用。
+    evaluation_protocol: 使用官方答案评分器与 1.1 划分。说明回答采用网页检索还是指定 Freebase 快照；后续 KBQA 论文可能报告额外指标。
+    best_for: [问题分解与组合知识库问答, 图谱与网页检索路线比较]
+    caveats: [原始知识库重建使用 freebase-rdf-2015-08-02-00-00 快照, 逻辑形式不能证明被检索子图唯一且最小]
+  opendialkg:
+    summary: 人类对话与参与者标注的知识图谱路径配对，并发布底层图谱。
+    data_description: 发布包包含对话 CSV 及实体、关系、三元组文件；对话上下文可作查询，后续发言可作回复。
+    size: 13,802 段对话、91,209 轮；底层知识图谱有 100,813 个实体及 1,190,658 条双向三元组。
+    ground_truth_description: 参与者选择连接相邻轮次概念的路径；中间实体不必出现在正文中，路径也不是唯一的事实答案证据集合。
+    evaluation_protocol: 原论文按 k=1、3、5、10、25 评测回复实体预测，并让人工判断自然程度。保留同领域与跨领域设置的区别。
+    best_for: [具有显式监督的对话图谱路径, 跨对话领域的图推理]
+    caveats: [实体预测指标不是完整答案的事实性或引用指标, 官方仓库已归档，没有提供统一的现代 GraphRAG 评测器]
+  finchain:
+    summary: 辅助财务推理基准，提供可执行符号模板与可核验的中间计算。
+    data_description: 已发布 Python 模板生成财务问题、中间金标准数值与可执行轨迹；不提供文档检索语料或相关性标注。
+    size: 12 个领域、58 个主题；每主题五个模板、每模板十个种子，构成论文中的 2,900 个评测样本。
+    ground_truth_description: 可执行符号模板定义最终数值与中间计算；它们是推理目标，不是来源文档引用。
+    evaluation_protocol: 固定模板、种子与步骤提取方式；论文采用结合最终答案正确性的 DTWNormGate，数值容差为 0.05。本条目用于推理组件测试。
+    best_for: [验证检索后的数值推理, 区分最终答案正确性与中间计算质量]
+    caveats: [没有原生 RAG 检索任务发布, 新模板种子本身不能消除模型对问题模式的训练接触]
+  lara:
+    summary: 面向书籍、论文和财务报告的长上下文问答基准，用于比较检索增强与完整上下文推理。
+    data_description: 发布 32k/128k 上下文文件及定位、比较、推理和幻觉任务的问题。问题针对给定来源上下文构建，不是无约束的开放网页检索。
+    size: 共 2,326 个测试样本，覆盖三种上下文类型和四种问答任务。
+    ground_truth_description: 人工编写的种子问答引导 GPT-4o 生成，随后抽样人工验证并迭代提示词，不代表每个问答都独立由人工编写。参考答案不意味着穷尽的支持片段或最优分块边界。
+    evaluation_protocol: 分别报告上下文长度、来源类型与任务。在相同来源文本上使用发布的 RAG 和完整上下文脚本，固定 compute_score_llm.py 使用的评分模型与提示词。
+    best_for: [比较 RAG 与长上下文的路由选择, 分析检索效果如何随上下文长度与任务改变]
+    caveats: [模型评分结果依赖评分模型与提示词, 仅凭答案正确不能验证分块边界]
+  saferag:
+    summary: 中文 RAG 安全评测基准，包含银噪声、上下文间冲突、软广告和拒绝服务上下文。
+    data_description: 仓库发布干净与攻击增强的知识库，以及分任务的问题和上下文文件。新闻问题与金标准上下文由模型辅助生成，经人工核验和修改。
+    ground_truth_description: 金标准上下文和正确或错误命题支持分任务评分。这些是选定的证据句，不是原始新闻所有有效切分方式的标注。
+    evaluation_protocol: 固定攻击类型、注入阶段、攻击比例与检索窗口。区分索引、检索结果和过滤后上下文遭受的攻击，不将其混成干净检索分数。攻击失败率 AFR 等于 1-ASR，因此 AFR 越高、攻击成功率越低表示防御越好。
+    best_for: [评测注入上下文下的中文 RAG 鲁棒性, 比较不同阶段的检索与过滤防御]
+    caveats: [按任务构造的攻击不代表无约束的真实攻击分布, 金标准证据句不等于唯一的分块边界真值]
+  longbench-v2:
+    summary: 人工编写的选择题基准，评测模型对真实长文档、对话、代码仓库和结构化数据的深层推理。
+    data_description: 每条记录给出长上下文、四个选项与正确选项。原生任务是长上下文理解，发布的代码也支持用检索前 N 个片段进行 RAG 对照。
+    size: 六类任务共 503 个问题，上下文长度为 8k 至 2M 单词。
+    splits: Hugging Face 中名为 train 的划分实际装载评测发布数据，不能将其当作排行榜评测的训练集。
+    ground_truth_description: 答案标注为 A/B/C/D。发布格式未提供按问题标注的支持片段、相关性判断或最优切分边界。
+    evaluation_protocol: 区分直接回答、思维链、无上下文与 RAG 设置。按难度、任务和长度分组报告；RAG 实验需注明 top-N、分块和检索配置。
+    best_for: [比较长上下文与检索方案, 超越抽取式查找的答案质量压力测试]
+    caveats: [没有支持片段级真值用于分块监督, 选择题准确率可能体现推理或记忆而非检索成功]
+  mmrag:
+    summary: 将文本、表格和知识图谱统一表示为可检索文档，发布问题与相关性标注的集成 RAG 数据。
+    data_description: 从 NQ、TriviaQA、OTT-QA、TAT-QA、ComplexWebQuestions 和 WebQSP 派生问题与检索记录。表格和图谱事实转成文档后切为不重叠的 512-token 块，不是 M2RAG 一类的图像与文本基准。
+    ground_truth_description: 对候选池中的 512-token 块由模型标注 0/1/2 级相关性，再派生数据集路由标签。目录的 document 层级在此指可寻址的检索记录，不是原始整文档相关性。标签不监督图路径或替代分块边界。
+    evaluation_protocol: 同时使用发布的 512-token 块、相关性判断和划分。重新分块后必须重映射证据或重新标注，不能沿用旧块 ID。检索脚本报告 1/3/5 截断处的 NDCG、MAP 和 Hits，路由与回答生成单独报告。重建时固定模型标注和评分配置。
+    best_for: [在文本、表格和图谱来源间进行查询路由, 比较异构表示的组件级相关性]
+    caveats: [模型判断与不完整候选池不是穷尽的人工证据真值, 图谱和表格被序列化，原生协议不评测图像布局推理]
+  gutenqa:
+    summary: 叙事书籍问答数据，提供含答案的原文子串与多种切分格式，用于比较分块及检索。
+    data_description: Project Gutenberg 书籍以段落、递归、语义、命题和 LumberChunker 格式发布。问题记录包含书籍标识、答案和 Chunk Must Contain 子串，用于跨切分方式匹配证据。
+    size: 100 本叙事书籍共 3,000 个问答对，每本书 30 对。
+    ground_truth_description: 含答案子串将证据锚定在书籍内。发布的分块 ID 对应某种切分，不是独立人工标注的最优切分点。
+    evaluation_protocol: 使用书籍内检索池及发布的子串匹配方法，报告所选 k 下的 DCG 与 Recall（论文使用 1/2/5/10/20）。论文的回答生成实验另用四本自传、280 个问题，不是发布的 100 本书、3,000 题 GutenQA 集。新生成协议需单独说明；比较分块方法时固定段落语料和上下文预算。
+    best_for: [利用稳定的答案子串锚点比较切分方案, 叙事文档内的证据检索]
+    caveats: [以 LumberChunker 构建数据可能偏向其切分分布, 稀疏的含答案证据不能衡量所有语义边界质量]
+  ohrbench:
+    summary: 文档 RAG 基准，用于追踪 OCR 语义和格式错误如何影响证据检索与回答生成。
+    data_description: 发布 PDF、人工核验的页面结构化数据、qas_v2.json、OCR 输出及语义或格式扰动。原生流程从文档图像抽取文本知识库，不要求生成器只能使用视觉输入。
+    size: ICCV 2025 论文版本包含七个领域的 8,561 张文档页面图像和 8,498 个问答对。
+    ground_truth_description: 问题保留来源页面及支持内容映射；人工核验的页面转录提供 OCR 参考。转录正确性与问答支持内容是不同标签，均不等于最优切分边界。
+    evaluation_protocol: 分别报告 OCR 编辑距离、通过最长公共子序列（LCS）度量的检索证据包含度、金标准上下文生成和完整 RAG。固定 OCR 版本、扰动强度和问答版本，按文本、表格、公式、图表和阅读顺序任务分组。LCS 证据包含度不是文档 Recall@K。
+    best_for: [追踪 OCR 错误在 RAG 流程中的传递, 在结构化文档损坏条件下评测分块]
+    caveats: [来源文本被破坏后需将证据重新映射到标准页面内容, OCR 或答案 F1 高分不代表跨模态证据完整, 许可元数据与仅限研究的版权声明不同，须核对作者条款及来源文档权利]
+  medqa:
+    summary: 医师资格考试选择题问答数据，含多语言子集和用于医学 RAG 实验的参考资料。
+    data_description: 作者仓库提供问答划分与参考教材下载。MIRAGE 选用美国英语四选项测试子集；原生 MedQA 还有其他语言与选项数量设置。
+    ground_truth_description: 正确选项监督考试问答。参考教材是候选知识来源，不是按问题标注的支持文档或引用真值。
+    evaluation_protocol: 注明语言、选项数量和划分。在 MIRAGE 中使用 1,273 题的美国四选项子集，仅用问题检索并固定语料快照。
+    best_for: [医学领域的检索增强考试问答, 通过 MIRAGE 比较语料与检索器组合]
+    caveats: [答案标签不指出哪个检索来源支持答案, 原始语言或选项变体与 MIRAGE-US 不能互换]
+  medmcqa:
+    summary: 印度医学入学考试选择题数据，附解释、学科和主题信息，是 MIRAGE 的组成部分。
+    data_description: 问题记录包含四个选项、正确选项、解释及学科和主题字段。RAG 需另设固定的医学检索语料，解释文本不等于来源文档。
+    ground_truth_description: 正确选项和解释未提供来源文档相关性或支持片段坐标。
+    evaluation_protocol: 遵循上游划分标签；MIRAGE 使用 4,183 个开发集问题而非原生隐藏测试集。报告 RAG 语料与仅问题检索配置。
+    best_for: [使用外部检索生成医学选择题答案, 比较 MIRAGE 子任务]
+    caveats: [需另行指定检索语料和证据映射, MIRAGE 开发集评测不能称为原生测试集结果]
+  pubmedqa:
+    summary: 基于 PubMed 摘要预测是、否或不确定的生物医学研究问答，含已标注、未标注和人工合成子集。
+    data_description: 原生样本提供问题、摘要上下文及从结论得到的长答案。MIRAGE 的 PubMedQA* 从 500 个人工专家标注测试问题中去掉给定上下文，改用外部检索。
+    size: 1,000 个人工专家标注样本、61.2k 个未标注样本和 211.3k 个人工合成样本；未标注子集没有金标准决策。
+    ground_truth_description: 评分目标是最终是、否或不确定的判断，PQA-L 使用专家标签，PQA-A 使用合成标签。给定摘要是任务上下文，不是穷尽的开放语料相关性判断。
+    evaluation_protocol: 报告所选子集与监督设置。原生摘要条件问答与去掉上下文的 MIRAGE PubMedQA* 是不同任务，准确率或 F1 不能当作检索召回率。
+    best_for: [以生物医学摘要为条件的问答, 通过 MIRAGE 比较去掉上下文的医学 RAG]
+    caveats: [去掉上下文的评测不能泄漏来源摘要或参考结论, 不同标注来源需分别报告]
   2wikimultihopqa:
     summary: 基于维基百科的多跳问答，提供支持事实与结构化推理证据。
     data_description: 问题由维基百科文本和 Wikidata 关系构建；使用时应遵循官方数据划分与证据格式。
@@ -418,7 +860,22 @@ datasets:
     evaluation_protocol: 比较解析器或分块器前，应先获取并固定带版本的来源 PDF。
     best_for: [超长文档检索, 跨文档证据定位]
     caveats: [外部文档 URL 可能漂移；复现需要固定快照及哈希]
+  real-mm-rag:
+    summary: 面向内容相似的 IBM 金融与技术材料、包含三级查询改写的文档页面检索数据。
+    data_description: 作者发布 FinReport、FinSlides、TechReport、TechSlides 四个子集。Parquet 行包含页面图像、image_filename、query、三级改写和生成答案；查询为空的行保留干扰页面。官方 benchmark 评测检索，不评测答案生成。
+    size: 论文 Table S1 报告 163 份文档、8,604 页和 4,553 个基础查询，每题有四种措辞版本。
+    splits: 四个测试子集；论文提出的 FinTab 和改写后的 ColPali 训练数据是独立资源。
+    ground_truth_description: 生成查询关联 image_filename。VLM 检查其他页面，仅保留被判断为只有原始页面能够回答的查询。生成答案辅助数据构建；相关性标签不是人工完整真值，也没有针对问题的区域或单元格坐标。
+    evaluation_protocol: 按 image_filename 去重页面语料，保留空查询的干扰页面，分别评测各子集和措辞等级。Table 2 使用三级改写，Table 3 比较 0–3 级。分块改造须保留页面身份；生成答案不代表已有官方问答评分。
+    best_for: [语义查询改写下的检索鲁棒性, 在内容相似且表格密集的文档上比较文本分块与页面图像]
+    caveats: [模型生成与核验的相关性仍可能存在假负例, Hugging Face 行数不等于独立页面数或非空查询数, 页面级真值不能直接评分细粒度分块或单元格定位]
 suites:
+  longbench:
+    protocol: 本目录链接原始来源数据集，而非 LongBench 实际重处理的子集，仅构成部分组成项索引。须同时使用 THUDM/LongBench 测试文件与分任务指标，并区分按长度均衡的 LongBench-E 变体。基于检索的上下文压缩是已记录的对照设置，但套件没有通用的金标准分块边界。LongBench v2 是独立发布数据，单独收录为数据集。
+  chatrag-bench:
+    protocol: 本目录链接五个原始来源数据集，并非全部十个标准化评测配置；发布版本还含 QuAC、INSCIT、CoQA、HybriDialogue 和 DoQA。使用发布的 ctxs/messages/answers 和评分脚本，注明上下文是给定还是检索所得。有训练重叠时分别报告含与不含 HybriDialogue 的平均分，并单独评测可回答与不可回答判断。改造版划分及 F1 设置不能与上游原生评测互换，许可沿用各原始数据集。
+  mirage:
+    protocol: 使用发布的 benchmark.json：MMLU-Med（1,089 题）、MedQA-US 四选项测试集（1,273 题）、MedMCQA 开发集（4,183 题）、去掉上下文的 PubMedQA* 测试集（500 题），以及 2019–2023 年 BioASQ 是非测试题（618 题）。链接卡片介绍其中三个原始数据集，另两个精确子集未单独索引。BioASQ-Y/N 不等于 BioASQ14b。仅用不含选项的问题检索，固定 MedRAG 语料与检索器快照，报告各任务和平均答案准确率。检索片段 ID 是系统输出而非证据真值。论文发表于 Findings ACL 2024，不能称为 ACL 主会论文。
   alce:
     protocol: 使用套件提供的检索段落，评测回答正确性、流畅性与引用质量。组成数据集的原始版本应与其 ALCE 改造版区分。
   beir:

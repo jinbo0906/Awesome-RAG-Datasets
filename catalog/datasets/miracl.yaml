@@ -1,0 +1,32 @@
+id: miracl
+name: MIRACL
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Native-speaker passage relevance judgments for same-language Wikipedia retrieval across 18 languages.
+classification: {rag_role: auxiliary, primary_category: text_rag, tasks: [evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [ar, bn, de, en, es, fa, fi, fr, hi, id, ja, ko, ru, sw, te, th, yo, zh]}
+data:
+  corpus: provided
+  queries: provided
+  answers: not_provided
+  description: Author resources provide language-specific Wikipedia passage corpora, queries and positive/negative relevance judgments. Native queries and corpora share a language; this is not automatically cross-lingual retrieval or generated-answer evaluation.
+  size: The paper reports about 78K queries and over 726K relevance judgments across 18 languages.
+  splits: Splits vary by language; the German and Yoruba surprise evaluation languages do not have training data.
+ground_truth:
+  levels: [paragraph]
+  provenance: human
+  description: Native speakers label relevance of identified retrieval passages. Passages retain article titles and article/passage IDs; qrels do not provide reference answers or annotate optimal new chunk boundaries.
+  alternatives: explicit
+evaluation:
+  official_metrics: [nDCG@10, Recall@100]
+  protocol: Preserve language-specific corpus versions, splits and passage IDs, and score against the official qrels. Add an independent answer protocol before calling an experiment end-to-end RAG.
+access: {official: 'https://github.com/project-miracl/miracl', paper: 'https://aclanthology.org/2023.tacl-1.63/', data: 'https://huggingface.co/datasets/miracl/miracl', license: Apache-2.0}
+use:
+  best_for: [Multilingual retrieval component evaluation, Comparing retrieval across high- and low-resource languages]
+  caveats: [The native task has no generated-answer reference, Query/qrels licensing does not replace upstream Wikipedia corpus terms]
+sources:
+  - {url: 'https://github.com/project-miracl/miracl', type: repository, fields: [summary, data.description, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2023.tacl-1.63/', type: paper, fields: [data.size], checked_on: '2026-10-02'}
+  - {url: 'https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00595/117438/MIRACL-A-Multilingual-Retrieval-Dataset-Covering', type: paper, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/miracl/miracl', type: dataset_card, fields: [access.license, ground_truth.alternatives], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/miracl/miracl/discussions/1', type: dataset_card, fields: [data.splits], checked_on: '2026-10-02'}

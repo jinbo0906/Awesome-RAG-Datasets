@@ -1,0 +1,8 @@
+id: mmrag-2025
+name: "mmRAG: A Modular Benchmark for Retrieval-Augmented Generation over Text, Tables, and Knowledge Graphs"
+entity_type: paper
+url: 'https://arxiv.org/abs/2505.11180'
+relation: introduces
+targets: [mmrag]
+sources:
+  - {url: 'https://arxiv.org/abs/2505.11180', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

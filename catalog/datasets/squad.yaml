@@ -1,0 +1,28 @@
+id: squad
+name: SQuAD 2.0
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Wikipedia paragraph reading comprehension combining extractive questions with adversarial unanswerable questions.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [single_hop_qa, rag_robustness], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Each example supplies a reading passage and questions; answerable questions have answer spans, while unanswerable questions require abstention. This record uses version 2.0 rather than a separate 1.1 entry.
+  size: Version 2.0 combines about 100K version-1.1 questions with over 50K adversarial unanswerable questions.
+  splits: Public training and development sets; official test data are withheld.
+ground_truth:
+  levels: [span, answer]
+  provenance: human
+  description: Crowdworkers annotate answer text and character positions in the supplied paragraph; empty answers represent unanswerability in that paragraph, not in all possible external documents.
+  alternatives: explicit
+evaluation:
+  official_metrics: [exact_match, token_f1]
+  protocol: Use the version-2 evaluator and no-answer handling. A RAG conversion must define the retrieval pool and preserve source offsets; supplied paragraphs are not open-corpus retrieval results.
+access: {official: 'https://rajpurkar.github.io/SQuAD-explorer/', paper: 'https://arxiv.org/abs/1806.03822', license: CC-BY-SA-4.0}
+use:
+  best_for: [Answer extraction from retrieved contexts, Context-specific abstention]
+  caveats: [Native evaluation supplies the paragraph, SQuAD 1.1 and 2.0 scores follow different answerability settings]
+sources:
+  - {url: 'https://rajpurkar.github.io/SQuAD-explorer/', type: official, fields: [summary, data.description, data.size, data.splits, ground_truth.description, evaluation.official_metrics, evaluation.protocol, access.license], checked_on: '2026-10-02'}

@@ -1,0 +1,8 @@
+id: ssrb-2025
+name: "SSRB: Direct Natural Language Querying to Massive Heterogeneous Semi-Structured Data"
+entity_type: paper
+url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/631bbd89466337712564872840a401be-Abstract-Datasets_and_Benchmarks_Track.html'
+relation: introduces
+targets: [ssrb]
+sources:
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/631bbd89466337712564872840a401be-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

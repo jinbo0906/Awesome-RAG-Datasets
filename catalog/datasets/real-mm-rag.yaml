@@ -1,0 +1,55 @@
+id: real-mm-rag
+name: REAL-MM-RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Document-page retrieval over similar IBM financial and technical materials, with three levels of query rephrasing.
+classification:
+  rag_role: auxiliary
+  primary_category: multimodal_rag
+  secondary_categories: [table_rag]
+  tasks: [page_retrieval, multimodal_retrieval, rag_robustness]
+  modalities: [text, image, table, chart, layout]
+  domains: [finance, enterprise-technology]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Four author-released subsets cover FinReport, FinSlides, TechReport and TechSlides. Parquet rows
+    embed pages with image_filename, query, three rephrased queries and a generated answer; null-query
+    rows preserve distractor pages. The official benchmark evaluates retrieval rather than answer generation.
+  size: Paper Table S1 reports 8,604 pages across 163 documents and 4,553 base queries, each with four phrasing versions.
+  splits: Four test subsets; proposed FinTab and rephrased ColPali training data are separate resources.
+  format: Hugging Face Parquet with embedded page images and nullable query/answer fields.
+ground_truth:
+  levels: [page, answer]
+  provenance: synthetic
+  description: >-
+    Generated queries are linked to image_filename. A VLM checks other pages, retaining queries
+    deemed answerable only from their original page. Generated answers aid construction; labels are
+    not human-exhaustive gold, and no question-specific region or cell coordinates are supplied.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [nDCG@5, Recall@1, Recall@5]
+  protocol: >-
+    Deduplicate the page corpus by image_filename, keep null-query distractors, and evaluate each
+    subset and phrasing level separately. Table 2 uses level 3; Table 3 compares levels 0–3.
+    Chunking adaptations must retain page identity; generated answers do not establish an official QA metric.
+access:
+  official: 'https://navvewas.github.io/REAL-MM-RAG/'
+  paper: 'https://aclanthology.org/2025.acl-long.1528/'
+  data: 'https://huggingface.co/collections/ibm-research/real-mm-rag-bench'
+  license: CDLA-Permissive-2.0
+  gated: false
+use:
+  best_for: [Retrieval robustness under semantic query rephrasing, Comparing text chunks and page images on similar table-heavy documents]
+  caveats: [Model-generated and model-verified relevance can still contain false negatives, Hugging Face row counts are not unique-page or non-null-query counts, Page-level gold cannot directly score fine-grained chunk or cell localization]
+sources:
+  - {url: 'https://navvewas.github.io/REAL-MM-RAG/', type: official, fields: [summary, classification.rag_role, data.description, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2025.acl-long.1528.pdf', type: paper, fields: [data.size, data.splits, ground_truth.description, ground_truth.provenance, evaluation.official_metrics, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/ibm-research/REAL-MM-RAG_FinReport', type: dataset_card, fields: [data.description, data.format, access.license, access.gated, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/ibm-research/REAL-MM-RAG_FinSlides', type: dataset_card, fields: [data.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/ibm-research/REAL-MM-RAG_TechReport', type: dataset_card, fields: [data.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/ibm-research/REAL-MM-RAG_TechSlides', type: dataset_card, fields: [data.description, access.license], checked_on: '2026-10-02'}

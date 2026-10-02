@@ -1,0 +1,47 @@
+id: encyclopedic-vqa
+name: Encyclopedic-VQA (E-VQA)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Fine-grained visual knowledge QA with a controlled Wikipedia knowledge base and evidence-section identifiers.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval, multi_hop_qa]
+  modalities: [text, image]
+  domains: [wikipedia, fine-grained-entities]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    CSV question/answer records link iNaturalist and Google Landmarks images to a released
+    WikiWeb2M-derived knowledge-base JSON. Image pixels are acquired separately; Google Lens test retrieval outputs are also released.
+  size: About 221,000 unique QA pairs and one million image-question-answer samples.
+  splits: Train, validation and test, with question type and seen/unseen Wikipedia-entity indicators.
+  format: QA CSV, knowledge-base JSON and separately sourced images.
+ground_truth:
+  levels: [document, section, quote, answer]
+  provenance: mixed
+  description: >-
+    Wikipedia URLs and evidence_section_id locate support, including two consecutive sources for
+    two-hop questions. Evidence strings exist only for templated questions; not every item has a literal quote or visual-region annotation.
+  alternatives: explicit
+evaluation:
+  official_metrics: [BEM_answer_accuracy]
+  protocol: >-
+    Use the released BEM evaluator and question-type handling, including multi-answer cases.
+    Preserve Wikipedia URL keys and knowledge-base sections; do not equate later M2KR retrieval conversions with the original protocol.
+  evaluator: 'https://github.com/google-research/google-research/blob/master/encyclopedic_vqa/evaluation_utils.py'
+access:
+  official: 'https://github.com/google-research/google-research/tree/master/encyclopedic_vqa'
+  paper: 'https://arxiv.org/abs/2306.09224'
+  data: 'https://github.com/google-research/google-research/blob/master/encyclopedic_vqa/README.md'
+  license: unknown
+use:
+  best_for: [Image-conditioned retrieval of encyclopedia evidence, Evaluating section grounding and multi-hop visual knowledge]
+  caveats: [Knowledge-base and query image pixels require separate upstream downloads, Quote support is limited to templated questions]
+sources:
+  - {url: 'https://github.com/google-research/google-research/blob/master/encyclopedic_vqa/README.md', type: repository, fields: [summary, data.description, data.size, data.splits, ground_truth.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/abs/2306.09224', type: paper, fields: [classification.rag_role, ground_truth.provenance, use.best_for], checked_on: '2026-10-02'}

@@ -1,0 +1,48 @@
+id: tat-dqa
+name: TAT-DQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Financial document-image QA combining table and text evidence with discrete numerical reasoning.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  secondary_categories: [table_rag]
+  tasks: [visual_qa, text_table_reasoning, table_qa]
+  modalities: [text, image, table, layout]
+  domains: [finance]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    An extension of TAT-QA with PDF documents, converted text blocks and boxes, QA, answer scales
+    and derivations. The author repository states that test ground truth was released in January 2024.
+  size: 16,558 questions over 2,758 documents and 3,067 pages; each supplied document has at most three pages.
+  splits: Train, development and test.
+  format: PDFs and JSON document blocks plus QA annotations.
+ground_truth:
+  levels: [span, answer]
+  provenance: mixed
+  description: >-
+    QA annotations include answer forms, scales, derivations and OCR block-to-span mappings.
+    Optional supporting facts are generated heuristically, while block boxes come from PDF extraction or OCR;
+    neither is universal human-labeled table-cell or retrieval gold.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [exact_match, F1]
+  protocol: >-
+    Use the official numeric and scale-aware scoring. Keep document blocks and operand mappings
+    when adapting to retrieval; original short-document answering is not corpus-wide financial RAG.
+access:
+  official: 'https://nextplusplus.github.io/TAT-DQA/'
+  paper: 'https://arxiv.org/abs/2207.11871'
+  data: 'https://github.com/NExTplusplus/TAT-DQA'
+  license: CC-BY-4.0
+use:
+  best_for: [Numerical reasoning over document images, Preserving table-text operands and source-block mappings]
+  caveats: [TAT-QA and TAT-DQA are different releases, Heuristic facts and OCR boxes need separate provenance from human QA]
+sources:
+  - {url: 'https://nextplusplus.github.io/TAT-DQA/', type: official, fields: [summary, data.description, data.size, data.splits, ground_truth.description, evaluation.official_metrics, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/NExTplusplus/TAT-DQA', type: repository, fields: [data.description, use.caveats], checked_on: '2026-10-02'}

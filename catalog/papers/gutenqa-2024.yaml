@@ -1,0 +1,8 @@
+id: gutenqa-2024
+name: "LumberChunker: Long-Form Narrative Document Segmentation"
+entity_type: paper
+url: 'https://aclanthology.org/2024.findings-emnlp.377/'
+relation: introduces
+targets: [gutenqa]
+sources:
+  - {url: 'https://aclanthology.org/2024.findings-emnlp.377/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

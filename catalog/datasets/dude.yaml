@@ -1,0 +1,48 @@
+id: dude
+name: DUDE
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Multi-page document QA with varied answer forms, domains and optional answer-region annotations.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, page_retrieval, long_context_qa]
+  modalities: [text, image, layout, table]
+  domains: [documents]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The official release contains PDFs, QA annotations and alternative OCR engines.
+    The author-linked loader supports the public ground truth; OpenDocVQA creates a separately filtered open-domain version.
+  splits: Train, validation and test; use the named public ground-truth release rather than assuming every competition package exposes labels.
+  format: PDF documents, JSON annotations and OCR in provider-specific or DUE format.
+ground_truth:
+  levels: [page, bbox, answer]
+  provenance: human
+  description: >-
+    The loader exposes answers, accepted variants and answers_page_bounding_boxes with page coordinates.
+    Boxes may be absent, and abstract or unanswerable items do not imply a localized supporting region.
+  alternatives: explicit
+evaluation:
+  official_metrics: [ANLS]
+  protocol: >-
+    Preserve answer type, empty answers, page numbering and OCR configuration. ANLS uses the
+    official threshold; open-domain retrieval adaptations must disclose their pool and filtered queries.
+  evaluator: 'https://github.com/Jordy-VL/DUDEeval'
+access:
+  official: 'https://github.com/duchallenge-team/dude'
+  paper: 'https://openaccess.thecvf.com/content/ICCV2023/html/Van_Landeghem_Document_Understanding_Dataset_and_Evaluation_DUDE_ICCV_2023_paper.html'
+  data: 'https://huggingface.co/datasets/jordyvl/DUDE_loader'
+  license: CC-BY-4.0 for the author-linked dataset loader; source documents retain their upstream terms.
+use:
+  best_for: [Page selection and long-document answering, Testing varied answer forms and available answer regions]
+  caveats: [Answer boxes are not present for every question, OCR outputs and the filtered OpenDocVQA protocol are separate versions]
+sources:
+  - {url: 'https://github.com/duchallenge-team/dude', type: repository, fields: [summary, data.description, data.format, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/jordyvl/DUDE_loader/blob/main/DUDE_loader.py', type: dataset_card, fields: [data.splits, ground_truth.levels, ground_truth.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/Jordy-VL/DUDEeval', type: repository, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2504.09795', type: paper, fields: [data.description, evaluation.protocol], checked_on: '2026-10-02'}

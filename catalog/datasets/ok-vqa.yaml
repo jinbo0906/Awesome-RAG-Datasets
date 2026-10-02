@@ -1,0 +1,48 @@
+id: ok-vqa
+name: OK-VQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Outside-knowledge visual QA whose images alone do not contain enough information to answer.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [commonsense, general-knowledge]
+  languages: [en]
+data:
+  corpus: not_provided
+  queries: provided
+  answers: provided
+  description: >-
+    The release supplies question/answer annotations and links to COCO input images, without a fixed
+    external knowledge corpus. NoteMR uses it with passage retrieval in CVPR 2025; M2KR defines another adaptation.
+  size: 14,055 questions, each with five human reference answers.
+  splits: Official train and test; v1.1 updates answer stemming, not questions or images.
+  format: VQA-format question and annotation JSON; COCO images acquired separately.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Accepted answer strings are provided, but the original release does not identify gold Wikipedia
+    passages or supporting image regions. Later retrieval supervision must be attributed to its own construction.
+  alternatives: explicit
+evaluation:
+  official_metrics: [VQA_accuracy]
+  protocol: >-
+    Use the official answer normalization and fix v1.1 labels. Document the external corpus and
+    retrieval supervision; scores from different knowledge pools or M2KR conversions are not interchangeable.
+access:
+  official: 'https://okvqa.allenai.org/'
+  paper: 'https://arxiv.org/abs/1906.00067'
+  data: 'https://okvqa.allenai.org/download.html'
+  license: unknown
+use:
+  best_for: [Knowledge retrieval conditioned on image and question, Comparing external knowledge with model-only answering]
+  caveats: [Native annotations provide answers rather than passage-level retrieval gold, COCO image terms are separate from QA annotations]
+sources:
+  - {url: 'https://okvqa.allenai.org/', type: official, fields: [summary, data.size, ground_truth.description], checked_on: '2026-10-02'}
+  - {url: 'https://okvqa.allenai.org/download.html', type: official, fields: [data.description, data.splits, data.format, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/abs/1906.00067', type: paper, fields: [evaluation.official_metrics, classification.rag_role], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/Jorffy/NoteMR', type: repository, fields: [data.description, use.best_for], checked_on: '2026-10-02'}

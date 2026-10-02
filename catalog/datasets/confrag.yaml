@@ -1,0 +1,22 @@
+id: confrag
+name: ConfRAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Contradiction-aware QA benchmark requiring coverage of distinct viewpoints in supplied web references.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [long_form_qa, rag_robustness, attribution], modalities: [text], domains: [open-domain], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Records contain web-page contents and URLs, contradiction flags, answer clusters and supporting reasons with website indices; the recommended release improves annotations.
+  size: 1,814 questions; 57.2% exhibit contradictions according to the paper.
+  format: JSONL
+ground_truth: {levels: [document, fact_citation, answer], provenance: mixed, description: 'LLM extraction and human review produce viewpoint clusters, reasons and website indices. These references are not exact sentence offsets or guarantees that a viewpoint is objectively true.', alternatives: explicit}
+evaluation: {official_metrics: [normalized_mutual_information, answer_coverage, reason_coverage, valid_partition_rate], protocol: 'Freeze the released page contexts and annotation version. Structured outputs are scored for clustering and keyword-based answer/reason matching; report validity separately.', evaluator: 'https://github.com/XaiverYuan/ConfRAG/tree/main/analysisResult'}
+access: {official: 'https://github.com/XaiverYuan/ConfRAG', paper: 'https://aclanthology.org/2026.acl-long.11/', data: 'https://huggingface.co/datasets/OracleY/ConfRAG', license: 'HF card: CC BY 4.0; repository says dataset research use only and original web licenses apply'}
+use: {best_for: [Contradictory multi-source answer synthesis, Viewpoint and reason coverage], caveats: [Supplied web references test reasoning after retrieval; open-corpus retrieval needs its own protocol, License statements differ between the dataset card and repository; resolve the applicable terms before use]}
+sources:
+  - {url: 'https://huggingface.co/datasets/OracleY/ConfRAG', type: dataset_card, fields: [summary, classification, data, ground_truth, evaluation.official_metrics, evaluation.protocol, access.license, use], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/XaiverYuan/ConfRAG', type: repository, fields: [evaluation.evaluator, access.license, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2026.acl-long.11.pdf', type: paper, fields: [data.size, evaluation.official_metrics], checked_on: '2026-10-02'}

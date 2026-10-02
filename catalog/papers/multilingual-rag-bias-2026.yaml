@@ -1,0 +1,8 @@
+id: multilingual-rag-bias-2026
+name: "All Languages Matter: Understanding and Mitigating Language Bias in Multilingual RAG"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.338/'
+relation: evaluates
+targets: [mkqa, kilt]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.338/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

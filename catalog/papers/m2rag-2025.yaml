@@ -1,0 +1,8 @@
+id: m2rag-2025
+name: "Benchmarking Retrieval-Augmented Generation in Multi-Modal Contexts"
+entity_type: paper
+url: 'https://doi.org/10.1145/3746027.3755625'
+relation: introduces
+targets: [m2rag]
+sources:
+  - {url: 'https://doi.org/10.1145/3746027.3755625', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

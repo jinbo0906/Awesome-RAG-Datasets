@@ -1,0 +1,8 @@
+id: notemr-2025
+name: "Notes-guided MLLM Reasoning: Enhancing MLLM with Knowledge and Visual Notes"
+entity_type: paper
+url: 'https://openaccess.thecvf.com/content/CVPR2025/html/Fang_Notes-guided_MLLM_Reasoning_Enhancing_MLLM_with_Knowledge_and_Visual_Notes_CVPR_2025_paper.html'
+relation: evaluates
+targets: [ok-vqa, a-okvqa]
+sources:
+  - {url: 'https://openaccess.thecvf.com/content/CVPR2025/html/Fang_Notes-guided_MLLM_Reasoning_Enhancing_MLLM_with_Knowledge_and_Visual_Notes_CVPR_2025_paper.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

@@ -1,0 +1,8 @@
+id: carl-2026
+name: "Compete to Complete: Co-opetition Adversarial Learning for Retrieval-Augmented Generation"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.258/'
+relation: evaluates
+targets: [natural-questions, hotpotqa, triviaqa, fever, wizard-of-wikipedia]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.258/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

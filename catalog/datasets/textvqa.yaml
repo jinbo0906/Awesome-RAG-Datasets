@@ -1,0 +1,47 @@
+id: textvqa
+name: TextVQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Visual QA requiring recognition and reasoning about text embedded in natural-scene images.
+classification:
+  rag_role: rag_convertible
+  primary_category: multimodal_rag
+  tasks: [visual_qa]
+  modalities: [text, image]
+  domains: [natural-scenes]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Questions and ten-answer annotations are paired with OpenImages photographs. Version 0.5.1
+    updates Rosetta OCR tokens without changing version 0.5 questions or images.
+  size: '45,336 questions: 34,602 train, 5,000 validation and 5,734 test.'
+  splits: Official v0.5.1 train, validation and test-std.
+  format: Image files, QA JSON and separate OCR JSON.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Human answer variants support VQA scoring. Rosetta token boxes are machine-produced OCR inputs,
+    not question-specific evidence-region gold or native retrieval relevance labels.
+  alternatives: explicit
+evaluation:
+  official_metrics: [VQA_accuracy]
+  protocol: >-
+    Fix the OCR version and account for OpenImages rotation metadata. Native evaluation supplies the
+    query image; a retrieval experiment must define its additional corpus, relevance labels and answer protocol.
+  evaluator: 'https://textvqa.org/challenge/'
+access:
+  official: 'https://textvqa.org/'
+  paper: 'https://arxiv.org/abs/1904.08920'
+  data: 'https://textvqa.org/dataset/'
+  license: CC-BY-4.0
+use:
+  best_for: [Scene-text reading and OCR robustness, Visual answer-generation component evaluation]
+  caveats: [The native task has no external-knowledge retrieval pool or qrels, OCR boxes do not certify which region supports an answer]
+sources:
+  - {url: 'https://textvqa.org/dataset/', type: official, fields: [summary, data.description, data.size, data.splits, ground_truth.description, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://textvqa.org/challenge/', type: official, fields: [evaluation.official_metrics, evaluation.protocol, use.caveats], checked_on: '2026-10-02'}

@@ -1,0 +1,29 @@
+id: saferag
+name: SafeRAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Chinese RAG security benchmark with silver noise, inter-context conflicts, soft advertisements and denial-of-service contexts.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [rag_robustness, evidence_retrieval], modalities: [text], domains: [news], languages: [zh]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The repository releases clean and attack-augmented knowledge bases plus task-specific question/context files. News-based questions and golden contexts are generated with LLM assistance and manually checked and revised.
+  format: Text/JSON
+ground_truth:
+  levels: [sentence, answer]
+  provenance: mixed
+  description: Golden contexts and correct/incorrect propositions support task-specific scoring. They are selected evidence sentences, not an annotation of every valid segmentation of the original news articles.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [f1_correct, f1_incorrect, f1_avg, attack_success_rate, retrieval_accuracy]
+  protocol: Fix the attack type, injection stage, attack ratio and retrieval window. Distinguish attacks on indexing, retrieved context and filtered context; do not combine their scores into a clean-retrieval score. The reported attack failure rate AFR is 1-ASR, so higher AFR and lower attack success rate mean better defense.
+  evaluator: https://github.com/IAAR-Shanghai/SafeRAG
+access: {official: 'https://github.com/IAAR-Shanghai/SafeRAG', paper: 'https://aclanthology.org/2025.acl-long.230/', data: 'https://github.com/IAAR-Shanghai/SafeRAG/tree/main/nctd_datasets', license: unknown}
+use:
+  best_for: [Chinese RAG robustness under injected contexts, Comparing retrieval and filtering defenses at different stages]
+  caveats: [Task-specific constructed attacks do not represent an unrestricted live threat distribution, Gold evidence sentences are not unique chunk boundary gold]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.230.pdf', type: paper, fields: [summary, data.description, ground_truth.description, evaluation.official_metrics], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/IAAR-Shanghai/SafeRAG', type: repository, fields: [data.corpus, access.data, evaluation.protocol], checked_on: '2026-10-02'}

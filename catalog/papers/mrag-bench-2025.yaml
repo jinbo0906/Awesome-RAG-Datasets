@@ -1,0 +1,8 @@
+id: mrag-bench-2025
+name: "MRAG-Bench: Vision-Centric Evaluation for Retrieval-Augmented Multimodal Models"
+entity_type: paper
+url: 'https://proceedings.iclr.cc/paper_files/paper/2025/hash/ee46288ab2aaf5c6e53aebebe719712c-Abstract-Conference.html'
+relation: introduces
+targets: [mrag-bench]
+sources:
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2025/hash/ee46288ab2aaf5c6e53aebebe719712c-Abstract-Conference.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

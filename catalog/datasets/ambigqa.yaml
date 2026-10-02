@@ -1,0 +1,32 @@
+id: ambigqa
+name: AmbigQA / AmbigNQ
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Ambiguous Natural Questions annotated with multiple interpretations, acceptable answers and disambiguated questions.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [single_hop_qa], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: >-
+    The core AmbigNQ annotations provide questions and alternative single-answer or multiple-QA outputs.
+    Author resources include separate Wikipedia databases and a later semi-oracle evidence-article
+    package, which should be identified when used.
+  splits: Public train and development annotations; test evaluation follows the upstream submission process.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Multiple acceptable outputs contain answer aliases and question rewrites. Viewed page titles and annotation search queries are incomplete metadata, not exhaustive retrieval gold or permitted test inputs.
+  alternatives: explicit
+evaluation:
+  official_metrics: ['F1 answer', 'F1 edit-f1', 'F1 bleu1', 'F1 bleu2', 'F1 bleu3', 'F1 bleu4']
+  protocol: Score answer coverage and disambiguation separately with the official evaluator; label semi-oracle evidence experiments and preserve alternative annotations.
+  evaluator: 'https://github.com/shmsw25/AmbigQA/blob/main/ambigqa_evaluate_script.py'
+access: {official: 'https://github.com/shmsw25/AmbigQA', paper: 'https://arxiv.org/abs/2004.10645', license: unknown}
+use:
+  best_for: [Covering multiple valid interpretations, Distinguishing answer coverage from disambiguation quality]
+  caveats: [Semi-oracle evidence changes the retrieval task, Annotation metadata must not be treated as system input]
+sources:
+  - {url: 'https://github.com/shmsw25/AmbigQA', type: repository, fields: [summary, data.description, data.splits, ground_truth.description, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/shmsw25/AmbigQA/blob/main/ambigqa_evaluate_script.py', type: repository, fields: [evaluation.official_metrics], checked_on: '2026-10-02'}

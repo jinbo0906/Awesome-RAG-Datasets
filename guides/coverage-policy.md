@@ -22,6 +22,10 @@ The catalog aims for useful, auditable coverage rather than a maximum row count.
 | Suite subsets from [BEIR](../suite-cards/beir.md), [ViDoRe](../suite-cards/vidore.md), [M-BEIR](../suite-cards/m-beir.md) or [M2KR](../suite-cards/m2kr.md) | A converted subset may change corpus, split, qrels and metrics. Link it as a variant only after checking the exact release; do not silently copy the original dataset card. |
 | Paper-only or unstable-release assets | Keep out of the source-checked catalog until canonical download, version and evaluator can be stated. A 403/429/timeout is inconclusive, not proof of removal. |
 
+## Recent-paper coverage
+
+The [2025–2026 paper adoption index](recent-paper-index.md) traces CCF A venue papers to their actual experimental datasets and distinguishes formal tracks from Findings, B venues and preprints. Older reused datasets and newly introduced benchmarks are both included, but a converted subset is not counted again as a new dataset. [MedQA](../dataset-cards/text-rag/medqa.md), [MedMCQA](../dataset-cards/text-rag/medmcqa.md) and [PubMedQA](../dataset-cards/text-rag/pubmedqa.md) now have native cards and links through [MIRAGE](../suite-cards/mirage.md); their native tasks still do not supply open-retrieval evidence gold.
+
 ## High-value follow-up checks
 
 These are candidate investigations, **not** claims of completed review: verify publicly reproducible artifacts and licenses for TableRAG's ArcadeQA/BirdQA large-table variants ([paper](https://arxiv.org/abs/2410.04739), [upstream download issue](https://github.com/google-research/google-research/issues/3190)); separate versioned ViDoRe and M2KR component conversions; and audit video-RAG datasets for released temporal source coordinates, questions and evaluator. Additional domains—legal, finance, medical and code—should be selected through the same source/evidence tests, not become separate top-level categories by name alone.

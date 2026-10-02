@@ -1,0 +1,8 @@
+id: confrag-2026
+name: "Benchmarking LLM's Capability in Reasoning over Conflicting Web References"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.11/'
+relation: introduces
+targets: [confrag]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.11/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

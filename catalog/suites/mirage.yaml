@@ -1,0 +1,12 @@
+id: mirage
+name: MIRAGE (medical RAG)
+entity_type: suite
+status: source_checked
+summary: Medical RAG suite of 7,663 questions from five QA datasets, evaluated zero-shot with question-only retrieval.
+summary_zh: 汇集五个医学问答数据集的 7,663 个问题，以零样本和仅问题检索设置评测医学 RAG。
+components: [medqa, medmcqa, pubmedqa]
+protocol: 'Use the released benchmark.json: MMLU-Med (1,089), MedQA-US four-option test (1,273), MedMCQA dev (4,183), context-removed PubMedQA* test (500), and BioASQ yes/no test questions from 2019–2023 (618). Linked cards describe three upstream datasets; the other two exact subsets are not separately indexed. BioASQ-Y/N is not BioASQ14b. Retrieve using questions without answer options, keep the MedRAG corpus/retriever snapshot fixed, and report per-task and average answer accuracy. Retrieved snippet IDs are system outputs, not gold evidence judgments. Findings ACL 2024 is the publication venue; do not call it an ACL main-conference paper.'
+access: {official: 'https://github.com/gzxiong/MIRAGE', paper: 'https://aclanthology.org/2024.findings-acl.372/'}
+sources:
+  - {url: 'https://github.com/gzxiong/MIRAGE', type: repository, fields: [summary, components, protocol], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2024.findings-acl.372/', type: paper, fields: [protocol], checked_on: '2026-10-02'}

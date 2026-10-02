@@ -1,0 +1,30 @@
+id: mmrag
+name: mmRAG (text, tables and knowledge graphs)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Integrated RAG release with queries and relevance judgments over unified text representations of prose, tables and knowledge graphs.
+classification: {rag_role: rag_native, primary_category: text_rag, secondary_categories: [table_rag, graph_rag], tasks: [evidence_retrieval, single_hop_qa, graph_qa, table_qa], modalities: [text, table, graph], domains: [general, wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Derives questions and retrievable records from NQ, TriviaQA, OTT-QA, TAT-QA, ComplexWebQuestions and WebQSP. Tables and KG facts are converted to documents and split into non-overlapping 512-token chunks; this is not an image-text benchmark such as M2RAG.
+  format: JSON
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: Pooled 512-token chunks receive LLM relevance grades 0/1/2; dataset-level relevance is derived for routing. The catalog document level denotes these addressable retrieval records, not original whole-document qrels. Labels do not supervise graph paths or alternative chunk boundaries.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [ndcg_at_k, map_at_k, hits_at_k]
+  protocol: Use the released 512-token chunks, judgments and splits together. Rechunking requires evidence remapping or new relevance judgments, not reuse of old chunk IDs. The retrieval script reports NDCG, MAP and Hits at 1/3/5; report routing and answer generation separately. Pin LLM annotation and grading configurations when reconstructing the benchmark.
+  evaluator: https://github.com/nju-websoft/mmRAG/tree/main/mmrag_experiments
+access: {official: 'https://github.com/nju-websoft/mmRAG', paper: 'https://arxiv.org/abs/2505.11180', data: 'https://huggingface.co/datasets/Askio/mmrag_benchmark', license: 'unknown; source datasets retain their own terms'}
+use:
+  best_for: [Routing between text/table/KG sources, Component-level relevance evaluation across heterogeneous representations]
+  caveats: [LLM judgments and incomplete pooling are not exhaustive human evidence gold, Graphs and tables are serialized; image-layout reasoning is outside the native protocol]
+sources:
+  - {url: 'https://arxiv.org/html/2505.11180v1', type: paper, fields: [data.description, ground_truth.description, evaluation.protocol], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/nju-websoft/mmRAG', type: repository, fields: [summary, data.description, ground_truth.description, evaluation.protocol, access.data], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/nju-websoft/mmRAG/blob/main/mmrag_experiments/eval.py', type: repository, fields: [evaluation.official_metrics], checked_on: '2026-10-02'}

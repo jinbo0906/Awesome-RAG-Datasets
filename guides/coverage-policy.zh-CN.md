@@ -22,6 +22,10 @@
 | [BEIR](../suite-cards/beir.zh-CN.md)、[ViDoRe](../suite-cards/vidore.zh-CN.md)、[M-BEIR](../suite-cards/m-beir.zh-CN.md)、[M2KR](../suite-cards/m2kr.zh-CN.md) 等套件的子集 | 转换后的子集可能改变语料、划分、相关性标注和指标。须核查具体版本后作为变体关联，不能悄悄复用原始数据集卡片。 |
 | 只有论文描述或发布不稳定的资产 | 在能够确认权威下载、版本与评测器前，不标记为 `source_checked`。HTTP 403、429 或超时并不能证明资源已移除。 |
 
+## 近期论文覆盖
+
+[2025–2026 年论文采用索引](recent-paper-index.zh-CN.md)从 CCF A 类会议论文追溯实际实验数据，区分正式轨道、Findings、B 类会议和预印本。近期复用的早期数据与新引入 benchmark 均纳入，但不会将转换子集再次统计为新数据集。[MedQA](../dataset-cards/text-rag/medqa.zh-CN.md)、[MedMCQA](../dataset-cards/text-rag/medmcqa.zh-CN.md)、[PubMedQA](../dataset-cards/text-rag/pubmedqa.zh-CN.md)现已有原生卡片，并通过 [MIRAGE](../suite-cards/mirage.zh-CN.md)关联；这些原生任务仍不提供开放检索的证据真值。
+
 ## 后续优先核查
 
 以下只是**候选调查**，不是已完成复核的结论：检查 TableRAG 的 ArcadeQA/BirdQA 大型表格变体是否有可公开复现的资产与许可（[论文](https://arxiv.org/abs/2410.04739)、[上游下载问题](https://github.com/google-research/google-research/issues/3190)）；分开核对 ViDoRe 和 M2KR 的版本化子集转换；审查视频 RAG 数据是否发布了时间坐标、问题及评测器。法律、金融、医疗和代码等领域也应按同一套来源与证据条件筛选，而非仅凭领域名称升为顶层分类。

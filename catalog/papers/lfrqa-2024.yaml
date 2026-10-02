@@ -1,0 +1,8 @@
+id: lfrqa-2024
+name: "RAG-QA Arena: Evaluating Domain Robustness for Long-form Retrieval Augmented Question Answering"
+entity_type: paper
+url: 'https://aclanthology.org/2024.emnlp-main.249/'
+relation: introduces
+targets: [lfrqa]
+sources:
+  - {url: 'https://aclanthology.org/2024.emnlp-main.249/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

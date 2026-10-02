@@ -1,0 +1,21 @@
+id: legalbench-rag
+name: LegalBench-RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Legal retrieval benchmark scoring precise text snippets against character-range annotations.
+classification: {rag_role: auxiliary, primary_category: text_rag, tasks: [evidence_retrieval], modalities: [text], domains: [law], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: not_provided
+  description: The downloadable benchmark supplies a text corpus and queries with snippet targets derived from ContractNLI, CUAD, MAUD and PrivacyQA; a retrieval target is not a free-form answer reference.
+  size: The paper reports 6,858 query/snippet examples over more than 79M corpus characters.
+  format: Text files and JSON benchmark files
+ground_truth: {levels: [document, span], provenance: mixed, description: 'Each target identifies a corpus file and a character range. Expert upstream annotations are transformed into retrieval cases with LLM assistance.', alternatives: explicit}
+evaluation: {official_metrics: [character_precision_at_k, character_recall_at_k], protocol: 'Preserve file paths and original character offsets when chunking. Report k and full versus mini release; the official benchmark evaluates retrieval.', evaluator: 'https://github.com/zeroentropy-ai/legalbenchrag'}
+access: {official: 'https://github.com/zeroentropy-ai/legalbenchrag', paper: 'https://arxiv.org/abs/2408.10343', license: unknown}
+use: {best_for: [Legal chunking and precise evidence retrieval, Character-level retrieval coverage], caveats: [No native answer-generation scoring is established by this retrieval release, Check the terms of the four upstream legal datasets before regeneration]}
+sources:
+  - {url: 'https://github.com/zeroentropy-ai/legalbenchrag', type: repository, fields: [summary, classification, data.description, data.format, ground_truth, evaluation, use], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2408.10343v1', type: paper, fields: [data.size, evaluation.official_metrics], checked_on: '2026-10-02'}

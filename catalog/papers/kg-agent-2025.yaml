@@ -1,0 +1,8 @@
+id: kg-agent-2025
+name: "KG-Agent: An Efficient Autonomous Agent Framework for Complex Reasoning over Knowledge Graph"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.468/'
+relation: evaluates
+targets: [complexwebquestions, kqa-pro, webqsp, grailqa, metaqa]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.468/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

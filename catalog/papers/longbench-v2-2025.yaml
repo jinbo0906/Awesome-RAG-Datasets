@@ -1,0 +1,8 @@
+id: longbench-v2-2025
+name: "LongBench v2: Towards Deeper Understanding and Reasoning on Realistic Long-context Multitasks"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.183/'
+relation: introduces
+targets: [longbench-v2]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.183/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

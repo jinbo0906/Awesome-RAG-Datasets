@@ -1,0 +1,48 @@
+id: m2rag
+name: M²RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Released multi-task open-domain multimodal RAG data adapted from WebQA and Factify.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [visual_qa, fact_verification, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [web, fact-verification]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Four tasks cover image captioning, multimodal QA, multimodal fact verification and image reranking.
+    The author repository links task files and a multipart image archive; QA and captioning use WebQA, while verification uses Factify.
+  size: Each task has 3,000 test queries; the first three also have 3,000 training queries, with task-specific corpora.
+  splits: Author-defined train and test; Factify evaluation is sampled from its validation set.
+  format: Task-specific data folders and image TSV/archive assets.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Task targets include captions, QA answers, three-way verification labels and reference images.
+    Annotation and retrieval relevance vary by task; this record does not claim universal paragraph or image-region evidence.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [BERTScore, ROUGE-L, CIDEr, accuracy, F1, FID]
+  protocol: >-
+    Use the task-specific corpus and metric: captioning/QA use text-generation metrics, verification
+    uses accuracy/F1, and image reranking uses FID. Report top-k context and avoid merging unlike task scores without a stated aggregation.
+  evaluator: 'https://github.com/NEUIR/M2RAG/tree/main/src/evaluation'
+access:
+  official: 'https://github.com/NEUIR/M2RAG'
+  paper: 'https://arxiv.org/abs/2502.17297'
+  data: 'https://huggingface.co/datasets/whalezzz/M2RAG'
+  license: WebQA CC0-1.0 and Factify MIT as stated in paper Appendix A.1; repository code MIT; upstream image terms also apply.
+use:
+  best_for: [Testing multimodal retrieved-context utilization across tasks, Comparing retrieval-augmented instruction tuning with vanilla RAG]
+  caveats: [M²RAG is distinct from M2KR and M2RAG interleaved-answer systems, FID for reranking is not a standard query-level relevance metric]
+sources:
+  - {url: 'https://arxiv.org/html/2502.17297', type: paper, fields: [summary, data.description, data.size, data.splits, ground_truth.description, evaluation.official_metrics, evaluation.protocol, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/NEUIR/M2RAG', type: repository, fields: [data.description, data.format, access.data, use.best_for], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/datasets/whalezzz/M2RAG', type: dataset_card, fields: [access.data, data.description, data.format], checked_on: '2026-10-02'}

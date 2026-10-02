@@ -1,0 +1,20 @@
+id: crud-rag
+name: CRUD-RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Chinese RAG benchmark covering continuation, question answering, summarization and text correction.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [single_hop_qa, multi_hop_qa, summarization, rag_robustness], modalities: [text], domains: [news], languages: [zh]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The release contains merged task data, the paper's selected experiment subset and more than 80K news documents used as the retrieval database.
+  format: JSON and text documents
+ground_truth: {levels: [answer], provenance: mixed, description: 'Task references support generation and correction scoring; the release is not claimed to provide a universal sentence-level supporting-evidence set.', alternatives: not_documented}
+evaluation: {official_metrics: [bleu, rouge, bertscore, ragquesteval], protocol: 'Select the released experiment subset and report the task, chunking, top-k and model prompts. RAGQuestEval requires a question-generation/answering model.', evaluator: 'https://github.com/IAAR-Shanghai/CRUD_RAG/blob/main/evaluator.py'}
+access: {official: 'https://github.com/IAAR-Shanghai/CRUD_RAG', paper: 'https://doi.org/10.1145/3701228', data: 'https://github.com/IAAR-Shanghai/CRUD_RAG/tree/main/data', license: unknown}
+use: {best_for: [Chinese news RAG beyond short QA, Comparing generation tasks under one retrieval corpus], caveats: [Reference style and prompting affect lexical metrics, The repository citation identifies ACM TOIS; do not relabel its arXiv version as a conference paper]}
+sources:
+  - {url: 'https://github.com/IAAR-Shanghai/CRUD_RAG', type: repository, fields: [summary, classification, data, ground_truth, evaluation, access.paper, use], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2401.17043v3', type: paper, fields: [ground_truth.provenance, evaluation.official_metrics], checked_on: '2026-10-02'}

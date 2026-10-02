@@ -1,0 +1,21 @@
+id: opendialkg
+name: OpenDialKG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human conversations paired with participant-annotated knowledge-graph walks and a released base graph.
+classification: {rag_role: rag_convertible, primary_category: graph_rag, tasks: [conversational_qa, graph_reasoning], modalities: [graph, text], domains: [movie, book, sports, music], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The release includes dialogue CSV and entity/relation/triple files; dialogue contexts can serve as queries and subsequent utterances as responses.
+  size: 13,802 sessions and 91,209 turns; base KG has 100,813 entities and 1,190,658 bidirectional triples.
+  format: CSV with JSON actions and tab-separated KG triples
+ground_truth: {levels: [graph_path, answer], provenance: human, description: 'Participants select paths connecting concepts across adjacent turns; intermediate entities need not appear in text, and paths are not unique factual-answer evidence sets.', alternatives: implicit}
+evaluation: {official_metrics: [entity_recall_at_k, human_response_preference], protocol: 'The original paper evaluates predicted response entities at k=1/3/5/10/25 and human naturalness preferences. Preserve in-domain versus cross-domain settings.'}
+access: {official: 'https://github.com/facebookresearch/opendialkg', paper: 'https://aclanthology.org/P19-1081/', data: 'https://github.com/facebookresearch/opendialkg/tree/main/data', license: CC BY-NC 4.0}
+use: {best_for: [Conversational graph walks with explicit supervision, Graph reasoning across dialogue domains], caveats: [Entity prediction metrics are not full answer factuality or citation metrics, The official repository is archived and does not provide a universal modern GraphRAG evaluator]}
+sources:
+  - {url: 'https://github.com/facebookresearch/opendialkg', type: repository, fields: [summary, classification, data, ground_truth, access.license, use], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/P19-1081.pdf', type: paper, fields: [evaluation], checked_on: '2026-10-02'}

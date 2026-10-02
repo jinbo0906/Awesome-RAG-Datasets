@@ -1,0 +1,21 @@
+id: kqa-pro
+name: KQA Pro
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Complex knowledge-base QA with explicit KoPL programs and SPARQL queries over a provided Wikidata subset.
+classification: {rag_role: rag_convertible, primary_category: graph_rag, tasks: [graph_qa, graph_reasoning], modalities: [graph, text], domains: [knowledge-base], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The official download contains kb.json and train/val/test files; questions include executable KoPL and SPARQL supervision.
+  size: 117,970 questions.
+  format: JSON
+ground_truth: {levels: [graph_path, answer], provenance: mixed, description: 'Composed programs and SPARQL define operations over the KB; crowdsourcing paraphrases the questions. A program may use comparison or set operations rather than a simple linear gold path.', alternatives: implicit}
+evaluation: {official_metrics: [answer_accuracy], protocol: 'Execute or compare answers on the released KB and official split; report reasoning-skill categories and whether gold programs or topic entities are available.'}
+access: {official: 'https://github.com/shijx12/KQAPro_Baselines', paper: 'https://aclanthology.org/2022.acl-long.422/', license: unknown}
+use: {best_for: [Compositional graph reasoning and program execution, Diagnostics by reasoning skill], caveats: [KoPL/SPARQL supervision is not automatically a natural-language GraphRAG citation path, Keep the released Wikidata subset rather than silently replacing it with a live graph]}
+sources:
+  - {url: 'https://github.com/shijx12/KQAPro_Baselines', type: repository, fields: [data.description, data.format], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2022.acl-long.422.pdf', type: paper, fields: [summary, classification, data.size, ground_truth, evaluation, use], checked_on: '2026-10-02'}

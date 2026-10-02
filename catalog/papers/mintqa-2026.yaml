@@ -1,0 +1,8 @@
+id: mintqa-2026
+name: "MINTQA: A Multi-Hop Question Answering Benchmark for Evaluating LLMs on New and Long-tail Knowledge"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.18/'
+relation: introduces
+targets: [mintqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.18/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

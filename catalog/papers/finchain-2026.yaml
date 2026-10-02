@@ -1,0 +1,8 @@
+id: finchain-2026
+name: "FinChain: A Symbolic Benchmark for Verifiable Chain-of-Thought Financial Reasoning"
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.662/'
+relation: introduces
+targets: [finchain]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.662/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

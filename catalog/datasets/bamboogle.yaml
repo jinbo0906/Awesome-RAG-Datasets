@@ -1,0 +1,29 @@
+id: bamboogle
+name: Bamboogle
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Handwritten two-hop questions designed to defeat direct search snippets while composing facts available in Wikipedia.
+classification: {rag_role: rag_convertible, primary_category: text_rag, tasks: [multi_hop_qa], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The author release contains question-answer pairs; Wikipedia and live search are external resources. It does not bundle a fixed retrieval collection or per-hop evidence annotations.
+  size: 125 manually written two-hop questions.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Authors provide final answers to compositional questions. The fact that both hops can be found in Wikipedia does not supply annotated passage IDs, supporting sentences or reference reasoning traces.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [exact_match]
+  protocol: Extract and score the final answer, and record the search or corpus snapshot. The original evaluation uses the full small benchmark without tuning prompts on it; report later subsets separately.
+access: {official: 'https://github.com/ofirpress/self-ask', paper: 'https://aclanthology.org/2023.findings-emnlp.378/', license: MIT}
+use:
+  best_for: [Iterative search and question decomposition, Varied two-hop factual questions]
+  caveats: [The small sample limits statistical precision, Its original search-snippet failure condition is time-dependent]
+sources:
+  - {url: 'https://github.com/ofirpress/self-ask', type: repository, fields: [data.description], checked_on: '2026-10-02'}
+  - {url: 'https://github.com/ofirpress/self-ask/blob/main/datasets/bamboogle.md', type: repository, fields: [access.license], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2023.findings-emnlp.378.pdf', type: paper, fields: [summary, data.size, ground_truth.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}

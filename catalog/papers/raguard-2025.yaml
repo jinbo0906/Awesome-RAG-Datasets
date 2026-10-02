@@ -1,0 +1,8 @@
+id: raguard-2025
+name: "Worse than Zero-shot? A Fact-Checking Dataset for Evaluating the Robustness of RAG Against Misleading Retrievals"
+entity_type: paper
+url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/ed25c00ff6900989116d3ba5d607d33d-Abstract-Datasets_and_Benchmarks_Track.html'
+relation: introduces
+targets: [raguard]
+sources:
+  - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/hash/ed25c00ff6900989116d3ba5d607d33d-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

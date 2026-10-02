@@ -1,0 +1,8 @@
+id: mirage-2024
+name: "Benchmarking Retrieval-Augmented Generation for Medicine"
+entity_type: paper
+url: 'https://aclanthology.org/2024.findings-acl.372/'
+relation: introduces
+targets: [mirage]
+sources:
+  - {url: 'https://aclanthology.org/2024.findings-acl.372/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

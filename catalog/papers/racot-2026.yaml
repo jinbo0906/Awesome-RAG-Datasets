@@ -1,0 +1,8 @@
+id: racot-2026
+name: "RaCoT: Plug-and-Play Contrastive Example Generation Mechanism for Enhanced LLM Reasoning Reliability"
+entity_type: paper
+url: 'https://ojs.aaai.org/index.php/AAAI/article/view/40260'
+relation: evaluates
+targets: [popqa, triviaqa, hotpotqa, 2wikimultihopqa]
+sources:
+  - {url: 'https://ojs.aaai.org/index.php/AAAI/article/view/40260', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

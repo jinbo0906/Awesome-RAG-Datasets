@@ -1,0 +1,21 @@
+id: finqa
+name: FinQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Financial numerical QA with supporting text/table facts and executable reasoning programs.
+classification: {rag_role: rag_convertible, primary_category: table_rag, tasks: [table_qa, text_table_reasoning, evidence_retrieval], modalities: [text, table], domains: [finance], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: JSON examples include pre/post-table text, a report table, a question, gold supporting fact indices, a reasoning program and its execution answer.
+  splits: Train/dev/public test contain references; private test questions omit gold references.
+  format: JSON
+ground_truth: {levels: [sentence, table, answer], provenance: human, description: 'gold_inds selects supporting text sentences and serialized table rows; programs supervise numerical operations. These row targets are not original PDF cell coordinates.', alternatives: not_documented}
+evaluation: {official_metrics: [execution_accuracy, program_accuracy], protocol: 'Run retrieval plus program generation for challenge submissions. Gold retrieval inputs are for diagnostics; distinguish public from private test and use corrected table-row serialization.', evaluator: 'https://github.com/czyssrs/FinQA/tree/main/code/evaluate'}
+access: {official: 'https://github.com/czyssrs/FinQA', paper: 'https://aclanthology.org/2021.emnlp-main.300/', data: 'https://github.com/czyssrs/FinQA/tree/main/dataset', license: MIT}
+use: {best_for: [Retrieval before financial computation, Executable answer and program supervision], caveats: [The native candidate context is supplied; full-report retrieval is an additional conversion, The repository documents earlier serialization bugs that leaked retrieval labels]}
+sources:
+  - {url: 'https://github.com/czyssrs/FinQA', type: repository, fields: [summary, classification, data, ground_truth, evaluation, access.license, use], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2021.emnlp-main.300/', type: paper, fields: [ground_truth.provenance, access.paper], checked_on: '2026-10-02'}

@@ -17,3 +17,16 @@ Text RAG 涉及文档、段落和句子检索、回答生成、多跳证据、�
 研究分块时，应使用不随分块策略改变的文档、段落或句子坐标，并固定 token 预算。一句支持性证据不是唯一正确的分块边界。宜成对分析完整证据检索、额外上下文开销和回答质量；研究回答时，应分别报告提供金标准证据的 oracle 设置与实际检索设置。RGB 和 RAGTruth 可用于**诊断**，但不能当作完整开放语料检索测试。动态更新答案的数据集必须固定版本日期，并记录来源获取时间。
 
 完整的[证据真值指南](../evidence-ground-truth.zh-CN.md)规定了来源坐标和可替代证据集合的处理方式。领域是独立筛选维度：生物医学和公共卫生条目放在这里，是因为它们发布的证据是文本，而不是因为“医疗 RAG”是另一种来源表示形式。
+
+## 近期论文驱动的补充
+
+[2025–2026 年采用索引](../recent-paper-index.zh-CN.md)记录具体论文设置，包括原始来源变体和抽样划分。新增方向对应不同失败模式：
+
+| 子方向 | 新增选型入口 | 应区分的内容 |
+|---|---|---|
+| 开放域与长尾 | [TriviaQA](../../dataset-cards/text-rag/triviaqa.zh-CN.md)、[PopQA](../../dataset-cards/text-rag/popqa.zh-CN.md)、[AmbigQA](../../dataset-cards/text-rag/ambigqa.zh-CN.md)、[Bamboogle](../../dataset-cards/text-rag/bamboogle.zh-CN.md) | 答案别名或消歧不等于来源证据；语料快照通常来自外部 |
+| 会话检索 | [QReCC](../../dataset-cards/text-rag/qrecc.zh-CN.md)、[TopiOCQA](../../dataset-cards/text-rag/topiocqa.zh-CN.md)、[OR-QuAC](../../dataset-cards/text-rag/or-quac.zh-CN.md)、[MultiDoc2Dial](../../dataset-cards/text-rag/multidoc2dial.zh-CN.md)、[ChatRAG Bench](../../suite-cards/chatrag-bench.zh-CN.md) | 历史、独立查询改写、每轮支持段落及套件改造 |
+| 多语言检索或问答 | [MIRACL](../../dataset-cards/text-rag/miracl.zh-CN.md)、[NoMIRACL](../../dataset-cards/text-rag/nomiracl.zh-CN.md)、[MKQA](../../dataset-cards/text-rag/mkqa.zh-CN.md) | MIRACL 相关性、NoMIRACL 二元相关性判断、MKQA 多语言答案是不同标签 |
+| 分块与上下文路由 | [GutenQA](../../dataset-cards/text-rag/gutenqa.zh-CN.md)、[LaRA](../../dataset-cards/text-rag/lara.zh-CN.md)、[LongBench v2](../../dataset-cards/text-rag/longbench-v2.zh-CN.md) | 子串锚定的检索与只有答案真值的 RAG/长上下文对照不同 |
+| 安全与证据冲突 | [SafeRAG](../../dataset-cards/text-rag/saferag.zh-CN.md)、[RAGuard](../../dataset-cards/text-rag/raguard.zh-CN.md)、[ConfRAG](../../dataset-cards/text-rag/confrag.zh-CN.md) | 构造攻击、误导检索与冲突答案或理由覆盖 |
+| 专业来源 | [LegalBench-RAG](../../dataset-cards/text-rag/legalbench-rag.zh-CN.md)、[MIRAGE](../../suite-cards/mirage.zh-CN.md)、[LFRQA](../../dataset-cards/text-rag/lfrqa.zh-CN.md)、[CRUD-RAG](../../dataset-cards/text-rag/crud-rag.zh-CN.md) | 法律片段检索、医学选择题准确率、跨领域长回答评分与中文生成任务 |

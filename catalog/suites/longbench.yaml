@@ -1,0 +1,11 @@
+id: longbench
+name: LongBench (v1)
+entity_type: suite
+status: source_checked
+summary: Bilingual long-context suite with 21 tasks, including QA, summarization, few-shot learning, synthetic retrieval and code completion.
+summary_zh: 包含 21 项任务的双语长上下文套件，覆盖问答、摘要、少样本学习、合成检索与代码补全。
+components: [narrativeqa, qasper, hotpotqa, 2wikimultihopqa, musique, triviaqa]
+protocol: 'The linked components are upstream source datasets, not the exact LongBench reprocessed subsets; this is a partial component index. Use THUDM/LongBench test files and per-task metrics together, distinguishing LongBench-E length-balanced variants. Retrieval-based context compression is a documented comparison, but the suite has no universal gold chunk boundaries. LongBench v2 is a separate release and is cataloged as its own dataset.'
+access: {official: 'https://github.com/THUDM/LongBench/tree/main/LongBench', paper: 'https://aclanthology.org/2024.acl-long.172/'}
+sources:
+  - {url: 'https://github.com/THUDM/LongBench/tree/main/LongBench', type: repository, fields: [summary, components, protocol], checked_on: '2026-10-02'}

@@ -1,0 +1,27 @@
+id: wizard-of-wikipedia
+name: Wizard of Wikipedia
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Human knowledge-grounded conversations with retrieved Wikipedia candidates and selected supporting sentences.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [conversational_qa, evidence_retrieval], modalities: [text], domains: [wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Raw dialogues include conversation topics, user/wizard utterances, retrieved passages and checked knowledge. Supplied retrieval candidates support the native task; replacing them with a full Wikipedia index requires a separately specified setting.
+  splits: Training, validation and test resources distinguish seen-topic and unseen-topic evaluation.
+ground_truth:
+  levels: [sentence, answer]
+  provenance: human
+  description: Wizard turns include a checked_sentence and checked_passage identifying the knowledge selected by the annotator, plus the written response. Selected knowledge need not enumerate every sentence that could support an acceptable reply.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [knowledge_accuracy, response_f1, perplexity, human_rating]
+  protocol: Report seen and unseen topics separately and distinguish knowledge selection from response generation; retain the native candidate pool when reproducing its knowledge-selection setting.
+access: {official: 'https://parl.ai/projects/wizard_of_wikipedia/', paper: 'https://arxiv.org/abs/1811.01241', license: unknown}
+use:
+  best_for: [Knowledge-grounded conversational responses, Generalization to unseen conversation topics]
+  caveats: [Selected sentences are not exhaustive alternative evidence sets, Native retrieved candidates differ from unrestricted Wikipedia retrieval]
+sources:
+  - {url: 'https://parl.ai/projects/wizard_of_wikipedia/', type: official, fields: [summary, data.description, data.splits, ground_truth.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-10-02'}

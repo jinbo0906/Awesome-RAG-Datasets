@@ -1,0 +1,24 @@
+id: mintqa
+name: MINTQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Wikidata-based multi-hop RAG QA separating new versus old and popular versus long-tail knowledge.
+classification: {rag_role: rag_native, primary_category: graph_rag, secondary_categories: [text_rag], tasks: [multi_hop_qa, graph_reasoning, time_sensitive_qa], modalities: [graph, text], domains: [knowledge-base], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: POP and TI releases supply main/sub-questions, answers, hop labels, fact chains and facts; the author-linked MintQA-KG release provides the retrieval KB.
+  size: MINTQA-POP has 17,887 questions; MINTQA-TI has 10,479 questions.
+  splits: Two test subsets; report results by knowledge type and hop count.
+  format: JSONL
+ground_truth: {levels: [graph_path, answer], provenance: synthetic, description: 'Question-generation chains and sub-answers are explicitly released; they are constructed from Wikidata facts and do not certify unique paths in the entire KB.', alternatives: implicit}
+evaluation: {official_metrics: [answer_containment_accuracy], protocol: 'The paper checks whether a gold answer occurs in lowercased predicted text. Separate parametric, direct retrieval and decomposition/retrieval settings; fix the KB version and linearization.'}
+access: {official: 'https://github.com/probe2/multi-hop', paper: 'https://aclanthology.org/2026.acl-long.18/', data: 'https://huggingface.co/datasets/probejie/MINTQA', license: MIT}
+use: {best_for: [Decomposition and retrieval decisions across knowledge familiarity, Multi-hop fact-chain retrieval], caveats: [Newness is defined by dated Wikidata snapshots rather than today's freshness, Dataset files are released but the repository says full project code is still being organized]}
+sources:
+  - {url: 'https://github.com/probe2/multi-hop', type: repository, fields: [data, ground_truth.levels, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://huggingface.co/Sp1der/MintQA-KG/tree/main', type: dataset_card, fields: [data.corpus, data.description], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2412.17032v3', type: paper, fields: [summary, classification, ground_truth, evaluation, access.license, use], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2026.acl-long.18.pdf', type: paper, fields: [evaluation, access.license], checked_on: '2026-10-02'}

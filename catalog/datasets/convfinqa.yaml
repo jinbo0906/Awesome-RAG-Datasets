@@ -1,0 +1,22 @@
+id: convfinqa
+name: ConvFinQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Conversational financial QA with linked numerical programs and answers for each turn.
+classification: {rag_role: rag_convertible, primary_category: table_rag, tasks: [conversational_qa, text_table_reasoning], modalities: [text, table], domains: [finance], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The release supplies conversation-level and turn-level formats with tables, surrounding text, dialogue_break, turn_program and exe_ans_list.
+  size: 3,892 conversations containing 14,115 questions.
+  splits: Conversation-level train/dev/test have 3,037/421/434 examples; the released test provides reports and conversations while scoring references remain hidden.
+  format: JSON in data.zip
+ground_truth: {levels: [sentence, table, answer], provenance: mixed, description: 'Per-turn programs and execution answers specify numerical dependencies; gold_ind identifies supporting facts in labeled splits. These are not source PDF cell coordinates.', alternatives: not_documented}
+evaluation: {official_metrics: [execution_accuracy, program_accuracy], protocol: 'Retain turn order and conversation boundaries. Score with the official execution/program evaluator and state whether prior-turn programs or answers are gold or predicted.', evaluator: 'https://github.com/czyssrs/ConvFinQA/tree/main/code/evaluate'}
+access: {official: 'https://github.com/czyssrs/ConvFinQA', paper: 'https://aclanthology.org/2022.emnlp-main.421/', data: 'https://github.com/czyssrs/ConvFinQA/blob/main/data.zip', license: MIT}
+use: {best_for: [Conversational numerical reasoning after retrieval, Prior-turn result dependencies], caveats: [Conversation synthesis and annotation build on FinQA; avoid source-report leakage across custom splits, The released table/text context does not establish open-corpus retrieval performance]}
+sources:
+  - {url: 'https://github.com/czyssrs/ConvFinQA', type: repository, fields: [summary, classification, data.description, data.splits, data.format, ground_truth, evaluation, access.license, use], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2022.emnlp-main.421/', type: paper, fields: [data.size, ground_truth.provenance], checked_on: '2026-10-02'}

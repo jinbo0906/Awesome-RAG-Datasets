@@ -1,0 +1,47 @@
+id: visual-rag
+name: Visual-RAG
+entity_type: dataset
+status: source_checked
+last_checked: '2026-10-02'
+summary: Fine-grained natural-organism questions with human-verified clue-image relevance for text-to-image RAG.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [visual_qa, multimodal_retrieval]
+  modalities: [text, image]
+  domains: [biodiversity]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: >-
+    The official v2 JSONL provides text questions, answer variants, scientific names and per-image
+    binary clue labels. Images are acquired from iNaturalist 2021; the native evaluation searches a species-specific subset.
+  size: 374 questions in corrected v2 annotations; native per-query pools contain about 200–300 species images.
+  splits: Evaluation annotations; no native training split.
+  format: v2_anno.jsonl and upstream iNaturalist image files.
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: >-
+    Model-proposed questions and image labels undergo human verification. Released binary labels
+    identify clue images and accepted answers; there is no uniform within-image evidence box.
+  alternatives: explicit
+evaluation:
+  official_metrics: [Recall@k, nDCG@k, Hit@k, Hit_Count@k, LLM_judged_answer_accuracy, ROUGE, gCUE]
+  protocol: >-
+    Use corrected v2 labels and the documented species-specific corpus. Separate no-image,
+    gold-clue, non-clue, top-k RAG and one-in-k settings; pin judge model and distinguish ACL 2026 gold-injected selection pools.
+access:
+  official: 'https://github.com/visual-rag/visual-rag'
+  paper: 'https://arxiv.org/abs/2502.16636'
+  data: 'https://github.com/visual-rag/visual-rag/blob/main/v2_anno.jsonl'
+  license: CC-BY-NC-4.0 for annotations; iNaturalist images retain individual upstream licenses.
+use:
+  best_for: [Text-to-image retrieval of fine-grained visual clues, Isolating clue utilization from retrieval failure]
+  caveats: [v1 contained invalid questions and image labels that were corrected in v2, Images are not redistributed and the native pool is narrower than the full iNaturalist corpus]
+sources:
+  - {url: 'https://github.com/visual-rag/visual-rag', type: repository, fields: [summary, data.description, data.size, data.format, ground_truth.description, use.caveats], checked_on: '2026-10-02'}
+  - {url: 'https://arxiv.org/html/2502.16636', type: paper, fields: [ground_truth.provenance, evaluation.official_metrics, evaluation.protocol, data.splits, access.license], checked_on: '2026-10-02'}
+  - {url: 'https://aclanthology.org/2026.acl-long.1620/', type: paper, fields: [evaluation.protocol], checked_on: '2026-10-02'}

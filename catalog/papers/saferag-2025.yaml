@@ -1,0 +1,8 @@
+id: saferag-2025
+name: "SafeRAG: Benchmarking Security in Retrieval-Augmented Generation of Large Language Model"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.230/'
+relation: introduces
+targets: [saferag]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.230/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}

@@ -1,0 +1,8 @@
+id: frames-2025
+name: "Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation"
+entity_type: paper
+url: 'https://aclanthology.org/2025.naacl-long.243/'
+relation: introduces
+targets: [frames]
+sources:
+  - {url: 'https://aclanthology.org/2025.naacl-long.243/', type: paper, fields: [name, targets, relation], checked_on: '2026-10-02'}
