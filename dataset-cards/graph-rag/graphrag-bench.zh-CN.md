@@ -8,7 +8,7 @@
 | 字段 | 内容 |
 |---|---|
 | 目录审查状态 | `source_checked` |
-| 来源核对日期 | 2026-09-28 |
+| 来源核对日期 | 2026-11-01 |
 | RAG 角色 | `rag_native` |
 | 主分类 | `graph_rag` |
 | 任务 | graph_reasoning, single_hop_qa, summarization |
@@ -22,7 +22,7 @@
 
 ## 数据与构建方式
 
-发布的小说和医疗任务覆盖事实检索、复杂推理、上下文摘要及创意生成。
+发布的小说和医疗任务覆盖事实检索、复杂推理、上下文摘要及创意生成。数据于 2025 年发布，作者仓库报告已获 ICLR 2026 接收。它不同于 Graph-CoT 引入的十图 GRBench。
 
 
 ## 真值与评测
@@ -31,7 +31,7 @@
 
 官方指标：accuracy, rouge_l, coverage, factual_score。
 
-评测协议：将建图成本和检索效果与生成质量分开报告。
+评测协议：将建图成本和检索效果与生成质量分开报告。事实检索及复杂推理使用正确率与 ROUGE-L，上下文摘要使用正确率与覆盖度，创意生成另有事实得分。固定各任务的评判器与预算，不能把单一答案指标当作金标准图路径检索结果。
 
 ## 适用场景
 
@@ -47,5 +47,6 @@
 - [官方资源](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark)
 - [论文](https://arxiv.org/abs/2506.05690)
 - repository：[来源](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark) — 支持字段 `summary`、`data.description`、`evaluation.official_metrics`
+- repository：[来源](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark) — 支持字段 `data.description`、`evaluation.protocol`
 
 原始数据集的许可与访问条款由发布者确定；本目录条目不授予再分发权利。

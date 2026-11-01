@@ -1,0 +1,8 @@
+id: response_preference
+name: RAG response preference evaluation
+entity_type: task
+summary: Rank candidate responses against released preference pairs under retrieved context, including citation quality, abstention and conflicting evidence; preferences are not source-evidence coordinates.
+input: A query, retrieved context and candidate response pair.
+output: A preference or reward ranking scored against the released chosen/rejected labels.
+sources:
+  - {url: 'https://aclanthology.org/2025.findings-acl.877/', type: paper, fields: [summary, input, output], checked_on: '2026-11-01'}

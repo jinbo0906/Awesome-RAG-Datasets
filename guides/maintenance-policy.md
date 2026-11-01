@@ -21,3 +21,7 @@ Source links support claims but external pages can change. Pin a paper DOI/arXiv
 ## Release and compatibility
 
 Schema changes are versioned in release notes. Additive optional fields are compatible; changing enum meaning or required fields requires a migration note and validator update. Generated Markdown is checked for drift in CI. Release notes should state record counts by review status, new/removed records and corrected facts, rather than implying full ecosystem coverage.
+
+### Schema note: 2026-11-01
+
+The dataset annotation enum gains `rubric` and `response_preference`, reflecting released report criteria and response-pair labels. All prior values, required fields, entity types and category paths remain unchanged; existing records need no migration. These labels are not added to the source-coordinate evidence interchange schema. Native RAG may use an explicitly declared live-web environment and rubric-based output contract without a unique reference answer; that does not imply retrieval qrels. See [taxonomy](taxonomy.md) for the operational boundaries.

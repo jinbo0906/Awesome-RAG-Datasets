@@ -30,3 +30,7 @@ Text RAG 涉及文档、段落和句子检索、回答生成、多跳证据、�
 | 分块与上下文路由 | [GutenQA](../../dataset-cards/text-rag/gutenqa.zh-CN.md)、[LaRA](../../dataset-cards/text-rag/lara.zh-CN.md)、[LongBench v2](../../dataset-cards/text-rag/longbench-v2.zh-CN.md) | 子串锚定的检索与只有答案真值的 RAG/长上下文对照不同 |
 | 安全与证据冲突 | [SafeRAG](../../dataset-cards/text-rag/saferag.zh-CN.md)、[RAGuard](../../dataset-cards/text-rag/raguard.zh-CN.md)、[ConfRAG](../../dataset-cards/text-rag/confrag.zh-CN.md) | 构造攻击、误导检索与冲突答案或理由覆盖 |
 | 专业来源 | [LegalBench-RAG](../../dataset-cards/text-rag/legalbench-rag.zh-CN.md)、[MIRAGE](../../suite-cards/mirage.zh-CN.md)、[LFRQA](../../dataset-cards/text-rag/lfrqa.zh-CN.md)、[CRUD-RAG](../../dataset-cards/text-rag/crud-rag.zh-CN.md) | 法律片段检索、医学选择题准确率、跨领域长回答评分与中文生成任务 |
+
+[能力选型入口](../selecting-a-benchmark.zh-CN.md#capability-routes)现覆盖自适应搜索、研究报告、时间证据和回答偏好，而不改变来源分类。[BrowseComp-Plus](../../dataset-cards/text-rag/browsecomp-plus.zh-CN.md)固定语料；实时网页基准则要记录搜索、工具和日期条件。[DeepResearch Bench II](../../dataset-cards/text-rag/deepresearch-bench-ii.zh-CN.md)发布内容量规，不是检索动作真值。
+
+[TEMPO](../../dataset-cards/text-rag/tempo.zh-CN.md)和 [TempRAGEval](../../dataset-cards/text-rag/temprageval.zh-CN.md)测试时间检索，[WikiRecentChanges](../../dataset-cards/text-rag/wikirecentchanges.zh-CN.md)提供受控上下文冲突，[evolveQA](../../dataset-cards/text-rag/evolveqa.zh-CN.md)探测闭卷知识截止点，不能统称持续知识更新基准。[MTRAG-UN](../../dataset-cards/text-rag/mtrag-un.zh-CN.md)区分澄清和拒答，[RAG-RewardBench](../../dataset-cards/text-rag/rag-rewardbench.zh-CN.md)评测偏好判断器。[CiteRAG](../../dataset-cards/text-rag/citerag.zh-CN.md)推荐学术参考文献，不是核查回答主张的引用蕴含。

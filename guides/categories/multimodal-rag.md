@@ -6,7 +6,7 @@ This category covers source collections whose evidence crosses text, image, docu
 
 | Evidence setting | Inspect | Native label boundary |
 |---|---|---|
-| Page and region retrieval | [MMDocIR](../../dataset-cards/multimodal-rag/mmdocir.md), [ViDoRe](../../suite-cards/vidore.md) | Retrieval labels; they do not alone score answer generation |
+| Page and region retrieval | [MMDocIR](../../dataset-cards/multimodal-rag/mmdocir.md), [ViDoRe](../../suite-cards/vidore.md) | MMDocIR/v1–v2 retrieval labels do not alone score generation; ViDoRe v3 additionally releases grounding and reference answers |
 | Cross-page answer and citation | [MMDocRAG](../../dataset-cards/multimodal-rag/mmdocrag.md), [XL-DocBench](../../dataset-cards/multimodal-rag/xl-docbench.md), [MAVIS](../../dataset-cards/multimodal-rag/mavis.md) | Page, quote or fact citation at different granularities |
 | Mixed image-text web evidence | [WebQA](../../dataset-cards/multimodal-rag/webqa.md), [MultiModalQA](../../dataset-cards/multimodal-rag/multimodalqa.md) | Source IDs; not necessarily question-specific pixels or cells |
 | Supplied visual context | [ChartQA](../../dataset-cards/multimodal-rag/chartqa.md), [MP-DocVQA](../../dataset-cards/multimodal-rag/mp-docvqa.md), [InfoSeek](../../dataset-cards/multimodal-rag/infoseek.md) | Answers and some page/layout metadata; open retrieval is an adaptation |
@@ -31,3 +31,16 @@ The [paper adoption index](../recent-paper-index.md) shows whether a source data
 | Perception/converted retrieval controls | [TextVQA](../../dataset-cards/multimodal-rag/textvqa.md), [ArXivQA](../../dataset-cards/multimodal-rag/arxivqa.md), [PlotQA](../../dataset-cards/multimodal-rag/plotqa.md) | Answer targets or OCR objects are not automatically question-specific retrieval judgments |
 
 None of these additions makes captions, OCR boxes or textual rationales interchangeable with complete cross-modal evidence chains. Keep document families disjoint across custom splits and independently annotate missing source-element relations.
+
+## Video and expanded evaluation contracts
+
+| Resource | Distinct target | Released-label boundary |
+|---|---|---|
+| [CFVBench](../../dataset-cards/multimodal-rag/cfvbench.md) | Video retrieval and visual/transcript keypoint coverage | Source-video IDs and keypoints, not checked per-question temporal intervals |
+| [XVBench](../../dataset-cards/multimodal-rag/xvbench.md) | Iterative retrieval with addressable support clips | Multiple clips do not imply multiple source videos; clip names are coarser than minimal temporal evidence |
+| [LongerVideos](../../dataset-cards/multimodal-rag/longervideos.md) | Long-video collection synthesis and comparative judgments | Released questions have no reference answers or temporal qrels; auxiliary rather than full gold QA |
+| [CRAG-MM](../../dataset-cards/multimodal-rag/crag-mm.md) | Image-plus-web single/multi-turn QA | Answer and abstention/session scoring; mock search results are not complete evidence labels |
+| [UniDoc-Bench](../../dataset-cards/multimodal-rag/unidoc-bench.md), [ViDoRe v3](../../suite-cards/vidore.md) | Joint document evidence and grounding/answer evaluation | Preserve release-specific query counts, human-review scope, public/private components and evaluator |
+| [M4-RAG](../../suite-cards/m4-rag.md) | Multilingual, multicultural retrieval-augmented VQA | Converted source QA and Wikipedia pools, not a new universal multilingual qrel collection |
+
+Video remains in this source category with the existing `video`/`audio` modality tags; no separate top-level method category is needed. Explicit start/end timestamps, source-video identity, frame sampling and ASR/OCR snapshots are necessary for temporal-evidence comparison. None should be inferred merely because timestamps occur during dataset construction. See [capability routes](../selecting-a-benchmark.md#capability-routes) for cross-category selection.

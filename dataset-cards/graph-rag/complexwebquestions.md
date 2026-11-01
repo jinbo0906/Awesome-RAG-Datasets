@@ -8,7 +8,7 @@ Complex compositional QA over Freebase or retrieved web snippets with decomposit
 | Field | Value |
 |---|---|
 | Catalog status | `source_checked` |
-| Source checked on | 2026-10-02 |
+| Source checked on | 2026-11-01 |
 | RAG role | `rag_convertible` |
 | Primary category | `graph_rag` |
 | Tasks | graph_qa, multi_hop_qa |
@@ -44,12 +44,13 @@ Protocol: Use the official answer scorer and version 1.1 split. Declare whether 
 
 - Use Freebase snapshot freebase-rdf-2015-08-02-00-00 for original KB reconstruction
 - Logical forms do not establish unique minimal retrieved subgraphs
+- The former project homepage returned 404 on 2026-11-01; the canonical link now points to author code and corrected version-1.1 data availability must be checked separately
 
 ## Access and sources
 
-- [Official resource](https://www.tau-nlp.sites.tau.ac.il/compwebq)
+- [Official resource](https://github.com/alontalmor/WebAsKB)
 - [Paper](https://aclanthology.org/N18-1059/)
-- official: [source](https://www.tau-nlp.sites.tau.ac.il/compwebq) — supports `summary`, `classification`, `data`, `evaluation.protocol`, `use.caveats`
+- repository: [source](https://github.com/alontalmor/WebAsKB) — supports `summary`, `data.format`, `evaluation.protocol`, `access.official`, `use.caveats`
 - paper: [source](https://aclanthology.org/N18-1059/) — supports `ground_truth`, `evaluation.official_metrics`, `use.best_for`
 - paper: [source](https://arxiv.org/abs/1807.09623) — supports `data.splits`
 

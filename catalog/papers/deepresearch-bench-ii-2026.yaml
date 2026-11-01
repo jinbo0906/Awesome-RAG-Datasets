@@ -1,0 +1,8 @@
+id: deepresearch-bench-ii-2026
+name: 'DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Reports'
+entity_type: paper
+url: 'https://arxiv.org/abs/2601.08536'
+relation: introduces
+targets: [deepresearch-bench-ii]
+sources:
+  - {url: 'https://arxiv.org/abs/2601.08536', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

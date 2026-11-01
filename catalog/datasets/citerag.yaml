@@ -1,0 +1,38 @@
+id: citerag
+name: CiteRAG (academic citation prediction)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Academic reference recommendation at bibliography and citation-placeholder levels with a hierarchical scholarly retrieval corpus.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [citation_prediction, evidence_retrieval], modalities: [text], domains: [academic, computer-science], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Introduced at WWW 2026 (arXiv first posted 2026-01-21). Task 1 predicts a paper's reference list from title/abstract; Task 2 predicts references at local placeholders. The author repository provides trainQA, test, a multi-volume corpus archive and separate retrieval/generation scripts.
+  size: Paper reports 7,267 Task-1 instances, 8,541 Task-2 instances and 554,719 corpus papers; task instances are not all independent source papers or test-only examples.
+  splits: Author trainQA and test directories; follow the paper's removal of test instances from the retrieval corpus and references/citation markers from input views.
+  format: Per-example JSON and a multi-volume compressed hierarchical corpus.
+ground_truth:
+  levels: [document, answer]
+  provenance: distant
+  description: Observed scholarly references provide target papers and ranked-list supervision. They are not exhaustive relevance judgments for every appropriate reference, nor proof that a generated claim is entailed by its citation.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [Recall@k, MRR@k, NDCG@k, Hit@k, PACA@k, Citation_Diversity_Entropy, Hallucination_Rate]
+  evaluator: 'https://github.com/LQgdwind/CiteRAG/tree/main/eval'
+  protocol: Separate retrieval from Task-1 list generation and Task-2 placeholder prediction. Paper section 5 defines PACA over all placeholders; released task2_metrics.py normalizes ranks only over matched predictions before article averaging. Task-1 code also allows 0.90 title similarity while Task-2 uses exact normalized titles. Pin the evaluator and report these differences rather than treating code and paper scores as identical.
+access:
+  official: 'https://github.com/LQgdwind/CiteRAG'
+  paper: 'https://doi.org/10.1145/3774904.3792075'
+  data: 'https://github.com/LQgdwind/CiteRAG/tree/main/data'
+  license: unknown
+use:
+  best_for: [Comparing document-level and local-context scholarly retrieval, Diagnosing missing or fabricated references in generated bibliographies]
+  caveats: [Citation prediction is not ordinary answer-citation faithfulness evaluation, Dataset redistribution terms were not confirmed from a dedicated data license, Official paper and released metric aggregation have material differences]
+sources:
+  - {url: 'https://arxiv.org/abs/2601.14949', type: paper, fields: [summary, data.description, data.size, access.paper], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2601.14949', type: paper, fields: [data.splits, ground_truth.description, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/LQgdwind/CiteRAG', type: repository, fields: [data.format, data.description, access.license], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/LQgdwind/CiteRAG/blob/main/eval/task1_metrics.py', type: repository, fields: [evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/LQgdwind/CiteRAG/blob/main/eval/task2_metrics.py', type: repository, fields: [evaluation.protocol, use.caveats], checked_on: '2026-11-01'}

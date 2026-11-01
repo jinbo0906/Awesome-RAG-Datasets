@@ -1,0 +1,8 @@
+id: wildgraphbench-2026
+name: "WildGraphBench: Benchmarking GraphRAG with Wild-Source Corpora"
+entity_type: paper
+url: 'https://aclanthology.org/2026.findings-acl.679/'
+relation: introduces
+targets: [wildgraphbench]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.679/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

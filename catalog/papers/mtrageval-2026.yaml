@@ -1,0 +1,8 @@
+id: mtrageval-2026
+name: 'SemEval-2026 Task 8: MTRAGEval: Evaluating Multi-Turn RAG Conversations'
+entity_type: paper
+url: 'https://aclanthology.org/2026.semeval-1.447/'
+relation: evaluates
+targets: [mtrag-un]
+sources:
+  - {url: 'https://aclanthology.org/2026.semeval-1.447/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

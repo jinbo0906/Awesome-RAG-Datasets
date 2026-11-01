@@ -1,0 +1,54 @@
+id: ragability
+name: Ragability Corpus
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Handcrafted fictional-entity contexts that isolate inter-context contradiction detection and appropriate refusal.
+classification:
+  rag_role: auxiliary
+  primary_category: text_rag
+  tasks: [rag_robustness, time_sensitive_qa]
+  modalities: [text]
+  domains: [synthetic-knowledge-conflicts]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    A small seed corpus supplies four context variants, content questions, context-conditioned short
+    and long answers, and reasoning-type labels. Fantasy entities, dates and numbers are manually
+    substituted into selected WikiContradict cases. The accompanying Ragability library constructs
+    controlled prompt combinations; it is a separate tool, not another dataset.
+  size: 53 released CSV seed rows based on 43 selected source context pairs; the paper's experiment generates 1,060 test prompts per evaluated model.
+  splits: One Hugging Face train-named seed table; generated prompt combinations are not independent train/test splits.
+  format: CSV seed data plus a Python prompt-generation and checking library
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: >-
+    Manually constructed contexts and answers specify answerable, contradictory and insufficient
+    conditions. Contradictory or insufficient context combinations can require refusal. Context
+    snippets are supplied inputs, not qrels for a larger corpus or optimal segmentation labels.
+  alternatives: explicit
+evaluation:
+  official_metrics: [contradiction_identification, correct_answer_all, refusal_not_answerable, correct_answer_answerable]
+  protocol: >-
+    Generate the specified context combinations and retain prompt hints, answerability, reasoning
+    type and context ordering. The paper uses 20 prompts per seed and reverses two-context orders;
+    larger context sets do not enumerate every permutation. Semantic correctness and refusal depend
+    on a checker model, so pin its identity rather than interpreting checker agreement as human gold.
+  evaluator: 'https://github.com/OFAI/python-ragability'
+access:
+  official: 'https://huggingface.co/datasets/ofai/RagabilityCorpus'
+  paper: 'https://aclanthology.org/2026.lrec-1.182/'
+  data: 'https://huggingface.co/datasets/ofai/RagabilityCorpus'
+  license: CC-BY-SA-4.0
+  gated: false
+use:
+  best_for: [Separating conflict identification from content answering and refusal, Controlled tests without relying on memorized real-world entities]
+  caveats: [The small constructed seed set is not a representative live retrieval distribution, Generated prompt counts must not be reported as unique questions or documents, A contradiction warning can improve contradictory cases while harming non-contradictory cases, Supplied contexts do not measure retrieval effectiveness]
+sources:
+  - {url: 'https://aclanthology.org/2026.lrec-1.182.pdf', type: paper, fields: [summary, classification, data.description, data.size, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/ofai/RagabilityCorpus', type: dataset_card, fields: [data.corpus, data.queries, data.answers, data.splits, data.format, data.size, access.license, access.gated], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/OFAI/python-ragability', type: repository, fields: [evaluation.evaluator, data.description], checked_on: '2026-11-01'}

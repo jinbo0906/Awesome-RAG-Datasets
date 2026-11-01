@@ -1,0 +1,8 @@
+id: vidore-v3-2026
+name: 'ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios'
+entity_type: paper
+url: 'https://arxiv.org/abs/2601.08620'
+relation: extends
+targets: [vidore]
+sources:
+  - {url: 'https://arxiv.org/html/2601.08620', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

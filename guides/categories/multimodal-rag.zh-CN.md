@@ -6,7 +6,7 @@
 
 | 证据场景 | 建议查看 | 原生标注的边界 |
 |---|---|---|
-| 页面与区域检索 | [MMDocIR](../../dataset-cards/multimodal-rag/mmdocir.zh-CN.md)、[ViDoRe](../../suite-cards/vidore.zh-CN.md) | 有检索标注，但不能单独评测回答生成 |
+| 页面与区域检索 | [MMDocIR](../../dataset-cards/multimodal-rag/mmdocir.zh-CN.md)、[ViDoRe](../../suite-cards/vidore.zh-CN.md) | MMDocIR/v1–v2 的检索标注不能单独评分生成；ViDoRe v3 另有定位与参考答案 |
 | 跨页回答与引用 | [MMDocRAG](../../dataset-cards/multimodal-rag/mmdocrag.zh-CN.md)、[XL-DocBench](../../dataset-cards/multimodal-rag/xl-docbench.zh-CN.md)、[MAVIS](../../dataset-cards/multimodal-rag/mavis.zh-CN.md) | 页面、原文摘录或事实引用，粒度各不相同 |
 | 图文混合网页证据 | [WebQA](../../dataset-cards/multimodal-rag/webqa.zh-CN.md)、[MultiModalQA](../../dataset-cards/multimodal-rag/multimodalqa.zh-CN.md) | 来源 ID，不一定有针对问题标注的像素区域或单元格 |
 | 给定视觉上下文 | [ChartQA](../../dataset-cards/multimodal-rag/chartqa.zh-CN.md)、[MP-DocVQA](../../dataset-cards/multimodal-rag/mp-docvqa.zh-CN.md)、[InfoSeek](../../dataset-cards/multimodal-rag/infoseek.zh-CN.md) | 答案及部分页面或版面元数据；开放检索属于后续改造 |
@@ -31,3 +31,16 @@
 | 感知或改造检索对照 | [TextVQA](../../dataset-cards/multimodal-rag/textvqa.zh-CN.md)、[ArXivQA](../../dataset-cards/multimodal-rag/arxivqa.zh-CN.md)、[PlotQA](../../dataset-cards/multimodal-rag/plotqa.zh-CN.md) | 答案或 OCR 对象不自动等于按问题标注的检索相关性 |
 
 新增数据不意味着图注、OCR 框或文字解释可以代替完整跨模态证据链。自定义划分需按文档家族隔离，并独立标注缺失的来源元素关系。
+
+## 视频与扩展评测契约
+
+| 资源 | 独特目标 | 已发布标注的边界 |
+|---|---|---|
+| [CFVBench](../../dataset-cards/multimodal-rag/cfvbench.zh-CN.md) | 视频检索与视觉/转录文本要点覆盖 | 来源视频 ID 和要点，不是已经核实的逐题时间区间 |
+| [XVBench](../../dataset-cards/multimodal-rag/xvbench.zh-CN.md) | 带可寻址支持片段的迭代检索 | 多片段不代表多来源视频，片段名比最小时间证据更粗 |
+| [LongerVideos](../../dataset-cards/multimodal-rag/longervideos.zh-CN.md) | 长视频集合综合与相对质量比较 | 公开问题没有参考答案或时间相关性，属于辅助对照而非完整真值问答 |
+| [CRAG-MM](../../dataset-cards/multimodal-rag/crag-mm.zh-CN.md) | 图像加网页单轮或多轮问答 | 答案、拒答与会话评分，模拟搜索结果不是完整证据标签 |
+| [UniDoc-Bench](../../dataset-cards/multimodal-rag/unidoc-bench.zh-CN.md)、[ViDoRe v3](../../suite-cards/vidore.zh-CN.md) | 文档联合证据与定位、答案评测 | 保留各版本查询数、人工核验范围、公开/私有组件和评分器 |
+| [M4-RAG](../../suite-cards/m4-rag.zh-CN.md) | 多语言、多文化检索增强 VQA | 改造的原始问答与维基百科池，不是新建的通用多语言相关性集合 |
+
+视频仍放在此来源分类，并使用已有 `video`/`audio` 模态标签，无需另建同级方法分类。比较时间证据时，须明确起止时间、来源视频身份、采帧与 ASR/OCR 快照；不能仅因构建流程中出现时间戳就推断这些标注已发布。跨类别选型见[能力入口](../selecting-a-benchmark.zh-CN.md#capability-routes)。

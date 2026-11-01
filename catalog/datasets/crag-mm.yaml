@@ -1,0 +1,45 @@
+id: crag-mm
+name: CRAG-MM
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Wearable-oriented image-grounded single- and multi-turn RAG with mock image-KG and web retrieval, abstention and conversation-level scoring.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [visual_qa, conversational_qa, multimodal_retrieval, rag_robustness]
+  modalities: [text, image, graph]
+  domains: [wearables, everyday-knowledge]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The KDD Cup 2025 challenge release includes single-turn and multi-turn questions, images or source URLs, reference answers and versioned image/web search indices. It is distinct from the earlier text-only CRAG dataset, not a renamed copy.
+  size: Paper Table 3 reports 6,462 single-turn questions and 1,956 multi-turn conversations; these totals are not the size of each public split.
+  splits: Current Hugging Face packages expose validation and public_test. The single-turn splits contain 1,938 and 1,936 rows; multi-turn splits contain 586 and 587 conversation rows respectively, checked on 2026-11-01. Challenge-private data remains separate.
+  format: Hugging Face Parquet with session-level turns and answers, image fields and separately versioned search indices.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: Annotators create and check answers; multi-turn seeds also use model-generated conversations. Gold answers and query/image metadata are provided, but mock retrieval output is not exhaustive evidence qrels or a minimal cross-source proof chain.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy, missing_rate, hallucination_rate, truthfulness_score, mean_multi_turn_conversation_score]
+  protocol: Fix the task's permitted image-KG/web sources and index/API versions. Score correct, abstained and wrong answers as +1, 0 and -1. Multi-turn scoring averages session scores with an early-stop rule after two failed turns; pin the evaluator because README, paper and implementation can differ on whether abstention triggers stopping. Freeze images and source snapshots rather than treating dynamism labels as live knowledge updates.
+  evaluator: 'https://github.com/facebookresearch/CRAG-MM/tree/main/evaluation'
+access:
+  official: 'https://github.com/facebookresearch/CRAG-MM'
+  paper: 'https://arxiv.org/abs/2510.26160'
+  data: 'https://huggingface.co/crag-mm-2025'
+  license: CC-BY-NC-4.0 stated by the author project; source images and retrieved material can retain separate rights.
+  gated: false
+use:
+  best_for: [Image-plus-external-knowledge dialogue with abstention, Comparing single-source and image-plus-web RAG under realistic visual degradation]
+  caveats: [KDD Cup participation does not make the introducing preprint a KDD main-track paper, Some image assets are URLs rather than embedded binaries, Data-card prose can lag public_test release and evaluator behavior; pin revisions, Correct answers do not establish complete cross-source evidence retrieval]
+sources:
+  - {url: 'https://arxiv.org/html/2510.26160', type: paper, fields: [summary, data.size, ground_truth.provenance, evaluation.protocol, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/facebookresearch/CRAG-MM', type: repository, fields: [data.description, data.format, access.license, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/crag-mm-2025/crag-mm-single-turn-public', type: dataset_card, fields: [data.splits, access.gated, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/crag-mm-2025/crag-mm-multi-turn-public', type: dataset_card, fields: [data.splits, access.gated], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/facebookresearch/CRAG-MM/blob/main/evaluation/README.md', type: repository, fields: [evaluation.official_metrics, evaluation.protocol, use.caveats], checked_on: '2026-11-01'}

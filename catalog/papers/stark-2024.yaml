@@ -1,0 +1,8 @@
+id: stark-2024
+name: "STaRK: Benchmarking LLM Retrieval on Textual and Relational Knowledge Bases"
+entity_type: paper
+url: 'https://papers.nips.cc/paper_files/paper/2024/hash/e607b1419e9ae7cd5cb5b5bb60c2ad5c-Abstract-Datasets_and_Benchmarks_Track.html'
+relation: introduces
+targets: [stark]
+sources:
+  - {url: 'https://papers.nips.cc/paper_files/paper/2024/hash/e607b1419e9ae7cd5cb5b5bb60c2ad5c-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

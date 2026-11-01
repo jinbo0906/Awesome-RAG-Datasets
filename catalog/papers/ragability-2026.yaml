@@ -1,0 +1,8 @@
+id: ragability-2026
+name: 'Ragability Benchmark: A Dataset and Library to Test LLMs on Inter-context Conflicts'
+entity_type: paper
+url: 'https://aclanthology.org/2026.lrec-1.182/'
+relation: introduces
+targets: [ragability]
+sources:
+  - {url: 'https://aclanthology.org/2026.lrec-1.182/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

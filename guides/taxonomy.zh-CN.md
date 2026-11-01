@@ -8,7 +8,7 @@
 
 | 角色 | 可操作的判断标准 | 常见误判 |
 |---|---|---|
-| `rag_native` | 已发布的查询、来源池、答案及检索/证据协议，足以评测检索与回答 | 把已提供上下文误当作开放检索 |
+| `rag_native` | 已发布查询、答案目标或量规，且有官方来源或工具环境，足以评测检索增强回答 | 把已提供上下文误当作开放检索 |
 | `rag_convertible` | 存在 QA 或 VQA，但仍需构建来源池、相关性标注、证据映射或检索划分 | 把自行改造版称为官方 benchmark |
 | `auxiliary` | 可测检索或事实性等有用组件，但不能完整评测回答 | 把信息检索 NDCG 当作端到端 RAG 质量 |
 | `out_of_scope` | 用现有数据无法隔离检索的贡献 | 把通识考试题直接加入 RAG 真值目录 |
@@ -20,6 +20,23 @@
 `ground_truth.levels` 描述**已经发布的标注**，不是 LLM 能推测出的内容。`answer` 不是证据。`response_span` 是生成回答中的错误或支持性片段标注；`span` 是来源材料中的坐标，不能互换。版面 `bbox` 可能标出图表的所有元素，却不标明哪一个元素回答当前问题。图的逻辑形式可能表示计算过程，却不能自动给出最小自然语言引用路径。多个可接受证据集合应保留为候选方案，不能合并成一个并集。
 
 文本、多模态、图、表格和跨类别 RAG 是导航分类；任务与模态仍为独立标签。PDF 中的表格可以同时涉及表格、图像和版面模态，但只设一个主分类。这里的 `GraphRAG` 表示图表示或图证据检索是核心；原始数据集仅包含多跳文本问题，不等于原生图 benchmark。
+
+`rubric` 表示已发布的输出评分要求，例如 [DeepResearch Bench II](../dataset-cards/text-rag/deepresearch-bench-ii.zh-CN.md)；`response_preference` 表示优选与拒选回答的顺序，例如 [RAG-RewardBench](../dataset-cards/text-rag/rag-rewardbench.zh-CN.md)。二者都不是来源标注，不能当作来源片段、检索相关性或完整证据链。评判模型从生成报告中抽取的证据文字，也不是原始来源真值。
+
+## 2026 年十一月分类评估
+
+保留五个主分类及已有路径。新的搜索代理、时效性和可信性评测会横跨来源表示；将其与文本、图像、图、表格并列，会混合能力与表示维度并造成重复。视频沿用 `multimodal_rag` 主分类及已有 `video` 模态；[SGR-Bench](../dataset-cards/text-rag/sgr-bench.zh-CN.md) 输出表格，也不因此变成 Table RAG。
+
+| 维度 | 记录位置 | 维护规则 |
+|---|---|---|
+| 主要来源表示 | `primary_category`，可选 `secondary_categories` | 只设一个主位置，次分类关联不重复建条目 |
+| 评测能力 | `tasks` | 优先复用标签，仅针对已证实缺口增加 `agentic_search`、`citation_prediction`、`response_preference` |
+| 来源媒介 | `modalities` | 视频和音频是媒介，不等于代理搜索 |
+| 领域及语言 | `domains`、`languages` | 企业、医学和多语言覆盖属于独立维度 |
+| 评测环境及版本 | `evaluation.protocol`、`data.splits`、`sources` | 区分实时网页、固定语料、给定上下文、快照、工具预算与评分器版本 |
+| 已发布标注类型 | `ground_truth` | 区分来源坐标、答案、量规与偏好，不推断缺失的时间区间或图路径 |
+
+[能力选型入口](selecting-a-benchmark.zh-CN.md#capability-routes)提供跨维度人工索引，不另建一套分类或重复目录。方法在 HotpotQA 上建图，不意味着原生数据应迁入图分类。[GRBench](../dataset-cards/graph-rag/grbench.zh-CN.md) 与 [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.zh-CN.md) 是不同发布；ViDoRAG/ViDoSeek 则是方法名与数据名之别，不是两份数据。
 
 ## 审查阶梯
 

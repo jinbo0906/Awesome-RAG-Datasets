@@ -1,0 +1,8 @@
+id: graph-counselor-2025
+name: "Graph Counselor: Adaptive Graph Exploration via Multi-Agent Synergy to Enhance LLM Reasoning"
+entity_type: paper
+url: 'https://aclanthology.org/2025.acl-long.1202/'
+relation: evaluates
+targets: [grbench]
+sources:
+  - {url: 'https://aclanthology.org/2025.acl-long.1202/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

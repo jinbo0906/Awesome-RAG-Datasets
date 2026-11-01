@@ -1,0 +1,43 @@
+id: longervideos
+name: LongerVideos
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Long-video collection-level open-ended questions for comparative generation evaluation, without released reference answers or temporal relevance judgments.
+classification:
+  rag_role: auxiliary
+  primary_category: multimodal_rag
+  tasks: [video_qa, long_form_qa, summarization]
+  modalities: [text, video, audio]
+  domains: [lectures, documentary, entertainment]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: not_provided
+  description: VideoRAG's author release groups YouTube URLs, topic descriptions and open questions by collection. Users obtain the original videos and build their own frame, ASR and retrieval representations; released questions do not include reference_answer or evidence intervals.
+  size: 22 collections, 164 videos, 602 queries and approximately 134.6 hours in the author overview.
+  splits: Evaluation collections; no native training split or question-specific answer-gold split confirmed.
+  format: Collection-indexed JSON with video_url, description, questions and type; external videos.
+ground_truth:
+  levels: []
+  provenance: unknown
+  description: The inspected dataset.json supplies question IDs and text but no reference answers, temporal qrels or independently labeled cross-video proof chains. Collection membership defines available context, not a per-question relevance annotation.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [pairwise_win_rate, Comprehensiveness, Empowerment, Trustworthiness, Depth, Density, Overall_Score]
+  protocol: Follow VideoRAG's model-judged comparison prompts and aggregation scripts. Pairwise evaluation reverses answer order and repeated judgments are aggregated; quantitative scores use the specified rating criteria. Pin the comparator, judge, video availability, processing cost and retrieval budget. Preference wins are not reference-answer accuracy or retrieval recall.
+  evaluator: 'https://github.com/HKUDS/VideoRAG/tree/main/VideoRAG-algorithm/reproduce'
+access:
+  official: 'https://github.com/HKUDS/VideoRAG'
+  paper: 'https://doi.org/10.1145/3770854.3783944'
+  data: 'https://github.com/HKUDS/VideoRAG/blob/main/VideoRAG-algorithm/longervideos/dataset.json'
+  license: unknown
+use:
+  best_for: [Stress-testing generation over hours of thematically grouped video, Studying comparative answer quality and indexing cost]
+  caveats: [No released gold answers or temporal qrels in the inspected question file, YouTube availability and upstream rights can change, Framework licensing does not establish a separate dataset or video license, A generated comparison score cannot certify factual evidence completeness]
+sources:
+  - {url: 'https://github.com/HKUDS/VideoRAG', type: repository, fields: [summary, data.size, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/HKUDS/VideoRAG/blob/main/VideoRAG-algorithm/longervideos/dataset.json', type: repository, fields: [data.description, data.format, data.answers, ground_truth.levels, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2502.01549', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, use.best_for], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/HKUDS/VideoRAG/tree/main/VideoRAG-algorithm/reproduce', type: repository, fields: [evaluation.protocol, evaluation.evaluator], checked_on: '2026-11-01'}

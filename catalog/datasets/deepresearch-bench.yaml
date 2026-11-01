@@ -1,0 +1,43 @@
+id: deepresearch-bench
+name: DeepResearch Bench (Du et al.)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Expert-authored open-web research tasks evaluated through adaptive report-quality criteria and citation support checks.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [agentic_search, long_form_qa, attribution]
+  modalities: [text]
+  domains: [general, professional-research]
+  languages: [en, zh]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The official repository supplies research prompts, reference/evaluation material and generated reports; its Hugging Face companion releases model reports and human evaluation annotations. RACE assesses report quality against references; FACT extracts statement-URL pairs and checks cited web support. Neither framework is a second dataset.
+  size: 100 tasks across 22 fields, with 50 English and 50 Chinese prompts; 96,147 analyzed user queries are construction input, not the benchmark evaluation size.
+  splits: Public evaluation task set; no training split is designated in the reference protocol.
+  format: JSONL prompts, reference/model reports and evaluation annotations.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: Expert-designed tasks are paired with report references and LLM-derived criteria; published human annotations support evaluator-consistency analysis. References include model-generated reports, not unique human gold answers. FACT verifies output citations at evaluation time rather than supplying exhaustive retrieval qrels.
+  alternatives: implicit
+evaluation:
+  official_metrics: [RACE_overall, RACE_comprehensiveness, RACE_depth, RACE_instruction_following, RACE_readability, FACT_citation_accuracy, FACT_effective_citations]
+  protocol: Report RACE and FACT separately. Pin reference, cleaner, judge and scraping pipeline; May 2026 changed the official RACE judge and September 2026 changed its cleaning model, so historical Gemini-based and newer GPT-based scores must not be pooled. Record agent retrieval budget and evaluation date; inaccessible cited pages affect FACT.
+  evaluator: 'https://github.com/Ayanami0730/deep_research_bench'
+access:
+  official: 'https://github.com/Ayanami0730/deep_research_bench'
+  paper: 'https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html'
+  data: 'https://huggingface.co/datasets/muset-ai/DeepResearch-Bench-Dataset'
+  license: Apache-2.0 for the official Hugging Face report/annotation release; retrieved web sources retain their own terms.
+use:
+  best_for: [Separating long-report synthesis from citation support, Auditing quality versus search cost for deep-research agents]
+  caveats: [This 100-task Du et al. benchmark is not FutureSearch's similarly named 91-task DeepResearchBench, RACE is reference-relative and judge-dependent; FACT citation accuracy is not exhaustive evidence recall, The Hugging Face companion contains reports and annotations; use the repository's query.jsonl for the actual task prompts]
+sources:
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html', type: paper, fields: [name, summary, data.size, classification.rag_role], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2506.11763', type: paper, fields: [data.description, ground_truth.description, ground_truth.provenance, ground_truth.alternatives, evaluation.official_metrics], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/Ayanami0730/deep_research_bench', type: repository, fields: [data.size, data.splits, data.format, evaluation.protocol, evaluation.evaluator, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/muset-ai/DeepResearch-Bench-Dataset', type: dataset_card, fields: [access.license, data.description, use.caveats], checked_on: '2026-11-01'}

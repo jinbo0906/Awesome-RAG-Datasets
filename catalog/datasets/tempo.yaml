@@ -1,0 +1,55 @@
+id: tempo
+name: TEMPO
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Cross-period reasoning and step-wise retrieval over a dated Stack Exchange document collection.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [time_sensitive_qa, evidence_retrieval, multi_hop_qa]
+  modalities: [text]
+  domains: [stackexchange, history, law, finance, science]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Hugging Face configurations release documents, query examples with gold_ids/gold_answers,
+    step-specific gold documents and model-reasoning query variants. Human-selected posts and
+    LLM-assisted temporal annotation support both document retrieval and the paper's downstream QA experiment.
+  size: 1,730 queries, 3,976 retrieval steps and 1,654,055 documents across 13 Stack Exchange domains.
+  splits: Domain-named evaluation splits; reasoning-augmented queries are variants, not independent test questions.
+  format: Hugging Face Parquet
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: >-
+    gold_ids and step-level mappings identify relevant documents; gold_answers retain reference
+    answer text. Temporal intent, anchors and plan annotations are model-assisted with sampled
+    human review, not exhaustive human verification of every temporal judgment.
+  alternatives: implicit
+evaluation:
+  official_metrics: [nDCG@10, temporal_precision_at_k, temporal_relevance_at_k, temporal_coverage_at_k, ndcg_full_coverage_at_k, answer_correctness_0_100]
+  protocol: >-
+    Keep domain, original versus reasoning-augmented query and query-to-document versus step-wise
+    retrieval separate. The author run.py excludes each query's negative_ids from ranking; retaining
+    them is a stricter full-corpus adaptation, not the same leaderboard protocol. Temporal metrics
+    use model judgments. Table 6/Appendix G.3 use a fixed generator and a 0–100 reference-coverage
+    judge, including no-retrieval and gold-document controls.
+  evaluator: 'https://github.com/tempo-bench/Tempo/blob/main/temporal_metrics.py'
+access:
+  official: 'https://tempo-bench.github.io/'
+  paper: 'https://arxiv.org/abs/2601.09523'
+  data: 'https://huggingface.co/datasets/tempo26/Tempo'
+  license: unknown
+  gated: false
+use:
+  best_for: [Testing whether retrieved evidence spans required periods, Evaluating step-wise temporal evidence coverage separately from final QA]
+  caveats: [HF metadata specifies CC BY 4.0 while the data card notes CC BY-SA upstream Stack Exchange content; applicable terms need checking, Filtering negative_ids changes the candidate universe and must be reported, Model-judged temporal completeness is not independently exhaustive evidence gold, The January 2026 author preprint is not assigned an unverified conference venue]
+sources:
+  - {url: 'https://arxiv.org/html/2601.09523', type: paper, fields: [summary, classification, data.size, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/tempo26/Tempo', type: dataset_card, fields: [data.description, data.splits, data.format, data.corpus, data.queries, data.answers, access.data, access.license, access.gated], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/tempo-bench/Tempo/blob/main/run.py', type: repository, fields: [evaluation.protocol, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/tempo-bench/Tempo/blob/main/temporal_metrics.py', type: repository, fields: [evaluation.evaluator, evaluation.official_metrics], checked_on: '2026-11-01'}

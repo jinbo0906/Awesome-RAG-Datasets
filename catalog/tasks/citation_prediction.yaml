@@ -1,0 +1,8 @@
+id: citation_prediction
+name: Academic citation prediction
+entity_type: task
+summary: Retrieve and rank scholarly references for a paper-level bibliography or a specific citation placeholder; this differs from judging whether an already supplied citation entails a generated claim.
+input: Paper metadata or local citation context plus a fixed scholarly source corpus.
+output: A ranked list of cited papers.
+sources:
+  - {url: 'https://arxiv.org/html/2601.14949', type: paper, fields: [summary, input, output], checked_on: '2026-11-01'}

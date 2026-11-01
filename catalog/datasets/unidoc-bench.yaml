@@ -1,0 +1,47 @@
+id: unidoc-bench
+name: UniDoc-Bench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Document-centric multimodal RAG with linked text, table and figure evidence and controlled comparison of retrieval paradigms.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  secondary_categories: [table_rag]
+  tasks: [page_retrieval, visual_qa, multi_hop_qa, attribution]
+  modalities: [text, image, table, chart, layout]
+  domains: [healthcare, finance, legal, education, energy, construction, commerce, crm]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Eight domain PDF archives accompany QA with source metadata and selected text/image evidence. The GitHub filtered JSON and Hugging Face Parquet expose different schemas and should be mapped explicitly.
+  size: The paper evaluates 1,600 QA pairs over approximately 70,000 PDF pages; current Hugging Face configuration and size API expose eight domain splits of 200 rows each. Its README body instead claims 1,742 pairs, an unresolved documentation inconsistency.
+  splits: Eight domain-named evaluation splits in the current Hugging Face default configuration; not the single test split claimed in its README body.
+  format: Domain PDF archives, QA JSON and domain-split Hugging Face Parquet.
+ground_truth:
+  levels: [page, figure, fact_citation, answer]
+  provenance: mixed
+  description: QA records link used chunks and figures through chunk_used metadata and list supporting facts. References can be mapped to source pages; they are not universal question-specific bounding boxes. QA is model-synthesized with human checking, whose extent differs across publication and release descriptions.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [Precision@10, Recall@10, answer_completeness, faithfulness]
+  protocol: Compare text-only, image-only, fusion and joint retrieval using the same candidate corpus, prompts and budget. Map retrieved chunks/pages to original file and page for retrieval scoring; partial page overlap can inflate recall. Use the specified model judge for factual completeness and faithfulness, recording revision and evaluator rather than substituting generic Ragas defaults.
+  evaluator: 'https://github.com/SalesforceAIResearch/UniDoc-Bench/tree/main/src/evaluation'
+access:
+  official: 'https://github.com/SalesforceAIResearch/UniDoc-Bench'
+  paper: 'https://aclanthology.org/2026.findings-emnlp.534/'
+  data: 'https://huggingface.co/datasets/Salesforce/UniDoc-Bench'
+  license: CC-BY-NC-4.0 with an additional author notice against developing competing models; consult LICENSE.txt and source-document rights.
+  gated: false
+use:
+  best_for: [Comparing multimodal retrieval under a shared candidate pool, Studying evidence completeness across text and figures]
+  caveats: [Hugging Face README claims 1742 examples in one test split but its configured domain splits total 1600; inspect actual files rather than inferring a new release, Published abstract and Hugging Face card report 20 percent human validation while a revised preprint claims full validation; pin the version, Page-overlap matches do not certify complete fine-grained evidence, Release terms contain an additional model-use notice beyond the named Creative Commons license]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-emnlp.534/', type: paper, fields: [name, summary, data.size, ground_truth.provenance, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2510.03663', type: paper, fields: [ground_truth.description, evaluation.official_metrics, evaluation.protocol, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/Salesforce/UniDoc-Bench', type: dataset_card, fields: [data.size, data.splits, data.format, access.data, access.gated, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://datasets-server.huggingface.co/size?dataset=Salesforce%2FUniDoc-Bench', type: official, fields: [data.size, data.splits, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/SalesforceAIResearch/UniDoc-Bench/blob/main/data/QA/filtered/finance.json', type: repository, fields: [data.description, ground_truth.levels, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/SalesforceAIResearch/UniDoc-Bench/blob/main/LICENSE.txt', type: official, fields: [access.license, use.caveats], checked_on: '2026-11-01'}

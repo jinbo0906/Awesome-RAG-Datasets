@@ -19,3 +19,5 @@
 [ComplexWebQuestions](../../dataset-cards/graph-rag/complexwebquestions.zh-CN.md) 和 [KQA Pro](../../dataset-cards/graph-rag/kqa-pro.zh-CN.md) 扩展已有知识库的语义解析与组合推理。[OpenDialKG](../../dataset-cards/graph-rag/opendialkg.zh-CN.md) 提供参与者选择的会话图路径；这是对话转换的监督，不是每个回复唯一的证明图。[MINTQA](../../dataset-cards/graph-rag/mintqa.zh-CN.md) 补充新知识、长尾知识、子问题和关联图谱，生成的事实链与答案包含评分必须分开评测。
 
 [论文索引](../recent-paper-index.zh-CN.md)链接 ACL 2025 KG-Agent 的具体数据与 ICML 2025 HippoRAG 2 的文本问答改造。[mmRAG](../../dataset-cards/text-rag/mmrag.zh-CN.md) 在序列化的图谱、表格和文本记录上评测路由与检索，固定分块相关性不能变成原生图路径真值。
+
+[GRBench](../../dataset-cards/graph-rag/grbench.zh-CN.md)（Graph-CoT）与 GraphRAG-Bench 是不同发布，不能当作缩写去重。[STaRK](../../dataset-cards/graph-rag/stark.zh-CN.md)提供文本/关系检索的节点级相关性，ACL 2026 ARK 用它比较自适应探索预算，而不把检索节点变成回答参考。[WildGraphBench](../../dataset-cards/graph-rag/wildgraphbench.zh-CN.md)测试异构外部引用聚合与摘要陈述覆盖，金标准维基百科文章必须留在索引语料之外。当前 1,197 题发布不同于论文摘要的 1,100 题。

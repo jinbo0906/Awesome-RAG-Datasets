@@ -11,3 +11,5 @@ For research on chunking and fragmented evidence, report each source modality's 
 ## Auxiliary reasoning controls
 
 [FinChain](../../dataset-cards/cross-cutting/finchain.md) is an auxiliary control: executable financial templates provide intermediate numerical reasoning targets, but no retrieval source collection or relevance labels. It can diagnose reasoning after retrieval only when a separate retrieval protocol is defined. Its ACL 2026 publication is recorded in the [paper index](../recent-paper-index.md), without upgrading it to a native RAG benchmark.
+
+Agentic search, temporal reasoning and response preferences are cross-category **capabilities**, not automatic members of this residual dataset category. [Capability routes](../selecting-a-benchmark.md#capability-routes) link their source-based cards; `rubric` and `response_preference` describe annotations, not new source modalities. Keep explicit native-versus-adapted boundaries even when one answer metric is used across representations.

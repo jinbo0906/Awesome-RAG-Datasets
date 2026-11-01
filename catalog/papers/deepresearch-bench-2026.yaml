@@ -1,0 +1,8 @@
+id: deepresearch-bench-2026
+name: 'DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents'
+entity_type: paper
+url: 'https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html'
+relation: introduces
+targets: [deepresearch-bench]
+sources:
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

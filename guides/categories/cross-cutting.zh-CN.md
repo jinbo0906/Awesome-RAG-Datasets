@@ -11,3 +11,5 @@
 ## 辅助推理对照
 
 [FinChain](../../dataset-cards/cross-cutting/finchain.zh-CN.md) 是辅助对照：可执行财务模板提供数值推理的中间目标，但没有检索来源集合或相关性标签。只有另行定义检索协议后，才可诊断检索后的推理。其 ACL 2026 发表信息记录在[论文索引](../recent-paper-index.zh-CN.md)，不因此升级为原生 RAG benchmark。
+
+代理搜索、时间推理和回答偏好属于跨类别**能力**，不是自动归入这个兜底数据分类。[能力入口](../selecting-a-benchmark.zh-CN.md#capability-routes)关联按来源归类的卡片；`rubric` 与 `response_preference` 描述标注，不是新来源模态。即使不同表示使用共同答案指标，也应保留原生与改造评测的明确边界。

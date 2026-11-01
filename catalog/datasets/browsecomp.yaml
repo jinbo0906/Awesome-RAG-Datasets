@@ -1,0 +1,43 @@
+id: browsecomp
+name: BrowseComp
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Live-web browsing questions with short reference answers, testing persistent search for obscure multi-step facts.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [agentic_search, multi_hop_qa]
+  modalities: [text]
+  domains: [general-knowledge]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: Human trainers construct hard-to-locate factual questions for agents using web search and browsing. The public reference loader reads obfuscated questions and answers from an author-hosted CSV; it does not provide a fixed web corpus.
+  size: 1,266 evaluation questions; the paper's separate human verification campaign covers 1,255 problems.
+  splits: Public test release; BrowseComp-Plus is a separate fixed-corpus adaptation, not the same evaluation setting.
+  format: Obfuscated CSV with an author-provided reference loader.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Trainers supply short, intended-to-be-unambiguous answers. This release does not establish exhaustive document qrels, source spans or gold browsing trajectories.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy, calibration_error]
+  protocol: Use the paper's answer-equivalence judge and confidence-calibration protocol; report browsing tools, search provider, date and inference budget. Do not equate answer accuracy with evidence recall. The archived reference grader requires version-specific inspection before use; it has not been reproduced here.
+  evaluator: 'https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py'
+access:
+  official: 'https://openai.com/index/browsecomp/'
+  paper: 'https://arxiv.org/abs/2504.12516'
+  data: 'https://openaipublic.blob.core.windows.net/simple-evals/browse_comp_test_set.csv'
+  license: unknown
+use:
+  best_for: [Persistent multi-step web search under a controlled budget, Comparing live-web agents against fixed-corpus BrowseComp-Plus]
+  caveats: [No fixed source corpus or retrieval qrels; web and search-provider drift affect reproducibility, Original authors request that benchmark examples not be published in plaintext; no question or answer examples are mirrored here, The simple-evals code is MIT but a separate data license was not confirmed; its README says active updates ended in July 2025]
+sources:
+  - {url: 'https://openai.com/index/browsecomp/', type: official, fields: [summary, data.description, data.size, ground_truth.description, ground_truth.provenance, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2504.12516', type: paper, fields: [classification.rag_role, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/openai/simple-evals/blob/main/browsecomp_eval.py', type: repository, fields: [data.format, data.splits, access.data, evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/openai/simple-evals', type: repository, fields: [access.license, use.caveats], checked_on: '2026-11-01'}

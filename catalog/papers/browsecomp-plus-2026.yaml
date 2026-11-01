@@ -1,0 +1,8 @@
+id: browsecomp-plus-2026
+name: 'BrowseComp-Plus: A Fair and Disentangled Evaluation Benchmark for Deep Search Agents'
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.1023/'
+relation: introduces
+targets: [browsecomp-plus]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1023/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

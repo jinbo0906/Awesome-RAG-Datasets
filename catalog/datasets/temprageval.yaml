@@ -1,0 +1,53 @@
+id: temprageval
+name: TempRAGEval
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Answer-preserving temporal perturbations with manually located Wikipedia evidence for time-sensitive RAG.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [time_sensitive_qa, evidence_retrieval, rag_robustness]
+  modalities: [text]
+  domains: [wikipedia]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: >-
+    SituatedQA and TimeQA questions are manually rewritten with more demanding temporal conditions
+    while preserving their answers. The query release is separate from the ATLAS December 2021
+    English Wikipedia corpus of 33.1 million text chunks used in the paper.
+  size: Paper reports 1,000 evidence-annotated test examples; rows with an empty time_relation are excluded by the author protocol.
+  splits: Test benchmark with SituatedQA-derived and TimeQA-derived strata; report original and perturbed question results separately.
+  format: CSV test file on Hugging Face plus external ATLAS text corpus
+ground_truth:
+  levels: [sentence, answer]
+  provenance: mixed
+  description: >-
+    Annotators provide up to two supporting sentences. A retrieved chunk counts as evidence if it
+    contains either sentence, so the evidence metric is an any-support hit, not complete multi-sentence
+    evidence coverage. Answers and source questions originate from differently constructed source datasets.
+  alternatives: explicit
+evaluation:
+  official_metrics: [answer_recall_at_k, gold_evidence_recall_at_k, exact_match, token_f1]
+  protocol: >-
+    Use the pinned Wikipedia/ATLAS corpus, exclude empty time_relation rows and score chunks rather
+    than the system's extracted sentences. Answer-containing recall and annotated-evidence recall
+    are different measures: incidental answer mentions can inflate the former, while unannotated
+    valid passages can reduce the latter. MRAG is the introducing method, not a separate dataset.
+  evaluator: 'https://github.com/siyue-zhang/MRAG'
+access:
+  official: 'https://github.com/siyue-zhang/MRAG'
+  paper: 'https://aclanthology.org/2025.findings-emnlp.167/'
+  data: 'https://huggingface.co/datasets/siyue/TempRAGEval'
+  license: Apache-2.0 in query-release metadata; external Wikipedia/ATLAS corpus retains upstream terms.
+  gated: true
+use:
+  best_for: [Diagnosing semantic similarity without temporal validity, Testing retrieval and QA sensitivity to answer-preserving date changes]
+  caveats: [HF API marks access as auto-gated; query files were not downloaded in this audit, Sentence anchors are not optimal chunk-boundary annotations or exhaustive qrels, Historical temporal reasoning does not by itself test continuous knowledge-base updates, The paper is Findings EMNLP 2025; its December 2024 preprint date is a different publication milestone]
+sources:
+  - {url: 'https://aclanthology.org/2025.findings-emnlp.167.pdf', type: paper, fields: [summary, classification, data.description, data.size, ground_truth, evaluation.official_metrics, use], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/siyue-zhang/MRAG', type: repository, fields: [data.corpus, data.splits, ground_truth.description, evaluation.protocol, evaluation.evaluator, access.data], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/api/datasets/siyue/TempRAGEval', type: dataset_card, fields: [data.format, access.license, access.gated, use.caveats], checked_on: '2026-11-01'}

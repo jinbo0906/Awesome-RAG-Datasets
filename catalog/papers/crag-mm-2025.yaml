@@ -1,0 +1,8 @@
+id: crag-mm-2025
+name: 'CRAG-MM: Multi-modal Multi-turn Comprehensive RAG Benchmark'
+entity_type: paper
+url: 'https://arxiv.org/abs/2510.26160'
+relation: introduces
+targets: [crag-mm]
+sources:
+  - {url: 'https://arxiv.org/abs/2510.26160', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

@@ -1,0 +1,43 @@
+id: deepsearchqa
+name: DeepSearchQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Multi-step web research with single or exhaustive set answers, penalizing premature stopping and extraneous guesses.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [agentic_search, multi_hop_qa]
+  modalities: [text]
+  domains: [general, professional-research]
+  languages: [en]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: Google's December 2025 release provides hand-crafted causal-chain information-seeking prompts across 17 fields. The released fields are problem, problem_category, answer and answer_type; the web remains the external evidence environment.
+  size: 900 prompts; the official card reports that 65% require set answers.
+  splits: Single eval split; answer_type is evaluation metadata and must not be given to the agent at inference.
+  format: CSV, loadable through Hugging Face Datasets.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Reference answers enumerate target items rather than relevant pages or browsing actions. An LLM judge matches semantic answer equivalents before set scoring; correct answer membership does not prove a supported citation or a complete source chain.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_set_F1, answer_precision, answer_recall, fully_correct_rate, fully_incorrect_rate, correct_with_extraneous_answers_rate]
+  protocol: Macro-average per-prompt answer-set F1 as the primary ranking metric and report strict fully-correct success separately. Deduplicate answer items and use semantic matching; the paper uses Gemini 2.5 Flash as judge. Record web/search configuration, judge version and budget; missing items and extra guesses must both affect scores.
+  evaluator: 'https://www.kaggle.com/code/andrewmingwang/deepsearchqa-starter-code'
+access:
+  official: 'https://huggingface.co/datasets/google/deepsearchqa'
+  paper: 'https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf'
+  data: 'https://huggingface.co/datasets/google/deepsearchqa'
+  license: Apache-2.0
+  gated: false
+use:
+  best_for: [Measuring exhaustive collection and stopping decisions in web research, Distinguishing high answer recall from fully correct answer sets]
+  caveats: [Answer-level precision and recall are not document-retrieval qrels, Live source availability and judge behavior can change across runs, Most set-answer tasks require complete membership rather than one plausible supporting fact]
+sources:
+  - {url: 'https://huggingface.co/datasets/google/deepsearchqa', type: dataset_card, fields: [summary, classification, data, ground_truth.description, access.license, access.gated, evaluation.evaluator], checked_on: '2026-11-01'}
+  - {url: 'https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf', type: paper, fields: [data.description, ground_truth.provenance, evaluation.official_metrics, evaluation.protocol, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://blog.google/innovation-and-ai/technology/developers-tools/deep-research-agent-gemini-api/', type: official, fields: [data.description, use.best_for], checked_on: '2026-11-01'}

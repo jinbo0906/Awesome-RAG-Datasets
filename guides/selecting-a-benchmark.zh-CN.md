@@ -15,6 +15,27 @@
 | 图证据检索与推理 | [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.zh-CN.md)、[GrailQA](../dataset-cards/graph-rag/grailqa.zh-CN.md)、[WebQuestionsSP](../dataset-cards/graph-rag/webqsp.zh-CN.md) | 图证据、路径或逻辑形式的正确性，以及答案 | 知识库问答逻辑形式不等于 GraphRAG 引用图 |
 | 仅检索或鲁棒性对照 | [BEIR](../suite-cards/beir.zh-CN.md)、[BRIGHT](../dataset-cards/text-rag/bright.zh-CN.md)、[M-BEIR](../suite-cards/m-beir.zh-CN.md) | 官方相关性标注与排序指标 | 没有内置的回答生成真值 |
 
+<a name="capability-routes"></a>
+
+## 跨来源分类的能力选型入口
+
+这些入口横跨现有分类目录，索引不同评测契约，不是可以直接比较的排行榜列。发表信息及实验位置见[近期论文索引](recent-paper-index.zh-CN.md)。
+
+| 评测需求 | 优先查看 | 必须保留的契约 |
+|---|---|---|
+| 自适应搜索与停止决策 | [BrowseComp-Plus](../dataset-cards/text-rag/browsecomp-plus.zh-CN.md)、[BrowseComp](../dataset-cards/text-rag/browsecomp.zh-CN.md)、[DeepSearchQA](../dataset-cards/text-rag/deepsearchqa.zh-CN.md)、[SGR-Bench](../dataset-cards/text-rag/sgr-bench.zh-CN.md) | 固定语料与实时网页不同；推理/答案文档、完整答案集合、结构化行与工具预算是不同目标 |
+| 研究报告质量 | [DeepResearch Bench](../dataset-cards/text-rag/deepresearch-bench.zh-CN.md)、[DeepResearch Bench II](../dataset-cards/text-rag/deepresearch-bench-ii.zh-CN.md) | RACE/FACT 与内容量规不同；固定当前有资格评分的任务及判分版本，不推断有金标准动作轨迹 |
+| 时间证据与参数知识 | [TEMPO](../dataset-cards/text-rag/tempo.zh-CN.md)、[TempRAGEval](../dataset-cards/text-rag/temprageval.zh-CN.md)、[WikiRecentChanges](../dataset-cards/text-rag/wikirecentchanges.zh-CN.md)、[evolveQA](../dataset-cards/text-rag/evolveqa.zh-CN.md) | 检索时间覆盖、日期扰动、给定上下文冲突、闭卷知识截止点是不同测试；均不能单独证明持续索引更新能力 |
+| 澄清、拒答与冲突 | [MTRAG-UN](../dataset-cards/text-rag/mtrag-un.zh-CN.md)、[Ragability](../dataset-cards/text-rag/ragability.zh-CN.md)、[ConfRAG](../dataset-cards/text-rag/confrag.zh-CN.md) | 区分不可回答与信息不足、上下文一致与冲突、参考证据与完整 RAG |
+| 回答评判器与偏好对齐 | [RAG-RewardBench](../dataset-cards/text-rag/rag-rewardbench.zh-CN.md)、[RAGTruth](../dataset-cards/text-rag/ragtruth.zh-CN.md) | 偏好对排序不同于回答错误片段检测，二者都不能证明开放语料检索质量 |
+| 企业密集干扰项 | [EnterpriseRAG-Bench](../dataset-cards/text-rag/enterpriserag-bench.zh-CN.md) | 合成跨来源一致性、无答案情况、可修订真值；分开记录版本修正与固定榜单标签 |
+| 图遍历与全局综合 | [STaRK](../dataset-cards/graph-rag/stark.zh-CN.md)、[GRBench](../dataset-cards/graph-rag/grbench.zh-CN.md)、[WildGraphBench](../dataset-cards/graph-rag/wildgraphbench.zh-CN.md) | 节点排序、答案评判和陈述覆盖不同；WildGraphBench 不得索引金标准维基百科摘要 |
+| 学术参考文献推荐 | [CiteRAG](../dataset-cards/text-rag/citerag.zh-CN.md) | 参考列表或占位符预测不是主张蕴含评测，发布代码 PACA 聚合不同于论文定义 |
+| 视频证据保留 | [CFVBench](../dataset-cards/multimodal-rag/cfvbench.zh-CN.md)、[XVBench](../dataset-cards/multimodal-rag/xvbench.zh-CN.md)、[LongerVideos](../dataset-cards/multimodal-rag/longervideos.zh-CN.md) | 视频 ID、可寻址片段和答案要点不等于最小时间区间；LongerVideos 未发布参考答案 |
+| 文档与多语言全流程对照 | [UniDoc-Bench](../dataset-cards/multimodal-rag/unidoc-bench.zh-CN.md)、[ViDoRe](../suite-cards/vidore.zh-CN.md)、[M4-RAG](../suite-cards/m4-rag.zh-CN.md)、[CRAG-MM](../dataset-cards/multimodal-rag/crag-mm.zh-CN.md) | 区分版本化检索、定位、问答、语言变体和多轮停止规则，固定来源可见性及预算 |
+
+对于最初的分块问题，BrowseComp-Plus 补充文档级证据获取标签，TEMPO 补充时段覆盖，但都不提供最优切分边界。对于多模态碎片化，UniDoc-Bench 补充关联来源事实，ViDoRe v3 补充定位和答案；CFV/XVBench 缺失的时间或跨元素证据链仍需独立标注。分别报告金标准证据 oracle、实际检索、完整集合覆盖、答案/引用质量及成本。
+
 ## 选型检查清单
 
 1. 确定目标单位：来源文档、页面、句子、单元格、区域、图路径、原子事实，还是最终答案。

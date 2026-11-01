@@ -2,15 +2,64 @@
 
 [简体中文](recent-paper-index.zh-CN.md)
 
-Checked on 2026-10-02. This index emphasizes published 2025 and 2026 work, supplements missing 2024 releases, and traces older datasets reused in recent experiments. It is a curated evidence index, not an exhaustive literature census or a quality ranking. Repeated use by several papers does not create several dataset records.
+Maintenance checked on 2026-11-01. This pass focuses on public work from May 2025 through October 2026, especially 2026 releases and October publications; older foundational resources are retained when recent experiments use them. Existing cards keep their own field-check dates. This is a curated evidence index, not an exhaustive literature census or quality ranking. Repeated use by several papers does not create several dataset records.
 
 ## Venue and publication scope
 
 The reference is CCF's **seventh-edition formal directory**, published on 2026-03-31: [official PDF](https://www.ccf.org.cn/ccf/contentcore/resource/download?ID=112CF3BF7E1140ACEB271ADAED12A67ADFABB8FF099E40C2759502A85C8A281F). PDF pages 35, 47 and 57 list SIGIR, ACM MM and the AI A venues, including ACL, AAAI, NeurIPS, ICML, CVPR, ICCV and **ICLR**. Page 58 places EMNLP, NAACL and IJCAI in B. Some category webpages still show an older list; the formal PDF takes precedence. Applying this current directory consistently is not a claim that every venue had the same grade in the paper's publication year.
 
-CCF considers formal Full/Regular papers and explicitly excludes Findings, Short/Demo papers and companion Workshops. [Official policy](https://www.ccf.org.cn/Academic_Evaluation/By_category/) Track labels below preserve Long, Datasets and Benchmarks (D&B), and Resource distinctions rather than silently treating all conference-associated material as main-track long papers. Institution-specific recognition is outside this catalog's scope. For 2026, only already published, verifiable materials as of the checking date are recorded.
+CCF considers formal Full/Regular papers and explicitly excludes Findings, Short/Demo papers and companion Workshops. [Official policy](https://www.ccf.org.cn/Academic_Evaluation/By_category/) Track labels preserve Long, Datasets and Benchmarks (D&B), and Resource distinctions. Venue grade is context, not an inclusion gate in this maintenance pass: Findings, other venues, challenges and public preprints are included with their actual status. Institution-specific recognition is outside this catalog's scope; a public preprint is not relabeled a peer-reviewed conference paper.
 
 The tables distinguish **introduction**, **training use** and **evaluation use**. Dataset cards retain native facts; sampled splits, external corpora and conversion-specific metrics remain properties of the paper's experiment. Machine-readable relationships are in [catalog/papers](../catalog/papers).
+
+## November maintenance: new evaluation contracts
+
+Each row states **introduces**, **extends**, or **actually evaluates**. A bibliography mention alone does not create an adoption relation. RACE, FACT, agent frameworks and evaluator libraries remain methods, not additional datasets. Dataset descriptions preserve native contracts; a paper-specific transformation is not silently promoted to the original dataset.
+
+### Search agents and research reports
+
+| Source / publication | Resource and relation | Locator and evaluation value |
+|---|---|---|
+| [BrowseComp](https://arxiv.org/abs/2504.12516) · April 2025 report, foundational supplement | Introduces [BrowseComp](../dataset-cards/text-rag/browsecomp.md) | §§4.1–4.2, Table 3. Live-web search with short answers and calibration, without fixed qrels. |
+| [BrowseComp-Plus](https://aclanthology.org/2026.acl-long.1023/) · ACL 2026 Long; August 2025 preprint | Introduces [fixed-corpus conversion](../dataset-cards/text-rag/browsecomp-plus.md) | Benchmark construction and separate retriever/agent experiments. 830 queries, 100,195 documents; evidence_docs and answer-bearing gold_docs have different roles. |
+| [DeepSearchQA](https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf) · December 2025 technical report | Introduces [DeepSearchQA](../dataset-cards/text-rag/deepsearchqa.md) | §§3.1–3.2, Table 4. Macro answer-set F1 and strict complete correctness reward exhaustive discovery, not document recall. |
+| [DeepResearch Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html) · ICLR 2026; June 2025 preprint | Introduces [100-task report benchmark](../dataset-cards/text-rag/deepresearch-bench.md) | Author manuscript §§3.1–3.2/4: RACE report quality versus FACT citation support. May/September 2026 evaluator changes affect historical comparability. |
+| [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · January 2026 preprint, September revision | Introduces [rubric benchmark](../dataset-cards/text-rag/deepresearch-bench-ii.md) | §3.1, §4, Appendix A. 132 released tasks/9,430 criteria; October leaderboard eligibility is 130 tasks. Rubric recall is not retrieval recall. |
+| [SGR-Bench](https://arxiv.org/abs/2605.22219) · May 2026 preprint | Introduces [state-dependent web retrieval tasks](../dataset-cards/text-rag/sgr-bench.md) | §§3.2–3.4/4.1–4.2, Table 2, Appendix A. Fifty paired information needs test fields, complete rows and ordering; 100 prompts are not 100 independent needs. |
+| [WebWeaver](https://proceedings.iclr.cc/paper_files/paper/2026/file/07fa611a88be1832f4c6a96f044ebede-Paper-Conference.pdf) · ICLR 2026 | Actually evaluates DeepResearch Bench | §§4.1–4.2, Table 1, Appendix B. Three independent runs; the framework is not another benchmark. |
+| [DuMate-DeepResearch](https://arxiv.org/html/2606.07299) · June 2026 technical report | Actually evaluates DeepResearch Bench and II | §§3–3.1, Tables 1–2. Its results average three runs; cited baseline leaderboard results were not all rerun in the same environment. |
+
+### Time, uncertainty, preference and enterprise sources
+
+| Source / publication | Resource and relation | Locator and evaluation value |
+|---|---|---|
+| [TEMPO](https://arxiv.org/abs/2601.09523) · January 2026 preprint | Introduces [TEMPO](../dataset-cards/text-rag/tempo.md) | §§3–5, Table 6/Appendix G.3. Temporal retrieval and downstream QA; official code excludes negative_ids, unlike a stricter unfiltered corpus adaptation. |
+| [TempRAGEval](https://aclanthology.org/2025.findings-emnlp.167/) · Findings EMNLP 2025 | Introduces [TempRAGEval](../dataset-cards/text-rag/temprageval.md) | §3, §5, Appendix F. Human time perturbations with unchanged answers; either annotated sentence can satisfy evidence recall. Query files require access approval. |
+| [WikiRecentChanges](https://aclanthology.org/2026.findings-acl.103/) · Findings ACL 2026 | Introduces [controlled conflict data](../dataset-cards/text-rag/wikirecentchanges.md) | §3.1, §4/Tables 1–4. Mutable/stable facts and factual/counterfactual supplied contexts; no open retrieval or continuous indexing protocol. |
+| [MTRAG-UN](https://aclanthology.org/2026.findings-acl.503/) · Findings ACL 2026 | Introduces [MTRAG-UN](../dataset-cards/text-rag/mtrag-un.md) | §2, §§3.1–3.3. Paper: 666 tasks/six domains; currently released references: 507/four domains. Unanswerable and underspecified targets differ. |
+| [MTRAGEval](https://aclanthology.org/2026.semeval-1.447/) · SemEval 2026 Task 8 | Actually evaluates MTRAG-UN; uses [MTRAG](../dataset-cards/text-rag/mtrag.md) as training data | Task setup and evaluation sections. Training and test resources are distinct; neither task name nor framework creates a third dataset. |
+| [RAG-RewardBench](https://aclanthology.org/2025.findings-acl.877/) · Findings ACL 2025 | Introduces [preference pairs](../dataset-cards/text-rag/rag-rewardbench.md) | §§3.3/4.1. Chosen/rejected judgments with swapped-order evaluation; citation, refusal and conflict conditions assess judges, not retriever qrels. |
+| [Ragability](https://aclanthology.org/2026.lrec-1.182/) · LREC 2026 | Introduces [Ragability Corpus](../dataset-cards/text-rag/ragability.md) | §2, §4.1/Table 2. Fifty-three seed rows produce 1,060 prompt cases per model; the companion library is not a second dataset. |
+| [evolveQA](https://aclanthology.org/2026.emnlp-main.2373/) · EMNLP 2026 main, October | Introduces [cutoff-aligned controls](../dataset-cards/text-rag/evolveqa.md) | §§2–3/4.1, Table 4, Appendices C.1/D.3. Closed-book accuracy and outdated-response rate; 4,967 cutoff rows correspond to 937 domain/question-ID keys. Not native update-RAG. |
+| [EnterpriseRAG-Bench](https://arxiv.org/abs/2605.05253) · May 2026 preprint | Introduces [synthetic enterprise QA](../dataset-cards/text-rag/enterpriserag-bench.md) | §§4–5 and official answer evaluator. More than 500K documents/500 core questions; completeness and conflicting records expose missing evidence. Gold corrections require version control. |
+
+### Graph, scholarly, document and video evaluation
+
+| Source / publication | Resource and relation | Locator and evaluation value |
+|---|---|---|
+| [Graph Counselor](https://aclanthology.org/2025.acl-long.1202/) · ACL 2025 Long | Actually evaluates [GRBench](../dataset-cards/graph-rag/grbench.md), introduced in Findings ACL 2024 | Experimental setup and Table 1. Ten text-attributed graphs; ROUGE-L/QwenScore differ from the original Graph-CoT GPT-4 judge. |
+| [ARK](https://aclanthology.org/2026.acl-long.714/) · ACL 2026 Long | Actually evaluates [STaRK](../dataset-cards/graph-rag/stark.md), introduced at NeurIPS 2024 D&B | §4.1/Table 1, Appendix Tables 5–6. Entity retrieval under lexical-search/traversal budgets; teacher distillation is separate from training-free evaluation. |
+| [WildGraphBench](https://aclanthology.org/2026.findings-acl.679/) · Findings ACL 2026 | Introduces [WildGraphBench](../dataset-cards/graph-rag/wildgraphbench.md) | §§3.5/4.1, Table 2. Current release: 1,197 questions; abstract: 1,100. Index external reference pages, not gold Wikipedia summaries. |
+| [CiteRAG](https://doi.org/10.1145/3774904.3792075) · WWW 2026 | Introduces [academic citation prediction](../dataset-cards/text-rag/citerag.md) | §§2/5, Table 2. Bibliographies and local citation placeholders; released Task-2 normalization differs from paper PACA and must be disclosed. |
+| [UniDoc-Bench](https://aclanthology.org/2026.findings-emnlp.534/) · Findings EMNLP 2026, October | Introduces [UniDoc-Bench](../dataset-cards/multimodal-rag/unidoc-bench.md) | §§3–4, Tables 3–4. Eight actual domain splits × 200 queries; README's 1,742/single-test claim conflicts with the released configuration. Human-validation claims also differ by version. |
+| [ViDoRe v3](https://arxiv.org/abs/2601.08620) · January 2026 preprint | Extends [ViDoRe](../suite-cards/vidore.md), not a duplicate suite record | Dataset construction and retrieval/grounding/generation evaluation. Eight public/two private components; reference answers and boxes extend older retrieval-only contracts. |
+| [M4-RAG](https://openaccess.thecvf.com/content/CVPR2026/html/Anugraha_M4-RAG_A_Massive-Scale_Multilingual_Multi-Cultural_Multimodal_RAG_CVPR_2026_paper.html) · CVPR 2026 | Introduces [RAG suite conversions](../suite-cards/m4-rag.md) of CVQA/WorldCuisines | Data construction and evaluation sections. Source VQA, Wikipedia pool and language variants remain distinct; answer-containing chunks are not independent qrels. |
+| [CRAG-MM](https://arxiv.org/abs/2510.26160) · October 2025 preprint; KDD Cup 2025 resource | Introduces [CRAG-MM](../dataset-cards/multimodal-rag/crag-mm.md), not the earlier text CRAG | §§2–5. Single/multi-turn wearable-image QA with mock search, refusal and conversation stopping. A competition association is not main-track publication. |
+| [CFVBench](https://doi.org/10.1145/3774904.3792726) · WWW 2026 | Introduces [fine-grained video RAG](../dataset-cards/multimodal-rag/cfvbench.md) | §3, §4.1. Visual/transcript keypoints; no verified per-question temporal interval in checked public QA. Paper/repository QA counts differ. |
+| [VideoRAG](https://doi.org/10.1145/3770854.3783944) · KDD 2026 | Introduces [LongerVideos](../dataset-cards/multimodal-rag/longervideos.md) | §4.1, Appendices A/C. Public 164-video/602-query file has no reference answers; model-comparison win rate is not answer accuracy. |
+| [VimRAG](https://arxiv.org/abs/2602.12735) · February 2026 preprint, April revision | Introduces [XVBench](../dataset-cards/multimodal-rag/xvbench.md) | §4.1/Table 2, Appendices B/J. 497 queries, 138 with multiple reference clips; checked clip sets never cross source-video IDs. |
+
+Version maintenance also preserves [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.md)'s 2025 release ID while recording author-reported ICLR 2026 acceptance. [ViDoRAG](https://aclanthology.org/2025.emnlp-main.464/) introduces the existing [ViDoSeek](../dataset-cards/multimodal-rag/vidoseek.md); no unsupported VRAGBench alias record is added. The [classification assessment](taxonomy.md#november-2026-classification-assessment) retains source categories and extends capability/annotation facets instead.
 
 ## Text, conversation and multilingual use
 

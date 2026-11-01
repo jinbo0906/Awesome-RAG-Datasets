@@ -1,0 +1,8 @@
+id: mrag-temporal-2025
+name: 'MRAG: A Modular Retrieval Framework for Time-Sensitive Question Answering'
+entity_type: paper
+url: 'https://aclanthology.org/2025.findings-emnlp.167/'
+relation: introduces
+targets: [temprageval]
+sources:
+  - {url: 'https://aclanthology.org/2025.findings-emnlp.167/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

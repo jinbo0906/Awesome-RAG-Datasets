@@ -1,0 +1,8 @@
+id: ark-2026
+name: Autonomous Knowledge Graph Exploration with Adaptive Breadth-Depth Retrieval
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.714/'
+relation: evaluates
+targets: [stark]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.714.pdf', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

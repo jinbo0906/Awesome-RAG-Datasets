@@ -1,0 +1,56 @@
+id: mtrag-un
+name: MTRAG-UN
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Multi-turn RAG tests of unanswerable, underspecified and non-standalone questions and clarification responses.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [conversational_qa, evidence_retrieval, rag_robustness, query_rewriting]
+  modalities: [text]
+  domains: [wikipedia, finance, government, technical-documentation, banking, telecommunications]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Human conversations are converted into one challenging evaluation turn per conversation; some
+    underspecified endings are stitched to existing conversations. At checking time, reference.jsonl
+    exposes 507 tasks in ClapNQ, Cloud, FiQA and Govt. The author README still marks Banking/Telco
+    corpora and associated tasks as coming soon, so the six-domain paper benchmark is not fully public.
+  size: Paper reports 666 tasks from 666 conversations and over 2,800 conversation turns across six domains; the checked public reference file has 507 four-domain rows.
+  splits: Evaluation benchmark; MTRAG is the separate training resource in SemEval-2026 MTRAGEval, not the same dataset.
+  format: JSONL generation tasks and BEIR-format passage-retrieval qrels
+ground_truth:
+  levels: [paragraph, answer]
+  provenance: mixed
+  description: >-
+    Reference passages, response targets, answerability and conversation-type labels support
+    generation and clarification scoring. Qrels cover answerable/partially answerable turns
+    (468 in the full paper benchmark), not all unanswerable or underspecified cases.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [Recall@5, Recall@10, nDCG@5, nDCG@10, RB_llm, RB_alg, IDK_judge, RAGAS_faithfulness, underspecified_response_judge]
+  protocol: >-
+    Preserve history and contrast last-turn queries with query rewrites. Evaluate retrieval only on
+    its eligible turns and condition generation scores on answerability; underspecified responses
+    use their own judge. Report Reference and full-RAG conditions separately. Paper judges and
+    the available four-domain release must not be silently replaced by the full six-domain scores.
+  evaluator: 'https://github.com/IBM/mt-rag-benchmark/tree/main/scripts/evaluation'
+access:
+  official: 'https://github.com/IBM/mt-rag-benchmark/tree/main/mtragun-human'
+  paper: 'https://aclanthology.org/2026.findings-acl.503/'
+  data: 'https://github.com/IBM/mt-rag-benchmark/blob/main/mtragun-human/generation_tasks/reference.jsonl'
+  license: unknown
+  gated: false
+use:
+  best_for: [Distinguishing appropriate refusal from clarification, Evaluating retrieval-query rewriting and difficult later conversation turns]
+  caveats: [Two enterprise domains are not yet released according to the author README, Count evaluation turns separately from conversations and full conversation turns, Judge identity and answerability-conditioned scoring affect comparability with original MTRAG, Repository software licensing does not establish one uniform license for every source corpus]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.503.pdf', type: paper, fields: [summary, classification, data.size, ground_truth, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/IBM/mt-rag-benchmark/blob/main/mtragun-human/README.md', type: repository, fields: [data.description, data.corpus, data.format, access.license, access.gated, use], checked_on: '2026-11-01'}
+  - {url: 'https://raw.githubusercontent.com/IBM/mt-rag-benchmark/main/mtragun-human/generation_tasks/reference.jsonl', type: repository, fields: [data.size, data.queries, data.answers, data.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/IBM/mt-rag-benchmark', type: repository, fields: [data.splits], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/IBM/mt-rag-benchmark/tree/main/scripts/evaluation', type: repository, fields: [evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-01'}

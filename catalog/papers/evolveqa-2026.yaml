@@ -1,0 +1,8 @@
+id: evolveqa-2026
+name: 'When Facts Change: Probing LLMs on Evolving Knowledge with evolveQA'
+entity_type: paper
+url: 'https://aclanthology.org/2026.emnlp-main.2373/'
+relation: introduces
+targets: [evolveqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-main.2373/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

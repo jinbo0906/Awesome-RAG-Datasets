@@ -1,0 +1,37 @@
+id: grbench
+name: GRBench (Graph-CoT)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Human-written questions over ten text-attributed graphs, testing graph lookup, multi-hop and inductive reasoning.
+classification: {rag_role: rag_native, primary_category: graph_rag, tasks: [graph_qa, graph_reasoning, multi_hop_qa], modalities: [text, graph], domains: [academic, commerce, literature, healthcare, legal], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Released with Graph-CoT in Findings ACL 2024; reused in ACL 2025 Graph Counselor. QA files are on Hugging Face and graph environments are linked separately by the authors. This is not the later GraphRAG-Bench novel/medical release.
+  size: 1,740 questions over ten graphs from five broad application domains, as reported by the introducing paper.
+  splits: Ten domain configurations exposed as test data; easy, medium and hard reasoning strata are not train/dev/test splits.
+  format: JSON questions and answers plus separately downloaded graph environments.
+ground_truth:
+  levels: [answer]
+  provenance: human
+  description: Manually designed questions and reference answers; graph availability and difficulty labels do not imply independently annotated minimal evidence paths or gold agent trajectories.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [exact_match, BLEU, ROUGE, GPT4score]
+  evaluator: 'https://github.com/PeterGriffinJin/Graph-CoT/blob/main/eval.py'
+  protocol: Pin each graph environment and its QA configuration. The original script reports string metrics and a GPT-4 answer judge; Graph Counselor's ROUGE-L/QwenScore experiments use a different judge and should not be pooled with the original GPT4score.
+access:
+  official: 'https://github.com/PeterGriffinJin/Graph-CoT'
+  paper: 'https://aclanthology.org/2024.findings-acl.11/'
+  data: 'https://huggingface.co/datasets/PeterJinGo/GRBench'
+  license: Apache-2.0 for the HF QA release; original graph sources retain their own terms.
+use:
+  best_for: [Comparing iterative graph exploration with flat textual retrieval, Testing transfer from lookup to relational and inductive questions]
+  caveats: [GRBench and GraphRAG-Bench are distinct resources rather than aliases, Answer judges do not measure source-path completeness, QA and graph environments must be acquired together]
+sources:
+  - {url: 'https://aclanthology.org/2024.findings-acl.11/', type: paper, fields: [summary, data.description, data.size, ground_truth.provenance], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/PeterJinGo/GRBench', type: dataset_card, fields: [data.splits, data.format, access.license, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/PeterGriffinJin/Graph-CoT/blob/main/eval.py', type: repository, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://aclanthology.org/2025.acl-long.1202/', type: paper, fields: [data.description, evaluation.protocol], checked_on: '2026-11-01'}

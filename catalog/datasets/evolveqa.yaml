@@ -1,0 +1,56 @@
+id: evolveqa
+name: evolveQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Cutoff-aligned knowledge probes that distinguish current, outdated and incorrect answers across evolving facts.
+classification:
+  rag_role: auxiliary
+  primary_category: text_rag
+  tasks: [time_sensitive_qa]
+  modalities: [text]
+  domains: [cloud-services, public-health]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The October 2026 author release contains timestamped AWS updates, Azure changes and WHO Disease
+    Outbreak News sources alongside generated QA records. Questions have open-ended, multiple-choice
+    and paired verifiable formats, with entity/concept/attribute metadata and an answer date.
+    Native experiments probe parametric knowledge without retrieval; raw sources are not a released
+    open-RAG relevance or citation evaluation protocol.
+  size: At release revision 2deea4042935b44b06c19c6dfed19ce25d928887, 18 cutoff-specific JSON files contain 4,967 records and 937 distinct domain/question_id keys. The latest cutoff alone has 922 records (550 AWS, 203 Azure and 169 WHO).
+  splits: Six knowledge-cutoff conditions from August 2023 to August 2024, not independent train/test partitions; question IDs recur across cutoff files.
+  format: JSON question arrays plus domain-organized raw source data
+ground_truth:
+  levels: [answer]
+  provenance: synthetic
+  description: >-
+    Model-generated reference answers and option/yes-no targets are aligned with the selected cutoff.
+    A human sample audits construction quality, not every released label. Entity/concept/attribute
+    fields and recent_answer_date do not provide question-specific document qrels or evidence spans.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy, verifiable_qa_hard_accuracy, outdated_response_rate]
+  protocol: >-
+    Match the model's knowledge cutoff to the selected condition and keep probing formats separate.
+    Hard accuracy requires both true- and false-eliciting variants of a fact to be correct.
+    For open-ended answers the paper's judge uses current and historical answers to classify
+    correct/current, outdated or incorrect; ORR is lower-is-better. Any retrieval adaptation must
+    separately define its source snapshot, relevance labels and evidence/citation metrics.
+access:
+  official: 'https://github.com/amazon-science/evolveQA'
+  paper: 'https://aclanthology.org/2026.emnlp-main.2373/'
+  data: 'https://github.com/amazon-science/evolveQA/tree/main/evolveQA-benchmark'
+  license: CC-BY-NC-ND-4.0; the author README limits the release to academic/scientific reproducibility and prohibits model training.
+  gated: false
+use:
+  best_for: [Cutoff-aligned parametric-knowledge controls for RAG experiments, Separating obsolete answers from wholly incorrect answers]
+  caveats: [Native scores do not evaluate retrieval or continuous knowledge-base updates, The six historical cutoff conditions do not measure knowledge current in November 2026, Repeated question IDs and multiple probing formats must not be counted as independent questions, Public availability does not remove the stated no-training and restricted-use terms]
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-main.2373.pdf', type: paper, fields: [summary, classification, ground_truth, evaluation.official_metrics, evaluation.protocol, use.best_for], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/amazon-science/evolveQA', type: repository, fields: [data.description, data.corpus, data.queries, data.answers, data.splits, data.format, access.data, access.license, access.gated, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/amazon-science/evolveQA/tree/2deea4042935b44b06c19c6dfed19ce25d928887/evolveQA-benchmark', type: repository, fields: [data.size], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/amazon-science/evolveQA/blob/main/LICENSE', type: repository, fields: [access.license], checked_on: '2026-11-01'}

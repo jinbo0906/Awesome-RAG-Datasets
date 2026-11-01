@@ -1,0 +1,8 @@
+id: browsecomp-2025
+name: 'BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents'
+entity_type: paper
+url: 'https://arxiv.org/abs/2504.12516'
+relation: introduces
+targets: [browsecomp]
+sources:
+  - {url: 'https://arxiv.org/abs/2504.12516', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

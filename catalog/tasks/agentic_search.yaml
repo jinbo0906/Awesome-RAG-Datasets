@@ -1,0 +1,8 @@
+id: agentic_search
+name: Agentic search
+entity_type: task
+summary: Solve a query by adaptively issuing search or browsing actions and aggregating evidence under an explicit environment and tool budget; a final answer alone does not provide gold action trajectories.
+input: A query and access to the declared live-web or fixed-corpus tools.
+output: An answer or report, with tool-use traces and citations when the evaluation contract requires them.
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1023/', type: paper, fields: [summary, input, output], checked_on: '2026-11-01'}

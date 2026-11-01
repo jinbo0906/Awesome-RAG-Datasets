@@ -8,7 +8,7 @@
 | 字段 | 内容 |
 |---|---|
 | 目录审查状态 | `source_checked` |
-| 来源核对日期 | 2026-10-02 |
+| 来源核对日期 | 2026-11-01 |
 | RAG 角色 | `rag_convertible` |
 | 主分类 | `graph_rag` |
 | 任务 | graph_qa, multi_hop_qa |
@@ -44,12 +44,13 @@
 
 - 原始知识库重建使用 freebase-rdf-2015-08-02-00-00 快照
 - 逻辑形式不能证明被检索子图唯一且最小
+- 旧项目主页于 2026-11-01 返回 404；现以作者代码仓库作为主入口，修正版 1.1 数据可用性须另外核对
 
 ## 获取方式与来源
 
-- [官方资源](https://www.tau-nlp.sites.tau.ac.il/compwebq)
+- [官方资源](https://github.com/alontalmor/WebAsKB)
 - [论文](https://aclanthology.org/N18-1059/)
-- official：[来源](https://www.tau-nlp.sites.tau.ac.il/compwebq) — 支持字段 `summary`、`classification`、`data`、`evaluation.protocol`、`use.caveats`
+- repository：[来源](https://github.com/alontalmor/WebAsKB) — 支持字段 `summary`、`data.format`、`evaluation.protocol`、`access.official`、`use.caveats`
 - paper：[来源](https://aclanthology.org/N18-1059/) — 支持字段 `ground_truth`、`evaluation.official_metrics`、`use.best_for`
 - paper：[来源](https://arxiv.org/abs/1807.09623) — 支持字段 `data.splits`
 

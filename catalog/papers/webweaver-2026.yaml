@@ -1,0 +1,8 @@
+id: webweaver-2026
+name: 'WebWeaver: Structuring Web-Scale Evidence with Dynamic Outlines for Open-Ended Deep Research'
+entity_type: paper
+url: 'https://proceedings.iclr.cc/paper_files/paper/2026/hash/07fa611a88be1832f4c6a96f044ebede-Abstract-Conference.html'
+relation: evaluates
+targets: [deepresearch-bench]
+sources:
+  - {url: 'https://proceedings.iclr.cc/paper_files/paper/2026/file/07fa611a88be1832f4c6a96f044ebede-Paper-Conference.pdf', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

@@ -1,0 +1,37 @@
+id: wildgraphbench
+name: WildGraphBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: GraphRAG evaluation over long external references, separating single-fact QA, multi-fact aggregation and statement-level summarization.
+classification: {rag_role: rag_native, primary_category: graph_rag, tasks: [single_hop_qa, multi_hop_qa, summarization], modalities: [text, graph], domains: [open-domain], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: Findings ACL 2026 benchmark built from Wikipedia articles and their heterogeneous external references. Index reference_pages rather than the Wikipedia article used to construct gold. Questions, reference URLs, source texts and summary statements are released by topic.
+  size: Current repository/HF release has 1,197 questions (667 single-fact, 191 multi-fact, 339 summary) across 12 topics; the paper abstract reports 1,100. These versions must not be silently equated.
+  splits: Twelve topic-named HF splits are evaluation partitions, not twelve independent train/test tasks.
+  format: Question JSONL, source text files and reference metadata; optional statement files.
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: Wikipedia citation-linked statements seed model-assisted QA and summary construction. ref_urls supplies question-level source references and gold_statements supplies summary targets; neither guarantees per-fact minimal source spans or gold graph edges.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [single_fact_accuracy, multi_fact_accuracy, statement_precision, statement_recall, statement_f1]
+  evaluator: 'https://github.com/BstWPY/WildGraphBench/blob/main/tools/eval.py'
+  protocol: Paper sections 3.5/4.1 separate LLM-judged QA accuracy from summary statement matching; the default judge is gpt-5-mini. Hold construction/answer models and retrieval budgets constant; the reported 1,200-token chunks with 100-token overlap are baseline settings, not gold chunk boundaries. Never index the gold Wikipedia summary article as retrieval evidence.
+access:
+  official: 'https://github.com/BstWPY/WildGraphBench'
+  paper: 'https://aclanthology.org/2026.findings-acl.679/'
+  data: 'https://huggingface.co/datasets/Bstwpy/WildGraphBench'
+  license: Apache-2.0 for the released benchmark; third-party reference documents retain their original rights.
+use:
+  best_for: [Testing evidence aggregation beyond short curated passages, Comparing fine-detail retention and global summarization in GraphRAG]
+  caveats: [Current release and paper abstract have different question counts, Constructed graph edges are not independent gold paths, Reference URLs and model-judged statement matches do not certify source-coordinate evidence completeness]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.679/', type: paper, fields: [summary, data.description, data.size], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/Bstwpy/WildGraphBench', type: dataset_card, fields: [data.size, data.splits, data.format, access.license, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/BstWPY/WildGraphBench', type: repository, fields: [data.description, evaluation.protocol, data.size], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2602.02053', type: paper, fields: [ground_truth.provenance, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}

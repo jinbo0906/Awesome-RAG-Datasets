@@ -1,0 +1,9 @@
+id: videorag-2026
+name: 'VideoRAG: Retrieval-Augmented Generation with Extreme Long-Context Videos'
+entity_type: paper
+url: 'https://doi.org/10.1145/3770854.3783944'
+relation: introduces
+targets: [longervideos]
+sources:
+  - {url: 'https://doi.org/10.1145/3770854.3783944', type: paper, fields: [name, url], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2502.01549', type: paper, fields: [relation, targets], checked_on: '2026-11-01'}

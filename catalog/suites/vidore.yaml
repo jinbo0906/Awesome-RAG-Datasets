@@ -2,10 +2,21 @@ id: vidore
 name: ViDoRe
 entity_type: suite
 status: source_checked
-summary: Vision-document retrieval benchmark family for text-query to document-image retrieval.
-summary_zh: 面向文本查询到文档图像检索的视觉文档检索评测套件系列。
+summary: Versioned visual-document benchmark family; v3 extends retrieval relevance to grounding and reference-answer evaluation.
+summary_zh: 版本化视觉文档评测套件系列；v3 在相关性检索外增加证据定位与参考答案评测。
 components: []
-protocol: 'The catalog records ViDoRe as a retrieval suite, not a QA dataset. Keep v1, v2 and v3 collections, their corpora, languages and metrics separate; constituent dataset cards are not yet indexed here.'
-access: {official: 'https://github.com/illuin-tech/vidore-benchmark'}
+protocol: >-
+  Keep v1/v2 retrieval settings separate from v3. The January 2026 v3 paper reports 10 datasets,
+  approximately 26,000 pages and 3,099 human-verified base queries in six languages, with relevance,
+  bounding-box grounding and reference-answer annotations. Eight datasets are public and two are
+  held out; these are not ten openly downloadable components. Current single-retriever evaluation
+  uses MTEB for v1-v3. The author repository now maintains complex retrieval-pipeline evaluation on
+  v3, including OCR/chunking/reranking, nDCG@10, recall and optional indexing/search cost. Its retrieval
+  score is not the paper's model-judged answer correctness or grounding score. Record language,
+  version, public/private subset and evaluator. Components remain unindexed as separate variant cards;
+  consult each dataset's terms rather than applying the code's MIT license to source documents.
+access: {official: 'https://github.com/illuin-tech/vidore-benchmark', paper: 'https://arxiv.org/abs/2601.08620'}
 sources:
-  - {url: 'https://github.com/illuin-tech/vidore-benchmark', type: repository, fields: [summary, protocol], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/illuin-tech/vidore-benchmark', type: repository, fields: [summary, protocol], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/html/2601.08620', type: paper, fields: [summary, protocol], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/collections/vidore/vidore-benchmark-v3', type: official, fields: [protocol], checked_on: '2026-11-01'}

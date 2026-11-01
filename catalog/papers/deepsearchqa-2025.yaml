@@ -1,0 +1,8 @@
+id: deepsearchqa-2025
+name: 'DeepSearchQA: Bridging the Comprehensiveness Gap for Deep Research Agents'
+entity_type: paper
+url: 'https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf'
+relation: introduces
+targets: [deepsearchqa]
+sources:
+  - {url: 'https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

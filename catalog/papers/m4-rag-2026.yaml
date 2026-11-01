@@ -1,0 +1,8 @@
+id: m4-rag-2026
+name: 'M4-RAG: A Massive-Scale Multilingual Multi-Cultural Multimodal RAG'
+entity_type: paper
+url: 'https://openaccess.thecvf.com/content/CVPR2026/html/Anugraha_M4-RAG_A_Massive-Scale_Multilingual_Multi-Cultural_Multimodal_RAG_CVPR_2026_paper.html'
+relation: introduces
+targets: [m4-rag]
+sources:
+  - {url: 'https://openaccess.thecvf.com/content/CVPR2026/html/Anugraha_M4-RAG_A_Massive-Scale_Multilingual_Multi-Cultural_Multimodal_RAG_CVPR_2026_paper.html', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

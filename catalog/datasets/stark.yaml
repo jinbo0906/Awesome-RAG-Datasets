@@ -1,0 +1,37 @@
+id: stark
+name: STaRK (textual and relational retrieval)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Entity retrieval over semi-structured knowledge bases, requiring joint satisfaction of textual and relational constraints.
+classification: {rag_role: auxiliary, primary_category: graph_rag, tasks: [reasoning_retrieval, evidence_retrieval], modalities: [text, graph], domains: [commerce, academic, biomedicine], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: not_provided
+  description: NeurIPS 2024 Datasets and Benchmarks release with Amazon, MAG and Prime knowledge bases. Relevant node IDs are retrieval targets, not reference natural-language answers. ACL 2026 ARK evaluates adaptive lexical search and graph-neighborhood exploration on these resources.
+  size: Current HF synthesized-all configurations have 9,100 / 13,323 / 11,204 rows for Amazon / MAG / Prime; human-generated sets have 81 / 84 / 98 queries. These are not test-only counts.
+  splits: Use the loader's official train/val/test index files; test-0.1 and human_generated_eval are separate evaluation settings. HF's synthesized_all_split combines native splits.
+  format: QA CSV, split indices and processed semi-structured knowledge bases through the stark-qa loader.
+ground_truth:
+  levels: [document]
+  provenance: mixed
+  description: Positive entity/node IDs identify relevant retrieval objects (document here means an addressable node record). Synthetic queries and separate human queries have different origins; no free-form answer or minimal supporting graph path is claimed.
+  alternatives: explicit
+evaluation:
+  official_metrics: [Hit@1, Hit@5, Recall@20, MRR]
+  protocol: Rank eligible candidate nodes, not arbitrary text chunks; retain all positive node IDs. Pin the SKB, split indices and candidate types. ARK's training-free comparisons and teacher-trajectory distillation are distinct experiments; its trajectories are not native STaRK gold.
+access:
+  official: 'https://github.com/snap-stanford/stark'
+  paper: 'https://papers.nips.cc/paper_files/paper/2024/hash/e607b1419e9ae7cd5cb5b5bb60c2ad5c-Abstract-Datasets_and_Benchmarks_Track.html'
+  data: 'https://huggingface.co/datasets/snap-stanford/stark'
+  license: CC-BY-4.0 for the HF query release; underlying knowledge-base sources retain their terms.
+use:
+  best_for: [Separating entity retrieval from answer generation, Budgeted graph traversal under textual and relational constraints]
+  caveats: [Do not confuse this STaRK with unrelated same-name dialogue or agent methods, All-split row counts must not be presented as test sizes, Source node relevance is not a gold natural-language citation chain]
+sources:
+  - {url: 'https://papers.nips.cc/paper_files/paper/2024/hash/e607b1419e9ae7cd5cb5b5bb60c2ad5c-Abstract-Datasets_and_Benchmarks_Track.html', type: paper, fields: [summary, data.description, ground_truth.provenance], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/snap-stanford/stark', type: dataset_card, fields: [data.format, access.license, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://datasets-server.huggingface.co/size?dataset=snap-stanford/stark', type: dataset_card, fields: [data.size], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/snap-stanford/stark', type: repository, fields: [data.splits, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://aclanthology.org/2026.acl-long.714.pdf', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, data.description], checked_on: '2026-11-01'}

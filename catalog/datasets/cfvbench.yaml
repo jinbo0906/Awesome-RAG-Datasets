@@ -1,0 +1,43 @@
+id: cfvbench
+name: CFVBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Fine-grained video RAG over chart-heavy reports, news and tutorials, with separate visual and transcript-derived answer keypoints.
+classification:
+  rag_role: rag_native
+  primary_category: multimodal_rag
+  tasks: [video_qa, multimodal_retrieval, multi_hop_qa]
+  modalities: [text, video, audio, chart, table]
+  domains: [finance, news, tutorials, environment]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The author repository releases per-video QA JSON and links a video archive. Questions distinguish visual, transcript-only and multimodal keypoints; source-video folders identify associated videos.
+  size: 599 videos; the paper reports 5,360 QA pairs while the current repository README reports 5,363.
+  splits: Published evaluation collection; no separate official training split was confirmed.
+  format: MP4 archive and per-video multiQA, tsingleQA and vsingleQA JSON.
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: Model-generated and manually checked questions have answers and keypoints; multiQA separates keypoints.video and keypoints.text. Here document denotes the associated video ID. Public QA samples inspected do not expose question-specific start/end intervals, despite timestamp extraction in the construction pipeline.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [Recall@1, Recall@3, Recall@5, Recall@10, video_keypoint_recall, text_keypoint_recall, keypoint_precision, keypoint_f1, ROUGE-L, semantic_similarity, LLM_Likert_score]
+  protocol: Report video retrieval hits separately from generated-answer keypoint coverage. Match paper and code revisions, judge model, frame sampling, ASR/OCR and retrieval budget. The paper uses semantic similarity and model ratings in addition to lexical/keypoint measures; current code supports configurable similarity backends and heuristic keypoint matching, so its settings must be recorded.
+  evaluator: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH/tree/main/videorag/evaluate'
+access:
+  official: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH'
+  paper: 'https://doi.org/10.1145/3774904.3792726'
+  data: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH/tree/main/Bench'
+  license: CC-BY-4.0 for author annotations; raw videos have separate academic/non-commercial/no-redistribution terms and upstream copyrights.
+use:
+  best_for: [Testing whether retrieved video preserves transient chart or interface details, Separating visual and transcript evidence coverage]
+  caveats: [Paper and repository counts differ by three QA pairs, Video association and answer keypoints are not released fine-grained temporal qrels, Video access and redistribution differ from annotation licensing, Judge and similarity-backend changes can alter scores without changing the RAG system]
+sources:
+  - {url: 'https://arxiv.org/html/2510.09266', type: paper, fields: [summary, data.size, ground_truth.provenance, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH', type: repository, fields: [data.description, data.size, data.format, access.license, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH/blob/main/Bench/-3h4Xt9No9o/multiQA.json', type: repository, fields: [ground_truth.levels, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/CQU-MM-Intelligent-Lab/CFVBENCH/blob/main/videorag/evaluate/evaluate.py', type: repository, fields: [evaluation.protocol, use.caveats], checked_on: '2026-11-01'}

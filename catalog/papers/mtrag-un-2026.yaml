@@ -1,0 +1,8 @@
+id: mtrag-un-2026
+name: 'MTRAG-UN: A Benchmark for Open Challenges in Multi-Turn RAG Conversations'
+entity_type: paper
+url: 'https://aclanthology.org/2026.findings-acl.503/'
+relation: introduces
+targets: [mtrag-un]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.503/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

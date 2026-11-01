@@ -15,6 +15,27 @@ Start with the failure mode, then ask which upstream labels can actually score i
 | Graph-grounded retrieval/reasoning | [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.md), [GrailQA](../dataset-cards/graph-rag/grailqa.md), [WebQuestionsSP](../dataset-cards/graph-rag/webqsp.md) | Graph evidence, path/logical-form correctness and answer | A KBQA logical form is not a GraphRAG citation graph |
 | Retriever only or robustness control | [BEIR](../suite-cards/beir.md), [BRIGHT](../dataset-cards/text-rag/bright.md), [M-BEIR](../suite-cards/m-beir.md) | Official qrels/ranking metrics | No intrinsic answer-generation ground truth |
 
+<a name="capability-routes"></a>
+
+## Capability routes beyond source categories
+
+These routes cross the existing category folders. They index different evaluation contracts, not comparable leaderboard columns. Publication and experiment locators are in the [recent-paper index](recent-paper-index.md).
+
+| Evaluation need | Start with | Contract to preserve |
+|---|---|---|
+| Adaptive search and stopping | [BrowseComp-Plus](../dataset-cards/text-rag/browsecomp-plus.md), [BrowseComp](../dataset-cards/text-rag/browsecomp.md), [DeepSearchQA](../dataset-cards/text-rag/deepsearchqa.md), [SGR-Bench](../dataset-cards/text-rag/sgr-bench.md) | Fixed corpus versus live web; evidence/gold documents, complete answer sets, structured rows and tool budgets are different targets |
+| Research-report quality | [DeepResearch Bench](../dataset-cards/text-rag/deepresearch-bench.md), [DeepResearch Bench II](../dataset-cards/text-rag/deepresearch-bench-ii.md) | RACE/FACT versus content rubrics; pin current task eligibility and judge version; no gold action trajectory is implied |
+| Temporal evidence versus parametric knowledge | [TEMPO](../dataset-cards/text-rag/tempo.md), [TempRAGEval](../dataset-cards/text-rag/temprageval.md), [WikiRecentChanges](../dataset-cards/text-rag/wikirecentchanges.md), [evolveQA](../dataset-cards/text-rag/evolveqa.md) | Retrieved-period coverage, date perturbation, supplied-context conflict and closed-book cutoff probes are separate tests; none alone measures continuous index updates |
+| Clarification, abstention and conflict | [MTRAG-UN](../dataset-cards/text-rag/mtrag-un.md), [Ragability](../dataset-cards/text-rag/ragability.md), [ConfRAG](../dataset-cards/text-rag/confrag.md) | Unanswerable versus underspecified queries, consistent versus conflicting context, and reference versus full-RAG conditions |
+| Response judges and preference alignment | [RAG-RewardBench](../dataset-cards/text-rag/rag-rewardbench.md), [RAGTruth](../dataset-cards/text-rag/ragtruth.md) | Pairwise ranking versus response error-span detection; neither score establishes open-corpus retrieval quality |
+| Dense enterprise distractors | [EnterpriseRAG-Bench](../dataset-cards/text-rag/enterpriserag-bench.md) | Synthetic cross-source coherence, no-answer cases and revisable gold sets; separate release-specific corrections from fixed leaderboard labels |
+| Graph traversal versus global synthesis | [STaRK](../dataset-cards/graph-rag/stark.md), [GRBench](../dataset-cards/graph-rag/grbench.md), [WildGraphBench](../dataset-cards/graph-rag/wildgraphbench.md) | Entity ranking versus answer judges versus statement coverage; forbid indexing Wikipedia gold summaries in WildGraphBench |
+| Academic reference recommendation | [CiteRAG](../dataset-cards/text-rag/citerag.md) | Bibliography/placeholder prediction, not claim entailment; released PACA aggregation differs from the paper definition |
+| Video evidence retention | [CFVBench](../dataset-cards/multimodal-rag/cfvbench.md), [XVBench](../dataset-cards/multimodal-rag/xvbench.md), [LongerVideos](../dataset-cards/multimodal-rag/longervideos.md) | Video IDs, addressable clips and answer keypoints are not minimal temporal spans; LongerVideos has no released reference answers |
+| Document/multilingual end-to-end controls | [UniDoc-Bench](../dataset-cards/multimodal-rag/unidoc-bench.md), [ViDoRe](../suite-cards/vidore.md), [M4-RAG](../suite-cards/m4-rag.md), [CRAG-MM](../dataset-cards/multimodal-rag/crag-mm.md) | Versioned retrieval/grounding/QA, language variants and multi-turn stopping; hold source visibility and budgets constant |
+
+For the original chunking problem, BrowseComp-Plus adds document-level acquisition labels and TEMPO adds period coverage, but neither supplies optimal chunk boundaries. For multimodal fragmentation, UniDoc-Bench adds linked source facts and ViDoRe v3 adds grounding/answers; CFV/XVBench still need independent temporal or cross-element chain annotation where missing. Report oracle evidence, actual retrieval, complete-set coverage, answer/citation quality and cost separately.
+
 ## Selection checklist
 
 1. Identify the target unit: source document, page, sentence, cell, region, graph path, atomic fact or final answer.

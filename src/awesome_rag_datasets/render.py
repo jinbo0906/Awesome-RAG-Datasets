@@ -15,7 +15,7 @@ CATEGORY_PATHS = {
 }
 CATEGORY_SECTIONS = (
     ("text_rag", "Text RAG", "text-rag", "Text sources, evidence retrieval, reasoning and grounded answers.", "文本来源的证据检索、推理与有依据的回答。"),
-    ("multimodal_rag", "Multimodal RAG", "multimodal-rag", "Visual and document evidence across source modalities; video candidates remain under review.", "跨模态的视觉与文档证据；视频候选仍在核查中。"),
+    ("multimodal_rag", "Multimodal RAG", "multimodal-rag", "Visual, document and video evidence across source modalities.", "跨来源模态的视觉、文档与视频证据。"),
     ("graph_rag", "Graph RAG", "graph-rag", "Graph-based retrieval and knowledge-base reasoning; graph use alone does not establish path gold.", "图结构检索与知识库推理；使用图并不意味着具有路径真值。"),
     ("table_rag", "Table RAG", "table-rag", "Structured tables and their links to prose, pages and answer derivations.", "结构化表格及其与文本、页面和答案推导的关联。"),
     ("cross_cutting", "Cross-cutting", "cross-cutting", "Benchmarks not naturally assigned to one source representation.", "无法归入单一来源表示形式的评测数据。"),

@@ -1,0 +1,41 @@
+id: sgr-bench
+name: SGR-Bench (paper-linked release)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: State-gated web retrieval tasks requiring source discovery, filter/scope control and complete structured answers.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [agentic_search, multi_hop_qa]
+  modalities: [text, table]
+  domains: [science, regulation, official-statistics, cybersecurity]
+  languages: [en, zh]
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The paper-linked PKUAIWeb release pairs goal-oriented and constraint-guided prompts over the same information needs. Records include output schemas, reference answers, state/dependency metadata and review rubrics; actual data sources remain live specialized websites.
+  size: 100 task formulations, comprising 50 goal/constraint pairs, across six source families and 12 public data ecosystems in the paper.
+  splits: 50 goal and 50 constraint English records; aligned Chinese per-task files are provided. These are paired evaluation formulations, not independent train/test splits.
+  format: Hugging Face JSONL splits and per-task JSON files.
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: LLM-assisted drafting and expert validation produce ordered-table reference answers, narrow canonicalization rules and retrieval-state annotations. The release does not give exhaustive per-action gold trajectories; table-shaped answers are not source-cell coordinates.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [exact_match, Item-F1, Row-F1, P.O.A.]
+  protocol: Fix the paper-linked 100-record release. Give agents the declared task prompt/output format and report whether reference entry URLs are revealed. Canonicalize without repairing missing facts, align row keys, and score individual fields, complete rows and shared-row order separately. The paper's main table uses Item-F1, Row-F1 and P.O.A.; release instructions also specify exact match. Root-cause trace review is separate from deterministic answer metrics.
+access:
+  official: 'https://huggingface.co/datasets/PKUAIWeb/SGR-BENCH'
+  paper: 'https://arxiv.org/abs/2605.22219'
+  data: 'https://huggingface.co/datasets/PKUAIWeb/SGR-BENCH'
+  license: CC-BY-4.0 for released task data; external source websites retain their own terms.
+  gated: false
+use:
+  best_for: [Testing retrieval-state preservation rather than only relevant-site discovery, Diagnosing locally correct fields but incomplete structured answers]
+  caveats: [Paired prompts share answers and must not be treated as independent information needs, Public website changes and system-specific tools affect reproducibility, This entry pins the original paper-linked release; larger similarly named releases require separate provenance and version checks]
+sources:
+  - {url: 'https://arxiv.org/html/2605.22219', type: paper, fields: [summary, classification.rag_role, data.size, ground_truth.description, ground_truth.provenance, evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/PKUAIWeb/SGR-BENCH', type: dataset_card, fields: [data.description, data.splits, data.format, evaluation.protocol, access.license, access.gated, use.caveats], checked_on: '2026-11-01'}

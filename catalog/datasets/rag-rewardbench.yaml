@@ -1,0 +1,54 @@
+id: rag-rewardbench
+name: RAG-RewardBench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Chosen/rejected response pairs for evaluating reward models on RAG-specific preference judgments.
+classification:
+  rag_role: auxiliary
+  primary_category: text_rag
+  tasks: [response_preference, rag_robustness, attribution]
+  modalities: [text]
+  domains: [open-domain]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Records contain retrieved references inside prompt, question, chosen/reject candidate responses,
+    generating-model names and subset labels. Six retrievers and 24 answer models diversify the
+    construction; this is a fixed-context response-comparison dataset, not an open retrieval corpus.
+  size: 1,485 preference pairs; the release derives from 18 source RAG subsets and adds RAG-specific comparison scenarios.
+  splits: Hugging Face names the sole split train, but the introducing paper uses it as an evaluation benchmark; do not assume an independent held-out split exists.
+  format: JSON with prompt, question, chosen, reject, model and subset fields
+ground_truth:
+  levels: [response_preference]
+  provenance: synthetic
+  description: >-
+    The released target is the preference ordering chosen over reject, not a reference QA answer
+    or a source-evidence span. An ensemble of model judges scores candidate responses and filters
+    low-consensus pairs; human preference checks assess sampled agreement rather than making every
+    released pair a human annotation.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [pairwise_preference_accuracy]
+  protocol: >-
+    Score the chosen response above the rejected response under the same supplied references.
+    For generative judges, swap candidate order, evaluate twice and average accuracy to reduce
+    positional bias. Report scenario/subset results before the aggregate. Multi-hop reasoning,
+    fine-grained citation, abstention and conflict robustness are preference conditions, not four
+    independently labeled retrieval benchmarks.
+access:
+  official: 'https://github.com/jinzhuoran/RAG-RewardBench'
+  paper: 'https://aclanthology.org/2025.findings-acl.877/'
+  data: 'https://huggingface.co/datasets/jinzhuoran/RAG-RewardBench'
+  license: Apache-2.0
+  gated: false
+use:
+  best_for: [Selecting reward models or response judges for grounded generation, Testing whether preference scorers notice citation errors and inappropriate refusal]
+  caveats: [Model-generated preferences can inherit consensus and judge biases, High pairwise accuracy is not end-to-end retrieval or answer accuracy, The public GitHub repository links data and paper but does not itself provide a complete evaluator implementation, The 2024 preprint and Findings ACL 2025 publication are different milestones]
+sources:
+  - {url: 'https://aclanthology.org/2025.findings-acl.877.pdf', type: paper, fields: [summary, classification, data.size, ground_truth, evaluation, use], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/jinzhuoran/RAG-RewardBench', type: dataset_card, fields: [data.description, data.corpus, data.queries, data.answers, data.splits, data.format, access.license, access.gated], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/jinzhuoran/RAG-RewardBench', type: repository, fields: [access.data, use.caveats], checked_on: '2026-11-01'}

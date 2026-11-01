@@ -1,0 +1,8 @@
+id: citerag-2026
+name: "What Should I Cite? A RAG Benchmark for Academic Citation Prediction"
+entity_type: paper
+url: 'https://doi.org/10.1145/3774904.3792075'
+relation: introduces
+targets: [citerag]
+sources:
+  - {url: 'https://arxiv.org/abs/2601.14949', type: paper, fields: [name, relation, targets, url], checked_on: '2026-11-01'}

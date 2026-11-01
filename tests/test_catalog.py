@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import yaml
+import pytest
 
 from awesome_rag_datasets.catalog import load_catalog, validate_catalog
 
@@ -112,9 +113,10 @@ def test_review_date_must_be_calendar_date(tmp_path):
     assert any("last_checked" in problem for problem in validate_catalog(load_catalog(tmp_path)))
 
 
-def test_response_span_is_a_distinct_annotation_level(tmp_path):
+@pytest.mark.parametrize("level", ["response_span", "rubric", "response_preference"])
+def test_non_source_annotations_have_distinct_levels(tmp_path, level):
     record = dataset()
-    record["ground_truth"]["levels"] = ["response_span"]
+    record["ground_truth"]["levels"] = [level]
     write_record(tmp_path, "datasets", "demo.yaml", record)
     write_record(tmp_path, "tasks", "multi_hop_qa.yaml", {
         "id": "multi_hop_qa", "name": "Multi-hop QA", "entity_type": "task",

@@ -1,0 +1,8 @@
+id: unidoc-bench-2026
+name: 'UniDoc-Bench: A Unified Benchmark for Document-Centric Multimodal RAG'
+entity_type: paper
+url: 'https://aclanthology.org/2026.findings-emnlp.534/'
+relation: introduces
+targets: [unidoc-bench]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-emnlp.534/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

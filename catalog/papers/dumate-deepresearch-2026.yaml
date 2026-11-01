@@ -1,0 +1,8 @@
+id: dumate-deepresearch-2026
+name: 'DuMate-DeepResearch: An Auditable Multi-Agent System with Recursive Search and Rubric-Grounded Reasoning'
+entity_type: paper
+url: 'https://arxiv.org/abs/2606.07299'
+relation: evaluates
+targets: [deepresearch-bench, deepresearch-bench-ii]
+sources:
+  - {url: 'https://arxiv.org/html/2606.07299', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

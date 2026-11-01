@@ -1,0 +1,8 @@
+id: sgr-bench-2026
+name: 'SGR-Bench: Benchmarking Search Agents on State-Gated Retrieval'
+entity_type: paper
+url: 'https://arxiv.org/abs/2605.22219'
+relation: introduces
+targets: [sgr-bench]
+sources:
+  - {url: 'https://arxiv.org/abs/2605.22219', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

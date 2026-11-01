@@ -1,0 +1,8 @@
+id: enterpriserag-bench-2026
+name: "EnterpriseRAG-Bench: A RAG Benchmark for Company Internal Knowledge"
+entity_type: paper
+url: 'https://arxiv.org/abs/2605.05253'
+relation: introduces
+targets: [enterpriserag-bench]
+sources:
+  - {url: 'https://arxiv.org/abs/2605.05253', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

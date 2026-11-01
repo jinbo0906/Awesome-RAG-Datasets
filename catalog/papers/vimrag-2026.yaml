@@ -1,0 +1,8 @@
+id: vimrag-2026
+name: 'VimRAG: Navigating Massive Visual Context in Retrieval-Augmented Generation via Multimodal Memory Graph'
+entity_type: paper
+url: 'https://arxiv.org/abs/2602.12735'
+relation: introduces
+targets: [xvbench]
+sources:
+  - {url: 'https://arxiv.org/html/2602.12735', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

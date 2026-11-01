@@ -1,0 +1,42 @@
+id: browsecomp-plus
+name: BrowseComp-Plus
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Fixed-corpus deep-search evaluation separating retrieval quality, evidence collection, answer correctness and search effort.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [agentic_search, multi_hop_qa, evidence_retrieval]
+  modalities: [text]
+  domains: [general-knowledge]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: An independently released BrowseComp adaptation adds a frozen web corpus, human-verified evidence documents, answer-bearing gold documents and mined hard negatives. Query and judgment fields are obfuscated; the official repository supplies de-obfuscation and retrieval/agent evaluation tools.
+  size: 830 test queries and 100,195 corpus documents in the official Hugging Face release.
+  splits: Query/judgment test split; the separate corpus repository uses a split called train, which is the retrieval pool rather than agent training supervision.
+  format: Hugging Face Parquet and author-provided JSONL/TSV conversion.
+ground_truth:
+  levels: [document, answer]
+  provenance: mixed
+  description: evidence_docs support the reasoning chain; gold_docs semantically contain the final answer. Model-assisted collection is followed by human verification. These two judgment sets are not interchangeable, and document relevance does not specify optimal chunk cuts.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [accuracy, evidence_recall, search_calls, calibration_error, Recall@5, Recall@100, Recall@1000, nDCG@10]
+  protocol: Keep the fixed corpus and designated evidence/gold qrels. Report agent answer accuracy, evidence-document coverage across calls, calls and calibration separately from retriever-only metrics. The project uses GPT-4.1 for answer judging; pin grader, search interface and budgets rather than mixing live-web BrowseComp scores.
+access:
+  official: 'https://texttron.github.io/BrowseComp-Plus/'
+  paper: 'https://aclanthology.org/2026.acl-long.1023/'
+  data: 'https://huggingface.co/datasets/Tevatron/browsecomp-plus'
+  license: MIT for the official Hugging Face release; original web-source terms may also apply.
+use:
+  best_for: [Disentangling retriever and agent contributions, Comparing iterative evidence acquisition with single-pass retrieval]
+  caveats: [Derived from only part of BrowseComp; scores are not native BrowseComp scores, Obfuscation discourages leakage but is not access control; never expose benchmark labels to the evaluated agent, Relevant documents are coarser than minimal complete evidence spans or unique reasoning paths]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1023/', type: paper, fields: [name, summary, classification.rag_role, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://huggingface.co/datasets/Tevatron/browsecomp-plus', type: dataset_card, fields: [data.description, data.size, data.splits, data.format, ground_truth.description, ground_truth.provenance, access.license], checked_on: '2026-11-01'}
+  - {url: 'https://texttron.github.io/BrowseComp-Plus/', type: official, fields: [evaluation.official_metrics, evaluation.protocol, ground_truth.description], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/texttron/BrowseComp-Plus', type: repository, fields: [data.description, data.splits, evaluation.protocol, use.caveats], checked_on: '2026-11-01'}

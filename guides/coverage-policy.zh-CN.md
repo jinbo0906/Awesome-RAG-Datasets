@@ -24,10 +24,12 @@
 
 ## 近期论文覆盖
 
-[2025–2026 年论文采用索引](recent-paper-index.zh-CN.md)从 CCF A 类会议论文追溯实际实验数据，区分正式轨道、Findings、B 类会议和预印本。近期复用的早期数据与新引入 benchmark 均纳入，但不会将转换子集再次统计为新数据集。[MedQA](../dataset-cards/text-rag/medqa.zh-CN.md)、[MedMCQA](../dataset-cards/text-rag/medmcqa.zh-CN.md)、[PubMedQA](../dataset-cards/text-rag/pubmedqa.zh-CN.md)现已有原生卡片，并通过 [MIRAGE](../suite-cards/mirage.zh-CN.md)关联；这些原生任务仍不提供开放检索的证据真值。
+[2025–2026 年论文采用索引](recent-paper-index.zh-CN.md)追溯近期论文的实际实验数据，保留正式轨道、Findings、挑战赛和预印本状态。CCF 等级只是背景，不是收录门槛。近期复用的早期数据与新引入 benchmark 均纳入，但不会将转换子集再次统计为新数据集。[MedQA](../dataset-cards/text-rag/medqa.zh-CN.md)、[MedMCQA](../dataset-cards/text-rag/medmcqa.zh-CN.md)、[PubMedQA](../dataset-cards/text-rag/pubmedqa.zh-CN.md)已有原生卡片，并通过 [MIRAGE](../suite-cards/mirage.zh-CN.md)关联；这些原生任务仍不提供开放检索的证据真值。
 
 ## 后续优先核查
 
-以下只是**候选调查**，不是已完成复核的结论：检查 TableRAG 的 ArcadeQA/BirdQA 大型表格变体是否有可公开复现的资产与许可（[论文](https://arxiv.org/abs/2410.04739)、[上游下载问题](https://github.com/google-research/google-research/issues/3190)）；分开核对 ViDoRe 和 M2KR 的版本化子集转换；审查视频 RAG 数据是否发布了时间坐标、问题及评测器。法律、金融、医疗和代码等领域也应按同一套来源与证据条件筛选，而非仅凭领域名称升为顶层分类。
+以下只是**候选调查**，不是已完成复核的结论：检查 TableRAG 的 ArcadeQA/BirdQA 大型表格变体是否有可公开复现的资产与许可（[论文](https://arxiv.org/abs/2410.04739)、[上游下载问题](https://github.com/google-research/google-research/issues/3190)）；逐项索引 ViDoRe 和 M2KR 的版本化转换；调查专门的音频 RAG 与持续索引更新测试。时间问答或历史知识截止点探测本身不是更新延迟基准。法律、金融、医疗和代码等领域仍按来源与证据条件筛选，不凭领域名称新增顶层分类。
+
+十一月维护已增加经核查的视频条目，但 [CFVBench](../dataset-cards/multimodal-rag/cfvbench.zh-CN.md) 的要点与 [XVBench](../dataset-cards/multimodal-rag/xvbench.zh-CN.md) 的片段 ID 仍没有经核实的最小时间区间；[LongerVideos](../dataset-cards/multimodal-rag/longervideos.zh-CN.md)缺少公开参考答案。[MTRAG-UN](../dataset-cards/text-rag/mtrag-un.zh-CN.md)的两个未发布领域、ViDoRe v3 私有组件、CiteRAG 未解决的数据条款，以及未确认作者承继的更大同名 SGR 发布，都是明确边界，不是假定已完成的覆盖。[ComplexWebQuestions](../dataset-cards/graph-rag/complexwebquestions.zh-CN.md)旧主页返回 404，现关联作者代码，但修正版数据获取仍需单独核对。
 
 新候选应遵循[条目判断规则](benchmark-vs-dataset.zh-CN.md#新条目的判断规则)与[贡献清单](../CONTRIBUTING.zh-CN.md)。关键事实未知时，应标为未知或保留在候选区，不要用二手摘要补齐。

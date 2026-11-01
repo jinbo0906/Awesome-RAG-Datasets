@@ -6,3 +6,4 @@ relation: introduces
 targets: [graphrag-bench]
 sources:
   - {url: 'https://arxiv.org/abs/2506.05690', type: paper, fields: [name, targets], checked_on: '2026-09-28'}
+  - {url: 'https://github.com/GraphRAG-Bench/GraphRAG-Benchmark', type: repository, fields: [name, targets], checked_on: '2026-11-01'}

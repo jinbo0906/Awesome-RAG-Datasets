@@ -1,0 +1,54 @@
+id: wikirecentchanges
+name: WikiRecentChanges
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-01'
+summary: Stable versus updated facts with true and counterfactual paragraphs for temporal context-memory conflict tests.
+classification:
+  rag_role: auxiliary
+  primary_category: text_rag
+  tasks: [time_sensitive_qa, rag_robustness]
+  modalities: [text]
+  domains: [wikipedia, wikidata]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    The author repository publishes final mutable and stable CSVs with questions, answers,
+    counterfactual answers, and true/counterfactual context paragraphs. Wikidata relations seed
+    the facts; the native test supplies paragraphs rather than searching an open knowledge graph.
+  size: Released mutable_final.csv has 2,330 rows and stable_final.csv has 2,381 rows, for 4,711 final examples; this differs from pre-filter seed-fact counts.
+  splits: Mutable facts changed in 2025 versus stable facts; these are diagnostic strata, not train/test partitions.
+  format: CSV plus dataset-reconstruction and evaluation scripts
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    Wikidata-derived factual answers are paired with model-generated counterfactuals and paragraphs.
+    True/counterfactual input conditions and stable/updated fact types enable controlled conflict tests;
+    no native open-corpus relevance judgments or graph evidence paths are released as this task's gold.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [OpenEval, answer_match, context_acceptance_rate, temporal_reasoning_detection]
+  protocol: >-
+    Cross fact type with no-context, true-context and counterfactual-context conditions, retaining
+    model knowledge-cutoff and date prompts. Compare factual, counterfactual and closed-book answers
+    separately. OpenEval uses a model judge, Match is a relaxed answer match, and the paper's
+    context-acceptance rate is a marginal change against its specified baseline, not raw answer accuracy.
+  evaluator: 'https://github.com/jwallat/knowledge-conflicts-mutability/blob/main/stratification.py'
+access:
+  official: 'https://github.com/jwallat/knowledge-conflicts-mutability'
+  paper: 'https://aclanthology.org/2026.findings-acl.103/'
+  data: 'https://github.com/jwallat/knowledge-conflicts-mutability/tree/main/data/recent_changes'
+  license: unknown
+  gated: false
+use:
+  best_for: [Separating temporal conflict recognition from correct final decisions, Testing reliance on generated evidence versus parametric memory]
+  caveats: [The 2025 update target must be reconsidered for newer model cutoffs, Supplied synthetic paragraphs do not evaluate retrieval or continuous index updates, README sample.csv examples do not identify the actual released final CSV filenames, No explicit dataset license was confirmed in the author repository]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.103.pdf', type: paper, fields: [summary, classification, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-01'}
+  - {url: 'https://github.com/jwallat/knowledge-conflicts-mutability', type: repository, fields: [data.description, data.splits, data.format, data.corpus, access.license, access.gated, evaluation.evaluator, use.caveats], checked_on: '2026-11-01'}
+  - {url: 'https://raw.githubusercontent.com/jwallat/knowledge-conflicts-mutability/main/data/recent_changes/mutable_final.csv', type: repository, fields: [data.size, data.queries, data.answers], checked_on: '2026-11-01'}
+  - {url: 'https://raw.githubusercontent.com/jwallat/knowledge-conflicts-mutability/main/data/recent_changes/stable_final.csv', type: repository, fields: [data.size], checked_on: '2026-11-01'}

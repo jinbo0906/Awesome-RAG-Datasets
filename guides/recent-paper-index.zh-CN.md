@@ -2,15 +2,64 @@
 
 [English](recent-paper-index.md)
 
-核查日期：2026-10-02。本索引重点整理已发表的 2025、2026 年工作，补查缺失的 2024 年发布数据，以及近期实验重复使用的早期数据。它是精选的采用证据索引，不是完整文献普查或质量排行榜。同一数据被多篇论文采用，不会重复统计为多个数据集。
+维护核查日期：2026-11-01。本轮重点覆盖 2025 年五月至 2026 年十月的公开工作，优先 2026 年发布及十月正式论文；近期实验复用的重要早期资源也会补充。已有卡片保留各自字段核查日期。这是精选采用证据索引，不是完整文献普查或质量排行榜。同一数据被多篇论文采用，不会重复统计为多个数据集。
 
 ## 会议与发表类型口径
 
 统一参照 CCF 于 2026-03-31 发布的**第七版正式目录**：[官方 PDF](https://www.ccf.org.cn/ccf/contentcore/resource/download?ID=112CF3BF7E1140ACEB271ADAED12A67ADFABB8FF099E40C2759502A85C8A281F)。PDF 第 35、47、57 页分别列出 SIGIR、ACM MM 和人工智能 A 类会议，其中包括 ACL、AAAI、NeurIPS、ICML、CVPR、ICCV、**ICLR**。第 58 页将 EMNLP、NAACL、IJCAI 列为 B 类。部分分类网页仍显示旧目录，以正式 PDF 为准。采用当前目录统一筛选，不表示这些会议在论文发表当年已经具有同样等级。
 
-CCF 将正式 Full/Regular 长文纳入考虑，并明确排除 Findings、Short/Demo 和伴随 Workshop。[官方说明](https://www.ccf.org.cn/Academic_Evaluation/By_category/) 下表保留 Long、Datasets and Benchmarks（D&B）和 Resource 轨道差异，不将一切会议关联材料直接当作主轨道长文。具体机构认定规则不由本目录判断。2026 年只记录截至核查日已发表且可验证的材料。
+CCF 将正式 Full/Regular 长文纳入考虑，并明确排除 Findings、Short/Demo 和伴随 Workshop。[官方说明](https://www.ccf.org.cn/Academic_Evaluation/By_category/) 表中保留 Long、Datasets and Benchmarks（D&B）和 Resource 差异。本轮维护将会议等级作为背景而非收录门槛：Findings、其他会议、挑战赛和公开预印本均按真实状态记录。具体机构认定规则不由本目录判断，公开预印本不会被改称已同行评审的会议论文。
 
 表格区分**数据引入**、**训练采用**和**评测采用**。数据集卡片保留原生事实；抽样划分、外部语料和改造版指标属于论文实验设置。机器可读关系位于 [catalog/papers](../catalog/papers)。
+
+## 十一月维护：新的评测契约
+
+每行明确**引入**、**扩展**或**实际评测采用**。仅在参考文献中出现不构成采用关系。RACE、FACT、代理框架和评分工具库仍是方法，不额外计为数据集。卡片保留原生协议，论文特有转换不会悄悄升级为原始数据的属性。
+
+### 搜索代理与研究报告
+
+| 来源／发表状态 | 资源及关系 | 定位与评测价值 |
+|---|---|---|
+| [BrowseComp](https://arxiv.org/abs/2504.12516) · 2025 年四月报告，基础资源补充 | 引入 [BrowseComp](../dataset-cards/text-rag/browsecomp.zh-CN.md) | §§4.1–4.2、Table 3。实时网页搜索、短答案及校准，无固定检索相关性标注。 |
+| [BrowseComp-Plus](https://aclanthology.org/2026.acl-long.1023/) · ACL 2026 Long，2025 年八月预印本 | 引入[固定语料改造](../dataset-cards/text-rag/browsecomp-plus.zh-CN.md) | 数据构建及分开的检索器/代理实验。830 查询、100,195 文档，evidence_docs 与包含答案的 gold_docs 角色不同。 |
+| [DeepSearchQA](https://storage.googleapis.com/deepmind-media/DeepSearchQA/DeepSearchQA_benchmark_paper.pdf) · 2025 年十二月技术报告 | 引入 [DeepSearchQA](../dataset-cards/text-rag/deepsearchqa.zh-CN.md) | §§3.1–3.2、Table 4。宏平均答案集合 F1 与严格完整正确率奖励穷尽发现，不是文档召回。 |
+| [DeepResearch Bench](https://proceedings.iclr.cc/paper_files/paper/2026/hash/465f22be10e07b301c6ed58f0472f704-Abstract-Conference.html) · ICLR 2026，2025 年六月预印本 | 引入[百任务报告基准](../dataset-cards/text-rag/deepresearch-bench.zh-CN.md) | 作者原文 §§3.1–3.2/4：RACE 报告质量与 FACT 引用支持。2026 年五月、九月评分流程变更影响历史可比性。 |
+| [DeepResearch Bench II](https://arxiv.org/abs/2601.08536) · 2026 年一月预印本，九月修订 | 引入[量规基准](../dataset-cards/text-rag/deepresearch-bench-ii.zh-CN.md) | §3.1、§4、Appendix A。发布 132 任务、9,430 条量规；十月榜单只有 130 个有资格任务。量规召回不是检索召回。 |
+| [SGR-Bench](https://arxiv.org/abs/2605.22219) · 2026 年五月预印本 | 引入[依赖网页状态的检索任务](../dataset-cards/text-rag/sgr-bench.zh-CN.md) | §§3.2–3.4/4.1–4.2、Table 2、Appendix A。五十对信息需求测字段、完整行及顺序；一百提示不是一百个独立需求。 |
+| [WebWeaver](https://proceedings.iclr.cc/paper_files/paper/2026/file/07fa611a88be1832f4c6a96f044ebede-Paper-Conference.pdf) · ICLR 2026 | 实际评测 DeepResearch Bench | §§4.1–4.2、Table 1、Appendix B。三次独立运行，框架不另算 benchmark。 |
+| [DuMate-DeepResearch](https://arxiv.org/html/2606.07299) · 2026 年六月技术报告 | 实际评测 DeepResearch Bench 及 II | §§3–3.1、Tables 1–2。自身结果平均三次运行，引用的榜单 baseline 不是全部同环境重跑。 |
+
+### 时间、不确定性、偏好与企业来源
+
+| 来源／发表状态 | 资源及关系 | 定位与评测价值 |
+|---|---|---|
+| [TEMPO](https://arxiv.org/abs/2601.09523) · 2026 年一月预印本 | 引入 [TEMPO](../dataset-cards/text-rag/tempo.zh-CN.md) | §§3–5、Table 6/Appendix G.3。时间检索与下游问答；官方代码排除 negative_ids，不同于更严格的未过滤全库改造。 |
+| [TempRAGEval](https://aclanthology.org/2025.findings-emnlp.167/) · Findings EMNLP 2025 | 引入 [TempRAGEval](../dataset-cards/text-rag/temprageval.zh-CN.md) | §3、§5、Appendix F。人工扰动时间但保持答案不变，任一标注句即可满足证据召回；查询文件需访问批准。 |
+| [WikiRecentChanges](https://aclanthology.org/2026.findings-acl.103/) · Findings ACL 2026 | 引入[受控冲突数据](../dataset-cards/text-rag/wikirecentchanges.zh-CN.md) | §3.1、§4/Tables 1–4。变化/稳定事实与真实/反事实给定上下文，没有开放检索或持续索引协议。 |
+| [MTRAG-UN](https://aclanthology.org/2026.findings-acl.503/) · Findings ACL 2026 | 引入 [MTRAG-UN](../dataset-cards/text-rag/mtrag-un.zh-CN.md) | §2、§§3.1–3.3。论文六域 666 任务，当前公开参考文件四域 507 任务。不可回答与信息不足目标不同。 |
+| [MTRAGEval](https://aclanthology.org/2026.semeval-1.447/) · SemEval 2026 Task 8 | 实际评测 MTRAG-UN，以 [MTRAG](../dataset-cards/text-rag/mtrag.zh-CN.md) 为训练数据 | 任务设置与评测章节。训练与测试资源不同，任务名和框架不产生第三份数据。 |
+| [RAG-RewardBench](https://aclanthology.org/2025.findings-acl.877/) · Findings ACL 2025 | 引入[偏好对](../dataset-cards/text-rag/rag-rewardbench.zh-CN.md) | §§3.3/4.1。交换优选/拒选位置评分；引用、拒答与冲突条件测评判器，不是检索相关性。 |
+| [Ragability](https://aclanthology.org/2026.lrec-1.182/) · LREC 2026 | 引入 [Ragability Corpus](../dataset-cards/text-rag/ragability.zh-CN.md) | §2、§4.1/Table 2。53 种子行生成每模型 1,060 个提示，配套库不是第二个数据集。 |
+| [evolveQA](https://aclanthology.org/2026.emnlp-main.2373/) · EMNLP 2026 main，十月 | 引入[截止日期对齐对照](../dataset-cards/text-rag/evolveqa.zh-CN.md) | §§2–3/4.1、Table 4、Appendices C.1/D.3。闭卷正确率与过时回答率；4,967 截止日期记录对应 937 个领域/问题 ID 键，不是原生更新 RAG。 |
+| [EnterpriseRAG-Bench](https://arxiv.org/abs/2605.05253) · 2026 年五月预印本 | 引入[合成企业问答](../dataset-cards/text-rag/enterpriserag-bench.zh-CN.md) | §§4–5 及官方答案评分器。超过五十万文档、500 核心问题，穷尽性与冲突记录暴露证据缺失；真值修正需固定版本。 |
+
+### 图、学术、文档与视频评测
+
+| 来源／发表状态 | 资源及关系 | 定位与评测价值 |
+|---|---|---|
+| [Graph Counselor](https://aclanthology.org/2025.acl-long.1202/) · ACL 2025 Long | 实际评测 Findings ACL 2024 引入的 [GRBench](../dataset-cards/graph-rag/grbench.zh-CN.md) | 实验设置与 Table 1。十个带文本属性的图；ROUGE-L/QwenScore 不同于原始 Graph-CoT 的 GPT-4 评判。 |
+| [ARK](https://aclanthology.org/2026.acl-long.714/) · ACL 2026 Long | 实际评测 NeurIPS 2024 D&B 引入的 [STaRK](../dataset-cards/graph-rag/stark.zh-CN.md) | §4.1/Table 1、Appendix Tables 5–6。词面搜索/遍历预算下的实体检索；教师蒸馏不同于免训练比较。 |
+| [WildGraphBench](https://aclanthology.org/2026.findings-acl.679/) · Findings ACL 2026 | 引入 [WildGraphBench](../dataset-cards/graph-rag/wildgraphbench.zh-CN.md) | §§3.5/4.1、Table 2。当前发布 1,197 题，摘要 1,100；索引外部引用页，不索引金标准维基百科摘要。 |
+| [CiteRAG](https://doi.org/10.1145/3774904.3792075) · WWW 2026 | 引入[学术引用预测](../dataset-cards/text-rag/citerag.zh-CN.md) | §§2/5、Table 2。参考列表与局部占位符；发布的 Task 2 归一化不同于论文 PACA，必须披露。 |
+| [UniDoc-Bench](https://aclanthology.org/2026.findings-emnlp.534/) · Findings EMNLP 2026，十月 | 引入 [UniDoc-Bench](../dataset-cards/multimodal-rag/unidoc-bench.zh-CN.md) | §§3–4、Tables 3–4。实际八个领域划分各 200 题，README 的 1,742/单一 test 说法与配置冲突，人工核验程度也随版本不同。 |
+| [ViDoRe v3](https://arxiv.org/abs/2601.08620) · 2026 年一月预印本 | 扩展 [ViDoRe](../suite-cards/vidore.zh-CN.md)，不重复建套件记录 | 数据构建及检索、定位、生成评测。八个公开、两个私有组件；参考答案与框标注扩展了早期纯检索契约。 |
+| [M4-RAG](https://openaccess.thecvf.com/content/CVPR2026/html/Anugraha_M4-RAG_A_Massive-Scale_Multilingual_Multi-Cultural_Multimodal_RAG_CVPR_2026_paper.html) · CVPR 2026 | 引入 CVQA/WorldCuisines 的 [RAG 套件改造](../suite-cards/m4-rag.zh-CN.md) | 数据构建与评测章节。原始 VQA、维基百科池和语言变体分开，包含答案的块不是独立相关性真值。 |
+| [CRAG-MM](https://arxiv.org/abs/2510.26160) · 2025 年十月预印本，KDD Cup 2025 资源 | 引入 [CRAG-MM](../dataset-cards/multimodal-rag/crag-mm.zh-CN.md)，不同于早期文本 CRAG | §§2–5。可穿戴图像单/多轮问答、模拟搜索、拒答和会话停止；挑战赛关联不是主会发表。 |
+| [CFVBench](https://doi.org/10.1145/3774904.3792726) · WWW 2026 | 引入[细粒度视频 RAG](../dataset-cards/multimodal-rag/cfvbench.zh-CN.md) | §3、§4.1。视觉/转录文本要点；检查的公开问答中未见逐题时间区间，论文与仓库问答数不同。 |
+| [VideoRAG](https://doi.org/10.1145/3770854.3783944) · KDD 2026 | 引入 [LongerVideos](../dataset-cards/multimodal-rag/longervideos.zh-CN.md) | §4.1、Appendices A/C。公开 164 视频、602 查询没有参考答案；模型比较胜率不是答案准确率。 |
+| [VimRAG](https://arxiv.org/abs/2602.12735) · 2026 年二月预印本，四月修订 | 引入 [XVBench](../dataset-cards/multimodal-rag/xvbench.zh-CN.md) | §4.1/Table 2、Appendices B/J。497 查询，其中 138 含多个参考片段；检查版本的引用集合没有跨来源视频 ID。 |
+
+版本维护还保留 [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.zh-CN.md) 的 2025 发布 ID，并记录作者所报 ICLR 2026 接收。[ViDoRAG](https://aclanthology.org/2025.emnlp-main.464/)引入已有 [ViDoSeek](../dataset-cards/multimodal-rag/vidoseek.zh-CN.md)，不新增缺乏依据的 VRAGBench 别名条目。[分类评估](taxonomy.zh-CN.md#2026-年十一月分类评估)保留来源主分类，仅扩展能力和标注维度。
 
 ## 文本、会话与多语言采用
 

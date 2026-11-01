@@ -1,0 +1,8 @@
+id: wikirecentchanges-2026
+name: 'When Facts Change: Temporal Knowledge Conflict Resolution in LLMs'
+entity_type: paper
+url: 'https://aclanthology.org/2026.findings-acl.103/'
+relation: introduces
+targets: [wikirecentchanges]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-acl.103/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-01'}

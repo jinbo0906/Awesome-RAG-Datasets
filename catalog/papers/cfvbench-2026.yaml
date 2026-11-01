@@ -1,0 +1,9 @@
+id: cfvbench-2026
+name: 'CFVBench: A Comprehensive Video Benchmark for Fine-grained Multimodal Retrieval-Augmented Generation'
+entity_type: paper
+url: 'https://doi.org/10.1145/3774904.3792726'
+relation: introduces
+targets: [cfvbench]
+sources:
+  - {url: 'https://doi.org/10.1145/3774904.3792726', type: paper, fields: [name, url], checked_on: '2026-11-01'}
+  - {url: 'https://arxiv.org/abs/2510.09266', type: paper, fields: [relation, targets], checked_on: '2026-11-01'}
