@@ -42,9 +42,21 @@
 |---|---|---|
 | 证据替代与完整事实覆盖 | [RedQA](../dataset-cards/text-rag/redqa.zh-CN.md)、[One Fact, Many Places](../dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) | 对同一事实的可互换来源分组。每条必需事实均得到充分支持才算完整命中，并区分需要联用的组合和只提供背景的提及。 |
 | 声学证据与时间定位 | [HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md)、[CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) | HARP 音乐轨提供整首歌区间和答案。CASTELLA 提供人工标注的事件区间。HARP 健康轨可评答案。 |
-| 适用版本与顺序适应 | [TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md)、[OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) | 前者评版本文档排序，后者评每个流时间步的答案状态恢复。测索引可见性需要带时间戳的写入和查询负载。 |
+| 适用版本与顺序适应 | [TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md)、[OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) | 前者评版本文档排序，后者评每个流时间步的答案状态恢复。 |
 | 检索决策与代理步骤诊断 | [Query Robustness](../dataset-cards/text-rag/query-robustness.zh-CN.md)、[RAGCap-Bench](../dataset-cards/text-rag/ragcap-bench.zh-CN.md) | 用等义问法配对测路由和成本。借助给定上下文的选项任务诊断中间能力。 |
 | 结构化检索与精确过滤 | [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md)、[SpecsQA](../dataset-cards/table-rag/specsqa.zh-CN.md) | MKG-RAG-Bench 用三元组相关性评排序。SpecsQA 评产品列表是否完整。 |
+
+<a name="evidence-and-update-protocols"></a>
+
+## 跨模态证据与知识更新
+
+**互补证据。** 从 [MMDocRAG](../dataset-cards/multimodal-rag/mmdocrag.zh-CN.md) 的公开摘录 ID，或 [UniDoc-Bench](../dataset-cards/multimodal-rag/unidoc-bench.zh-CN.md) 中关联图文来源的事实入手。例如，图表给出数值，段落说明统计人群。标注哪些事实必需，以及支持每条事实的哪些证据可以替换。在固定检索预算下，报告各模态的证据项召回率，以及每条必需事实均至少找回一条支持证据的题目比例。若一道题有多个有效证据集合，找齐任意一组即可。分别比较金标准证据、纯文本、纯视觉、联合检索和移除一项必需证据的结果。这里的完整集合覆盖率是改造协议的诊断指标。官方摘录 F1 与 CrossModalQA 的证据项 Hit@K 各有自己的统计口径。
+
+**音频时段定位。** [CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) 可评声学事件区间定位，[HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md) 音乐轨可评基于歌曲区间的问答。评测口语证据链时，记录录音 ID、时间戳、说话人，并标明证据取自音频还是转录。固定时间容差和上下文预算，分别报告证据覆盖与回答质量。LongAudioQA 已刊出的示例可作为标注格式参考。
+
+**版本检索、时序回放和服务更新。** 用 [TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md) 评历史查询时点的适用版本排序，用 [OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) 评每个回放时间步的预期答案恢复。做并发服务实验时，可用 [RAGPerf 公开静态预设](../suite-cards/ragperf.zh-CN.md) 建立吞吐与延迟基线，参考论文 §5.5 设计独立回放。公开稳定的文档与版本 ID、写入和查询时间戳、预期版本和答案、更新与查询比例、访问分布和随机种子。报告写入确认耗时、从提交到首次检索到新版本的耗时、到首次答对更新事实的耗时、旧版命中率与查询尾延迟。固定探测间隔，并报告截止时新版本仍不可见的更新比例。将这套协议标为自建负载并给出精确回放配置。
+
+[发布核查](coverage-policy.zh-CN.md)列出了复现 FRESCO、LongAudioQA、CrossModalQA 及 RAGPerf 混合负载仍缺的材料。
 
 ## 选型检查清单
 

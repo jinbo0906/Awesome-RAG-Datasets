@@ -18,6 +18,7 @@ This pass focuses on 2026 proceedings and releases from September through Novemb
 
 | Paper and publication | Resource and relation | Experiment and selection notes |
 |---|---|---|
+| [RAGPerf](https://www.vldb.org/pvldb/vol19/p3689-li.pdf) · PVLDB 19(11), 2026 | Introduces the [RAGPerf system benchmark suite](../suite-cards/ragperf.md) | §§3–5 and Fig. 9. Static text ingestion and query configs are available. The exact mixed-update preset and versioned evaluation trace remain unconfirmed. |
 | [RARE](https://aclanthology.org/2026.acl-long.923/) · ACL 2026 Long | Introduces [RedQA](../dataset-cards/text-rag/redqa.md) | §§4–5 and Appendix A.4. Group-level Coverage and PerfRecall distinguish partial support from coverage of every required fact. |
 | [One Fact, Many Places](https://arxiv.org/abs/2610.26401) · October 2026 preprint | Re-annotates [MMLongBench-Red / MMDocRAG-Red](../dataset-cards/multimodal-rag/one-fact-many-places.md) | §§2–5 and Appendix I. Two parent benchmark subsets share a release. Separate quote rescoring from set-level masking. |
 | [MKG-RAG-Bench](https://doi.org/10.1145/3770855.3817570) · KDD 2026 | Introduces [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.md) | Table 2 and §§4.2–4.3. Rank graph triples and evaluate answers with the top five triples. Native graph inputs and visual assets have separate access terms. |

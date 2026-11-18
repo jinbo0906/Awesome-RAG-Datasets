@@ -18,6 +18,7 @@ CCF 将正式 Full/Regular 长文纳入考虑，并明确排除 Findings、Short
 
 | 论文与发表状态 | 资源和关系 | 实验位置与选型要点 |
 |---|---|---|
+| [RAGPerf](https://www.vldb.org/pvldb/vol19/p3689-li.pdf) · PVLDB 19(11)，2026 | 引入 [RAGPerf 系统评测套件](../suite-cards/ragperf.zh-CN.md) | §§3–5 与图 9。公开静态文本入库和查询配置，精确混合更新预设及版本化评测轨迹仍未确认。 |
 | [RARE](https://aclanthology.org/2026.acl-long.923/) · ACL 2026 长文 | 引入 [RedQA](../dataset-cards/text-rag/redqa.zh-CN.md) | §§4–5 与附录 A.4。分组 Coverage 与 PerfRecall 区分部分命中和全部必需事实覆盖。 |
 | [One Fact, Many Places](https://arxiv.org/abs/2610.26401) · 2026 年 10 月预印本 | 重标 [MMLongBench-Red / MMDocRAG-Red](../dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) | §§2–5 与附录 I。两套原有资源的子集共同发布，分别评估摘录重评分与集合遮挡。 |
 | [MKG-RAG-Bench](https://doi.org/10.1145/3770855.3817570) · KDD 2026 | 引入 [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md) | 表 2 与 §§4.2–4.3。先评三元组排序，再用前五个三元组评测问答。原生图数据与图像获取条件分别记录。 |

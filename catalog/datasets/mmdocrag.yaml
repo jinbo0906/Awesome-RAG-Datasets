@@ -2,19 +2,43 @@ id: mmdocrag
 name: MMDocRAG
 entity_type: dataset
 status: source_checked
-last_checked: '2026-09-28'
+last_checked: '2026-11-18'
 summary: Multi-page multimodal document QA with cross-modal evidence chains and quote selection.
 classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [page_retrieval, layout_retrieval, visual_qa, attribution], modalities: [text, image, table, chart, layout], domains: [documents], languages: [en]}
 data:
   corpus: provided
   queries: provided
   answers: provided
-  description: Questions are grounded in long documents with text and image quotes plus deliberately difficult negative quotes.
-  size: '4,055 QA pairs from 222 long documents in the project release.'
-ground_truth: {levels: [page, quote, answer], provenance: mixed, description: Cross-page and cross-modal evidence chains support quote-selection and cited-answer evaluation., alternatives: not_documented}
-evaluation: {official_metrics: [quote_selection_f1, answer_quality], protocol: Report retrieval and quote selection separately from multimodal answer quality.}
-access: {official: 'https://mmdocrag.github.io/MMDocRAG/', paper: 'https://arxiv.org/abs/2505.16470', data: 'https://github.com/MMDocRAG/MMDocRAG', license: unknown}
-use: {best_for: [Cross-page evidence selection, Text-image quote integration, Hard-negative robustness], caveats: [Part of the construction uses generated questions and parser-derived quotes; report human-verified subset separately]}
+  description: The official Hugging Face release provides PDF/image archives and question JSONL with 15-quote and 20-quote candidate settings. Inputs include gold and hard-negative text and image quotes.
+  size: The paper reports 4,055 QA pairs from 222 documents, of which 2,503 are cross-modal.
+  splits: The paper specifies 2,055 development and 2,000 evaluation questions. The 15-quote and 20-quote evaluation files are alternative candidate settings for the evaluation questions.
+ground_truth:
+  levels: [page, quote, answer]
+  provenance: mixed
+  description: Match question-local `gold_quotes` IDs to `text_quotes` and `img_quotes`, then map each quote to its document, `page_id` and `layout_id`. The records provide short and interleaved answers. Use `evidence_modality_type` to find questions that use more than one modality.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [quote_selection_f1, BLEU, ROUGE-L, answer_quality]
+  protocol: >-
+    For supplied-context quote selection, use the matching `evaluation_15.jsonl` or `evaluation_20.jsonl` and the author `eval_all.py`.
+    The scorer matches predicted and gold quote IDs, and the separate `eval_llm_judge.py` scores interleaved answers.
+    Pin the candidate setting, input mode and judge. Report retrieval from the source documents separately from given-candidate selection.
+    Use the selection guide's complete-set diagnostic with explicit fact-to-quote mappings when studying evidence fragmentation.
+access:
+  official: 'https://mmdocrag.github.io/MMDocRAG/'
+  paper: 'https://arxiv.org/abs/2505.16470'
+  data: 'https://huggingface.co/datasets/MMDocIR/MMDocRAG/tree/04b58dbc5c6c4955291124eed411b09114728061'
+  license: The Hugging Face release is tagged Apache-2.0. The paper Appendix G limits new question, evidence and answer annotations to academic and noncommercial research unless the authors give written permission. Check both terms before reuse.
+use:
+  best_for: [Cross-page evidence selection, Text-image quote integration, Hard-negative robustness]
+  caveats:
+    - Supplied 15/20-quote selection and retrieval from the source document expose different candidate pools.
+    - Released quote IDs indicate support. Ordered dependency edges and exhaustive sets of alternative evidence require additional annotation.
 sources:
   - {url: 'https://mmdocrag.github.io/MMDocRAG/', type: official, fields: [summary, data.size, ground_truth.description, evaluation.protocol], checked_on: '2026-09-28'}
   - {url: 'https://proceedings.neurips.cc/paper_files/paper/2025/file/1a93178950e92fd2e7b7448f7d68fd7d-Paper-Datasets_and_Benchmarks_Track.pdf', type: paper, fields: [data.description, classification.modalities], checked_on: '2026-09-28'}
+  - {url: 'https://arxiv.org/html/2505.16470', type: paper, fields: [data.size, data.splits, access.license, use.caveats], checked_on: '2026-11-18'}
+  - {url: 'https://huggingface.co/datasets/MMDocIR/MMDocRAG/tree/04b58dbc5c6c4955291124eed411b09114728061', type: dataset_card, fields: [access.data, access.license, data.description, data.splits], checked_on: '2026-11-18'}
+  - {url: 'https://datasets-server.huggingface.co/first-rows?dataset=MMDocIR%2FMMDocRAG&config=default&split=test', type: official, fields: [ground_truth.description], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/MMDocRAG/MMDocRAG/blob/2fd7505c6a576376b4a92aafaff6d87494765bb7/eval_all.py', type: repository, fields: [evaluation.official_metrics, evaluation.protocol], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/MMDocRAG/MMDocRAG/blob/2fd7505c6a576376b4a92aafaff6d87494765bb7/eval_llm_judge.py', type: repository, fields: [evaluation.protocol], checked_on: '2026-11-18'}

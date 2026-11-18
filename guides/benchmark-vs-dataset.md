@@ -19,7 +19,7 @@ The distinction is operational. [MS MARCO Passage Ranking](../dataset-cards/text
 
 1. Is there a canonical release with examples or source assets? If no, a method name alone is not a dataset.
 2. Is there a fixed or explicitly time-indexed source pool, query and answer/evidence relation? If not, state what a RAG adaptation must build; do not call the original task end-to-end RAG.
-3. Is the object a versioned bundle of component datasets and shared scoring? If yes, create a suite and link component *variants* only when those variants are documented. Do not equate an original dataset with a reprocessed suite subset.
+3. Does a versioned release define comparable dataset variants or workload presets under a shared protocol? Index it as a suite and link the exact variants where available. A system suite such as [RAGPerf](../suite-cards/ragperf.md) can point to external inputs and versioned configs. Record which workloads are accessible and which experiments are described only in the paper.
 4. Are labels on the **source** or on the **generated response**? `span` and `response_span` are different. An answer label alone cannot score evidence retrieval.
 5. Does a different corpus, split, evaluator or exposure of gold context change what the system may see? If yes, report a separate benchmark setting or version; scores are not directly interchangeable.
 

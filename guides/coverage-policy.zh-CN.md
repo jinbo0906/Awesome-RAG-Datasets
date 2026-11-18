@@ -26,14 +26,16 @@
 
 [2025–2026 年论文采用索引](recent-paper-index.zh-CN.md)追溯近期论文的实际实验数据，保留正式轨道、Findings、挑战赛和预印本状态。CCF 等级只是背景，不是收录门槛。近期复用的早期数据与新引入 benchmark 均纳入，但不会将转换子集再次统计为新数据集。[MedQA](../dataset-cards/text-rag/medqa.zh-CN.md)、[MedMCQA](../dataset-cards/text-rag/medmcqa.zh-CN.md)、[PubMedQA](../dataset-cards/text-rag/pubmedqa.zh-CN.md)已有原生卡片，并通过 [MIRAGE](../suite-cards/mirage.zh-CN.md)关联；这些原生任务仍不提供开放检索的证据真值。
 
-## 后续优先核查
+## 证据与更新评测的发布核查
 
-[HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md) 和 [CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) 覆盖录音内问答与声学事件定位。[TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md) 和 [OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) 分别支持版本排序与时序回放。下列候选仍有具体的发布或协议缺口。
+核查日期为 2026-11-18。[选型指南](selecting-a-benchmark.zh-CN.md#evidence-and-update-protocols)说明如何用当前发布资源搭建实验，以及哪些改造需要额外标注或负载轨迹。
 
-- LongAudioQA 描述了带时间证据的大规模会议问答。已核对的作者仓库仍列评测文件待发布。[论文](https://aclanthology.org/2026.findings-acl.1038/) · [代码](https://github.com/tangquanwei/GRGA)
-- CrossModalQA 描述互补图文链及完整检索指标。基准下载和评分器仍待确认。[预印本](https://arxiv.org/abs/2609.05518)
-- FRESCO 在给定候选池上评估时效重排，冻结评测包和精确复建仍待核查。[论文](https://aclanthology.org/2026.findings-emnlp.54/) · [生成代码](https://github.com/facebookresearch/fresco)
-- RAGPerf 在 §5.5 报告并发更新和查询实验。已核对的公开提交中尚未定位对应的混合负载配置。[论文](https://www.vldb.org/pvldb/vol19/p3689-li.pdf) · [代码](https://github.com/platformxlab/RAGPerf/tree/49c9794895666d029a3c98a48afd872197d83b23)
+| 资源 | 论文协议 | 公开发布与收录状态 |
+|---|---|---|
+| FRESCO | 每个查询重排给定的 51 个段落，含 1 个正例和 50 个负例。论文报告 7,316 条显式或隐式时效查询，用排序指标及 Obsolete Ratio 诊断相关但已过时的事实。 | **候选。** 数据生成依赖 Wikidata、维基百科修订记录和 Rankify 负例。`generate_data.sh` 调用 `collect_neg_pssgs.py`，已查提交中提供的文件是 `collect_neg_pssgs_rankify.py`。冻结候选池、标签和精确复建仍未确认。指令优化评分器实现了 MAP、MRR 和 nDCG。[论文 §§3–5](https://aclanthology.org/2026.findings-emnlp.54.pdf) · [固定提交](https://github.com/facebookresearch/fresco/tree/51eadebff0e8ec625d66ace44d44e12020c550a2) |
+| LongAudioQA | 论文报告基于 AliMeeting、AMI 和 DailyTalk 的 190 段录音构建 16,456 道问答。附录 L 示例含时间区间、说话人和转录。论文用模型评判语义回答准确率，并按 ±2 秒容差报告时间引用的精确率和召回率。 | **候选。** 作者 README 仍将基准标为待发布。已查分支、发布页和论文补充材料未能确认冻结划分、逐题证据、录音映射或批量评分器。原始录音不足以重建这些标签。[论文 §4 与附录 B、L](https://aclanthology.org/2026.findings-acl.1038.pdf) · [固定提交](https://github.com/tangquanwei/GRGA/tree/12a0f0d77abd1ab89bb3989b521ac9aa46c2204d) |
+| CrossModalQA | 论文报告 1,863 道问答、4,987 篇维基百科文章、4,431 张图像和五种路径类型。§3.5 定义按证据项计算的 Recall、Precision 和 Hit，截断值为 1/5/10，回答按原子事实算 EM 和微平均 F1。Hit 统计是否命中任意证据项。 | **候选。** 图 1 展示路径示例。已查预印本及源码包未指向逐题发布包或评分器，精确图文候选池、证据 ID 和原子答案仍未确认。[预印本 §§3.2–3.5 与附录 B](https://arxiv.org/html/2609.05518v1) |
+| RAGPerf | §5.5 与图 9 比较 60 分钟各半查询与更新的混合负载，涉及均匀／Zipfian 访问及索引缓冲。 | **按公开静态负载收录为套件。** [卡片](../suite-cards/ragperf.zh-CN.md)提供文本入库、查询预设及外部数据入口。已查代码将入库和查询分为两阶段，精确混合配置、更新问答、轨迹或生成器仍未确认。[论文](https://www.vldb.org/pvldb/vol19/p3689-li.pdf) · [固定提交](https://github.com/platformxlab/RAGPerf/tree/49c9794895666d029a3c98a48afd872197d83b23) |
 
 其他待核查项包括 TableRAG 的 ArcadeQA/BirdQA 大型表格变体的发布资产与许可，以及 ViDoRe 和 M2KR 的版本化子集转换。[TableRAG 论文](https://arxiv.org/abs/2410.04739) · [上游下载问题](https://github.com/google-research/google-research/issues/3190)
 

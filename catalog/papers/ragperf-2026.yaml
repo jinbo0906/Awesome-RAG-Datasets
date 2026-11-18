@@ -1,0 +1,8 @@
+id: ragperf-2026
+name: 'RAGPerf: An End-to-End Benchmarking Framework for Retrieval-Augmented Generation Systems'
+entity_type: paper
+url: 'https://www.vldb.org/pvldb/vol19/p3689-li.pdf'
+relation: introduces
+targets: [ragperf]
+sources:
+  - {url: 'https://www.vldb.org/pvldb/vol19/p3689-li.pdf', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

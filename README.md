@@ -3,7 +3,7 @@
 
 A source-audited catalog of retrieval-augmented generation datasets and benchmark suites. [中文说明](README.zh-CN.md)
 
-This catalog currently contains **140 datasets** and **10 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
+This catalog currently contains **140 datasets** and **11 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
 
 ## Find a benchmark
 
@@ -223,6 +223,7 @@ Benchmarks not naturally assigned to one source representation. [Category guide]
 - [M2KR](suite-cards/m2kr.md) — Multitask multimodal knowledge-retrieval suite assembled from converted source datasets.
 - [M4-RAG](suite-cards/m4-rag.md) — Multilingual and multicultural retrieval-augmented VQA over CVQA and WorldCuisines with separate Wikipedia source pools.
 - [MIRAGE (medical RAG)](suite-cards/mirage.md) — Medical RAG suite of 7,663 questions from five QA datasets, evaluated zero-shot with question-only retrieval.
+- [RAGPerf](suite-cards/ragperf.md) — System benchmark for RAG throughput, latency, resource use and answer quality, with a checked public static text protocol and a separate paper-only mixed-update experiment.
 - [ViDoRe](suite-cards/vidore.md) — Versioned visual-document benchmark family; v3 extends retrieval relevance to grounding and reference-answer evaluation.
 
 ## Rebuild and validate

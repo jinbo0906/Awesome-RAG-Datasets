@@ -611,12 +611,13 @@ datasets:
     caveats: [版面标签部分依赖解析器；应保留原始页面坐标和解析器版本, 项目页面与论文的问题数量不同；须固定所用发布版本]
   mmdocrag:
     summary: 多页多模态文档问答，包含跨模态证据链和摘录选择。
-    data_description: 问题锚定于含文本和图像摘录的长文档，并配有刻意设计的困难负例摘录。
-    size: 项目发布版从 222 份长文档构建了 4,055 个问答对。
-    ground_truth_description: 跨页、跨模态证据链支持摘录选择和带引用回答的评测。
-    evaluation_protocol: 将检索与摘录选择结果同多模态回答质量分开报告。
+    data_description: 官方 Hugging Face 发布 PDF、图像压缩包与问答 JSONL，提供 15 条和 20 条候选摘录设置，包含金标准和困难负例图文摘录。
+    size: 论文报告 222 份文档的 4,055 道问答，其中 2,503 道为跨模态问题。
+    splits: 论文划分为 2,055 道开发题与 2,000 道评测题。15 条、20 条摘录评测文件对应评测题的两种候选设置。
+    ground_truth_description: 将题目内的 `gold_quotes` ID 连接到 `text_quotes` 和 `img_quotes`，再按所属文档及 `page_id`、`layout_id` 定位。记录提供短答案和图文交织答案。用 `evidence_modality_type` 筛选涉及多种模态的题目。
+    evaluation_protocol: 给定上下文做摘录选择时，使用对应的 `evaluation_15.jsonl` 或 `evaluation_20.jsonl` 与作者的 `eval_all.py`。评分器比较预测与金标准摘录 ID，单独的 `eval_llm_judge.py` 评分图文交织答案。固定候选设置、输入模式及判分模型，区分从原文检索与给定候选选择的结果。研究证据碎片化时，可结合选型指南，用明确的事实到摘录映射评估完整集合覆盖。
     best_for: [跨页证据选择, 文本与图像摘录整合, 困难负例下的鲁棒性]
-    caveats: [部分构建过程使用生成问题和解析器衍生摘录；人工核验子集应单独报告]
+    caveats: [给定 15 或 20 条摘录的选择任务与从原文检索使用不同候选池, 发布的摘录 ID 表示支持关系；有序依赖边及所有等价证据组合需要额外标注]
   mmlongbench-doc:
     summary: 长 PDF 文档问答，提供证据页面及证据来源模态标注。
     data_description: 仓库发布 PDF 和包含 doc_id、问题、答案、证据页与证据来源的问答记录；2025 年版本修订了部分问答。
@@ -1167,6 +1168,13 @@ datasets:
     best_for: [在端到端运行前诊断具体中间任务, 在匹配的给定上下文下比较模型能力]
     caveats: [选项分数不能直接评估自由规划或工具执行, 轨迹用于构造数据且未发布可索引的搜索库, 仓库发布提示定义但没有单独评分器]
 suites:
+  ragperf:
+    protocol: |-
+      **公开静态文本负载。** 固定下方作者代码提交，按上游说明构建 Linux C++20 监控扩展，并安装 Python、向量库和模型依赖。先用 `python3 src/run_new.py --config config/lance_insert.yaml --msys-config config/monitor/example_config.yaml` 入库并建索引，再把 `--config` 换成 `config/lance_query.yaml` 执行检索与生成。两份配置均需设置本地库路径。入库配置默认从作者本机路径读取预计算向量 pickle。自行构建输入时，启用向量计算、关闭载入既有向量，并让入库与查询使用相同的编码器。
+
+      文本加载器使用 Wikimedia Wikipedia `20231101.en`，查询加载器默认取 `sentence-transformers/natural-questions` 的 `train` 前 512 条问答。外部资产沿用各自条款。这里记录的是公开负载预设，没有独立收录的组件变体或统一的固定问答下载包。固定数据提交、采样规模、模型、索引、硬件、批量大小和查询并发，报告吞吐、端到端与各阶段延迟、CPU/GPU 与内存开销。文本质量评分默认关闭，公开的 vLLM 评估器启用后使用 Ragas 的 `LLMContextRecall`、`FactualCorrectness` 和 `AnswerAccuracy`。记录评估器配置与版本，区分它们与论文的质量指标及基于相关性标注的检索召回。作者代码采用 Apache-2.0。本目录已核查入口、配置和数据来源，GPU 流水线尚未实跑。
+
+      **论文中的并发更新。** §5.5 与图 9 使用 LanceDB IVF-HNSW 和 Qwen-7B，在 60 分钟内各发出 50% 的查询与文档更新请求。实验比较均匀访问、Zipfian 访问和临时平面索引设置，报告随时间变化的查询延迟、上下文召回和准确率。已查公开版本只提供分开的入库和查询配置，混合负载精确配置、版本化更新问答、可回放轨迹或等效生成器仍未确认。自建更新回放需另行发布轨迹、标签和结果，见[选型指南](../guides/selecting-a-benchmark.zh-CN.md#evidence-and-update-protocols)。
   longbench:
     protocol: 本目录链接原始来源数据集，而非 LongBench 实际重处理的子集，仅构成部分组成项索引。须同时使用 THUDM/LongBench 测试文件与分任务指标，并区分按长度均衡的 LongBench-E 变体。基于检索的上下文压缩是已记录的对照设置，但套件没有通用的金标准分块边界。LongBench v2 是独立发布数据，单独收录为数据集。
   chatrag-bench:
