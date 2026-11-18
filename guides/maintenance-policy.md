@@ -25,3 +25,7 @@ Schema changes are versioned in release notes. Additive optional fields are comp
 ### Schema note: 2026-11-01
 
 The dataset annotation enum gains `rubric` and `response_preference`, reflecting released report criteria and response-pair labels. All prior values, required fields, entity types and category paths remain unchanged; existing records need no migration. These labels are not added to the source-coordinate evidence interchange schema. Native RAG may use an explicitly declared live-web environment and rubric-based output contract without a unique reference answer; that does not imply retrieval qrels. See [taxonomy](taxonomy.md) for the operational boundaries.
+
+### Schema note for 2026-11-18
+
+Dataset cards accept `chunk`, `graph_triplet` and `time_interval` for released reference units. Check whether the annotation is present for all tracks or a documented subset. Record the upstream segmentation version, graph identifiers or media offset convention as appropriate. Existing evidence interchange records can express source element IDs and paired time offsets.

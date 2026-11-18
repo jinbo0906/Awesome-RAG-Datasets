@@ -1,0 +1,8 @@
+id: castella-2026
+name: 'CASTELLA: Long Audio Dataset with Captions and Temporal Boundaries'
+entity_type: paper
+url: 'https://arxiv.org/abs/2511.15131'
+relation: introduces
+targets: [castella]
+sources:
+  - {url: 'https://arxiv.org/html/2511.15131v2', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

@@ -1,0 +1,8 @@
+id: harp-2026
+name: 'HARP: Agentic Hybrid Retrieval and Analysis for Long-Form Audio'
+entity_type: paper
+url: 'https://arxiv.org/abs/2609.14116'
+relation: introduces
+targets: [harp-audio]
+sources:
+  - {url: 'https://arxiv.org/abs/2609.14116', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

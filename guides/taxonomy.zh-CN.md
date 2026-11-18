@@ -38,6 +38,12 @@
 
 [能力选型入口](selecting-a-benchmark.zh-CN.md#capability-routes)提供跨维度人工索引，不另建一套分类或重复目录。方法在 HotpotQA 上建图，不意味着原生数据应迁入图分类。[GRBench](../dataset-cards/graph-rag/grbench.zh-CN.md) 与 [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.zh-CN.md) 是不同发布；ViDoRAG/ViDoSeek 则是方法名与数据名之别，不是两份数据。
 
+### 11 月 18 日标注与任务扩展
+
+本轮增加三个来源标注层级。`chunk` 表示发布时指定的分块 ID。`graph_triplet` 表示知识图谱的三元组。`time_interval` 表示媒体内可定位的起止时间。卡片需注明提供该标注的评测轨、划分及映射条件。文档有效期是时间元数据，`time_interval` 专用于媒体位置。
+
+继续按来源组织五个主类别。声学证据使用多模态主分类和 `audio` 模态。带图像知识图谱以图为主分类，辅以多模态次分类。新增 `audio_qa` 和 `retrieval_routing` 任务标签，并在选型指南中提供时序回放、版本检索和过程诊断入口。
+
 ## 审查阶梯
 
 `discovered` 仅确认身份；`screened` 从上游来源确认实体类型和可能用途；`source_checked` 表示关键字段有一手来源和核对日期，**不意味着**数据已下载或评测器已复现。`reproduced` 需要记录过的数据加载与评测器运行；`verified` 还需要第二位独立审查者。`deprecated` 表示上游明确替换或撤回，而不是仓库暂时没有活动。未知许可保持为 `unknown`，不能把模型仓库的代码许可推定为数据许可。

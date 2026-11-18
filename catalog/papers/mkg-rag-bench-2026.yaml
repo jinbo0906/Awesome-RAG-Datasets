@@ -1,0 +1,8 @@
+id: mkg-rag-bench-2026
+name: 'MKG-RAG-Bench: Benchmarking Retrieval in Multimodal Knowledge Graph–Augmented Generation'
+entity_type: paper
+url: 'https://doi.org/10.1145/3770855.3817570'
+relation: introduces
+targets: [mkg-rag-bench]
+sources:
+  - {url: 'https://arxiv.org/html/2606.26458', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

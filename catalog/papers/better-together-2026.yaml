@@ -1,0 +1,8 @@
+id: better-together-2026
+name: 'Better Together: Complementary Query Rewriting Under a Strong RAG Baseline'
+entity_type: paper
+url: 'https://aclanthology.org/2026.emnlp-industry.143/'
+relation: evaluates
+targets: [hotpotqa, ambigqa, enterpriserag-bench]
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-industry.143.pdf', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

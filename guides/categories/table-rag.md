@@ -17,6 +17,8 @@ Large-table variants such as ArcadeQA and BirdQA are promising for schema/cell r
 
 ## Recent-paper extensions
 
+[SpecsQA](../../dataset-cards/table-rag/specsqa.md) supplies product pages with specification tables and prose. Compare exact filtering, exhaustive enumeration and semantic retrieval against released answer lists. The two graphs in DualGraph are constructed by the evaluated system.
+
 [FinQA](../../dataset-cards/table-rag/finqa.md) and [ConvFinQA](../../dataset-cards/table-rag/convfinqa.md) add numerical programs, execution answers and annotated supporting facts. Serialized table-row labels are not PDF cell coordinates; ConvFinQA also requires preserving prior-turn numerical dependencies. The [ChatRAG Bench](../../suite-cards/chatrag-bench.md) conversion has a different conversational answer evaluator from native execution/program accuracy.
 
 [SSRB](../../dataset-cards/table-rag/ssrb.md) evaluates retrieval over heterogeneous structured objects with field constraints, not generated answers or cell evidence. [TAT-DQA](../../dataset-cards/multimodal-rag/tat-dqa.md) and [OHRBench](../../dataset-cards/multimodal-rag/ohrbench.md) belong primarily to multimodal documents; preserve layout and page evidence before table serialization. [Recent paper settings](../recent-paper-index.md) identify the adopted releases and evaluation locations.

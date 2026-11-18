@@ -1,0 +1,35 @@
+id: mkg-rag-bench
+name: MKG-RAG-Bench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Retrieval of text and image-bearing knowledge graph triples with a downstream answer task derived from the same triples.
+classification: {rag_role: rag_native, primary_category: graph_rag, secondary_categories: [multimodal_rag], tasks: [evidence_retrieval, multimodal_retrieval, graph_qa], modalities: [graph, text, image], domains: [general, medicine], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The general G split is built from MarKG and the medical M split from MedMKG. The release includes triple JSONL, separate text and multimodal query files and TSV qrels. Obtain upstream image assets to run the full visual conditions. Some medical image paths refer to MIMIC-CXR-JPG.
+  size: G has 48,908/6,113/6,115 train/validation/test queries and 25,517 triples. M has 4,781/597/599 queries and 18,468 triples. Test query counts were checked in the release.
+  splits: Train, validation and test per domain with a shared corpus within each domain. Record which query types and which candidate triple modalities are allowed.
+  format: JSONL for queries and triple records, TSV for qrels, external image files
+ground_truth:
+  levels: [graph_triplet, answer]
+  provenance: synthetic
+  description: Question generation masks entities or relations from selected graph triples. Qrels identify supporting triples and answers are derived from the masked elements. Triple targets do not establish multi-hop path completeness.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [nDCG_at_k, precision_at_k, recall_at_k, EM, token_F1, Contains_at_1, BLEU_1]
+  protocol: Score ranked triples using the qrels and hold the query/candidate modality configuration fixed. The generation experiment feeds top five retrieved triples to GPT-5 and reports lexical answer measures alongside a generation-only baseline.
+  evaluator: https://github.com/XiaochenWang-PSU/MKG-RAG-Bench/tree/main/MKG-RAG-BENCH-G/scripts
+access:
+  official: https://github.com/XiaochenWang-PSU/MKG-RAG-Bench
+  paper: https://doi.org/10.1145/3770855.3817570
+  data: https://github.com/XiaochenWang-PSU/MKG-RAG-Bench/tree/34a1b5d96fbcaf92eac0c478f41ca6ce972b437e
+  license: unknown
+use:
+  best_for: [Testing the contribution of images to graph triple retrieval, Separating graph retrieval and answer quality under controlled modality conditions]
+  caveats: [Images need upstream distributions and may require credentialed access, The paper license does not establish benchmark or image terms, Triple-derived QA does not measure extraction of a graph from raw documents]
+sources:
+  - {url: 'https://arxiv.org/html/2606.26458', type: paper, fields: [summary, classification, data.description, data.size, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/XiaochenWang-PSU/MKG-RAG-Bench/tree/34a1b5d96fbcaf92eac0c478f41ca6ce972b437e', type: repository, fields: [data, access.data, evaluation.evaluator], checked_on: '2026-11-18'}

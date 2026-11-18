@@ -1,0 +1,37 @@
+id: specsqa
+name: SpecsQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Semi-structured product QA testing exhaustive lists, multi-constraint filtering and cross-product comparisons.
+classification: {rag_role: rag_native, primary_category: table_rag, secondary_categories: [text_rag], tasks: [table_qa, text_table_reasoning], modalities: [text, table], domains: [e-commerce, consumer-electronics], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: November 2025 Samsung UK snapshot with specification tables and product prose. SpecsQA supplies question categories, reference prose and product lists where available. DualGraph builds textual and symbolic graphs from the snapshot.
+  size: 117 questions (counted in questions.json), 2,162 product pages over 26 categories (author release).
+  splits: One evaluation set with inverse, multi-condition and reasoning/comparison questions. Keep the objective-only list subset distinct in results.
+  format: Question JSON and split tar.xz raw HTML archive with parsing code
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: Questions are manually curated and reference material includes product list targets, source hints and a preferred retrieval method. Some prose references use model generation from lists. These fields do not provide exhaustive per-question passage, cell or graph-path labels.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [factual_correctness_F1, list_match_precision_recall_F1, pairwise_judge_win_rate, input_output_tokens]
+  protocol: Run retrieval or symbolic lookup over the full snapshot. List Match extracts a predicted list using an LLM and computes set precision, recall and F1 against available list targets. Score factual correctness and pairwise output quality separately, and report indexing and query token use.
+access:
+  official: https://github.com/corneliocristina/DualGraphRAG
+  paper: https://aclanthology.org/2026.findings-emnlp.1319/
+  data: https://github.com/corneliocristina/DualGraphRAG/tree/main/SpecsQA
+  license: CC-BY-ND-4.0 (data)
+  gated: false
+use:
+  best_for: [Comparing semantic retrieval and exact structured filtering, Testing complete product enumeration across documents]
+  caveats: [Results refer to a single vendor snapshot, List extraction and judging introduce model dependence, The checked release includes system code and data but no confirmed standalone scorer]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-emnlp.1319/', type: paper, fields: [summary, classification], checked_on: '2026-11-18'}
+  - {url: 'https://arxiv.org/html/2605.27164', type: paper, fields: [evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-18'}
+  - {url: 'https://raw.githubusercontent.com/corneliocristina/DualGraphRAG/main/SpecsQA/README.md', type: repository, fields: [data, ground_truth.description, access.data, access.license], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/corneliocristina/DualGraphRAG/blob/main/SpecsQA/questions.json', type: repository, fields: [data.size, ground_truth], checked_on: '2026-11-18'}

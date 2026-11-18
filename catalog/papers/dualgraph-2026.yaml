@@ -1,0 +1,8 @@
+id: dualgraph-2026
+name: 'Query Symbolically or Retrieve Semantically? A Dataset and Method for Semi-Structured Question Answering'
+entity_type: paper
+url: 'https://aclanthology.org/2026.findings-emnlp.1319/'
+relation: introduces
+targets: [specsqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.findings-emnlp.1319/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

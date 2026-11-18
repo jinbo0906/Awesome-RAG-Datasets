@@ -1,0 +1,38 @@
+id: redqa
+name: RedQA (RARE)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Multi-hop QA with groups of interchangeable text chunks that support each required fact in high-similarity corpora.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [evidence_retrieval, multi_hop_qa], modalities: [text], domains: [finance, legal, patents, wikipedia], languages: [en]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: RARE is the construction framework. RedQA releases questions, answers, a fixed chunk corpus and grouped evidence. The authors construct the three high-overlap domains from financial reports, legal material and patents. General-Wiki is a separately reprocessed HotpotQA-based comparison.
+  size: 645 finance, 605 legal and 480 patent questions (1,730 total), plus 688 General-Wiki comparison questions. The four released corpora contain 3,281, 4,090, 3,339 and 3,218 chunks respectively.
+  splits: Four evaluation files by domain and control condition. Use the released question groups and compare by hop depth.
+  format: JSON with corpus, queries, gold_chunk_ids and gold_chunk_groups
+ground_truth:
+  levels: [chunk, answer]
+  provenance: synthetic
+  description: Each group lists chunks judged by the construction pipeline to support the same required atomic fact. A complete retrieval result intersects every group. The IDs address the published segmentation.
+  alternatives: explicit
+evaluation:
+  official_metrics: [Coverage@10, PerfRecall@10, group_nDCG@10, group_MRR, judged_answer_accuracy]
+  protocol: 'Coverage averages the fraction of fact groups hit. PerfRecall requires all groups hit for a question and appears as perfect_match@k in code. Group nDCG and MRR use their released implementations. The paper also compares judged answer accuracy with and without retrieval.'
+  evaluator: https://github.com/gkswns0531/RARE/blob/master/evaluation/metrics.py
+access:
+  official: https://github.com/gkswns0531/RARE
+  paper: https://aclanthology.org/2026.acl-long.923/
+  data: https://github.com/gkswns0531/RARE/tree/7d5e6749d8a2dc38e1c0c8ba21bc1cc43e4d76cd/dataset
+  license: unknown
+  gated: false
+use:
+  best_for: [Separating partial retrieval from full fact coverage, Measuring how duplicate evidence competes with complementary evidence]
+  caveats: [The annotations refer to fixed upstream chunks so different chunkers require a fresh mapping to source evidence, Equivalence judgments are model-assisted and can miss valid alternatives, The repository MIT license does not settle source-corpus rights]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.923/', type: paper, fields: [summary, classification], checked_on: '2026-11-18'}
+  - {url: 'https://arxiv.org/html/2604.19047', type: paper, fields: [data.description, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/gkswns0531/RARE/tree/7d5e6749d8a2dc38e1c0c8ba21bc1cc43e4d76cd/dataset', type: repository, fields: [data.size, data.splits, data.format, access.data], checked_on: '2026-11-18'}
+  - {url: 'https://raw.githubusercontent.com/gkswns0531/RARE/master/evaluation/metrics.py', type: repository, fields: [evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-18'}

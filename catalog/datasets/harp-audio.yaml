@@ -1,0 +1,38 @@
+id: harp-audio
+name: HARP Audio QA (SongEval / MedMosaic)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Recording-local audio retrieval and QA with song comparison and contrastive speech versus acoustic symptom questions.
+classification: {rag_role: rag_native, primary_category: multimodal_rag, tasks: [audio_qa, evidence_retrieval, multimodal_retrieval], modalities: [audio, text], domains: [music, simulated-medical-dialogue], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: The September 2026 HARP paper evaluates retrieval within a specified long recording. Public question and metadata files cover music comparisons and simulated consultations. Obtain the respective audio assets upstream and use the author preparation scripts.
+  size: 712 released questions. SongEval has 500 questions over 50 medleys (200 audio cue, 150 time and 150 position prompts). MedMosaic has 212 questions over 106 consultations (106 reported and 106 exhibited symptom prompts).
+  splits: Two public evaluation tracks with no separate train split in the question files. Emotion is a third paper track requiring separate MSP license and local reconstruction.
+  format: JSONL questions and song metadata with external audio
+ground_truth:
+  levels: [time_interval, answer]
+  provenance: mixed
+  description: Music questions identify two songs whose filenames and recording IDs join to start/end times for whole song instances and expert aesthetic scores. MedMosaic publishes yes/no answers and judging metadata without per-question supporting temporal intervals.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [retrieval_hit_rate, judged_answer_accuracy, judged_rationale_accuracy]
+  protocol: Score the fraction of required evidence retrieved where it can be resolved. The answer and rationale use model judgments. The released evaluator falls back to factuality alone for audio-only rationale scoring. Report track, retrieval modality, oracle condition and judge separately.
+  evaluator: https://github.com/chinjouli/harp/blob/fea0bf987c92caff0be755d22ab27fa2423f3571/evaluate/README.md
+access:
+  official: https://github.com/chinjouli/harp
+  paper: https://arxiv.org/abs/2609.14116
+  data: https://huggingface.co/cjli/harp/tree/68f6baf120e7b0fa4627e6f6a15789498e676d97
+  license: MIT for queries and checkpoints per release notice. Source audio terms differ (SongEval CC-BY-NC-SA-4.0 and MedMosaic CC-BY-4.0).
+use:
+  best_for: [Testing retrieval of multiple audio clips within one recording, Comparing transcript retrieval with acoustic evidence retrieval]
+  caveats: [Song intervals cover whole songs and do not localize the shortest justification, Public track counts exclude MSP emotion (426 in the paper versus 466 in repository preparation notes), Long-recording search is scoped to the specified recording]
+sources:
+  - {url: 'https://arxiv.org/html/2609.14116', type: paper, fields: [summary, classification, data.description, data.splits, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-18'}
+  - {url: 'https://huggingface.co/cjli/harp/tree/68f6baf120e7b0fa4627e6f6a15789498e676d97', type: official, fields: [data.size, data.format, access.data, access.license, ground_truth.description], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/chinjouli/harp/blob/fea0bf987c92caff0be755d22ab27fa2423f3571/dataset/process_gt_music.py', type: repository, fields: [ground_truth.description, evaluation.protocol], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/chinjouli/harp/blob/fea0bf987c92caff0be755d22ab27fa2423f3571/evaluate/README.md', type: repository, fields: [evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/chinjouli/harp/blob/main/dataprep/emotion/README.md', type: repository, fields: [data.splits, use.caveats], checked_on: '2026-11-18'}

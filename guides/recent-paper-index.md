@@ -2,7 +2,7 @@
 
 [简体中文](recent-paper-index.zh-CN.md)
 
-Maintenance checked on 2026-11-01. This pass focuses on public work from May 2025 through October 2026, especially 2026 releases and October publications; older foundational resources are retained when recent experiments use them. Existing cards keep their own field-check dates. This is a curated evidence index, not an exhaustive literature census or quality ranking. Repeated use by several papers does not create several dataset records.
+Updated 2026-11-18. The index covers selected public work from 2025 through November 2026, with recent additions at the top. Older resources also appear when recent experiments use them. Each card records its own source check date.
 
 ## Venue and publication scope
 
@@ -12,7 +12,27 @@ CCF considers formal Full/Regular papers and explicitly excludes Findings, Short
 
 The tables distinguish **introduction**, **training use** and **evaluation use**. Dataset cards retain native facts; sampled splits, external corpora and conversion-specific metrics remain properties of the paper's experiment. Machine-readable relationships are in [catalog/papers](../catalog/papers).
 
-## November maintenance: new evaluation contracts
+## November 18 additions
+
+This pass focuses on 2026 proceedings and releases from September through November. Evidence alternatives, graph triples, acoustic evidence, knowledge changes and agent decisions are the main additions.
+
+| Paper and publication | Resource and relation | Experiment and selection notes |
+|---|---|---|
+| [RARE](https://aclanthology.org/2026.acl-long.923/) · ACL 2026 Long | Introduces [RedQA](../dataset-cards/text-rag/redqa.md) | §§4–5 and Appendix A.4. Group-level Coverage and PerfRecall distinguish partial support from coverage of every required fact. |
+| [One Fact, Many Places](https://arxiv.org/abs/2610.26401) · October 2026 preprint | Re-annotates [MMLongBench-Red / MMDocRAG-Red](../dataset-cards/multimodal-rag/one-fact-many-places.md) | §§2–5 and Appendix I. Two parent benchmark subsets share a release. Separate quote rescoring from set-level masking. |
+| [MKG-RAG-Bench](https://doi.org/10.1145/3770855.3817570) · KDD 2026 | Introduces [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.md) | Table 2 and §§4.2–4.3. Rank graph triples and evaluate answers with the top five triples. Native graph inputs and visual assets have separate access terms. |
+| [DualGraph](https://aclanthology.org/2026.findings-emnlp.1319/) · Findings EMNLP 2026 | Introduces [SpecsQA](../dataset-cards/table-rag/specsqa.md) | §§3–4 and Table 2. Exhaustive product lists and factual correctness expose differences between semantic retrieval and symbolic queries. |
+| [OAKS](https://aclanthology.org/2026.acl-long.1956/) · ACL 2026 Long | Introduces [OAKS](../dataset-cards/text-rag/oaks.md) | §§3–4 and Appendix B.2. Measure acquisition in stream steps. Public Novel has 435 questions versus 870 reported in the paper. |
+| [TimelyRAG](https://arxiv.org/abs/2609.11572) · September 2026 preprint | Introduces [TimelyQABench](../dataset-cards/text-rag/timelyqabench.md) | §§4–5 and Tables 4–6. Four synthetic Korean domains with policy-version qrels and judged temporal validity. |
+| [How You Ask Matters](https://aclanthology.org/2026.emnlp-main.2156/) · EMNLP 2026 main | Introduces [Query Robustness](../dataset-cards/text-rag/query-robustness.md) | §§3–4 and §6. Compare equivalent questions on answer quality, decision flips and call counts; 22,183 released forms include 3,000 originals. |
+| [HARP](https://arxiv.org/abs/2609.14116) · September 2026 preprint | Introduces recording-local tasks in [HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.md) | §§III–V. Separate published music and health tracks from the separately licensed emotion track. |
+| [CASTELLA](https://arxiv.org/abs/2511.15131) · ICASSP 2026 | Introduces [CASTELLA](../dataset-cards/multimodal-rag/castella.md) | §§4–5 and Table 3. Human timestamps and temporal IoU score within-recording sound localization. |
+| [RAGCap-Bench](https://aclanthology.org/2026.aacl-long.245/) · IJCNLP–AACL 2026 Long, November | Introduces [RAGCap-Bench](../dataset-cards/text-rag/ragcap-bench.md) | §3.4, §4.4 and Appendix I. Process MCQs use EM/F1. A separate WebThinker experiment actually evaluates BrowseComp and other web QA tasks under a search-call budget. |
+| [Better Together](https://aclanthology.org/2026.emnlp-industry.143/) · EMNLP 2026 Industry | Evaluates [HotpotQA](../dataset-cards/text-rag/hotpotqa.md), [AmbigNQ](../dataset-cards/text-rag/ambigqa.md) and [EnterpriseRAG-Bench](../dataset-cards/text-rag/enterpriserag-bench.md) | §4 and Table 2. Uses the first 5,000 training items, all 2,002 development queries and 470 enterprise queries with relevance labels, respectively. Compares retrieval metrics with fixed reranking and diversification. |
+
+<a name="november-maintenance-new-evaluation-contracts"></a>
+
+## November 1 additions
 
 Each row states **introduces**, **extends**, or **actually evaluates**. A bibliography mention alone does not create an adoption relation. RACE, FACT, agent frameworks and evaluator libraries remain methods, not additional datasets. Dataset descriptions preserve native contracts; a paper-specific transformation is not silently promoted to the original dataset.
 

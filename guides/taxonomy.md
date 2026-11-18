@@ -38,6 +38,12 @@ Retain the five primary categories and existing paths. New search-agent, tempora
 
 The [capability routes](selecting-a-benchmark.md#capability-routes) provide a human-readable index across these facets without another taxonomy or duplicate catalog. A method that constructs a graph from HotpotQA does not relocate the native dataset into the graph category. [GRBench](../dataset-cards/graph-rag/grbench.md) and [GraphRAG-Bench](../dataset-cards/graph-rag/graphrag-bench.md) are genuinely different releases; ViDoRAG/ViDoSeek is a method/data naming distinction, not two datasets.
 
+### November 18 annotation and task additions
+
+Three new levels describe released source annotations. `chunk` addresses the upstream segmentation. `graph_triplet` identifies a knowledge graph triple. `time_interval` identifies start and end positions in media. Cards specify the track, split or mapping that supplies each level. Document validity dates remain time metadata. The interval label is reserved for positions in media.
+
+Use the five existing categories to organize source representations. Acoustic resources use multimodal RAG and the `audio` modality. Image-bearing knowledge graphs use graph RAG with multimodal as a secondary category. The new `audio_qa` and `retrieval_routing` tags describe tasks, with selection routes for sequential replay, applicable-version retrieval and process diagnostics.
+
 ## Review ladder
 
 `discovered` confirms only identity. `screened` confirms entity type and plausible use from an upstream resource. `source_checked` means key fields have field-level primary sources and a check date; it **does not** mean the data downloaded or the evaluator reproduced. `reproduced` requires a documented loader/evaluator run. `verified` additionally requires independent review. `deprecated` means a known upstream replacement or withdrawal, not merely an inactive GitHub repository. Unknown licenses stay `unknown` and are never inferred from a model repository's code license.

@@ -36,6 +36,16 @@ These routes cross the existing category folders. They index different evaluatio
 
 For the original chunking problem, BrowseComp-Plus adds document-level acquisition labels and TEMPO adds period coverage, but neither supplies optimal chunk boundaries. For multimodal fragmentation, UniDoc-Bench adds linked source facts and ViDoRe v3 adds grounding/answers; CFV/XVBench still need independent temporal or cross-element chain annotation where missing. Report oracle evidence, actual retrieval, complete-set coverage, answer/citation quality and cost separately.
 
+### Recent additions
+
+| Evaluation need | Start with | Evaluation contract |
+|---|---|---|
+| Alternative evidence and complete fact coverage | [RedQA](../dataset-cards/text-rag/redqa.md), [One Fact, Many Places](../dataset-cards/multimodal-rag/one-fact-many-places.md) | Group interchangeable sources for each fact. Require sufficient support for every required fact and distinguish complementary combinations from contextual mentions. |
+| Acoustic evidence and localization | [HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.md), [CASTELLA](../dataset-cards/multimodal-rag/castella.md) | HARP music identifies whole-song intervals and answers. CASTELLA supplies human-marked event intervals. HARP health supports answer scoring. |
+| Applicable versions and sequential adaptation | [TimelyQABench](../dataset-cards/text-rag/timelyqabench.md), [OAKS](../dataset-cards/text-rag/oaks.md) | Use version-level ranking for the former and answer-state recovery per stream step for the latter. Index visibility needs a timestamped write-and-query workload. |
+| Retrieval decisions and agent step diagnosis | [Query Robustness](../dataset-cards/text-rag/query-robustness.md), [RAGCap-Bench](../dataset-cards/text-rag/ragcap-bench.md) | Pair equivalent question forms for routing and cost. Use controlled choices to diagnose intermediate capabilities. |
+| Structured retrieval and exact filters | [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.md), [SpecsQA](../dataset-cards/table-rag/specsqa.md) | Score triple rankings with MKG-RAG-Bench qrels and evaluate product-list completeness with SpecsQA. |
+
 ## Selection checklist
 
 1. Identify the target unit: source document, page, sentence, cell, region, graph path, atomic fact or final answer.

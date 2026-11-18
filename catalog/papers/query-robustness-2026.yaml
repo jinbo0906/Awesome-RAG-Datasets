@@ -1,0 +1,8 @@
+id: query-robustness-2026
+name: 'How You Ask Matters! Adaptive RAG Robustness to Query Variations'
+entity_type: paper
+url: 'https://aclanthology.org/2026.emnlp-main.2156/'
+relation: introduces
+targets: [query-robustness]
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-main.2156/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

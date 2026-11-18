@@ -36,6 +36,16 @@
 
 对于最初的分块问题，BrowseComp-Plus 补充文档级证据获取标签，TEMPO 补充时段覆盖，但都不提供最优切分边界。对于多模态碎片化，UniDoc-Bench 补充关联来源事实，ViDoRe v3 补充定位和答案；CFV/XVBench 缺失的时间或跨元素证据链仍需独立标注。分别报告金标准证据 oracle、实际检索、完整集合覆盖、答案/引用质量及成本。
 
+### 近期新增资源
+
+| 评测需求 | 优先查看 | 评测口径 |
+|---|---|---|
+| 证据替代与完整事实覆盖 | [RedQA](../dataset-cards/text-rag/redqa.zh-CN.md)、[One Fact, Many Places](../dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) | 对同一事实的可互换来源分组。每条必需事实均得到充分支持才算完整命中，并区分需要联用的组合和只提供背景的提及。 |
+| 声学证据与时间定位 | [HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md)、[CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) | HARP 音乐轨提供整首歌区间和答案。CASTELLA 提供人工标注的事件区间。HARP 健康轨可评答案。 |
+| 适用版本与顺序适应 | [TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md)、[OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) | 前者评版本文档排序，后者评每个流时间步的答案状态恢复。测索引可见性需要带时间戳的写入和查询负载。 |
+| 检索决策与代理步骤诊断 | [Query Robustness](../dataset-cards/text-rag/query-robustness.zh-CN.md)、[RAGCap-Bench](../dataset-cards/text-rag/ragcap-bench.zh-CN.md) | 用等义问法配对测路由和成本。借助给定上下文的选项任务诊断中间能力。 |
+| 结构化检索与精确过滤 | [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md)、[SpecsQA](../dataset-cards/table-rag/specsqa.zh-CN.md) | MKG-RAG-Bench 用三元组相关性评排序。SpecsQA 评产品列表是否完整。 |
+
 ## 选型检查清单
 
 1. 确定目标单位：来源文档、页面、句子、单元格、区域、图路径、原子事实，还是最终答案。

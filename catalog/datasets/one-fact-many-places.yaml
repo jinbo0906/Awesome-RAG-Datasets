@@ -1,0 +1,36 @@
+id: one-fact-many-places
+name: One Fact, Many Places (MMLongBench-Red / MMDocRAG-Red)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: A shared release of fact-level alternative evidence annotations for auditing document retrieval, citation and masking-based attribution.
+classification: {rag_role: auxiliary, primary_category: multimodal_rag, tasks: [page_retrieval, evidence_retrieval, attribution], modalities: [text, image, table, chart, layout], domains: [documents], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: external
+  description: The October 2026 preprint augments subsets of MMLongBench-Doc and MMDocRAG. Its ancillary archive contains the two annotation files, alternative review versions, portable scorers and frozen outputs. MMLongBench-Red includes original answers. Use the upstream releases for full source and answer assets including PDFs and image candidates.
+  size: 420 questions across two files. MMLongBench-Red has 220 (60 development and 160 test). MMDocRAG-Red has 200 (two samples of 80 and 120).
+  splits: Relevant denominators are 208 applicable MMLongBench-Red questions (54 dev and 154 test) and 196 applicable MMDocRAG-Red questions. Freeze the original annotation files for published scores and name the review variant for sensitivity tests.
+  format: JSONL annotations and Python scoring library in the arXiv ancillary 7z archive
+ground_truth:
+  levels: [page, bbox, quote, fact_citation]
+  provenance: mixed
+  description: Page and quote instances are grouped by supporting fact. MMDocRAG-Red distinguishes strict, loose, combination and contextual quotes. MMLongBench-Red has conditional boxes in PDF points found by key strings and OCR. A model applied the annotation protocol and two human reviewers independently re-annotated 60 sampled questions.
+  alternatives: explicit
+evaluation:
+  official_metrics: [evidence_aware_recall_at_k, redundancy_aware_quote_F1, set_level_masking_answer_survival]
+  protocol: Compare page scoring under dataset, verified-gold and evidence-aware modes. State the exact Quote F1 variant and keep strict support, jointly necessary quotes and contextual mentions distinct. Measure masking against an all-annotated-instances condition at comparable granularity and report applicable counts.
+  evaluator: https://arxiv.org/src/2610.26401v1/anc/code-and-data.7z
+access:
+  official: https://arxiv.org/abs/2610.26401
+  paper: https://arxiv.org/pdf/2610.26401
+  data: https://arxiv.org/src/2610.26401v1/anc/code-and-data.7z
+  license: CC-BY-NC-4.0 (released data annotations)
+  gated: false
+use:
+  best_for: [Measuring false retrieval misses and citation errors under single-location labels, Testing whether masking one evidence region leaves a valid copy]
+  caveats: [Images and PDFs require the upstream datasets, OCR and text-layer search can undercount pixel-only copies, Sparse boxes and sampled alternative locations do not constitute exhaustive source annotations]
+sources:
+  - {url: 'https://arxiv.org/pdf/2610.26401', type: paper, fields: [summary, classification, data.description, ground_truth, evaluation.official_metrics, evaluation.protocol, access.license, use], checked_on: '2026-11-18'}
+  - {url: 'https://arxiv.org/src/2610.26401v1/anc/code-and-data.7z', type: official, fields: [data.size, data.splits, data.format, ground_truth.provenance, access.data, access.license, evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-18'}

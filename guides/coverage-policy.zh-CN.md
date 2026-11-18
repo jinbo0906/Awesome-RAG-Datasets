@@ -28,7 +28,14 @@
 
 ## 后续优先核查
 
-以下只是**候选调查**，不是已完成复核的结论：检查 TableRAG 的 ArcadeQA/BirdQA 大型表格变体是否有可公开复现的资产与许可（[论文](https://arxiv.org/abs/2410.04739)、[上游下载问题](https://github.com/google-research/google-research/issues/3190)）；逐项索引 ViDoRe 和 M2KR 的版本化转换；调查专门的音频 RAG 与持续索引更新测试。时间问答或历史知识截止点探测本身不是更新延迟基准。法律、金融、医疗和代码等领域仍按来源与证据条件筛选，不凭领域名称新增顶层分类。
+[HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md) 和 [CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) 覆盖录音内问答与声学事件定位。[TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md) 和 [OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) 分别支持版本排序与时序回放。下列候选仍有具体的发布或协议缺口。
+
+- LongAudioQA 描述了带时间证据的大规模会议问答。已核对的作者仓库仍列评测文件待发布。[论文](https://aclanthology.org/2026.findings-acl.1038/) · [代码](https://github.com/tangquanwei/GRGA)
+- CrossModalQA 描述互补图文链及完整检索指标。基准下载和评分器仍待确认。[预印本](https://arxiv.org/abs/2609.05518)
+- FRESCO 在给定候选池上评估时效重排，冻结评测包和精确复建仍待核查。[论文](https://aclanthology.org/2026.findings-emnlp.54/) · [生成代码](https://github.com/facebookresearch/fresco)
+- RAGPerf 在 §5.5 报告并发更新和查询实验。已核对的公开提交中尚未定位对应的混合负载配置。[论文](https://www.vldb.org/pvldb/vol19/p3689-li.pdf) · [代码](https://github.com/platformxlab/RAGPerf/tree/49c9794895666d029a3c98a48afd872197d83b23)
+
+其他待核查项包括 TableRAG 的 ArcadeQA/BirdQA 大型表格变体的发布资产与许可，以及 ViDoRe 和 M2KR 的版本化子集转换。[TableRAG 论文](https://arxiv.org/abs/2410.04739) · [上游下载问题](https://github.com/google-research/google-research/issues/3190)
 
 十一月维护已增加经核查的视频条目，但 [CFVBench](../dataset-cards/multimodal-rag/cfvbench.zh-CN.md) 的要点与 [XVBench](../dataset-cards/multimodal-rag/xvbench.zh-CN.md) 的片段 ID 仍没有经核实的最小时间区间；[LongerVideos](../dataset-cards/multimodal-rag/longervideos.zh-CN.md)缺少公开参考答案。[MTRAG-UN](../dataset-cards/text-rag/mtrag-un.zh-CN.md)的两个未发布领域、ViDoRe v3 私有组件、CiteRAG 未解决的数据条款，以及未确认作者承继的更大同名 SGR 发布，都是明确边界，不是假定已完成的覆盖。[ComplexWebQuestions](../dataset-cards/graph-rag/complexwebquestions.zh-CN.md)旧主页返回 404，现关联作者代码，但修正版数据获取仍需单独核对。
 

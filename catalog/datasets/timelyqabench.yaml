@@ -1,0 +1,35 @@
+id: timelyqabench
+name: TimelyQABench
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Korean QA and document relevance for policies that retain almost identical wording across successive amendments.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [time_sensitive_qa, evidence_retrieval], modalities: [text], domains: [legal, company-policy, university-policy, terms-of-service], languages: [ko]}
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: The TimelyRAG preprint releases four synthetic Korean QA domains with overlapping document versions and temporally invalid hard negatives. Query and document times constrain which version applies.
+  size: 'Four domain releases have 3,000 QA records and 30,000 corpus documents each. Total: 12,000 QA records and 120,000 documents.'
+  splits: Four domain evaluation sets. Each query runs against its domain corpus.
+  format: ZIP with domain JSONL files containing QA and documents linked by global IDs
+ground_truth:
+  levels: [document, answer]
+  provenance: synthetic
+  description: Gold IDs mark document versions supporting the answer under the query's temporal conditions. The JSONL stores insertion times. Event times are expressed in text rather than separate event-time fields.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [nDCG@10, MAP@10, Recall@10, Hit@10, judged_win_tie_loss]
+  protocol: Measure document ranking in each domain against released qrels. The paper uses GPT-5 pairwise judgments for correctness and temporal validity with the same generator on both sides. State which timestamps are available at retrieval time and reserve oracle filtering for an upper bound.
+access:
+  official: https://github.com/kaist-dmlab/TimelyRAG
+  paper: https://arxiv.org/abs/2609.11572
+  data: https://github.com/kaist-dmlab/TimelyRAG/blob/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/datasets.zip
+  license: unknown
+  gated: false
+use:
+  best_for: [Testing retrieval of the applicable version among near-duplicate policy documents, Comparing semantic retrieval and time-aware reranking]
+  caveats: [Policies and question pairs are synthetic, The native protocol ranks a fixed versioned corpus and does not measure update propagation, Document IDs do not specify clause-level evidence coordinates]
+sources:
+  - {url: 'https://arxiv.org/html/2609.11572', type: paper, fields: [summary, classification, data.description, ground_truth, evaluation, use], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/kaist-dmlab/TimelyRAG/blob/5213a0c1743f23fd52a258005c3887aaf7e8cd0f/datasets.zip', type: repository, fields: [data.size, data.splits, data.format, access.data], checked_on: '2026-11-18'}

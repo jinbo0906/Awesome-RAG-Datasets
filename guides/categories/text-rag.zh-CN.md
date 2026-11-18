@@ -20,6 +20,8 @@ Text RAG 涉及文档、段落和句子检索、回答生成、多跳证据、�
 
 ## 近期论文驱动的补充
 
+[RedQA](../../dataset-cards/text-rag/redqa.zh-CN.md) 为每条必需事实标出等价固定分块组。[TimelyQABench](../../dataset-cards/text-rag/timelyqabench.zh-CN.md) 和 [OAKS](../../dataset-cards/text-rag/oaks.zh-CN.md) 分别评估适用文档版本及回放时的状态恢复。[Query Robustness](../../dataset-cards/text-rag/query-robustness.zh-CN.md) 在等义问法间比较检索调用。
+
 [2025–2026 年采用索引](../recent-paper-index.zh-CN.md)记录具体论文设置，包括原始来源变体和抽样划分。新增方向对应不同失败模式：
 
 | 子方向 | 新增选型入口 | 应区分的内容 |

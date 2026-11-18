@@ -1,0 +1,6 @@
+id: audio_qa
+name: Audio question answering
+entity_type: task
+summary: Answer questions grounded in retrieved audio recordings or acoustic segments.
+sources:
+  - {url: 'https://arxiv.org/html/2609.14116', type: paper, fields: [summary], checked_on: '2026-11-18'}

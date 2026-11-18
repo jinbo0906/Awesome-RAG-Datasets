@@ -17,6 +17,8 @@ ArcadeQA 和 BirdQA 等大型表格变体对模式或单元格检索很有潜力
 
 ## 近期论文驱动的补充
 
+[SpecsQA](../../dataset-cards/table-rag/specsqa.zh-CN.md) 提供含规格表和说明文字的商品页面。可用参考列表比较精确过滤、完整枚举及语义检索。DualGraph 的两类图由被测系统构建。
+
 [FinQA](../../dataset-cards/table-rag/finqa.zh-CN.md) 和 [ConvFinQA](../../dataset-cards/table-rag/convfinqa.zh-CN.md) 补充数值程序、执行答案和支持事实标注。序列化的表格行标签不是 PDF 单元格坐标；ConvFinQA 还需保留前序轮次的数值依赖。[ChatRAG Bench](../../suite-cards/chatrag-bench.zh-CN.md) 改造的会话答案评测器不同于原生的执行或程序准确率。
 
 [SSRB](../../dataset-cards/table-rag/ssrb.zh-CN.md) 评测带字段条件的异构结构化对象检索，不是生成答案或单元格证据。[TAT-DQA](../../dataset-cards/multimodal-rag/tat-dqa.zh-CN.md) 和 [OHRBench](../../dataset-cards/multimodal-rag/ohrbench.zh-CN.md) 主要属于多模态文档；表格序列化前保留布局与页面证据。[近期论文设置](../recent-paper-index.zh-CN.md)注明采用版本和评测位置。

@@ -16,6 +16,8 @@
 
 ## 近期论文驱动的补充
 
+[MKG-RAG-Bench](../../dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md) 在原生图上提供三元组级检索目标。用纯文本和多模态候选条件隔离图像的贡献，完整视觉评测需获取上游资源。
+
 [ComplexWebQuestions](../../dataset-cards/graph-rag/complexwebquestions.zh-CN.md) 和 [KQA Pro](../../dataset-cards/graph-rag/kqa-pro.zh-CN.md) 扩展已有知识库的语义解析与组合推理。[OpenDialKG](../../dataset-cards/graph-rag/opendialkg.zh-CN.md) 提供参与者选择的会话图路径；这是对话转换的监督，不是每个回复唯一的证明图。[MINTQA](../../dataset-cards/graph-rag/mintqa.zh-CN.md) 补充新知识、长尾知识、子问题和关联图谱，生成的事实链与答案包含评分必须分开评测。
 
 [论文索引](../recent-paper-index.zh-CN.md)链接 ACL 2025 KG-Agent 的具体数据与 ICML 2025 HippoRAG 2 的文本问答改造。[mmRAG](../../dataset-cards/text-rag/mmrag.zh-CN.md) 在序列化的图谱、表格和文本记录上评测路由与检索，固定分块相关性不能变成原生图路径真值。

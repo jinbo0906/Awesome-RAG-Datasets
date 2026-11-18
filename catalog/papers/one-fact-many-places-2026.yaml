@@ -1,0 +1,8 @@
+id: one-fact-many-places-2026
+name: 'One Fact, Many Places: Redundant Evidence in Long Visual Documents Breaks Single-Gold Evaluation of Retrieval, Citation and Attribution'
+entity_type: paper
+url: 'https://arxiv.org/abs/2610.26401'
+relation: introduces
+targets: [one-fact-many-places]
+sources:
+  - {url: 'https://arxiv.org/abs/2610.26401', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

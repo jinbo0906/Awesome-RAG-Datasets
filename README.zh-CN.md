@@ -3,13 +3,13 @@
 
 这是一个经过来源核对的检索增强生成（RAG）数据集与评测套件目录。[English](README.md)
 
-目录目前收录 **130 个数据集**和 **10 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
+目录目前收录 **140 个数据集**和 **10 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
 
 ## 寻找合适的 benchmark
 
 - [2025–2026 年论文采用索引与 CCF 口径](guides/recent-paper-index.zh-CN.md) · [English](guides/recent-paper-index.md)
 - [评测集选型指南](guides/selecting-a-benchmark.zh-CN.md) · [English](guides/selecting-a-benchmark.md)
-- [按能力选型：代理搜索、时间证据、可信性与视频](guides/selecting-a-benchmark.zh-CN.md#capability-routes) · [English](guides/selecting-a-benchmark.md#capability-routes)
+- [按评测能力选型](guides/selecting-a-benchmark.zh-CN.md#capability-routes) · [English](guides/selecting-a-benchmark.md#capability-routes)
 - [Dataset、benchmark 与 suite 的区别](guides/benchmark-vs-dataset.zh-CN.md) · [English](guides/benchmark-vs-dataset.md)
 - [分类与审查等级](guides/taxonomy.zh-CN.md) · [English](guides/taxonomy.md)
 - [收录边界与候选清单](guides/coverage-policy.zh-CN.md) · [English](guides/coverage-policy.md)
@@ -28,7 +28,7 @@
 
 <a name="text-rag"></a>
 
-### Text RAG (70)
+### Text RAG (75)
 
 文本来源的证据检索、推理与有依据的回答。 [分类指南](guides/categories/text-rag.zh-CN.md) · [English](guides/categories/text-rag.md)。
 
@@ -78,6 +78,7 @@
 | [NarrativeQA](dataset-cards/text-rag/narrativeqa.zh-CN.md) | `rag_convertible` | document, answer |
 | [Natural Questions](dataset-cards/text-rag/natural-questions.zh-CN.md) | `rag_convertible` | span, answer |
 | [NoMIRACL](dataset-cards/text-rag/nomiracl.zh-CN.md) | `auxiliary` | paragraph |
+| [OAKS (Online Adaptation to Continual Knowledge Streams)](dataset-cards/text-rag/oaks.zh-CN.md) | `auxiliary` | sentence, answer |
 | [OR-QuAC](dataset-cards/text-rag/or-quac.zh-CN.md) | `rag_native` | paragraph, span, answer |
 | [PopQA](dataset-cards/text-rag/popqa.zh-CN.md) | `rag_convertible` | answer |
 | [PUBHEALTH](dataset-cards/text-rag/pubhealth.zh-CN.md) | `rag_convertible` | answer |
@@ -86,12 +87,15 @@
 | [QASPER](dataset-cards/text-rag/qasper.zh-CN.md) | `rag_native` | paragraph, answer |
 | [QReCC](dataset-cards/text-rag/qrecc.zh-CN.md) | `rag_native` | document, answer |
 | [QuALITY](dataset-cards/text-rag/quality.zh-CN.md) | `rag_convertible` | document, answer |
+| [Query Robustness (How You Ask Matters)](dataset-cards/text-rag/query-robustness.zh-CN.md) | `rag_native` | answer |
 | [RAG-RewardBench](dataset-cards/text-rag/rag-rewardbench.zh-CN.md) | `auxiliary` | response_preference |
 | [Ragability Corpus](dataset-cards/text-rag/ragability.zh-CN.md) | `auxiliary` | answer |
 | [RAGBench](dataset-cards/text-rag/ragbench.zh-CN.md) | `rag_native` | sentence, fact_citation, answer |
+| [RAGCap-Bench](dataset-cards/text-rag/ragcap-bench.zh-CN.md) | `auxiliary` | answer |
 | [RAGTruth](dataset-cards/text-rag/ragtruth.zh-CN.md) | `auxiliary` | response_span |
 | [RAGuard](dataset-cards/text-rag/raguard.zh-CN.md) | `rag_native` | document, answer |
 | [RealTime QA](dataset-cards/text-rag/realtimeqa.zh-CN.md) | `rag_convertible` | answer |
+| [RedQA (RARE)](dataset-cards/text-rag/redqa.zh-CN.md) | `rag_native` | chunk, answer |
 | [RGB](dataset-cards/text-rag/rgb.zh-CN.md) | `auxiliary` | answer |
 | [SafeRAG](dataset-cards/text-rag/saferag.zh-CN.md) | `rag_native` | sentence, answer |
 | [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.zh-CN.md) | `auxiliary` | document |
@@ -100,6 +104,7 @@
 | [StrategyQA](dataset-cards/text-rag/strategyqa.zh-CN.md) | `rag_native` | paragraph, answer |
 | [TEMPO](dataset-cards/text-rag/tempo.zh-CN.md) | `rag_native` | document, answer |
 | [TempRAGEval](dataset-cards/text-rag/temprageval.zh-CN.md) | `rag_native` | sentence, answer |
+| [TimelyQABench](dataset-cards/text-rag/timelyqabench.zh-CN.md) | `rag_native` | document, answer |
 | [TopiOCQA](dataset-cards/text-rag/topiocqa.zh-CN.md) | `rag_native` | paragraph, answer |
 | [TriviaQA](dataset-cards/text-rag/triviaqa.zh-CN.md) | `rag_convertible` | document, answer |
 | [WikiRecentChanges](dataset-cards/text-rag/wikirecentchanges.zh-CN.md) | `auxiliary` | answer |
@@ -107,20 +112,22 @@
 
 <a name="multimodal-rag"></a>
 
-### Multimodal RAG (35)
+### Multimodal RAG (38)
 
-跨来源模态的视觉、文档与视频证据。 [分类指南](guides/categories/multimodal-rag.zh-CN.md) · [English](guides/categories/multimodal-rag.md)。
+视觉文档、图像、视频与音频证据。 [分类指南](guides/categories/multimodal-rag.zh-CN.md) · [English](guides/categories/multimodal-rag.md)。
 
 | 数据集 | RAG 角色 | 已发布的真值标注层级 |
 |---|---|---|
 | [A-OKVQA](dataset-cards/multimodal-rag/a-okvqa.zh-CN.md) | `rag_convertible` | answer |
 | [ArXivQA](dataset-cards/multimodal-rag/arxivqa.zh-CN.md) | `rag_convertible` | answer |
+| [CASTELLA](dataset-cards/multimodal-rag/castella.zh-CN.md) | `auxiliary` | time_interval |
 | [CFVBench](dataset-cards/multimodal-rag/cfvbench.zh-CN.md) | `rag_native` | document, answer |
 | [ChartQA](dataset-cards/multimodal-rag/chartqa.zh-CN.md) | `rag_convertible` | bbox, answer |
 | [CRAG-MM](dataset-cards/multimodal-rag/crag-mm.zh-CN.md) | `rag_native` | answer |
 | [DocVQA (single-page)](dataset-cards/multimodal-rag/docvqa.zh-CN.md) | `rag_convertible` | answer |
 | [DUDE](dataset-cards/multimodal-rag/dude.zh-CN.md) | `rag_convertible` | page, bbox, answer |
 | [Encyclopedic-VQA (E-VQA)](dataset-cards/multimodal-rag/encyclopedic-vqa.zh-CN.md) | `rag_native` | document, section, quote, answer |
+| [HARP Audio QA (SongEval / MedMosaic)](dataset-cards/multimodal-rag/harp-audio.zh-CN.md) | `rag_native` | time_interval, answer |
 | [InfographicVQA](dataset-cards/multimodal-rag/infographicvqa.zh-CN.md) | `rag_convertible` | answer |
 | [InfoSeek](dataset-cards/multimodal-rag/infoseek.zh-CN.md) | `rag_convertible` | answer |
 | [LongerVideos](dataset-cards/multimodal-rag/longervideos.zh-CN.md) | `auxiliary` | 未说明 |
@@ -135,6 +142,7 @@
 | [M²RAG](dataset-cards/multimodal-rag/m2rag.zh-CN.md) | `rag_native` | answer |
 | [OHRBench](dataset-cards/multimodal-rag/ohrbench.zh-CN.md) | `rag_native` | page, quote, answer |
 | [OK-VQA](dataset-cards/multimodal-rag/ok-vqa.zh-CN.md) | `rag_convertible` | answer |
+| [One Fact, Many Places (MMLongBench-Red / MMDocRAG-Red)](dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) | `auxiliary` | page, bbox, quote, fact_citation |
 | [OpenDocVQA](dataset-cards/multimodal-rag/opendocvqa.zh-CN.md) | `rag_native` | page, answer |
 | [PlotQA](dataset-cards/multimodal-rag/plotqa.zh-CN.md) | `rag_convertible` | bbox, answer |
 | [RAG-IGBench](dataset-cards/multimodal-rag/rag-igbench.zh-CN.md) | `rag_native` | answer |
@@ -151,7 +159,7 @@
 
 <a name="graph-rag"></a>
 
-### Graph RAG (11)
+### Graph RAG (12)
 
 图结构检索与知识库推理；使用图并不意味着具有路径真值。 [分类指南](guides/categories/graph-rag.zh-CN.md) · [English](guides/categories/graph-rag.md)。
 
@@ -164,6 +172,7 @@
 | [KQA Pro](dataset-cards/graph-rag/kqa-pro.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [MetaQA](dataset-cards/graph-rag/metaqa.zh-CN.md) | `rag_convertible` | answer |
 | [MINTQA](dataset-cards/graph-rag/mintqa.zh-CN.md) | `rag_native` | graph_path, answer |
+| [MKG-RAG-Bench](dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md) | `rag_native` | graph_triplet, answer |
 | [OpenDialKG](dataset-cards/graph-rag/opendialkg.zh-CN.md) | `rag_convertible` | graph_path, answer |
 | [STaRK (textual and relational retrieval)](dataset-cards/graph-rag/stark.zh-CN.md) | `auxiliary` | document |
 | [WebQuestionsSP](dataset-cards/graph-rag/webqsp.zh-CN.md) | `rag_convertible` | graph_path, answer |
@@ -171,7 +180,7 @@
 
 <a name="table-rag"></a>
 
-### Table RAG (13)
+### Table RAG (14)
 
 结构化表格及其与文本、页面和答案推导的关联。 [分类指南](guides/categories/table-rag.zh-CN.md) · [English](guides/categories/table-rag.md)。
 
@@ -184,6 +193,7 @@
 | [HybridQA](dataset-cards/table-rag/hybridqa.zh-CN.md) | `rag_native` | table, paragraph, answer |
 | [OTT-QA](dataset-cards/table-rag/ott-qa.zh-CN.md) | `rag_native` | table, paragraph, answer |
 | [Sequential Question Answering (SQA)](dataset-cards/table-rag/sqa.zh-CN.md) | `rag_convertible` | table_cell, answer |
+| [SpecsQA](dataset-cards/table-rag/specsqa.zh-CN.md) | `rag_native` | answer |
 | [SSRB](dataset-cards/table-rag/ssrb.zh-CN.md) | `auxiliary` | document |
 | [TabFact](dataset-cards/table-rag/tabfact.zh-CN.md) | `rag_convertible` | table, answer |
 | [TAT-QA](dataset-cards/table-rag/tat-qa.zh-CN.md) | `rag_convertible` | table_cell, span, answer |

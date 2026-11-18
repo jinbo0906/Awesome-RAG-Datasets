@@ -1,0 +1,6 @@
+id: retrieval_routing
+name: Retrieval routing
+entity_type: task
+summary: Evaluate retrieval decisions under equivalent queries and the relationship between cost and answer quality.
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-main.2156/', type: paper, fields: [summary], checked_on: '2026-11-18'}

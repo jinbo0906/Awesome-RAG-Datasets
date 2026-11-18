@@ -18,6 +18,8 @@
 
 ## 近期论文驱动的补充
 
+[HARP Audio QA](../../dataset-cards/multimodal-rag/harp-audio.zh-CN.md) 测量波形或转录作为证据的录音内问答。[CASTELLA](../../dataset-cards/multimodal-rag/castella.zh-CN.md) 以人工时间标注评声学定位。[One Fact, Many Places](../../dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) 核查两项视觉文档评测的替代证据。
+
 [论文采用索引](../recent-paper-index.zh-CN.md)注明来源数据用于训练、评测还是检索改造。新增卡片提供以下对照：
 
 | 设置 | 新增入口 | 评测边界 |

@@ -16,6 +16,8 @@ The category is intentionally smaller than the number of papers that use graphs:
 
 ## Recent-paper extensions
 
+[MKG-RAG-Bench](../../dataset-cards/graph-rag/mkg-rag-bench.md) provides triple-level retrieval targets in a native graph. Use its text-only and multimodal candidate conditions to isolate the contribution of images. The full visual evaluation requires upstream assets.
+
 [ComplexWebQuestions](../../dataset-cards/graph-rag/complexwebquestions.md) and [KQA Pro](../../dataset-cards/graph-rag/kqa-pro.md) extend existing-KB semantic parsing and compositional reasoning coverage. [OpenDialKG](../../dataset-cards/graph-rag/opendialkg.md) supplies participant-selected conversational graph paths; these paths are supervision for dialogue transitions, not unique proof graphs for every response. [MINTQA](../../dataset-cards/graph-rag/mintqa.md) adds new and long-tail knowledge, subquestions and linked KG resources; generated fact chains and answer containment must be assessed separately.
 
 The [paper index](../recent-paper-index.md) links ACL 2025 KG-Agent's exact datasets and ICML 2025 HippoRAG 2's text-QA conversion. [mmRAG](../../dataset-cards/text-rag/mmrag.md) tests routing/retrieval over serialized graph, table and text records; its fixed-chunk qrels do not become native graph-path gold.

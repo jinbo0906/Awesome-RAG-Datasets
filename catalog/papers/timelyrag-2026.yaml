@@ -1,0 +1,8 @@
+id: timelyrag-2026
+name: 'TimelyRAG: Semantic-Temporal Hybrid Retrieval for Time-Critical Question Answering in Overlapping-Evolving Documents'
+entity_type: paper
+url: 'https://arxiv.org/abs/2609.11572'
+relation: introduces
+targets: [timelyqabench]
+sources:
+  - {url: 'https://arxiv.org/abs/2609.11572', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

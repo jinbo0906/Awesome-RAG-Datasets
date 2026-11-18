@@ -3,13 +3,13 @@
 
 A source-audited catalog of retrieval-augmented generation datasets and benchmark suites. [中文说明](README.zh-CN.md)
 
-This catalog currently contains **130 datasets** and **10 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
+This catalog currently contains **140 datasets** and **10 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
 
 ## Find a benchmark
 
 - [2025–2026 paper adoption index and CCF scope](guides/recent-paper-index.md) · [中文](guides/recent-paper-index.zh-CN.md)
 - [Selection guide](guides/selecting-a-benchmark.md) · [中文](guides/selecting-a-benchmark.zh-CN.md)
-- [Capability routes: agentic search, temporal evidence, trust and video](guides/selecting-a-benchmark.md#capability-routes) · [中文](guides/selecting-a-benchmark.zh-CN.md#capability-routes)
+- [Choose benchmarks by capability](guides/selecting-a-benchmark.md#capability-routes) · [中文](guides/selecting-a-benchmark.zh-CN.md#capability-routes)
 - [Dataset vs benchmark vs suite](guides/benchmark-vs-dataset.md) · [中文](guides/benchmark-vs-dataset.zh-CN.md)
 - [Taxonomy and review levels](guides/taxonomy.md) · [中文](guides/taxonomy.zh-CN.md)
 - [Coverage decisions and candidate queue](guides/coverage-policy.md) · [中文](guides/coverage-policy.zh-CN.md)
@@ -28,7 +28,7 @@ Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG
 
 <a name="text-rag"></a>
 
-### Text RAG (70)
+### Text RAG (75)
 
 Text sources, evidence retrieval, reasoning and grounded answers. [Category guide](guides/categories/text-rag.md) · [中文指南](guides/categories/text-rag.zh-CN.md).
 
@@ -78,6 +78,7 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 | [NarrativeQA](dataset-cards/text-rag/narrativeqa.md) | `rag_convertible` | document, answer |
 | [Natural Questions](dataset-cards/text-rag/natural-questions.md) | `rag_convertible` | span, answer |
 | [NoMIRACL](dataset-cards/text-rag/nomiracl.md) | `auxiliary` | paragraph |
+| [OAKS (Online Adaptation to Continual Knowledge Streams)](dataset-cards/text-rag/oaks.md) | `auxiliary` | sentence, answer |
 | [OR-QuAC](dataset-cards/text-rag/or-quac.md) | `rag_native` | paragraph, span, answer |
 | [PopQA](dataset-cards/text-rag/popqa.md) | `rag_convertible` | answer |
 | [PUBHEALTH](dataset-cards/text-rag/pubhealth.md) | `rag_convertible` | answer |
@@ -86,12 +87,15 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 | [QASPER](dataset-cards/text-rag/qasper.md) | `rag_native` | paragraph, answer |
 | [QReCC](dataset-cards/text-rag/qrecc.md) | `rag_native` | document, answer |
 | [QuALITY](dataset-cards/text-rag/quality.md) | `rag_convertible` | document, answer |
+| [Query Robustness (How You Ask Matters)](dataset-cards/text-rag/query-robustness.md) | `rag_native` | answer |
 | [RAG-RewardBench](dataset-cards/text-rag/rag-rewardbench.md) | `auxiliary` | response_preference |
 | [Ragability Corpus](dataset-cards/text-rag/ragability.md) | `auxiliary` | answer |
 | [RAGBench](dataset-cards/text-rag/ragbench.md) | `rag_native` | sentence, fact_citation, answer |
+| [RAGCap-Bench](dataset-cards/text-rag/ragcap-bench.md) | `auxiliary` | answer |
 | [RAGTruth](dataset-cards/text-rag/ragtruth.md) | `auxiliary` | response_span |
 | [RAGuard](dataset-cards/text-rag/raguard.md) | `rag_native` | document, answer |
 | [RealTime QA](dataset-cards/text-rag/realtimeqa.md) | `rag_convertible` | answer |
+| [RedQA (RARE)](dataset-cards/text-rag/redqa.md) | `rag_native` | chunk, answer |
 | [RGB](dataset-cards/text-rag/rgb.md) | `auxiliary` | answer |
 | [SafeRAG](dataset-cards/text-rag/saferag.md) | `rag_native` | sentence, answer |
 | [SciFact (BEIR variant)](dataset-cards/text-rag/beir-scifact.md) | `auxiliary` | document |
@@ -100,6 +104,7 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 | [StrategyQA](dataset-cards/text-rag/strategyqa.md) | `rag_native` | paragraph, answer |
 | [TEMPO](dataset-cards/text-rag/tempo.md) | `rag_native` | document, answer |
 | [TempRAGEval](dataset-cards/text-rag/temprageval.md) | `rag_native` | sentence, answer |
+| [TimelyQABench](dataset-cards/text-rag/timelyqabench.md) | `rag_native` | document, answer |
 | [TopiOCQA](dataset-cards/text-rag/topiocqa.md) | `rag_native` | paragraph, answer |
 | [TriviaQA](dataset-cards/text-rag/triviaqa.md) | `rag_convertible` | document, answer |
 | [WikiRecentChanges](dataset-cards/text-rag/wikirecentchanges.md) | `auxiliary` | answer |
@@ -107,20 +112,22 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 
 <a name="multimodal-rag"></a>
 
-### Multimodal RAG (35)
+### Multimodal RAG (38)
 
-Visual, document and video evidence across source modalities. [Category guide](guides/categories/multimodal-rag.md) · [中文指南](guides/categories/multimodal-rag.zh-CN.md).
+Visual documents, images, video and audio evidence. [Category guide](guides/categories/multimodal-rag.md) · [中文指南](guides/categories/multimodal-rag.zh-CN.md).
 
 | Dataset | Role | Gold annotation levels |
 |---|---|---|
 | [A-OKVQA](dataset-cards/multimodal-rag/a-okvqa.md) | `rag_convertible` | answer |
 | [ArXivQA](dataset-cards/multimodal-rag/arxivqa.md) | `rag_convertible` | answer |
+| [CASTELLA](dataset-cards/multimodal-rag/castella.md) | `auxiliary` | time_interval |
 | [CFVBench](dataset-cards/multimodal-rag/cfvbench.md) | `rag_native` | document, answer |
 | [ChartQA](dataset-cards/multimodal-rag/chartqa.md) | `rag_convertible` | bbox, answer |
 | [CRAG-MM](dataset-cards/multimodal-rag/crag-mm.md) | `rag_native` | answer |
 | [DocVQA (single-page)](dataset-cards/multimodal-rag/docvqa.md) | `rag_convertible` | answer |
 | [DUDE](dataset-cards/multimodal-rag/dude.md) | `rag_convertible` | page, bbox, answer |
 | [Encyclopedic-VQA (E-VQA)](dataset-cards/multimodal-rag/encyclopedic-vqa.md) | `rag_native` | document, section, quote, answer |
+| [HARP Audio QA (SongEval / MedMosaic)](dataset-cards/multimodal-rag/harp-audio.md) | `rag_native` | time_interval, answer |
 | [InfographicVQA](dataset-cards/multimodal-rag/infographicvqa.md) | `rag_convertible` | answer |
 | [InfoSeek](dataset-cards/multimodal-rag/infoseek.md) | `rag_convertible` | answer |
 | [LongerVideos](dataset-cards/multimodal-rag/longervideos.md) | `auxiliary` | not documented |
@@ -135,6 +142,7 @@ Visual, document and video evidence across source modalities. [Category guide](g
 | [M²RAG](dataset-cards/multimodal-rag/m2rag.md) | `rag_native` | answer |
 | [OHRBench](dataset-cards/multimodal-rag/ohrbench.md) | `rag_native` | page, quote, answer |
 | [OK-VQA](dataset-cards/multimodal-rag/ok-vqa.md) | `rag_convertible` | answer |
+| [One Fact, Many Places (MMLongBench-Red / MMDocRAG-Red)](dataset-cards/multimodal-rag/one-fact-many-places.md) | `auxiliary` | page, bbox, quote, fact_citation |
 | [OpenDocVQA](dataset-cards/multimodal-rag/opendocvqa.md) | `rag_native` | page, answer |
 | [PlotQA](dataset-cards/multimodal-rag/plotqa.md) | `rag_convertible` | bbox, answer |
 | [RAG-IGBench](dataset-cards/multimodal-rag/rag-igbench.md) | `rag_native` | answer |
@@ -151,7 +159,7 @@ Visual, document and video evidence across source modalities. [Category guide](g
 
 <a name="graph-rag"></a>
 
-### Graph RAG (11)
+### Graph RAG (12)
 
 Graph-based retrieval and knowledge-base reasoning; graph use alone does not establish path gold. [Category guide](guides/categories/graph-rag.md) · [中文指南](guides/categories/graph-rag.zh-CN.md).
 
@@ -164,6 +172,7 @@ Graph-based retrieval and knowledge-base reasoning; graph use alone does not est
 | [KQA Pro](dataset-cards/graph-rag/kqa-pro.md) | `rag_convertible` | graph_path, answer |
 | [MetaQA](dataset-cards/graph-rag/metaqa.md) | `rag_convertible` | answer |
 | [MINTQA](dataset-cards/graph-rag/mintqa.md) | `rag_native` | graph_path, answer |
+| [MKG-RAG-Bench](dataset-cards/graph-rag/mkg-rag-bench.md) | `rag_native` | graph_triplet, answer |
 | [OpenDialKG](dataset-cards/graph-rag/opendialkg.md) | `rag_convertible` | graph_path, answer |
 | [STaRK (textual and relational retrieval)](dataset-cards/graph-rag/stark.md) | `auxiliary` | document |
 | [WebQuestionsSP](dataset-cards/graph-rag/webqsp.md) | `rag_convertible` | graph_path, answer |
@@ -171,7 +180,7 @@ Graph-based retrieval and knowledge-base reasoning; graph use alone does not est
 
 <a name="table-rag"></a>
 
-### Table RAG (13)
+### Table RAG (14)
 
 Structured tables and their links to prose, pages and answer derivations. [Category guide](guides/categories/table-rag.md) · [中文指南](guides/categories/table-rag.zh-CN.md).
 
@@ -184,6 +193,7 @@ Structured tables and their links to prose, pages and answer derivations. [Categ
 | [HybridQA](dataset-cards/table-rag/hybridqa.md) | `rag_native` | table, paragraph, answer |
 | [OTT-QA](dataset-cards/table-rag/ott-qa.md) | `rag_native` | table, paragraph, answer |
 | [Sequential Question Answering (SQA)](dataset-cards/table-rag/sqa.md) | `rag_convertible` | table_cell, answer |
+| [SpecsQA](dataset-cards/table-rag/specsqa.md) | `rag_native` | answer |
 | [SSRB](dataset-cards/table-rag/ssrb.md) | `auxiliary` | document |
 | [TabFact](dataset-cards/table-rag/tabfact.md) | `rag_convertible` | table, answer |
 | [TAT-QA](dataset-cards/table-rag/tat-qa.md) | `rag_convertible` | table_cell, span, answer |

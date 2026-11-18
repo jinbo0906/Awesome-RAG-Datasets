@@ -1,0 +1,8 @@
+id: rare-2026
+name: 'RARE: Redundancy-Aware Retrieval Evaluation Framework for High-Similarity Corpora'
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.923/'
+relation: introduces
+targets: [redqa]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.923/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

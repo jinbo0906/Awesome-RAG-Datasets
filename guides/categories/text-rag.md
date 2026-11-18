@@ -20,6 +20,8 @@ The full [evidence ground-truth guide](../evidence-ground-truth.md) specifies th
 
 ## Recent-paper extensions
 
+[RedQA](../../dataset-cards/text-rag/redqa.md) introduces equivalent fixed-chunk groups for every required fact. [TimelyQABench](../../dataset-cards/text-rag/timelyqabench.md) and [OAKS](../../dataset-cards/text-rag/oaks.md) cover applicable document versions and state recovery under replay. [Query Robustness](../../dataset-cards/text-rag/query-robustness.md) compares retrieval calls across matched question variants.
+
 The [2025–2026 adoption index](../recent-paper-index.md) records exact paper settings, including native-source variants and sampled splits. Important additions cover different failure modes:
 
 | Subtrack | Added starting points | Keep separate |

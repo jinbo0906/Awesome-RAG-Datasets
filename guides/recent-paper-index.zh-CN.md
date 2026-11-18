@@ -2,7 +2,7 @@
 
 [English](recent-paper-index.md)
 
-维护核查日期：2026-11-01。本轮重点覆盖 2025 年五月至 2026 年十月的公开工作，优先 2026 年发布及十月正式论文；近期实验复用的重要早期资源也会补充。已有卡片保留各自字段核查日期。这是精选采用证据索引，不是完整文献普查或质量排行榜。同一数据被多篇论文采用，不会重复统计为多个数据集。
+更新于 2026-11-18。索引选录 2025 年至 2026 年 11 月公开的研究，近期增补放在前面。较早资源也会在近期实验实际使用时收录。各卡片记录各自的来源核查日期。
 
 ## 会议与发表类型口径
 
@@ -12,7 +12,27 @@ CCF 将正式 Full/Regular 长文纳入考虑，并明确排除 Findings、Short
 
 表格区分**数据引入**、**训练采用**和**评测采用**。数据集卡片保留原生事实；抽样划分、外部语料和改造版指标属于论文实验设置。机器可读关系位于 [catalog/papers](../catalog/papers)。
 
-## 十一月维护：新的评测契约
+## 11 月 18 日补充
+
+本次核查以 2026 年正式会议和秋季公开发布为主，重点是证据等价、图三元组、声学证据、知识变化与代理决策。标注改版按发布包记录，方法沿用论文采用关系。
+
+| 论文与发表状态 | 资源和关系 | 实验位置与选型要点 |
+|---|---|---|
+| [RARE](https://aclanthology.org/2026.acl-long.923/) · ACL 2026 长文 | 引入 [RedQA](../dataset-cards/text-rag/redqa.zh-CN.md) | §§4–5 与附录 A.4。分组 Coverage 与 PerfRecall 区分部分命中和全部必需事实覆盖。 |
+| [One Fact, Many Places](https://arxiv.org/abs/2610.26401) · 2026 年 10 月预印本 | 重标 [MMLongBench-Red / MMDocRAG-Red](../dataset-cards/multimodal-rag/one-fact-many-places.zh-CN.md) | §§2–5 与附录 I。两套原有资源的子集共同发布，分别评估摘录重评分与集合遮挡。 |
+| [MKG-RAG-Bench](https://doi.org/10.1145/3770855.3817570) · KDD 2026 | 引入 [MKG-RAG-Bench](../dataset-cards/graph-rag/mkg-rag-bench.zh-CN.md) | 表 2 与 §§4.2–4.3。先评三元组排序，再用前五个三元组评测问答。原生图数据与图像获取条件分别记录。 |
+| [DualGraph](https://aclanthology.org/2026.findings-emnlp.1319/) · Findings EMNLP 2026 | 引入 [SpecsQA](../dataset-cards/table-rag/specsqa.zh-CN.md) | §§3–4 与表 2。完整产品列表和事实正确性揭示语义检索与符号查询的差异。 |
+| [OAKS](https://aclanthology.org/2026.acl-long.1956/) · ACL 2026 长文 | 引入 [OAKS](../dataset-cards/text-rag/oaks.zh-CN.md) | §§3–4 与附录 B.2。用流片段步数测量知识获取迟滞。公开小说轨有 435 题，论文报告 870 题。 |
+| [TimelyRAG](https://arxiv.org/abs/2609.11572) · 2026 年 9 月预印本 | 引入 [TimelyQABench](../dataset-cards/text-rag/timelyqabench.zh-CN.md) | §§4–5 与表 4–6。四个合成韩语领域提供政策版本相关性和答案时间有效性评判。 |
+| [How You Ask Matters](https://aclanthology.org/2026.emnlp-main.2156/) · EMNLP 2026 主会 | 引入 [Query Robustness](../dataset-cards/text-rag/query-robustness.zh-CN.md) | §§3–4 与 §6。比较等义问法下的答案质量、检索决策翻转和调用量。22,183 种发布问法包含 3,000 条原问。 |
+| [HARP](https://arxiv.org/abs/2609.14116) · 2026 年 9 月预印本 | 引入录音内检索任务 [HARP Audio QA](../dataset-cards/multimodal-rag/harp-audio.zh-CN.md) | §§III–V。公开音乐和健康轨与需另行授权的情绪轨分别统计。 |
+| [CASTELLA](https://arxiv.org/abs/2511.15131) · ICASSP 2026 | 引入 [CASTELLA](../dataset-cards/multimodal-rag/castella.zh-CN.md) | §§4–5 与表 3。使用人工时间标注和时间交并比评估录音内声音定位。 |
+| [RAGCap-Bench](https://aclanthology.org/2026.aacl-long.245/) · 2026 年 11 月 IJCNLP–AACL 长文 | 引入 [RAGCap-Bench](../dataset-cards/text-rag/ragcap-bench.zh-CN.md) | §3.4、§4.4 与附录 I。过程选择题用 EM/F1。独立 WebThinker 实验在搜索调用预算下实际评测 BrowseComp 等网页问答。 |
+| [Better Together](https://aclanthology.org/2026.emnlp-industry.143/) · EMNLP 2026 Industry | 实际评测 [HotpotQA](../dataset-cards/text-rag/hotpotqa.zh-CN.md)、[AmbigNQ](../dataset-cards/text-rag/ambigqa.zh-CN.md) 和 [EnterpriseRAG-Bench](../dataset-cards/text-rag/enterpriserag-bench.zh-CN.md) | §4 与表 2。分别用训练集前 5,000 条、完整开发集 2,002 条和 470 条有相关性标注的企业题。固定重排与多样化设置下比较检索指标，原始数据集划分以卡片为准。 |
+
+<a name="十一月维护新的评测契约"></a>
+
+## 11 月 1 日补充
 
 每行明确**引入**、**扩展**或**实际评测采用**。仅在参考文献中出现不构成采用关系。RACE、FACT、代理框架和评分工具库仍是方法，不额外计为数据集。卡片保留原生协议，论文特有转换不会悄悄升级为原始数据的属性。
 

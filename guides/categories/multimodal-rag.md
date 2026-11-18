@@ -18,6 +18,8 @@ Video extends the model with time intervals, transcripts, frames and cross-modal
 
 ## Recent-paper extensions
 
+[HARP Audio QA](../../dataset-cards/multimodal-rag/harp-audio.md) evaluates recording-local QA using waveform or transcript evidence. [CASTELLA](../../dataset-cards/multimodal-rag/castella.md) scores sound localization with human timing labels. [One Fact, Many Places](../../dataset-cards/multimodal-rag/one-fact-many-places.md) audits alternative evidence in two visual document benchmarks.
+
 The [paper adoption index](../recent-paper-index.md) shows whether a source dataset was used for training, evaluation or retrieval conversion. The expanded cards add the following controls:
 
 | Setting | Added entry points | Evaluation boundary |

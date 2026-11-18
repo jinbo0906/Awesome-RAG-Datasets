@@ -1,0 +1,37 @@
+id: query-robustness
+name: Query Robustness (How You Ask Matters)
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-18'
+summary: Paired answer-preserving query variations for evaluating how adaptive RAG changes its answers, retrieval strategy and cost.
+classification: {rag_role: rag_native, primary_category: text_rag, tasks: [rag_robustness, retrieval_routing], modalities: [text], domains: [open-domain-qa], languages: [en]}
+data:
+  corpus: external
+  queries: provided
+  answers: provided
+  description: EMNLP 2026 benchmark draws from six existing QA datasets and groups each original with six machine-generated form variations and up to two human rewrites. The RAG setup uses external Wikipedia passages from DPR.
+  size: Pinned release has 3,000 originals, 18,000 machine variants and 1,183 nonempty human rewrites for 597 base rows (22,183 forms including originals).
+  splits: Six evaluation configurations of 500 original rows each. The HF viewer's automatic train label differs from the test.jsonl file naming and intended evaluation use.
+  format: JSONL with original_question, answers, human rewrite and surface-variation columns
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: Answer targets are shared with each original. Pairs are designed to preserve intent while varying formality, readability, syntax or errors. The release does not label a unique correct retrieval decision for each question.
+  alternatives: not_documented
+evaluation:
+  official_metrics: [answer_accuracy, InAccuracy, semantic_answer_consistency, retrieval_calls, LLM_calls, normalized_cost_deviation, retrieval_decision_robustness]
+  protocol: Pair each variant with its original in the same retrieval and model environment. InAccuracy checks whether an answer contains a gold string. Compare changes in correctness, semantic answer consistency, retrieval routing and call counts separately. Keep originals and their variants together in any derived split.
+  evaluator: https://github.com/YunahJang/AdaptiveRAG-Robustness/tree/c9a5bfc8d10957baa006bbe24dc05b8e8f842b10
+access:
+  official: https://huggingface.co/datasets/YunahJang/query-robustness
+  data: https://huggingface.co/datasets/YunahJang/query-robustness/tree/48bbc43c76a4581ab2f62331e455a1f37d9e1482
+  paper: https://aclanthology.org/2026.emnlp-main.2156/
+  license: CC-BY-SA-4.0 (released variation data)
+  gated: false
+use:
+  best_for: [Detecting needless route changes for semantically equivalent queries, Measuring answer-robustness and cost tradeoffs for adaptive retrieval]
+  caveats: [Forms sharing an original are repeated measurements, MIT applies to the baseline overlays while the dataset and Wikipedia terms are separate, Route changes diagnose instability and require counterfactual evaluation to establish whether they were beneficial]
+sources:
+  - {url: 'https://aclanthology.org/2026.emnlp-main.2156.pdf', type: paper, fields: [summary, classification, data.description, ground_truth, evaluation.official_metrics, evaluation.protocol, use], checked_on: '2026-11-18'}
+  - {url: 'https://huggingface.co/datasets/YunahJang/query-robustness/tree/48bbc43c76a4581ab2f62331e455a1f37d9e1482', type: dataset_card, fields: [data.size, data.splits, data.format, access.data, access.license], checked_on: '2026-11-18'}
+  - {url: 'https://github.com/YunahJang/AdaptiveRAG-Robustness/tree/c9a5bfc8d10957baa006bbe24dc05b8e8f842b10', type: repository, fields: [evaluation.evaluator, evaluation.protocol], checked_on: '2026-11-18'}

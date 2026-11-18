@@ -1,0 +1,8 @@
+id: ragcap-bench-2026
+name: 'RAGCap-Bench: Benchmarking Capabilities of LLMs in Agentic Retrieval Augmented Generation Systems'
+entity_type: paper
+url: 'https://aclanthology.org/2026.aacl-long.245/'
+relation: introduces
+targets: [ragcap-bench]
+sources:
+  - {url: 'https://aclanthology.org/2026.aacl-long.245/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}

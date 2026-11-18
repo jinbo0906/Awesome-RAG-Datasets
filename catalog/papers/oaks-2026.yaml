@@ -1,0 +1,8 @@
+id: oaks-2026
+name: 'Can Large Language Models Keep Up? Benchmarking Online Adaptation to Continual Knowledge Streams'
+entity_type: paper
+url: 'https://aclanthology.org/2026.acl-long.1956/'
+relation: introduces
+targets: [oaks]
+sources:
+  - {url: 'https://aclanthology.org/2026.acl-long.1956/', type: paper, fields: [name, relation, targets], checked_on: '2026-11-18'}
