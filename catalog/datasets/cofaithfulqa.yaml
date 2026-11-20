@@ -1,0 +1,71 @@
+id: cofaithfulqa
+name: CoFaithfulQA
+entity_type: dataset
+status: source_checked
+last_checked: '2026-11-20'
+summary: Supplied-evidence QA for measuring whether LLMs follow accurate passages that conflict with their closed-book answers.
+classification:
+  rag_role: rag_native
+  primary_category: text_rag
+  tasks: [single_hop_qa, multi_hop_qa, rag_robustness]
+  modalities: [text]
+  domains: [open-domain]
+  languages: [en]
+data:
+  corpus: provided
+  queries: provided
+  answers: provided
+  description: >-
+    Six public JSONL files from HotpotQA, NewsQA, Natural Questions, SearchQA, SQuAD and TriviaQA.
+    A row includes a question, supplied context, reference answers, the construction model's
+    closed-book answer and its frequency. The release supplies per-question passages for given-evidence evaluation.
+  splits: The Hub labels the public files train. The authors document those files for evaluation and report different deduplicated counts in the paper.
+  format: JSONL
+ground_truth:
+  levels: [answer]
+  provenance: mixed
+  description: >-
+    The reference answer and supporting passage come from the source QA data. The construction
+    pipeline identifies stable closed-book answers through repeated sampling and uses multiple
+    models to verify conflicts. The release provides no independent open-corpus retrieval judgments.
+  alternatives: explicit
+evaluation:
+  official_metrics: [context_recall, memory_recall, memorization_ratio]
+  protocol: >-
+    Supply each model with the same question and context and use the normalization in Section 5.
+    Record the data revision, subset, prompting and scoring settings. Context recall and memory
+    recall score answers against different references, and memorization ratio is MemR / (MemR + ConR).
+access:
+  official: 'https://huggingface.co/datasets/chengpingan/CoFaithfulQA'
+  paper: 'https://doi.org/10.52202/085713-3356'
+  data: 'https://huggingface.co/datasets/chengpingan/CoFaithfulQA/tree/main'
+  license: 'Hub dataset card: MIT. Paper Appendix A.2 states academic research distribution. Source dataset terms are listed in Appendix A.1.'
+use:
+  best_for:
+    - Measuring answer faithfulness when correct supplied evidence conflicts with model memory
+    - Comparing context recall and memory recall under fixed evidence
+  caveats:
+    - Conflict selection depends on the construction model and its closed-book answer
+    - Evaluate open-corpus retrieval separately
+    - Dataset card and paper describe different distribution terms
+sources:
+  - url: 'https://arxiv.org/html/2502.15543v4#S4'
+    type: paper
+    fields: [summary, classification.tasks, ground_truth]
+    checked_on: '2026-11-20'
+  - url: 'https://arxiv.org/html/2502.15543v4#S5'
+    type: paper
+    fields: [evaluation.official_metrics, evaluation.protocol]
+    checked_on: '2026-11-20'
+  - url: 'https://arxiv.org/html/2502.15543v4#A1.SS2'
+    type: paper
+    fields: [access.license, use.caveats]
+    checked_on: '2026-11-20'
+  - url: 'https://huggingface.co/datasets/chengpingan/CoFaithfulQA'
+    type: dataset_card
+    fields: [classification.languages, data, ground_truth.alternatives, access.official, access.data, access.license]
+    checked_on: '2026-11-20'
+  - url: 'https://doi.org/10.52202/085713-3356'
+    type: paper
+    fields: [access.paper]
+    checked_on: '2026-11-20'

@@ -3,7 +3,7 @@
 
 这是一个经过来源核对的检索增强生成（RAG）数据集与评测套件目录。[English](README.md)
 
-目录目前收录 **140 个数据集**和 **11 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
+目录目前收录 **141 个数据集**和 **11 个评测套件**。每个条目记录任务、语料、证据标注、评测协议、适用场景、局限和来源链接。这是有选择的整理，不是整个领域的完整清单；审查状态和来源核对深度记录在各自的卡片中。
 
 ## 寻找合适的 benchmark
 
@@ -28,7 +28,7 @@
 
 <a name="text-rag"></a>
 
-### Text RAG (75)
+### Text RAG (76)
 
 文本来源的证据检索、推理与有依据的回答。 [分类指南](guides/categories/text-rag.zh-CN.md) · [English](guides/categories/text-rag.md)。
 
@@ -44,6 +44,7 @@
 | [BrowseComp-Plus](dataset-cards/text-rag/browsecomp-plus.zh-CN.md) | `rag_native` | document, answer |
 | [CiteRAG (academic citation prediction)](dataset-cards/text-rag/citerag.zh-CN.md) | `rag_native` | document, answer |
 | [CLAP NQ](dataset-cards/text-rag/clapnq.zh-CN.md) | `rag_native` | sentence, answer |
+| [CoFaithfulQA](dataset-cards/text-rag/cofaithfulqa.zh-CN.md) | `rag_native` | answer |
 | [ConfRAG](dataset-cards/text-rag/confrag.zh-CN.md) | `rag_native` | document, fact_citation, answer |
 | [CRAG](dataset-cards/text-rag/crag.zh-CN.md) | `rag_native` | answer |
 | [CRUD-RAG](dataset-cards/text-rag/crud-rag.zh-CN.md) | `rag_native` | answer |

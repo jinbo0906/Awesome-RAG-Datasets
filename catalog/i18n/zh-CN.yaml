@@ -306,6 +306,20 @@ datasets:
     evaluation_protocol: 比较无上下文、完整语料检索及直接提供关联文档的设置；区分 RAG-1、RAG-5、oracle-all 与 oracle-misleading。无效类别输出按错误计。
     best_for: [真实误导检索内容下的鲁棒性, 检索与无上下文主张核查的比较]
     caveats: [误导性相对于模型行为定义，且任务集中在政治领域, 两个 CSV 应分别读取，Hugging Face 默认查看器会报告字段不兼容]
+  cofaithfulqa:
+    summary: 给定证据的问答基准，衡量模型能否在闭卷答案与正确段落冲突时依据段落作答。
+    data_description: >-
+      六个公开 JSONL 文件来自 HotpotQA、NewsQA、Natural Questions、SearchQA、SQuAD 和 TriviaQA。
+      每行包含问题、给定上下文、参考答案、构建模型的闭卷答案及出现次数。公开版提供逐题段落。
+    splits: Hugging Face 将公开文件标成 train。作者将这些文件用于评测，论文另行报告去重统计。
+    ground_truth_description: >-
+      参考答案与支持段落来自原始问答数据。构建时用重复采样找出稳定的闭卷答案，再用多个模型核验冲突。
+      公开版没有独立的开放语料检索标注。
+    evaluation_protocol: >-
+      给每个模型相同的问题和上下文，使用论文第五节的答案归一化方法，并记录数据版本、子集、提示与评分设置。
+      上下文召回和记忆召回匹配不同参考答案，记忆比例为 MemR / (MemR + ConR)。
+    best_for: [评估正确证据与模型记忆冲突时的回答忠实度, 在固定证据下比较上下文召回与记忆召回]
+    caveats: [冲突样本取决于构建模型及其闭卷答案, 开放语料检索需要单独评估, 数据卡与论文描述的分发条款不同]
   confrag:
     summary: 面向矛盾信息的问答基准，要求覆盖所提供网页参考中的不同观点。
     data_description: 样本包含网页正文与 URL、矛盾标记、答案观点簇，以及附网页索引的支持理由；推荐版本改进了标注。

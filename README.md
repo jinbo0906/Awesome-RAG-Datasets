@@ -3,7 +3,7 @@
 
 A source-audited catalog of retrieval-augmented generation datasets and benchmark suites. [中文说明](README.zh-CN.md)
 
-This catalog currently contains **140 datasets** and **11 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
+This catalog currently contains **141 datasets** and **11 suites**. Each entry records its task, corpus, evidence labels, evaluation protocol, practical fit, limitations, and source links. This is curated coverage, not an exhaustive census; each card records its own review status and source-checking depth.
 
 ## Find a benchmark
 
@@ -28,7 +28,7 @@ Browse: [Text RAG](#text-rag) · [Multimodal RAG](#multimodal-rag) · [Graph RAG
 
 <a name="text-rag"></a>
 
-### Text RAG (75)
+### Text RAG (76)
 
 Text sources, evidence retrieval, reasoning and grounded answers. [Category guide](guides/categories/text-rag.md) · [中文指南](guides/categories/text-rag.zh-CN.md).
 
@@ -44,6 +44,7 @@ Text sources, evidence retrieval, reasoning and grounded answers. [Category guid
 | [BrowseComp-Plus](dataset-cards/text-rag/browsecomp-plus.md) | `rag_native` | document, answer |
 | [CiteRAG (academic citation prediction)](dataset-cards/text-rag/citerag.md) | `rag_native` | document, answer |
 | [CLAP NQ](dataset-cards/text-rag/clapnq.md) | `rag_native` | sentence, answer |
+| [CoFaithfulQA](dataset-cards/text-rag/cofaithfulqa.md) | `rag_native` | answer |
 | [ConfRAG](dataset-cards/text-rag/confrag.md) | `rag_native` | document, fact_citation, answer |
 | [CRAG](dataset-cards/text-rag/crag.md) | `rag_native` | answer |
 | [CRUD-RAG](dataset-cards/text-rag/crud-rag.md) | `rag_native` | answer |
